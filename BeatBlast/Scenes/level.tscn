@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://rqlvdkbur7as"]
+
+[ext_resource type="Texture2D" uid="uid://gjvmmjcoq5jl" path="res://Sprites/Cave-Tileset-Top-Down-Pixel-Art6.png" id="1_4ccus"]
+[ext_resource type="PackedScene" uid="uid://b1lyax7mlenna" path="res://Scenes/player.tscn" id="2_1tuju"]
+
+[node name="level" type="Node2D"]
+
+[node name="Cave-tileset-top-down-pixel-art6" type="Sprite2D" parent="."]
+position = Vector2(410, 101)
+scale = Vector2(2.28167, 1.5475)
+texture = ExtResource("1_4ccus")
+
+[node name="Player" parent="." instance=ExtResource("2_1tuju")]
+position = Vector2(503, 194)
+scale = Vector2(7.82165, 7.06784)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.42, 0.42)

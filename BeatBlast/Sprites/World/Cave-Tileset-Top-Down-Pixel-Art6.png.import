@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://gjvmmjcoq5jl"
-path="res://.godot/imported/Cave-Tileset-Top-Down-Pixel-Art6.png-9f3644ae372fd6ea558f63e206b26c51.ctex"
+path="res://.godot/imported/Cave-Tileset-Top-Down-Pixel-Art6.png-82ab9b55d352d2a393066456a87fafb5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Cave-Tileset-Top-Down-Pixel-Art6.png"
-dest_files=["res://.godot/imported/Cave-Tileset-Top-Down-Pixel-Art6.png-9f3644ae372fd6ea558f63e206b26c51.ctex"]
+source_file="res://Sprites/World/Cave-Tileset-Top-Down-Pixel-Art6.png"
+dest_files=["res://.godot/imported/Cave-Tileset-Top-Down-Pixel-Art6.png-82ab9b55d352d2a393066456a87fafb5.ctex"]
 
 [params]
 

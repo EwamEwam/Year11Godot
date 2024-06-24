@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bruh1klavip32"
-path="res://.godot/imported/kfc.jpg-f7b1513fc6b1d036f176d7104bce5f98.ctex"
+path="res://.godot/imported/kfc.jpg-eb30a97261c93107ec93431a6f1d5a58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/kfc.jpg"
-dest_files=["res://.godot/imported/kfc.jpg-f7b1513fc6b1d036f176d7104bce5f98.ctex"]
+source_file="res://Sprites/Characters and projectiles/kfc.jpg"
+dest_files=["res://.godot/imported/kfc.jpg-eb30a97261c93107ec93431a6f1d5a58.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d23ggmtclmsko"
-path="res://.godot/imported/control diagram (2).png-3287734b8996c502a3deb9484344432c.ctex"
+path="res://.godot/imported/control diagram (2).png-4206824fbfb33370435f7016b90978ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/control diagram (2).png"
-dest_files=["res://.godot/imported/control diagram (2).png-3287734b8996c502a3deb9484344432c.ctex"]
+source_file="res://Sprites/Characters and projectiles/control diagram (2).png"
+dest_files=["res://.godot/imported/control diagram (2).png-4206824fbfb33370435f7016b90978ed.ctex"]
 
 [params]
 

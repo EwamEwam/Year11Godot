@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://rqlvdkbur7as"]
+[gd_scene load_steps=8 format=3 uid="uid://rqlvdkbur7as"]
 
 [ext_resource type="Texture2D" uid="uid://dgho5tigswvae" path="res://Sprites/World/placeholder tileset.png" id="1_t3dol"]
 [ext_resource type="PackedScene" uid="uid://b1lyax7mlenna" path="res://Scenes/player.tscn" id="2_1tuju"]
 [ext_resource type="PackedScene" uid="uid://kwf7h0f8iclj" path="res://Scenes/heart(5).tscn" id="3_ulhhj"]
+[ext_resource type="PackedScene" uid="uid://c1xbilv51dpju" path="res://Scenes/heart_capsule.tscn" id="4_mcg8x"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pe2vl"]
 
@@ -71,3 +72,96 @@ position = Vector2(454, 509)
 
 [node name="heart(5)2" parent="." instance=ExtResource("3_ulhhj")]
 position = Vector2(927, 383)
+
+[node name="heart(5)3" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(-565, 355)
+
+[node name="heart(5)4" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(563, 785)
+
+[node name="heart(5)5" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(1036, 659)
+
+[node name="heart(5)6" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(-456, 631)
+
+[node name="heart(5)7" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(910, 481)
+
+[node name="heart(5)8" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(1383, 355)
+
+[node name="heart(5)9" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(-109, 327)
+
+[node name="heart(5)10" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(701, 200)
+
+[node name="heart(5)11" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(1174, 74)
+
+[node name="heart(5)12" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(-318, 46)
+
+[node name="heart(5)13" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(877, 733)
+
+[node name="heart(5)14" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(1350, 607)
+
+[node name="heart(5)15" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(-142, 579)
+
+[node name="heart(5)16" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(1181, 624)
+
+[node name="heart(5)17" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(1654, 498)
+
+[node name="heart(5)18" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(162, 470)
+
+[node name="heart(5)19" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(1105, 833)
+
+[node name="heart(5)20" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(1578, 707)
+
+[node name="heart(5)21" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(86, 679)
+
+[node name="heart(5)22" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(1124, 353)
+
+[node name="heart(5)23" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(1597, 227)
+
+[node name="heart(5)24" parent="." instance=ExtResource("3_ulhhj")]
+position = Vector2(105, 199)
+
+[node name="Heart_capsule" parent="." instance=ExtResource("4_mcg8x")]
+position = Vector2(520, -304)
+
+[node name="Heart_capsule2" parent="." instance=ExtResource("4_mcg8x")]
+position = Vector2(338, -299)
+
+[node name="Heart_capsule3" parent="." instance=ExtResource("4_mcg8x")]
+position = Vector2(157, -299)
+
+[node name="Heart_capsule4" parent="." instance=ExtResource("4_mcg8x")]
+position = Vector2(-20, -299)
+
+[node name="Heart_capsule5" parent="." instance=ExtResource("4_mcg8x")]
+position = Vector2(-191, -294)
+
+[node name="Heart_capsule6" parent="." instance=ExtResource("4_mcg8x")]
+position = Vector2(711, -304)
+
+[node name="Heart_capsule7" parent="." instance=ExtResource("4_mcg8x")]
+position = Vector2(903, -304)
+
+[node name="Heart_capsule8" parent="." instance=ExtResource("4_mcg8x")]
+position = Vector2(1195, -314)
+
+[node name="Heart_capsule9" parent="." instance=ExtResource("4_mcg8x")]
+position = Vector2(1039, -309)

@@ -15,9 +15,10 @@ extends CanvasLayer
 @onready var heart12 = $heart12
 
 func _ready():
-	bar.set_frame(Playerstats.max_health/10-3)
+	pass
 	
 func _physics_process(delta):
+	bar.set_frame(Playerstats.max_health/10-3)
 	heart1.set_frame(clampf(Playerstats.health,0,10))
 	heart2.set_frame(clampf(Playerstats.health-10,0,10))
 	heart3.set_frame(clampf(Playerstats.health-20,0,10))

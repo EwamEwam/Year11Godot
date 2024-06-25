@@ -14,6 +14,10 @@ config/name="BeatBlast"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Playerstats="*res://Scenes/Scripts/playerstats.gd"
+
 [display]
 
 window/stretch/mode="viewport"

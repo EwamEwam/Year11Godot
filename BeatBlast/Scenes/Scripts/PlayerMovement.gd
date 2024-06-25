@@ -33,14 +33,15 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func Shoot():
-	if not timer.is_stopped() or Playerstats.health < 2:
-		return
-	var bulle = Bullet.instantiate()
-	Playerstats.health -= 1
-	bulle.global_position = global_position
-	bulle.look_at(get_global_mouse_position())
-	world.add_child(bulle)
-	timer.start()
-		
-	
-
+	match Playerstats.weapon_selected:
+		1:
+			pass
+		2:
+			if not timer.is_stopped() or Playerstats.health < 2:
+				return
+			var bulle = Bullet.instantiate()
+			Playerstats.health -= 1
+			bulle.global_position = global_position
+			bulle.look_at(get_global_mouse_position())
+			world.add_child(bulle)
+			timer.start()

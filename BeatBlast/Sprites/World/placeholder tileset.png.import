@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d23ggmtclmsko"
-path="res://.godot/imported/control diagram (2).png-4206824fbfb33370435f7016b90978ed.ctex"
+uid="uid://dgho5tigswvae"
+path="res://.godot/imported/placeholder tileset.png-ee895c2b08cf69bf90952012cae577ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters and projectiles/control diagram (2).png"
-dest_files=["res://.godot/imported/control diagram (2).png-4206824fbfb33370435f7016b90978ed.ctex"]
+source_file="res://Sprites/World/placeholder tileset.png"
+dest_files=["res://.godot/imported/placeholder tileset.png-ee895c2b08cf69bf90952012cae577ca.ctex"]
 
 [params]
 

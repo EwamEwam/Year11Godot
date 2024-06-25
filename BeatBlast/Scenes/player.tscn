@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://b1lyax7mlenna"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/PlayerMovement.gd" id="1_gyp3l"]
-[ext_resource type="Texture2D" uid="uid://d23ggmtclmsko" path="res://Sprites/Characters and projectiles/control diagram (2).png" id="2_ia58g"]
+[ext_resource type="Texture2D" uid="uid://d23ggmtclmsko" path="res://Sprites/Characters and items/control diagram (2).png" id="2_eq18q"]
 [ext_resource type="Texture2D" uid="uid://ctkf8k3r77bx0" path="res://Sprites/Hud/Bar.png" id="3_1exl7"]
 [ext_resource type="Texture2D" uid="uid://dypqox2pgtft0" path="res://Sprites/Hud/Heart.png" id="3_p80yj"]
 [ext_resource type="Script" path="res://Scenes/Scripts/Hud.gd" id="3_yio43"]
@@ -12,7 +12,7 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ia58g")
+"texture": ExtResource("2_eq18q")
 }],
 "loop": true,
 "name": &"default",
@@ -175,14 +175,14 @@ animations = [{
 "speed": 0.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_gyp3l")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jml0w")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.1
 one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -196,9 +196,10 @@ sprite_frames = SubResource("SpriteFrames_ilyhk")
 script = ExtResource("3_yio43")
 
 [node name="bar" type="AnimatedSprite2D" parent="Hud"]
-position = Vector2(260, 42)
-scale = Vector2(3.04, 3.04)
+position = Vector2(265, 42)
+scale = Vector2(3.15, 3.15)
 sprite_frames = SubResource("SpriteFrames_3rvtn")
+frame = 8
 
 [node name="heart" type="AnimatedSprite2D" parent="Hud"]
 position = Vector2(37.5, 27)
@@ -212,5 +213,50 @@ sprite_frames = SubResource("SpriteFrames_tnc7b")
 
 [node name="heart3" type="AnimatedSprite2D" parent="Hud"]
 position = Vector2(121.5, 27)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_tnc7b")
+
+[node name="heart4" type="AnimatedSprite2D" parent="Hud"]
+position = Vector2(163.5, 27)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_tnc7b")
+
+[node name="heart5" type="AnimatedSprite2D" parent="Hud"]
+position = Vector2(204.5, 27)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_tnc7b")
+
+[node name="heart6" type="AnimatedSprite2D" parent="Hud"]
+position = Vector2(245.5, 27)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_tnc7b")
+
+[node name="heart7" type="AnimatedSprite2D" parent="Hud"]
+position = Vector2(287.5, 27)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_tnc7b")
+
+[node name="heart8" type="AnimatedSprite2D" parent="Hud"]
+position = Vector2(329.5, 27)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_tnc7b")
+
+[node name="heart9" type="AnimatedSprite2D" parent="Hud"]
+position = Vector2(371.5, 27)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_tnc7b")
+
+[node name="heart10" type="AnimatedSprite2D" parent="Hud"]
+position = Vector2(412.5, 27)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_tnc7b")
+
+[node name="heart11" type="AnimatedSprite2D" parent="Hud"]
+position = Vector2(453.5, 27)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_tnc7b")
+
+[node name="heart12" type="AnimatedSprite2D" parent="Hud"]
+position = Vector2(494.5, 27)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")

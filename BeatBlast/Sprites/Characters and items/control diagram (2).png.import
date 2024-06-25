@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gjvmmjcoq5jl"
-path="res://.godot/imported/Cave-Tileset-Top-Down-Pixel-Art6.png-82ab9b55d352d2a393066456a87fafb5.ctex"
+uid="uid://d23ggmtclmsko"
+path="res://.godot/imported/control diagram (2).png-7e5184b7117a073d017a22d965d0bd53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/World/Cave-Tileset-Top-Down-Pixel-Art6.png"
-dest_files=["res://.godot/imported/Cave-Tileset-Top-Down-Pixel-Art6.png-82ab9b55d352d2a393066456a87fafb5.ctex"]
+source_file="res://Sprites/Characters and items/control diagram (2).png"
+dest_files=["res://.godot/imported/control diagram (2).png-7e5184b7117a073d017a22d965d0bd53.ctex"]
 
 [params]
 

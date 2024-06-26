@@ -44,3 +44,10 @@ func Shoot():
 			bulle.look_at(get_global_mouse_position())
 			world.add_child(bulle)
 			timer.start()
+		
+func flash():
+	for i in range(4):
+		Sprite.visible=false
+		await get_tree().create_timer(0.05).timeout
+		Sprite.visible=true
+		await get_tree().create_timer(0.05).timeout

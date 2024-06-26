@@ -1,21 +1,23 @@
 extends CharacterBody2D
 
-const SPEED = 50.0
+const SPEED = 200.0
 @onready var Sprite = $Slime_sprite
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/heart5.tscn")
 @export var health = 5
 @onready var timer = $hurttimer
-@export var damage = 5
+@export var damage = 1
+@onready var hurtbox = $hurtbox
 
-func check_collsion():
+func check_collision():
 	if not timer.is_stopped():
 		return
-	var coll = $Hurtbox.get_overlapping_bodies()
-	if coll:
-		for collision in coll:
+	var collisions = hurtbox.get_overlapping_bodies()
+	if collisions:
+		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped():
 				Playerstats.health -= damage
+				player.flash()
 				timer.start()
 
 func _physics_process(delta):
@@ -27,7 +29,7 @@ func _physics_process(delta):
 	elif velocity.x < 0:
 		Sprite.flip_h = false
 	
-	check_collsion()
+	check_collision()
 	move_and_slide()
 	
 func take_damage(dmg):

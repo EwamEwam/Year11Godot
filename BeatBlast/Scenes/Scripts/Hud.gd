@@ -79,3 +79,4 @@ func _physics_process(delta):
 		
 	if Playerstats.health > Playerstats.max_health:
 		Playerstats.health = Playerstats.max_health
+		

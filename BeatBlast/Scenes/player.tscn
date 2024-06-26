@@ -189,7 +189,7 @@ script = ExtResource("1_gyp3l")
 shape = SubResource("RectangleShape2D_jml0w")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.45
+wait_time = 0.5
 one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

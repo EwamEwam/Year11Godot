@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dgho5tigswvae" path="res://Sprites/World/placeholder tileset.png" id="1_t3dol"]
 [ext_resource type="PackedScene" uid="uid://b1lyax7mlenna" path="res://Scenes/player.tscn" id="2_1tuju"]
-[ext_resource type="PackedScene" uid="uid://kwf7h0f8iclj" path="res://Scenes/heart(5).tscn" id="3_ulhhj"]
+[ext_resource type="PackedScene" uid="uid://kwf7h0f8iclj" path="res://Scenes/heart5.tscn" id="3_ulhhj"]
 [ext_resource type="PackedScene" uid="uid://c1xbilv51dpju" path="res://Scenes/heart_capsule.tscn" id="4_mcg8x"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pe2vl"]

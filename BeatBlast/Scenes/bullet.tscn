@@ -1,26 +1,26 @@
 [gd_scene load_steps=4 format=3 uid="uid://cw87pi1xddwnr"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Bullet.gd" id="1_mwitu"]
-[ext_resource type="Texture2D" uid="uid://bruh1klavip32" path="res://Sprites/Characters and items/kfc.jpg" id="2_uq28x"]
+[ext_resource type="Texture2D" uid="uid://cpb4bssawxj7w" path="res://Sprites/Characters and items/Bullet_1.png" id="2_1epqx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nncrg"]
-size = Vector2(20, 10)
+size = Vector2(8, 3.55556)
 
 [node name="bullet" type="Area2D"]
+scale = Vector2(4.5, 4.5)
 collision_mask = 2
 script = ExtResource("1_mwitu")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, 4.76837e-07)
-scale = Vector2(1, 0.45)
+scale = Vector2(0.377778, 0.177778)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nncrg")
 
-[node name="Kfc" type="Sprite2D" parent="."]
-position = Vector2(4.76837e-07, 0)
-scale = Vector2(0.0386552, -0.020657)
-texture = ExtResource("2_uq28x")
+[node name="Bullet1" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_1epqx")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

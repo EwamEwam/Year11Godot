@@ -8,10 +8,9 @@ extends CharacterBody2D
 const Bullet = preload("res://Scenes/bullet.tscn")
 @onready var world = get_node('/root/level')
 var direction=Vector2.ZERO
+@onready var Camera = $Camera2D
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 
 func _physics_process(delta):
 	
@@ -43,11 +42,22 @@ func Shoot():
 			bulle.global_position = global_position
 			bulle.look_at(get_global_mouse_position())
 			world.add_child(bulle)
+			shake(10,0.05,4,1.1)
 			timer.start()
-		
+			
 func flash():
 	for i in range(4):
 		Sprite.visible=false
 		await get_tree().create_timer(0.05).timeout
 		Sprite.visible=true
 		await get_tree().create_timer(0.05).timeout
+		
+func shake(amt,time,rep,damp):
+	for i in range(rep):
+		Camera.offset.x=(randi_range(-amt,amt))
+		Camera.offset.y=(randi_range(-amt,amt))
+		amt = amt/damp
+		await get_tree().create_timer(time).timeout
+	Camera.offset.x=0
+	Camera.offset.y=0
+

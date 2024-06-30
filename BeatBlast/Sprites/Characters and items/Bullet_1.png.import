@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bruh1klavip32"
-path="res://.godot/imported/kfc.jpg-54c4fef43c62ee85fc784c5d6082626a.ctex"
+uid="uid://cpb4bssawxj7w"
+path="res://.godot/imported/Bullet_1.png-a8a4e05e8b925bb9d55e7965c958442f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters and items/kfc.jpg"
-dest_files=["res://.godot/imported/kfc.jpg-54c4fef43c62ee85fc784c5d6082626a.ctex"]
+source_file="res://Sprites/Characters and items/Bullet_1.png"
+dest_files=["res://.godot/imported/Bullet_1.png-a8a4e05e8b925bb9d55e7965c958442f.ctex"]
 
 [params]
 

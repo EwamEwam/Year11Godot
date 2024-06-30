@@ -1,10 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://b1lyax7mlenna"]
+[gd_scene load_steps=33 format=3 uid="uid://b1lyax7mlenna"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/PlayerMovement.gd" id="1_gyp3l"]
 [ext_resource type="Texture2D" uid="uid://d23ggmtclmsko" path="res://Sprites/Characters and items/control diagram (2).png" id="2_eq18q"]
 [ext_resource type="Script" path="res://Scenes/Scripts/Hud.gd" id="3_yio43"]
 [ext_resource type="Texture2D" uid="uid://c1mdakkcixtlx" path="res://Sprites/Hud/health_bar_background.png" id="4_m550f"]
-[ext_resource type="Texture2D" uid="uid://hdow2vdcn4ac" path="res://Sprites/Hud/Heart_spritesheet.png" id="5_77y38"]
+[ext_resource type="Texture2D" uid="uid://dme52gv7pug5i" path="res://Sprites/Hud/Health_Hearts_Spritesheet.png" id="5_c6u80"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jml0w"]
 
@@ -18,6 +18,39 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_ram4g"]
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["default"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_85ajf"]
+_data = {
+"default": SubResource("Animation_ram4g")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_btb0q"]
 atlas = ExtResource("4_m550f")
@@ -97,88 +130,88 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_agxmm"]
-atlas = ExtResource("5_77y38")
+[sub_resource type="AtlasTexture" id="AtlasTexture_jerv6"]
+atlas = ExtResource("5_c6u80")
 region = Rect2(150, 0, 15, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7g2gt"]
-atlas = ExtResource("5_77y38")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xycef"]
+atlas = ExtResource("5_c6u80")
 region = Rect2(135, 0, 15, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_io8yq"]
-atlas = ExtResource("5_77y38")
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rddv"]
+atlas = ExtResource("5_c6u80")
 region = Rect2(120, 0, 15, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sopmq"]
-atlas = ExtResource("5_77y38")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uc2e"]
+atlas = ExtResource("5_c6u80")
 region = Rect2(105, 0, 15, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mexxk"]
-atlas = ExtResource("5_77y38")
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7bj6"]
+atlas = ExtResource("5_c6u80")
 region = Rect2(90, 0, 15, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ceglw"]
-atlas = ExtResource("5_77y38")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fndu0"]
+atlas = ExtResource("5_c6u80")
 region = Rect2(75, 0, 15, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0gk0m"]
-atlas = ExtResource("5_77y38")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7j47i"]
+atlas = ExtResource("5_c6u80")
 region = Rect2(60, 0, 15, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v7eag"]
-atlas = ExtResource("5_77y38")
+[sub_resource type="AtlasTexture" id="AtlasTexture_einm4"]
+atlas = ExtResource("5_c6u80")
 region = Rect2(45, 0, 15, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aq5ie"]
-atlas = ExtResource("5_77y38")
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh21g"]
+atlas = ExtResource("5_c6u80")
 region = Rect2(30, 0, 15, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u8jb7"]
-atlas = ExtResource("5_77y38")
+[sub_resource type="AtlasTexture" id="AtlasTexture_skpj1"]
+atlas = ExtResource("5_c6u80")
 region = Rect2(15, 0, 15, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x1uws"]
-atlas = ExtResource("5_77y38")
+[sub_resource type="AtlasTexture" id="AtlasTexture_m27o4"]
+atlas = ExtResource("5_c6u80")
 region = Rect2(0, 0, 15, 14)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tnc7b"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_agxmm")
+"texture": SubResource("AtlasTexture_jerv6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7g2gt")
+"texture": SubResource("AtlasTexture_xycef")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_io8yq")
+"texture": SubResource("AtlasTexture_3rddv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sopmq")
+"texture": SubResource("AtlasTexture_8uc2e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mexxk")
+"texture": SubResource("AtlasTexture_k7bj6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ceglw")
+"texture": SubResource("AtlasTexture_fndu0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0gk0m")
+"texture": SubResource("AtlasTexture_7j47i")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v7eag")
+"texture": SubResource("AtlasTexture_einm4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aq5ie")
+"texture": SubResource("AtlasTexture_kh21g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u8jb7")
+"texture": SubResource("AtlasTexture_skpj1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x1uws")
+"texture": SubResource("AtlasTexture_m27o4")
 }],
 "loop": true,
-"name": &"Heart_Sprites",
+"name": &"Sprites",
 "speed": 5.0
 }]
 
@@ -199,6 +232,9 @@ scale = Vector2(0.0315104, 0.0354167)
 sprite_frames = SubResource("SpriteFrames_ilyhk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_85ajf")
+}
 
 [node name="Hud" type="CanvasLayer" parent="."]
 script = ExtResource("3_yio43")
@@ -213,70 +249,70 @@ animation = &"Bar_sprites"
 position = Vector2(29.5, 21)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
-animation = &"Heart_Sprites"
+animation = &"Sprites"
 
 [node name="heart2" type="AnimatedSprite2D" parent="Hud"]
 position = Vector2(71.5, 21)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
-animation = &"Heart_Sprites"
+animation = &"Sprites"
 
 [node name="heart3" type="AnimatedSprite2D" parent="Hud"]
 position = Vector2(113.5, 21)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
-animation = &"Heart_Sprites"
+animation = &"Sprites"
 
 [node name="heart4" type="AnimatedSprite2D" parent="Hud"]
 position = Vector2(155.5, 21)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
-animation = &"Heart_Sprites"
+animation = &"Sprites"
 
 [node name="heart5" type="AnimatedSprite2D" parent="Hud"]
 position = Vector2(196.5, 21)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
-animation = &"Heart_Sprites"
+animation = &"Sprites"
 
 [node name="heart6" type="AnimatedSprite2D" parent="Hud"]
 position = Vector2(237.5, 21)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
-animation = &"Heart_Sprites"
+animation = &"Sprites"
 
 [node name="heart7" type="AnimatedSprite2D" parent="Hud"]
 position = Vector2(279.5, 21)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
-animation = &"Heart_Sprites"
+animation = &"Sprites"
 
 [node name="heart8" type="AnimatedSprite2D" parent="Hud"]
 position = Vector2(321.5, 21)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
-animation = &"Heart_Sprites"
+animation = &"Sprites"
 
 [node name="heart9" type="AnimatedSprite2D" parent="Hud"]
 position = Vector2(363.5, 21)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
-animation = &"Heart_Sprites"
+animation = &"Sprites"
 
 [node name="heart10" type="AnimatedSprite2D" parent="Hud"]
 position = Vector2(404.5, 21)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
-animation = &"Heart_Sprites"
+animation = &"Sprites"
 
 [node name="heart11" type="AnimatedSprite2D" parent="Hud"]
 position = Vector2(445.5, 21)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
-animation = &"Heart_Sprites"
+animation = &"Sprites"
 
 [node name="heart12" type="AnimatedSprite2D" parent="Hud"]
 position = Vector2(486.5, 21)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
-animation = &"Heart_Sprites"
+animation = &"Sprites"

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 200.0
+const FRICTION = 2.0
 @onready var Sprite = $Slime_sprite
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/heart5.tscn")
@@ -29,6 +30,8 @@ func _physics_process(delta):
 			if collision.is_in_group("Player") :
 				var direction_to_player = global_position.direction_to(player.global_position)
 				velocity = direction_to_player * SPEED
+	else:
+		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 	
 	if velocity .x > 0:
 		Sprite.flip_h = true

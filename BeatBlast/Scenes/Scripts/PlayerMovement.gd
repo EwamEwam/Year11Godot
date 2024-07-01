@@ -21,6 +21,7 @@ func _physics_process(delta):
 	if direction:
 		velocity = velocity.move_toward(direction * SPEED, ACCELERATION)
 	else:
+		print("only")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 
 	if velocity.x > 0:
@@ -49,7 +50,7 @@ func Shoot():
 			timer.start()
 			
 func flash():
-	for i in range(4):
+	for i in range(6):
 		Sprite.visible=false
 		await get_tree().create_timer(0.05).timeout
 		Sprite.visible=true
@@ -57,8 +58,8 @@ func flash():
 		
 func shake(amt,time,rep,damp):
 	for i in range(rep):
-		Camera.offset.x=(randi_range(-amt,amt))
-		Camera.offset.y=(randi_range(-amt,amt))
+		Camera.offset.x=(randf_range(-amt,amt))
+		Camera.offset.y=(randf_range(-amt,amt))
 		amt = amt/damp
 		await get_tree().create_timer(time).timeout
 	Camera.offset.x=0

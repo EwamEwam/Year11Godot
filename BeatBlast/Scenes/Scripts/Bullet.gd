@@ -15,4 +15,4 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 func _on_body_entered(body):
 	if body.is_in_group("Enemy") and body.has_method("take_damage"):
 		body.take_damage(damage)
-		queue_free()
+	queue_free()

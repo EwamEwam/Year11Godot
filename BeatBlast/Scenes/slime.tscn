@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkryvvuq63l5d"]
+[gd_scene load_steps=6 format=3 uid="uid://bkryvvuq63l5d"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Slime.gd" id="1_w2g43"]
 [ext_resource type="Texture2D" uid="uid://v1qtbni4id5o" path="res://Sprites/Characters and items/Ultraviolet_6598bd2b-fd20-41d4-93ce-1c7a6d155de4_1024x1024.webp" id="2_tea7h"]
@@ -9,6 +9,9 @@ height = 47.1333
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mg4g6"]
 radius = 27.074
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3gl2h"]
+radius = 242.978
 
 [node name="slime" type="CharacterBody2D" groups=["Enemy"]]
 scale = Vector2(2.50761, 2.24894)
@@ -33,3 +36,8 @@ autostart = true
 
 [node name="collision_shape" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource("CircleShape2D_mg4g6")
+
+[node name="Movement_circle" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
+shape = SubResource("CircleShape2D_3gl2h")

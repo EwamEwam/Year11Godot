@@ -12,6 +12,9 @@ var direction=Vector2.ZERO
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func _ready():
+	pass
+
 func _physics_process(delta):
 	
 	direction = Input.get_vector("left","right","up","down").normalized()

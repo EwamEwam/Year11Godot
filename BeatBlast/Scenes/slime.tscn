@@ -11,13 +11,16 @@ height = 47.1333
 radius = 27.074
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3gl2h"]
-radius = 242.978
+radius = 498.0
 
 [node name="slime" type="CharacterBody2D" groups=["Enemy"]]
-scale = Vector2(2.50761, 2.24894)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_w2g43")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(25, 25)
+collision_mask = 128
 
 [node name="Slime_sprite" type="Sprite2D" parent="."]
 position = Vector2(0, 1)

@@ -16,7 +16,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Playerstats="*res://Scenes/Scripts/playerstats.gd"
+Playerstats="*res://Scenes/Scripts/Player, weapons and collectables/playerstats.gd"
 
 [display]
 

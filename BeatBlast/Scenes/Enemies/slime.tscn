@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://bkryvvuq63l5d"]
 
-[ext_resource type="Script" path="res://Scenes/Scripts/Slime.gd" id="1_w2g43"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/Slime.gd" id="1_w2g43"]
 [ext_resource type="Texture2D" uid="uid://v1qtbni4id5o" path="res://Sprites/Characters and items/Ultraviolet_6598bd2b-fd20-41d4-93ce-1c7a6d155de4_1024x1024.webp" id="2_tea7h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5p6wr"]
-radius = 21.9332
-height = 47.1333
+radius = 75.0
+height = 176.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mg4g6"]
-radius = 27.074
+radius = 92.7793
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3gl2h"]
 radius = 498.0
@@ -24,7 +24,7 @@ collision_mask = 128
 
 [node name="Slime_sprite" type="Sprite2D" parent="."]
 position = Vector2(0, 1)
-scale = Vector2(0.0625, 0.0644531)
+scale = Vector2(0.169922, 0.175232)
 texture = ExtResource("2_tea7h")
 
 [node name="hitbox" type="CollisionShape2D" parent="."]

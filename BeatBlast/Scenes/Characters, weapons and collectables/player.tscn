@@ -1,8 +1,8 @@
 [gd_scene load_steps=33 format=3 uid="uid://b1lyax7mlenna"]
 
-[ext_resource type="Script" path="res://Scenes/Scripts/PlayerMovement.gd" id="1_gyp3l"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/PlayerMovement.gd" id="1_gyp3l"]
 [ext_resource type="Texture2D" uid="uid://d23ggmtclmsko" path="res://Sprites/Characters and items/control diagram (2).png" id="2_eq18q"]
-[ext_resource type="Script" path="res://Scenes/Scripts/Hud.gd" id="3_yio43"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Hud.gd" id="3_yio43"]
 [ext_resource type="Texture2D" uid="uid://c1mdakkcixtlx" path="res://Sprites/Hud/health_bar_background.png" id="4_m550f"]
 [ext_resource type="Texture2D" uid="uid://dme52gv7pug5i" path="res://Sprites/Hud/Health_Hearts_Spritesheet.png" id="5_c6u80"]
 

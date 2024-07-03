@@ -38,7 +38,6 @@ func _physics_process(delta):
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 	
-	
 	if velocity .x > 0:
 		Sprite.flip_h = true
 	elif velocity.x < 0:

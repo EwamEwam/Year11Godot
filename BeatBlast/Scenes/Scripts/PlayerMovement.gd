@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var Sprite = $AnimatedSprite2D 
 @onready var timer = $Timer
 const Bullet = preload("res://Scenes/bullet.tscn")
+const Bullet2 = preload("res://Scenes/bullet2.tscn")
 const Punch_box = preload("res://Scenes/punch_box.tscn")
 @onready var world = get_node('/root/level')
 var direction=Vector2.ZERO
@@ -36,6 +37,18 @@ func _physics_process(delta):
 	if Input.is_action_pressed("shoot"):
 		Shoot()
 		
+	if Input.is_action_just_pressed("selectl"):
+		if Playerstats.weapon_selected == 1:
+			Playerstats.weapon_selected = Playerstats.weapons_unlocked
+		else: 
+			Playerstats.weapon_selected -= 1
+			
+	if Input.is_action_just_pressed("selectr"):
+		if Playerstats.weapon_selected == Playerstats.weapons_unlocked:
+			Playerstats.weapon_selected = 1
+		else:
+			Playerstats.weapon_selected += 1
+	
 	move_and_slide()
 	
 func Shoot():
@@ -56,8 +69,19 @@ func Shoot():
 			bulle.global_position = global_position
 			bulle.look_at(get_global_mouse_position())
 			world.add_child(bulle)
-			shake(10,0.05,4,1.1)
+			shake(7.5,0.05,4,1.25)
 			timer.start(0.5)
+		3:
+			if not timer.is_stopped() or Playerstats.health < 4:
+				return
+			var bulle2 = Bullet2.instantiate()
+			Playerstats.health -= 3
+			bulle2.global_position = global_position
+			bulle2.look_at(get_global_mouse_position())
+			for i in range(3):
+				world.add_child(bulle2)
+			shake(10,0.05,5,1.2)
+			timer.start(0.95)
 			
 func flash():
 	for i in range(6):
@@ -74,4 +98,3 @@ func shake(amt,time,rep,damp):
 		await get_tree().create_timer(time).timeout
 	Camera.offset.x=0
 	Camera.offset.y=0
-

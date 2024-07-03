@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://5mb830sc1lhv"]
 
-[ext_resource type="Script" path="res://Scenes/punch_box.gd" id="1_q7rhh"]
+[ext_resource type="Script" path="res://Scenes/Scripts/punch_box.gd" id="1_q7rhh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5wmjt"]
 radius = 7.0

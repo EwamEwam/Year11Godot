@@ -1,5 +1,6 @@
 extends Area2D
 
+const collide = preload("res://Scenes/Characters, weapons and collectables/bullet_1_collision.tscn")
 @export var SPEED = 850
 var damage = 2
 
@@ -16,3 +17,7 @@ func _on_body_entered(body):
 	if body.is_in_group("Enemy") and body.has_method("take_damage"):
 		body.take_damage(damage)
 	queue_free()
+	var new_collide = collide.instantiate()
+	new_collide.global_position=global_position
+	new_collide.global_rotation=global_rotation+90
+	add_sibling(new_collide)

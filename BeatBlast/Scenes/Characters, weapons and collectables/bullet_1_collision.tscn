@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://bbq0hhiija8fh"]
+
+[ext_resource type="Texture2D" uid="uid://4npgts81q2wp" path="res://Sprites/Characters and items/Bullet1_collide.png" id="1_gbt38"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Bullet1_collide.gd" id="2_2uwwj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fali0"]
+atlas = ExtResource("1_gbt38")
+region = Rect2(0, 0, 5, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrf7t"]
+atlas = ExtResource("1_gbt38")
+region = Rect2(5, 0, 5, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_immir"]
+atlas = ExtResource("1_gbt38")
+region = Rect2(10, 0, 5, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbn4v"]
+atlas = ExtResource("1_gbt38")
+region = Rect2(15, 0, 5, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncc3a"]
+atlas = ExtResource("1_gbt38")
+region = Rect2(20, 0, 5, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s30p6"]
+atlas = ExtResource("1_gbt38")
+region = Rect2(25, 0, 5, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6qem"]
+atlas = ExtResource("1_gbt38")
+region = Rect2(30, 0, 5, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xg0y0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fali0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrf7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_immir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbn4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncc3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s30p6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6qem")
+}],
+"loop": false,
+"name": &"Collide",
+"speed": 35.0
+}]
+
+[node name="Bullet1_collision" type="AnimatedSprite2D"]
+rotation = 1.5708
+scale = Vector2(4.5, 4.5)
+sprite_frames = SubResource("SpriteFrames_xg0y0")
+animation = &"Collide"
+autoplay = "Collide"
+script = ExtResource("2_2uwwj")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

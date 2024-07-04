@@ -54,6 +54,7 @@ func check_for_death():
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
 		add_sibling(new_heart)
+		Playerstats.score += 10
 	
 func take_damage(dmg):
 	health -= dmg

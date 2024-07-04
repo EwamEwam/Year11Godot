@@ -87,6 +87,21 @@ position = Vector2(-327, -606)
 [node name="slime5" parent="Enemies" instance=ExtResource("4_cb3aq")]
 position = Vector2(-455, -3712)
 
+[node name="slime6" parent="Enemies" instance=ExtResource("3_0jk7i")]
+position = Vector2(1010, -3401)
+
+[node name="slime7" parent="Enemies" instance=ExtResource("3_0jk7i")]
+position = Vector2(1027, -3944)
+
+[node name="slime8" parent="Enemies" instance=ExtResource("3_0jk7i")]
+position = Vector2(450, -2722)
+
+[node name="slime9" parent="Enemies" instance=ExtResource("3_0jk7i")]
+position = Vector2(1033, -1817)
+
+[node name="slime10" parent="Enemies" instance=ExtResource("3_0jk7i")]
+position = Vector2(750, -1008)
+
 [node name="Collectables" type="Node2D" parent="."]
 
 [node name="heart(5)" parent="Collectables" instance=ExtResource("5_fhgtr")]
@@ -118,18 +133,3 @@ position = Vector2(-1026, -4119)
 
 [node name="Heart_capsule9" parent="Collectables" instance=ExtResource("6_ykpy8")]
 position = Vector2(1379, -4116)
-
-[node name="slime" parent="." instance=ExtResource("3_0jk7i")]
-position = Vector2(1010, -3401)
-
-[node name="slime2" parent="." instance=ExtResource("3_0jk7i")]
-position = Vector2(1027, -3944)
-
-[node name="slime3" parent="." instance=ExtResource("3_0jk7i")]
-position = Vector2(450, -2722)
-
-[node name="slime4" parent="." instance=ExtResource("3_0jk7i")]
-position = Vector2(1033, -1817)
-
-[node name="slime5" parent="." instance=ExtResource("3_0jk7i")]
-position = Vector2(750, -1008)

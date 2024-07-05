@@ -6,6 +6,7 @@ const FRICTION = 7.0
 @onready var Sprite = $Slime_sprite
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
+const number = preload("res://Scenes/Other/number_sprite.tscn")
 @export var health = 8
 @onready var timer = $hurttimer
 @export var damage = 3
@@ -58,4 +59,7 @@ func check_for_death():
 	
 func take_damage(dmg):
 	health -= dmg
-	
+	var new_number = number.instantiate()
+	new_number.global_position = global_position
+	new_number.set_animation(2,1)
+	add_sibling(new_number)

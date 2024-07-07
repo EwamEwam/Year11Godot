@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bbq0hhiija8fh"]
 
 [ext_resource type="Texture2D" uid="uid://4npgts81q2wp" path="res://Sprites/Characters and items/Bullet1_collide.png" id="1_gbt38"]
-[ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Bullet1_collide.gd" id="2_2uwwj"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/weapons/Bullet1_collide.gd" id="2_s7bs3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fali0"]
 atlas = ExtResource("1_gbt38")
@@ -66,6 +66,6 @@ scale = Vector2(4.5, 4.5)
 sprite_frames = SubResource("SpriteFrames_xg0y0")
 animation = &"Collide"
 autoplay = "Collide"
-script = ExtResource("2_2uwwj")
+script = ExtResource("2_s7bs3")
 
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

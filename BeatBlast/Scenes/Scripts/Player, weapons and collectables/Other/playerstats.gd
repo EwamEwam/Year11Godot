@@ -8,3 +8,7 @@ var level = 1
 var player_x = 0
 var player_y = 0
 var score = 0
+var damval = 0
+var dampval = 0
+var scorenum = 0
+var healnum = 0

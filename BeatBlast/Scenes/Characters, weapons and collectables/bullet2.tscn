@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://crw8wf2ofq6ts"]
 
-[ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/bullet2.gd" id="1_6mwuy"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/weapons/bullet2.gd" id="1_nbmcd"]
 [ext_resource type="Texture2D" uid="uid://cpb4bssawxj7w" path="res://Sprites/Characters and items/Bullet_1.png" id="2_s685j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nncrg"]
@@ -9,7 +9,7 @@ size = Vector2(8, 3.55556)
 [node name="bullet" type="Area2D"]
 scale = Vector2(4.5, 4.5)
 collision_mask = 2
-script = ExtResource("1_6mwuy")
+script = ExtResource("1_nbmcd")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, 4.76837e-07)

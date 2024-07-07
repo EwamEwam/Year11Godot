@@ -8,6 +8,8 @@ extends CharacterBody2D
 const Bullet = preload("res://Scenes/Characters, weapons and collectables/bullet.tscn")
 const Bullet2 = preload("res://Scenes/Characters, weapons and collectables/bullet2.tscn")
 const Punch_box = preload("res://Scenes/Characters, weapons and collectables/punch_box.tscn")
+const number = preload("res://Scenes/Other/DamageP_numbers.tscn")
+const heal_num = preload ("res://Scenes/Other/Heal_numbers.tscn")
 @onready var world = get_node('/root/level')
 var direction=Vector2.ZERO
 @onready var Camera = $Camera2D
@@ -82,7 +84,20 @@ func Shoot():
 			shake(10,0.05,5,1.2)
 			timer.start(1.15)
 			
-			
+func damage_player(val):
+	Playerstats.health -= val
+	Playerstats.dampval = val
+	var new_number = number.instantiate()
+	new_number.global_position=global_position
+	add_sibling(new_number)
+		
+func heal(val):
+	Playerstats.health += val
+	Playerstats.healnum = val
+	var new_heal = heal_num.instantiate()
+	new_heal.global_position = global_position
+	add_sibling(new_heal)
+	
 func flash():
 	for i in range(6):
 		Sprite.visible=false

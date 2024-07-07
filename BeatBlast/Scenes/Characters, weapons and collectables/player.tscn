@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/PlayerMovement.gd" id="1_gyp3l"]
 [ext_resource type="Texture2D" uid="uid://d23ggmtclmsko" path="res://Sprites/Characters and items/control diagram (2).png" id="2_eq18q"]
-[ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Hud.gd" id="3_yio43"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Other/Hud.gd" id="3_ex22d"]
 [ext_resource type="Texture2D" uid="uid://c1mdakkcixtlx" path="res://Sprites/Hud/health_bar_background.png" id="4_m550f"]
 [ext_resource type="Texture2D" uid="uid://dme52gv7pug5i" path="res://Sprites/Hud/Health_Hearts_Spritesheet.png" id="5_c6u80"]
 
@@ -221,6 +221,7 @@ script = ExtResource("1_gyp3l")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jml0w")
+one_way_collision = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
@@ -237,7 +238,7 @@ libraries = {
 }
 
 [node name="Hud" type="CanvasLayer" parent="."]
-script = ExtResource("3_yio43")
+script = ExtResource("3_ex22d")
 
 [node name="bar" type="AnimatedSprite2D" parent="Hud"]
 position = Vector2(258, 34)

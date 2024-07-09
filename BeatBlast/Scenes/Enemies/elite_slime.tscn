@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://v1qtbni4id5o" path="res://Sprites/Characters and items/Ultraviolet_6598bd2b-fd20-41d4-93ce-1c7a6d155de4_1024x1024.webp" id="2_bxpvs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5p6wr"]
-radius = 126.0
-height = 280.0
+radius = 130.0
+height = 300.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mg4g6"]
 radius = 154.0
@@ -15,25 +15,19 @@ radius = 793.003
 
 [node name="slime" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_77e7d")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(25, 25)
 collision_mask = 128
 
-[node name="Slime_sprite" type="Sprite2D" parent="."]
-position = Vector2(0, 1)
-scale = Vector2(0.294922, 0.304138)
-texture = ExtResource("2_bxpvs")
-flip_h = true
-flip_v = true
-
 [node name="hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_5p6wr")
 
 [node name="hurttimer" type="Timer" parent="."]
-wait_time = 1.2
+wait_time = 1.5
 one_shot = true
 autostart = true
 
@@ -46,3 +40,10 @@ shape = SubResource("CircleShape2D_mg4g6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
 shape = SubResource("CircleShape2D_3gl2h")
+
+[node name="Slime_sprite" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.294922, 0.304138)
+texture = ExtResource("2_bxpvs")
+flip_h = true
+flip_v = true

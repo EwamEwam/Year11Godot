@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs27n52ytawb"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Collectables/Heart40.gd" id="1_ji4h8"]
+[ext_resource type="Texture2D" uid="uid://dmdt0gsa2x7iv" path="res://Sprites/Characters and items/Heart.png" id="2_pa6kq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mqvvq"]
+radius = 60.531
+
+[node name="Heart(40)" type="Area2D"]
+script = ExtResource("1_ji4h8")
+
+[node name="Heart" type="Sprite2D" parent="."]
+position = Vector2(0, 10)
+scale = Vector2(0.215625, 0.215625)
+texture = ExtResource("2_pa6kq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_mqvvq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

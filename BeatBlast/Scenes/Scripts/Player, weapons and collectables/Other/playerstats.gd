@@ -12,3 +12,4 @@ var damval = 0
 var dampval = 0
 var scorenum = 0
 var healnum = 0
+var defence = 0

@@ -2,11 +2,11 @@ extends CharacterBody2D
 
 const SPEED = 12500
 const ACCELLERATION = 20.0
-const FRICTION = 7.0
+const FRICTION = 18.0
 var score_value = 250
 @onready var Sprite = $Slime_sprite
 @onready var player = get_tree().get_first_node_in_group("Player")
-const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
+const heart = preload("res://Scenes/Characters, weapons and collectables/heart40.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
 @export var health = 100
 @onready var timer = $hurttimer
@@ -16,15 +16,14 @@ const score = preload("res://Scenes/Other/Score_numbers.tscn")
 @onready var Raycast = $RayCast2D
 
 func check_collision():
-	if not timer.is_stopped() or health < 0:
+	if not timer.is_stopped() or health < 1:
 		return
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
 				collision.shake(35,0.05,10,1.35)
-				collision.damage_player(damage)
-				player.flash()
+				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
 func _physics_process(delta):

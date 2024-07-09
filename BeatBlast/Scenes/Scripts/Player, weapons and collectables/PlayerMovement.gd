@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var FRICTION = 55.0
 @onready var Sprite = $AnimatedSprite2D 
 @onready var timer = $Timer
+@onready var dash_timer = $Dash_Timer
 const Bullet = preload("res://Scenes/Characters, weapons and collectables/bullet.tscn")
 const Bullet2 = preload("res://Scenes/Characters, weapons and collectables/bullet2.tscn")
 const Punch_box = preload("res://Scenes/Characters, weapons and collectables/punch_box.tscn")
@@ -37,6 +38,13 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("shoot"):
 		Shoot()
+		
+	if Input.is_action_just_pressed("Dash"):
+		if abs(velocity) > Vector2.ZERO and dash_timer.is_stopped():
+			shake(3.5,0.05,3,1.2)
+			dash()
+		else:
+			pass
 		
 	if Input.is_action_just_pressed("selectl"):
 		if Playerstats.weapon_selected == 1:
@@ -90,6 +98,7 @@ func damage_player(val):
 	var new_number = number.instantiate()
 	new_number.global_position=global_position
 	add_sibling(new_number)
+	flash()
 		
 func heal(val):
 	Playerstats.health += val
@@ -113,3 +122,12 @@ func shake(amt,time,rep,damp):
 		await get_tree().create_timer(time).timeout
 	Camera.offset.x=0
 	Camera.offset.y=0
+
+func dash():
+	if not dash_timer.is_stopped():
+		return
+	SPEED=1350.0
+	velocity = velocity.move_toward(direction * SPEED, ACCELERATION*25)
+	await get_tree().create_timer(0.12).timeout
+	SPEED=375.0
+	dash_timer.start(1.75)

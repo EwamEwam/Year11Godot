@@ -21,6 +21,7 @@ func _on_body_entered(body):
 		new_number.global_position = global_position
 		Playerstats.damval=damage
 		add_sibling(new_number)
+	
 	queue_free()
 	var new_collide = collide.instantiate()
 	new_collide.global_position=global_position

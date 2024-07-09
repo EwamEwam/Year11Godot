@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://c1mdakkcixtlx" path="res://Sprites/Hud/health_bar_background.png" id="4_m550f"]
 [ext_resource type="Texture2D" uid="uid://dme52gv7pug5i" path="res://Sprites/Hud/Health_Hearts_Spritesheet.png" id="5_c6u80"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jml0w"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsncw"]
+size = Vector2(13, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ilyhk"]
 animations = [{
@@ -217,18 +218,24 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 2
+platform_on_leave = 2
+platform_floor_layers = 4294967040
 script = ExtResource("1_gyp3l")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_jml0w")
-one_way_collision = true
+position = Vector2(0, 1)
+scale = Vector2(1.51208, 1.16)
+shape = SubResource("RectangleShape2D_qsncw")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
 
+[node name="Dash_Timer" type="Timer" parent="."]
+wait_time = 1.75
+one_shot = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -1)
 scale = Vector2(0.0315104, 0.0354167)
 sprite_frames = SubResource("SpriteFrames_ilyhk")
 

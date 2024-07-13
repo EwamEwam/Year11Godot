@@ -6,7 +6,7 @@ const number = preload("res://Scenes/Other/DamageE_numbers.tscn")
 var damage = 3
 
 func _ready():
-	pass
+	Playerstats.bullets_shot += 1
 
 func _process(delta):
 	translate(Vector2.RIGHT.rotated(rotation) * SPEED * delta)
@@ -21,6 +21,7 @@ func _on_body_entered(body):
 		new_number.global_position = global_position
 		Playerstats.damval=damage
 		add_sibling(new_number)
+		Playerstats.bullets_hit += 1
 	queue_free()
 	var new_collide = collide.instantiate()
 	new_collide.global_position=global_position

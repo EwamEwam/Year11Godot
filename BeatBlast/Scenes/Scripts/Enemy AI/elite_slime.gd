@@ -58,9 +58,9 @@ func check_for_death():
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
 		add_sibling(new_heart)
+		Playerstats.scorenum = score_value
 		var new_score = score.instantiate()
 		new_score.global_position = global_position
-		Playerstats.scorenum = score_value
 		add_sibling(new_score)
 		Playerstats.score += score_value
 		queue_free()

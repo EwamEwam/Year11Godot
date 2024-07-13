@@ -15,6 +15,7 @@ const bullet = preload("res://Scenes/Enemies/enemy_bullet.tscn")
 @export var damage = 1
 @onready var hurtbox = $Hurtbox
 @onready var circle = $Player_Detection_Range
+@onready var Too_Close_Circle = $PLayer_Too_Close_Range
 @onready var Raycast = $RayCast2D
 
 func check_collision():
@@ -33,8 +34,14 @@ func _physics_process(delta):
 	Raycast.target_position.x = Playerstats.player_x - global_position.x
 	Raycast.target_position.y = Playerstats.player_y - global_position.y
 	
-	if health > 0:
+	if health > 0: 
+		var too_close = Too_Close_Circle.get_overlapping_bodies()
 		var in_circle = circle.get_overlapping_bodies()
+		if too_close:
+			for collision in too_close:
+				if collision.is_in_group("Player"):
+					check_collision()
+					return
 		if in_circle:
 			for collision in in_circle:
 				if collision.is_in_group("Player") and Raycast.is_colliding()==false:
@@ -60,9 +67,9 @@ func check_for_death():
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
 		add_sibling(new_heart)
+		Playerstats.scorenum = score_value
 		var new_score = score.instantiate()
 		new_score.global_position = global_position
-		Playerstats.scorenum = score_value
 		add_sibling(new_score)
 		Playerstats.score += score_value
 		queue_free()

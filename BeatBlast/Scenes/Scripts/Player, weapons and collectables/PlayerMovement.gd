@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var dash_timer = $Dash_Timer
 const Bullet = preload("res://Scenes/Characters, weapons and collectables/bullet.tscn")
 const Bullet2 = preload("res://Scenes/Characters, weapons and collectables/bullet2.tscn")
+const Bullet3 = preload("res://Scenes/Characters, weapons and collectables/bullet3.tscn")
 const Punch_box = preload("res://Scenes/Characters, weapons and collectables/punch_box.tscn")
 const number = preload("res://Scenes/Other/DamageP_numbers.tscn")
 const heal_num = preload ("res://Scenes/Other/Heal_numbers.tscn")
@@ -40,11 +41,9 @@ func _physics_process(delta):
 		Shoot()
 		
 	if Input.is_action_just_pressed("Dash"):
-		if abs(velocity) > Vector2.ZERO and dash_timer.is_stopped():
+		if abs(velocity) > Vector2.ZERO and dash_timer.is_stopped() and Playerstats.health > 0:
 			shake(3.5,0.05,3,1.2)
 			dash()
-		else:
-			pass
 		
 	if Input.is_action_just_pressed("selectl"):
 		if Playerstats.weapon_selected == 1:
@@ -91,6 +90,27 @@ func Shoot():
 				world.add_child(bulle2)
 			shake(10,0.05,5,1.2)
 			timer.start(1.15)
+		4:
+			if not timer.is_stopped() or Playerstats.health < 2:
+				return
+			Playerstats.health -= 1
+			var bulle3 = Bullet3.instantiate()
+			bulle3.global_position = global_position
+			bulle3.look_at(get_global_mouse_position())
+			world.add_child(bulle3)
+			shake(4,0.05,3,1.25)
+			timer.start(0.2)
+		5:
+			if not timer.is_stopped() or Playerstats.health < 2:
+				return
+			Playerstats.health -= 1
+			for i in range(2):
+				var bulle2 = Bullet2.instantiate()
+				bulle2.global_position = global_position
+				bulle2.look_at(get_global_mouse_position())
+				world.add_child(bulle2)
+			shake(2,0.05,3,1.25)
+			timer.start(0.1)
 			
 func damage_player(val):
 	Playerstats.health -= val

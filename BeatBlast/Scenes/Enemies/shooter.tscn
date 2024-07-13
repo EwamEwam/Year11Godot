@@ -15,7 +15,7 @@ height = 214.0
 radius = 877.663
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_13upx"]
-radius = 628.074
+radius = 447.881
 
 [node name="Shooter" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2

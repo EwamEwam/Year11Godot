@@ -242,10 +242,10 @@ z_index = 100
 script = ExtResource("1_3cokx")
 
 [node name="number" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -48.3228)
+position = Vector2(0, -1)
 scale = Vector2(4.5, 4.5)
 sprite_frames = SubResource("SpriteFrames_p3vex")
-animation = &"250"
+animation = &"10"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../number")

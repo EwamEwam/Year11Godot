@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 275.0
 const ACCELLERATION = 20.0
-const FRICTION = 15.0
+const FRICTION = 3.0
 var score_value = 10
 @onready var Sprite = $Slime_sprite
 @onready var player = get_tree().get_first_node_in_group("Player")
@@ -38,10 +38,11 @@ func _physics_process(delta):
 				if collision.is_in_group("Player") and Raycast.is_colliding()==false:
 					var direction_to_player = global_position.direction_to(player.global_position)
 					velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
-		else:
-			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+				else:
+					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 	else:
 		velocity = Vector2.ZERO
+	
 	if velocity .x > 0:
 		Sprite.flip_h = true
 	elif velocity.x < 0:
@@ -57,9 +58,9 @@ func check_for_death():
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
 		add_sibling(new_heart)
+		Playerstats.scorenum = score_value
 		var new_score = score.instantiate()
 		new_score.global_position = global_position
-		Playerstats.scorenum = score_value
 		add_sibling(new_score)
 		Playerstats.score += score_value
 		queue_free()

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 12500
 const ACCELLERATION = 20.0
-const FRICTION = 18.0
+const FRICTION = 4.0
 var score_value = 250
 @onready var Sprite = $Slime_sprite
 @onready var player = get_tree().get_first_node_in_group("Player")
@@ -38,8 +38,8 @@ func _physics_process(delta):
 				if collision.is_in_group("Player") and Raycast.is_colliding()==false:
 					var direction_to_player = global_position.direction_to(player.global_position)
 					velocity = velocity.move_toward(direction_to_player * clampf(SPEED/clampf((health/1),1,100),210,380), ACCELLERATION)
-		else:
-			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+				else:
+					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 	else:
 		velocity = Vector2.ZERO
 		

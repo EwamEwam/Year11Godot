@@ -1,14 +1,16 @@
 extends CharacterBody2D
 
-@export var SPEED = 375.0
-@export var ACCELERATION = 55.0
-@export var FRICTION = 55.0
+@export var SPEED = 500.0
+@export var ACCELERATION = 100.0
+@export var FRICTION = 70.0
 @onready var Sprite = $AnimatedSprite2D 
+@onready var Animation_player = $AnimationPlayer
 @onready var timer = $Timer
 @onready var dash_timer = $Dash_Timer
 const Bullet = preload("res://Scenes/Characters, weapons and collectables/bullet.tscn")
 const Bullet2 = preload("res://Scenes/Characters, weapons and collectables/bullet2.tscn")
 const Bullet3 = preload("res://Scenes/Characters, weapons and collectables/bullet3.tscn")
+const Bullet4 = preload("res://Scenes/Characters, weapons and collectables/bullet4.tscn")
 const Punch_box = preload("res://Scenes/Characters, weapons and collectables/punch_box.tscn")
 const number = preload("res://Scenes/Other/DamageP_numbers.tscn")
 const heal_num = preload ("res://Scenes/Other/Heal_numbers.tscn")
@@ -16,6 +18,9 @@ const heal_num = preload ("res://Scenes/Other/Heal_numbers.tscn")
 var direction=Vector2.ZERO
 @onready var Camera = $Camera2D
 
+enum state {Idle, Down, Right, Left, Up}
+var current_state = state.Idle
+var last_facing_direction = Vector2(0,1)
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
@@ -26,13 +31,15 @@ func _physics_process(delta):
 	if direction:
 		if Playerstats.health > 0:
 			velocity = velocity.move_toward(direction * SPEED, ACCELERATION)
+		else:
+			return
 	else:
-			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		
 	if velocity.x > 0:
-		Sprite.flip_h = true
-	elif velocity.x < 0:
 		Sprite.flip_h = false
+	elif velocity.x < 0:
+		Sprite.flip_h = true
 	
 	Playerstats.player_x = global_position.x
 	Playerstats.player_y = global_position.y
@@ -57,12 +64,52 @@ func _physics_process(delta):
 		else:
 			Playerstats.weapon_selected += 1
 	
+	Animation_player.speed_scale = clampf((sqrt(velocity.x * velocity.x + velocity.y * velocity.y)/500),0,1.75)
+	
+	Update_state()
+	Update_animation()
 	move_and_slide()
+	
+func Update_state():
+	if abs(velocity) > Vector2.ZERO:
+		if abs(direction.x) < 0.1 :
+			if direction.y > 0:
+				current_state = state.Down
+			else:
+				current_state = state.Up
+		else:
+			if direction.x > 0:
+				current_state = state.Right
+			else:
+				current_state = state.Left
+	else:
+		match last_facing_direction:
+			Vector2(1,0):
+				current_state = state.Idle
+			Vector2(-1,0):
+				current_state = state.Idle
+			Vector2(0,1):
+				current_state = state.Idle
+			Vector2(0,-1):
+				current_state = state.Idle
+
+func Update_animation():
+	match current_state:
+		state.Down:
+			Animation_player.play("Down")
+		state.Up:
+			Animation_player.play("Up")
+		state.Right:
+			Animation_player.play("Right")
+		state.Left:
+			Animation_player.play("Left")
+		state.Idle:
+			Animation_player.play("Idle")
 	
 func Shoot():
 	match Playerstats.weapon_selected:
 		1:
-			if not timer.is_stopped():
+			if not timer.is_stopped() and Playerstats.health > 0:
 				return
 			var new_punch = Punch_box.instantiate()
 			new_punch.global_position=global_position
@@ -105,14 +152,16 @@ func Shoot():
 				return
 			Playerstats.health -= 1
 			for i in range(2):
-				var bulle2 = Bullet2.instantiate()
-				bulle2.global_position = global_position
-				bulle2.look_at(get_global_mouse_position())
-				world.add_child(bulle2)
+				var bulle4 = Bullet4.instantiate()
+				bulle4.global_position = global_position
+				bulle4.look_at(get_global_mouse_position())
+				world.add_child(bulle4)
 			shake(2,0.05,3,1.25)
 			timer.start(0.1)
 			
 func damage_player(val):
+	if val < 1:
+		val = 1
 	Playerstats.health -= val
 	Playerstats.dampval = val
 	var new_number = number.instantiate()
@@ -149,5 +198,5 @@ func dash():
 	SPEED=1350.0
 	velocity = velocity.move_toward(direction * SPEED, ACCELERATION*25)
 	await get_tree().create_timer(0.12).timeout
-	SPEED=375.0
+	SPEED=500.0
 	dash_timer.start(1.75)

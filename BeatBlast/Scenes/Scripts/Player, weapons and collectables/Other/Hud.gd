@@ -13,9 +13,40 @@ extends CanvasLayer
 @onready var heart10 = $heart10
 @onready var heart11 = $heart11
 @onready var heart12 = $heart12
+@onready var selection = $WeaponSelector
+@onready var hands = $Hands
+@onready var pistol = $Pistol
+@onready var revolver = $Revovler
+@onready var shotgun = $Shotgun
+@onready var smg = $SMG
+@onready var ak47 = $"AK-47"
+@onready var rocket = $Rocket_launcher
+@onready var Cooldown_sprite = $Cooldown
+@onready var player = get_tree().get_first_node_in_group("Player")
 
+#now thats a lot of if statements ;)
 func _ready():
-	pass
+	player.cooldown.connect(start_cooldown)
+	hands.visible = true
+	pistol.visible = false
+	revolver.visible = false
+	shotgun.visible = false
+	smg.visible = false
+	ak47.visible = false
+	rocket.visible = false
+	
+	if Playerstats.weapons_unlocked > 1:
+		pistol.visible = true
+	if Playerstats.weapons_unlocked > 2:
+		revolver.visible = true
+	if Playerstats.weapons_unlocked > 3:
+		shotgun.visible = true
+	if Playerstats.weapons_unlocked > 4:
+		smg.visible = true
+	if Playerstats.weapons_unlocked > 5:
+		ak47.visible = true
+	if Playerstats.weapons_unlocked > 6:
+		rocket.visible = true
 	
 func _physics_process(delta):
 	bar.set_frame(Playerstats.max_health/10-3)
@@ -77,6 +108,18 @@ func _physics_process(delta):
 	else:
 		heart12.visible=true
 		
+	selection.global_position.x = Playerstats.weapon_selected * 40 - 9
+	
 	if Playerstats.health > Playerstats.max_health:
 		Playerstats.health = Playerstats.max_health
 		
+	if Playerstats.cooldown == 0:
+		Cooldown_sprite.play(var_to_str(Playerstats.weapon_selected + 100))
+		
+func start_cooldown():
+	Cooldown_sprite.play(var_to_str(Playerstats.weapon_selected))
+	Cooldown_sprite.speed_scale = 1
+
+func _on_cooldown_animation_finished():
+	Playerstats.cooldown = 0
+	Cooldown_sprite.play(var_to_str(Playerstats.weapon_selected + 100))

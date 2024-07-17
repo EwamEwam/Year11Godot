@@ -23,6 +23,8 @@ Playerstats="*res://Scenes/Scripts/Player, weapons and collectables/Other/player
 window/size/viewport_width=640
 window/size/viewport_height=480
 window/stretch/mode="viewport"
+window/snap/snap_2d_vertices_to_pixel=true
+window/snap/snap_2d_transforms_to_pixel=true
 
 [editor_plugins]
 
@@ -88,4 +90,11 @@ Dash={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/lossless_compression/force_png=true
+2d/shadow_atlas/size=4096
+textures/default_filters/texture_mipmap_bias=-2.0
+textures/decals/filter=0
+textures/light_projectors/filter=0
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

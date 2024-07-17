@@ -59,7 +59,7 @@ sources/0 = SubResource("TileSetAtlasSource_v1qvr")
 
 [node name="Player" parent="." instance=ExtResource("2_3bt0i")]
 z_index = 25
-position = Vector2(679, -120)
+position = Vector2(728, -47)
 scale = Vector2(7, 7)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -76,97 +76,97 @@ layer_0/tile_data = PackedInt32Array(0, 65536, 2, 65536, 65536, 2, 131072, 65536
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="slime" parent="Enemies" instance=ExtResource("3_0jk7i")]
-position = Vector2(-343, 858)
+position = Vector2(3441, 890)
 
 [node name="slime2" parent="Enemies" instance=ExtResource("3_0jk7i")]
-position = Vector2(1801, 850)
+position = Vector2(5585, 882)
 
 [node name="slime3" parent="Enemies" instance=ExtResource("3_0jk7i")]
-position = Vector2(1825, -566)
+position = Vector2(5609, -534)
 
 [node name="slime4" parent="Enemies" instance=ExtResource("3_0jk7i")]
-position = Vector2(-327, -606)
+position = Vector2(3457, -574)
 
 [node name="slime5" parent="Enemies" instance=ExtResource("4_cb3aq")]
-position = Vector2(-455, -3712)
+position = Vector2(3329, -3680)
 
 [node name="slime6" parent="Enemies" instance=ExtResource("3_0jk7i")]
-position = Vector2(1010, -3401)
+position = Vector2(4794, -3369)
 
 [node name="slime7" parent="Enemies" instance=ExtResource("3_0jk7i")]
-position = Vector2(1027, -3944)
+position = Vector2(4811, -3912)
 
 [node name="slime8" parent="Enemies" instance=ExtResource("3_0jk7i")]
-position = Vector2(450, -2722)
+position = Vector2(4234, -2690)
 
 [node name="slime9" parent="Enemies" instance=ExtResource("3_0jk7i")]
-position = Vector2(1033, -1817)
+position = Vector2(4817, -1785)
 
 [node name="slime10" parent="Enemies" instance=ExtResource("3_0jk7i")]
-position = Vector2(750, -1008)
+position = Vector2(4534, -976)
 
 [node name="Shooter" parent="Enemies" instance=ExtResource("7_rp5qv")]
-position = Vector2(-340, 106)
+position = Vector2(3444, 138)
 
 [node name="Shooter2" parent="Enemies" instance=ExtResource("7_rp5qv")]
-position = Vector2(1681, 195)
+position = Vector2(5465, 227)
 
 [node name="Shooter3" parent="Enemies" instance=ExtResource("7_rp5qv")]
-position = Vector2(766, 958)
+position = Vector2(4550, 990)
 
 [node name="Shooter4" parent="Enemies" instance=ExtResource("7_rp5qv")]
-position = Vector2(343, -1683)
+position = Vector2(4127, -1651)
 
 [node name="Shooter5" parent="Enemies" instance=ExtResource("7_rp5qv")]
-position = Vector2(505, -3863)
+position = Vector2(4289, -3831)
 
 [node name="Roach" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(803, 42)
+position = Vector2(4587, 74)
 
 [node name="Roach2" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(-244, 29)
+position = Vector2(3540, 61)
 
 [node name="Roach3" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(1129, -610)
+position = Vector2(4913, -578)
 
 [node name="Roach4" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(1842, 312)
+position = Vector2(5626, 344)
 
 [node name="Roach5" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(-336, 1156)
+position = Vector2(3448, 1188)
 
 [node name="Roach6" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(-6, 1168)
+position = Vector2(3778, 1200)
 
 [node name="Roach7" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(-308, -59)
+position = Vector2(3476, -27)
 
 [node name="Roach8" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(1065, -698)
+position = Vector2(4849, -666)
 
 [node name="Roach9" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(1778, 224)
+position = Vector2(5562, 256)
 
 [node name="Roach10" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(-400, 1068)
+position = Vector2(3384, 1100)
 
 [node name="Roach11" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(-70, 1080)
+position = Vector2(3714, 1112)
 
 [node name="Roach12" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(-228, -171)
+position = Vector2(3556, -139)
 
 [node name="Roach13" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(1145, -810)
+position = Vector2(4929, -778)
 
 [node name="Roach14" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(1858, 112)
+position = Vector2(5642, 144)
 
 [node name="Roach15" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(-320, 956)
+position = Vector2(3464, 988)
 
 [node name="Roach16" parent="Enemies" instance=ExtResource("8_7152m")]
-position = Vector2(10, 968)
+position = Vector2(3794, 1000)
 
 [node name="Collectables" type="Node2D" parent="."]
 

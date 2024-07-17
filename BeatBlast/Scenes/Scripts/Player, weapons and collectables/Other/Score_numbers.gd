@@ -4,6 +4,7 @@ extends Node2D
 @onready var number_s = $AnimationPlayer
 
 func _ready():
+	number_s.play("0")
 	set_animation(Playerstats.scorenum)
 	global_position=global_position + Vector2(randf_range(-10,10),randf_range(-10,10))
 	

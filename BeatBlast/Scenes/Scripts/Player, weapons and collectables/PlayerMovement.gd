@@ -11,6 +11,7 @@ const Bullet = preload("res://Scenes/Characters, weapons and collectables/bullet
 const Bullet2 = preload("res://Scenes/Characters, weapons and collectables/bullet2.tscn")
 const Bullet3 = preload("res://Scenes/Characters, weapons and collectables/bullet3.tscn")
 const Bullet4 = preload("res://Scenes/Characters, weapons and collectables/bullet4.tscn")
+const Bullet5 = preload("res://Scenes/Characters, weapons and collectables/bullet5.tscn")
 const Punch_box = preload("res://Scenes/Characters, weapons and collectables/punch_box.tscn")
 const number = preload("res://Scenes/Other/DamageP_numbers.tscn")
 const heal_num = preload ("res://Scenes/Other/Heal_numbers.tscn")
@@ -22,6 +23,8 @@ enum state {Idle, Down, Right, Left, Up}
 var current_state = state.Idle
 var last_facing_direction = Vector2(0,1)
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+signal cooldown
 
 func _ready():
 	pass
@@ -65,6 +68,11 @@ func _physics_process(delta):
 			Playerstats.weapon_selected += 1
 	
 	Animation_player.speed_scale = clampf((sqrt(velocity.x * velocity.x + velocity.y * velocity.y)/500),0,1.75)
+	
+	if timer.is_stopped():
+		Playerstats.cooldown = 0
+	else:
+		Playerstats.cooldown = 1
 	
 	Update_state()
 	Update_animation()
@@ -115,6 +123,7 @@ func Shoot():
 			new_punch.global_position=global_position
 			new_punch.look_at(get_global_mouse_position())
 			world.add_child(new_punch)
+			emit_signal("cooldown")
 			timer.start(0.65)
 		2:
 			if not timer.is_stopped() or Playerstats.health < 2:
@@ -125,8 +134,20 @@ func Shoot():
 			bulle.look_at(get_global_mouse_position())
 			world.add_child(bulle)
 			shake(7.5,0.05,4,1.25)
-			timer.start(0.75)
+			emit_signal("cooldown")
+			timer.start(0.8)
 		3:
+			if not timer.is_stopped() or Playerstats.health < 3:
+				return
+			Playerstats.health -= 2
+			var bulle5 = Bullet5.instantiate()
+			bulle5.global_position = global_position
+			bulle5.look_at(get_global_mouse_position())
+			world.add_child(bulle5)
+			shake(12,0.05,6,1.2)
+			emit_signal("cooldown")
+			timer.start(1.7)
+		4:
 			if not timer.is_stopped() or Playerstats.health < 4:
 				return
 			Playerstats.health -= 3
@@ -137,7 +158,7 @@ func Shoot():
 				world.add_child(bulle2)
 			shake(10,0.05,5,1.2)
 			timer.start(1.15)
-		4:
+		5:
 			if not timer.is_stopped() or Playerstats.health < 2:
 				return
 			Playerstats.health -= 1
@@ -147,7 +168,7 @@ func Shoot():
 			world.add_child(bulle3)
 			shake(4,0.05,3,1.25)
 			timer.start(0.2)
-		5:
+		6:
 			if not timer.is_stopped() or Playerstats.health < 2:
 				return
 			Playerstats.health -= 1
@@ -158,7 +179,7 @@ func Shoot():
 				world.add_child(bulle4)
 			shake(2,0.05,3,1.25)
 			timer.start(0.1)
-			
+	
 func damage_player(val):
 	if val < 1:
 		val = 1

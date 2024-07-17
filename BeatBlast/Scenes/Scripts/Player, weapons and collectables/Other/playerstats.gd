@@ -1,8 +1,8 @@
 extends Node
 
-var health = 120
-var max_health = 120
-var weapon_selected = 3
+var health = 30
+var max_health = 30
+var weapon_selected = 1
 var weapons_unlocked = 3
 var level = 1
 var player_x = 0
@@ -16,3 +16,4 @@ var defence = 0
 var bullets_shot = 0
 var bullets_hit = 0
 var accuracy = 0
+var cooldown = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://rqlvdkbur7as"]
+[gd_scene load_steps=13 format=3 uid="uid://rqlvdkbur7as"]
 
 [ext_resource type="Texture2D" uid="uid://dgho5tigswvae" path="res://Sprites/World/placeholder tileset.png" id="1_23kd8"]
 [ext_resource type="PackedScene" uid="uid://b1lyax7mlenna" path="res://Scenes/Characters, weapons and collectables/player.tscn" id="2_3bt0i"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c1xbilv51dpju" path="res://Scenes/Characters, weapons and collectables/heart_capsule.tscn" id="6_ykpy8"]
 [ext_resource type="PackedScene" uid="uid://nre8vvqmqqoi" path="res://Scenes/Enemies/shooter.tscn" id="7_rp5qv"]
 [ext_resource type="PackedScene" uid="uid://6pwnx50n7l7g" path="res://Scenes/Enemies/roach.tscn" id="8_7152m"]
+[ext_resource type="PackedScene" uid="uid://byb3bgxsvmojy" path="res://Scenes/levels/button.tscn" id="9_2hy60"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pe2vl"]
 
@@ -199,3 +200,6 @@ position = Vector2(-1026, -4119)
 
 [node name="Heart_capsule9" parent="Collectables" instance=ExtResource("6_ykpy8")]
 position = Vector2(1379, -4116)
+
+[node name="Button" parent="." instance=ExtResource("9_2hy60")]
+position = Vector2(-830, -6)

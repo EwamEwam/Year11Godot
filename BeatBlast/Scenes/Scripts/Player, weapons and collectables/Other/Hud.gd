@@ -22,11 +22,13 @@ extends CanvasLayer
 @onready var ak47 = $"AK-47"
 @onready var rocket = $Rocket_launcher
 @onready var Cooldown_sprite = $Cooldown
+@onready var Dash_cooldown = $Dash_cooldown
 @onready var player = get_tree().get_first_node_in_group("Player")
 
 #now thats a lot of if statements ;)
 func _ready():
 	player.cooldown.connect(start_cooldown)
+	player.dash_cooldown.connect(start_dash_cooldown)
 	hands.visible = true
 	pistol.visible = false
 	revolver.visible = false
@@ -116,6 +118,10 @@ func _physics_process(delta):
 	if Playerstats.cooldown == 0:
 		Cooldown_sprite.play(var_to_str(Playerstats.weapon_selected + 100))
 		
+func start_dash_cooldown():
+	Dash_cooldown.play("running")
+	Dash_cooldown.speed_scale = 1
+	
 func start_cooldown():
 	Cooldown_sprite.play(var_to_str(Playerstats.weapon_selected))
 	Cooldown_sprite.speed_scale = 1
@@ -123,3 +129,7 @@ func start_cooldown():
 func _on_cooldown_animation_finished():
 	Playerstats.cooldown = 0
 	Cooldown_sprite.play(var_to_str(Playerstats.weapon_selected + 100))
+
+func _on_dash_cooldown_animation_finished():
+	Dash_cooldown.speed_scale = 0
+	Dash_cooldown.play("still")

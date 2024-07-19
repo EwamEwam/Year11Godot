@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://byb3bgxsvmojy"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/World/Button.gd" id="1_pmvyt"]
+[ext_resource type="Texture2D" uid="uid://eeusfupa48of" path="res://Sprites/World/Button.webp" id="2_kk14u"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pko5c"]
+radius = 13.0
+height = 54.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oysnu"]
+radius = 17.1172
+
+[node name="Button" type="StaticBody2D"]
+script = ExtResource("1_pmvyt")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 0)
+shape = SubResource("CapsuleShape2D_pko5c")
+
+[node name="Button" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.0956503, 0.0956502)
+texture = ExtResource("2_kk14u")
+
+[node name="Input" type="Area2D" parent="." groups=["Button"]]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Input" groups=["Button"]]
+position = Vector2(5, 0)
+shape = SubResource("CircleShape2D_oysnu")
+
+[connection signal="body_entered" from="Input" to="." method="_on_input_body_entered"]

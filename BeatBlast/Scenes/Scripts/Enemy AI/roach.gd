@@ -3,7 +3,7 @@ extends CharacterBody2D
 const SPEED = 450.0
 const ACCELLERATION = 20.0
 const FRICTION = 3.0
-var score_value = 10
+var score_value = 2
 @onready var Sprite = $BulletEnemy
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")

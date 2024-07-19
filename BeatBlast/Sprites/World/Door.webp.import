@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4npgts81q2wp"
-path="res://.godot/imported/Bullet1_collide.png-e1b503a0da226f4a714f457fc4e13861.ctex"
+uid="uid://28enctkqdfyj"
+path="res://.godot/imported/Door.webp-94b4ac00c6ed75fdac2f99d078c0c29f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters and items/Bullet1_collide.png"
-dest_files=["res://.godot/imported/Bullet1_collide.png-e1b503a0da226f4a714f457fc4e13861.ctex"]
+source_file="res://Sprites/World/Door.webp"
+dest_files=["res://.godot/imported/Door.webp-94b4ac00c6ed75fdac2f99d078c0c29f.ctex"]
 
 [params]
 

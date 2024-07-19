@@ -25,6 +25,7 @@ var last_facing_direction = Vector2(0,1)
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 signal cooldown
+signal dash_cooldown
 
 func _ready():
 	pass
@@ -150,13 +151,14 @@ func Shoot():
 		4:
 			if not timer.is_stopped() or Playerstats.health < 4:
 				return
-			Playerstats.health -= 3
-			for i in range(4):
+			Playerstats.health -= 4
+			for i in range(6):
 				var bulle2 = Bullet2.instantiate()
 				bulle2.global_position = global_position
 				bulle2.look_at(get_global_mouse_position())
 				world.add_child(bulle2)
 			shake(10,0.05,5,1.2)
+			emit_signal("cooldown")
 			timer.start(1.15)
 		5:
 			if not timer.is_stopped() or Playerstats.health < 2:
@@ -220,4 +222,5 @@ func dash():
 	velocity = velocity.move_toward(direction * SPEED, ACCELERATION*25)
 	await get_tree().create_timer(0.12).timeout
 	SPEED=500.0
+	emit_signal("dash_cooldown")
 	dash_timer.start(1.75)

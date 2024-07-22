@@ -6,7 +6,7 @@ const number = preload("res://Scenes/Other/DamageE_numbers.tscn")
 var damage = 2
 
 func _ready():
-	rotate(deg_to_rad(randf_range(-15,15)))
+	rotate(deg_to_rad(randf_range(-20,20)))
 	Playerstats.bullets_shot += 1
 
 func _process(delta):
@@ -23,6 +23,8 @@ func _on_body_entered(body):
 		Playerstats.damval=damage
 		add_sibling(new_number)
 		Playerstats.bullets_hit += 1
+	elif body.is_in_group("Button") and body.has_method("pressed"):
+		body.pressed()
 	queue_free()
 	var new_collide = collide.instantiate()
 	new_collide.global_position=global_position

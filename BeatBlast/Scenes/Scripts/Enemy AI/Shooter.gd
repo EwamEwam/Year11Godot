@@ -49,6 +49,8 @@ func _physics_process(delta):
 					velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
 				else:
 					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+		else:
+			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 	else:
 		velocity = Vector2.ZERO
 	

@@ -4,9 +4,10 @@ const SPEED = 450.0
 const ACCELLERATION = 20.0
 const FRICTION = 3.0
 var score_value = 2
-@onready var Sprite = $BulletEnemy
+@onready var Sprite = $Roach_sprite
+@onready var animation = $AnimationPlayer
 @onready var player = get_tree().get_first_node_in_group("Player")
-const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
+const heart = preload("res://Scenes/Characters, weapons and collectables/heart1.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
 @export var health = 1
 @onready var timer = $hurttimer
@@ -14,6 +15,10 @@ const score = preload("res://Scenes/Other/Score_numbers.tscn")
 @onready var hurtbox = $Hurtbox
 @onready var circle = $Movement_circle
 @onready var Raycast = $RayCast2D
+
+enum state {Running, Death}
+var current_state = state.Running
+var dead = false
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -41,16 +46,34 @@ func _physics_process(delta):
 					velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
 				else:
 					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+		else:
+			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 	else:
 		velocity = Vector2.ZERO
 	
+	if not dead:
+		current_state = state.Running
+		animation.speed_scale = velocity.length()/225
+	else:
+		current_state = state.Death
+		animation.speed_scale = true
+	
+	animation_play()
 	check_for_death()
 	check_collision()
 	move_and_slide()
 	
+func animation_play():
+	match current_state:
+		state.Running:
+			animation.play("Running")
+		state.Death:
+			animation.play("Death")
+	
 func check_for_death():
 	if health <= 0:
-		await get_tree().create_timer(1).timeout
+		dead = true
+		await get_tree().create_timer(0.7).timeout
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
 		add_sibling(new_heart)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2nuxjhx47ju0"
-path="res://.godot/imported/images.jpg-4d48ca239eff3db8f1d84a84758f08e6.ctex"
+uid="uid://cnwlaeh1j83ds"
+path="res://.godot/imported/heart5_shadow.png-5a205803393671de10a659ce436f1c32.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters and items/images.jpg"
-dest_files=["res://.godot/imported/images.jpg-4d48ca239eff3db8f1d84a84758f08e6.ctex"]
+source_file="res://Sprites/Characters and items/heart5_shadow.png"
+dest_files=["res://.godot/imported/heart5_shadow.png-5a205803393671de10a659ce436f1c32.ctex"]
 
 [params]
 

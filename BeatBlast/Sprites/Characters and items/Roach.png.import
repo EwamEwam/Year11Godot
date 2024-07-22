@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br1wcmuv2tn76"
-path="res://.godot/imported/Player_shadow.png-9c97fae54b83291dcee54262581f8474.ctex"
+uid="uid://dmyc8hcgkvtnm"
+path="res://.godot/imported/Roach.png-51824b30eae2b7b061a18826179f7941.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters and items/Player_shadow.png"
-dest_files=["res://.godot/imported/Player_shadow.png-9c97fae54b83291dcee54262581f8474.ctex"]
+source_file="res://Sprites/Characters and items/Roach.png"
+dest_files=["res://.godot/imported/Roach.png-51824b30eae2b7b061a18826179f7941.ctex"]
 
 [params]
 

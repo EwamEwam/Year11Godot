@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br1wcmuv2tn76"
-path="res://.godot/imported/Player_shadow.png-9c97fae54b83291dcee54262581f8474.ctex"
+uid="uid://d4ft4gxw22sed"
+path="res://.godot/imported/red screen fade.png-66deab7b566253c84b5d512643a7a5b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters and items/Player_shadow.png"
-dest_files=["res://.godot/imported/Player_shadow.png-9c97fae54b83291dcee54262581f8474.ctex"]
+source_file="res://Sprites/Hud/red screen fade.png"
+dest_files=["res://.godot/imported/red screen fade.png-66deab7b566253c84b5d512643a7a5b2.ctex"]
 
 [params]
 

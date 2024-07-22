@@ -1,13 +1,9 @@
-extends StaticBody2D
+extends Node2D
 
 @onready var press = get_tree().get_first_node_in_group("Button")
-var id: int = 1
+@export var id = 1
 
-func _ready():
-	press.button_pressed.connect(open)
-
-func open():
-	queue_free()
-
-func _process(delta):
-	pass
+func _physics_process(delta):
+	if Playerstats.door_open == id:
+		queue_free()
+		Playerstats.door_open = 0

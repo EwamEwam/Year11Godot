@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br1wcmuv2tn76"
-path="res://.godot/imported/Player_shadow.png-9c97fae54b83291dcee54262581f8474.ctex"
+uid="uid://6j0ax2ux8t08"
+path="res://.godot/imported/Dungeon_floor_rev1.png-d107f3f085291cb806e1a667cf7593cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters and items/Player_shadow.png"
-dest_files=["res://.godot/imported/Player_shadow.png-9c97fae54b83291dcee54262581f8474.ctex"]
+source_file="res://Sprites/World/Dungeon_floor_rev1.png"
+dest_files=["res://.godot/imported/Dungeon_floor_rev1.png-d107f3f085291cb806e1a667cf7593cf.ctex"]
 
 [params]
 

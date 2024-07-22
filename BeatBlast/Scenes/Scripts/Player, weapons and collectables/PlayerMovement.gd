@@ -19,13 +19,17 @@ const heal_num = preload ("res://Scenes/Other/Heal_numbers.tscn")
 var direction=Vector2.ZERO
 @onready var Camera = $Camera2D
 
-enum state {Idle, Down, Right, Left, Up}
-var current_state = state.Idle
+enum Pointing {Down, Right, Left, Up}
+enum State {Idle, Running, Hurt,}
+var current_state = State.Idle
+var current_direction = Pointing.Right
 var last_facing_direction = Vector2(0,1)
+var animation_can_play = true
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 signal cooldown
 signal dash_cooldown
+signal red(val)
 
 func _ready():
 	pass
@@ -39,11 +43,6 @@ func _physics_process(delta):
 			return
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
-		
-	if velocity.x > 0:
-		Sprite.flip_h = false
-	elif velocity.x < 0:
-		Sprite.flip_h = true
 	
 	Playerstats.player_x = global_position.x
 	Playerstats.player_y = global_position.y
@@ -68,52 +67,69 @@ func _physics_process(delta):
 		else:
 			Playerstats.weapon_selected += 1
 	
-	Animation_player.speed_scale = clampf((sqrt(velocity.x * velocity.x + velocity.y * velocity.y)/500),0,1.75)
+	if animation_can_play:
+		Update_state()
+		if abs(velocity.length()) > 0.1:
+			Animation_player.speed_scale = clampf((sqrt(velocity.x * velocity.x + velocity.y * velocity.y)/500),0,1.75)
+	else:
+		Animation_player.speed_scale = 1
 	
 	if timer.is_stopped():
 		Playerstats.cooldown = 0
 	else:
 		Playerstats.cooldown = 1
 	
-	Update_state()
 	Update_animation()
 	move_and_slide()
 	
 func Update_state():
-	if abs(velocity) > Vector2.ZERO:
-		if abs(direction.x) < 0.1 :
+	if velocity.length() > 0:
+		current_state = State.Running
+		if abs(direction.x) < 0.1:
 			if direction.y > 0:
-				current_state = state.Down
-			else:
-				current_state = state.Up
+				current_direction = Pointing.Down
+			elif direction.y < 0:
+				current_direction = Pointing.Up
 		else:
 			if direction.x > 0:
-				current_state = state.Right
-			else:
-				current_state = state.Left
+				current_direction = Pointing.Right
+			elif direction.x < 0:
+				current_direction = Pointing.Left
 	else:
-		match last_facing_direction:
-			Vector2(1,0):
-				current_state = state.Idle
-			Vector2(-1,0):
-				current_state = state.Idle
-			Vector2(0,1):
-				current_state = state.Idle
-			Vector2(0,-1):
-				current_state = state.Idle
-
+		current_state = State.Idle
+		
 func Update_animation():
 	match current_state:
-		state.Down:
-			Animation_player.play("Down")
-		state.Up:
-			Animation_player.play("Up")
-		state.Right:
-			Animation_player.play("Right")
-		state.Left:
-			Animation_player.play("Left")
-		state.Idle:
-			Animation_player.play("Idle")
+		State.Running:
+			match current_direction:
+				Pointing.Down:
+					Animation_player.play("Down")
+				Pointing.Up:
+					Animation_player.play("Up")
+				Pointing.Right:
+					Animation_player.play("Right")
+				Pointing.Left:
+					Animation_player.play("Left")
+		State.Idle:
+			match current_direction:
+				Pointing.Down:
+					Animation_player.play("Idle_Down")
+				Pointing.Up:
+					Animation_player.play("Idle_Up")
+				Pointing.Right:
+					Animation_player.play("Idle_Right")
+				Pointing.Left:
+					Animation_player.play("Idle_Left")
+		State.Hurt:
+			match current_direction:
+				Pointing.Down:
+					Animation_player.play("Hurt_Down")
+				Pointing.Up:
+					Animation_player.play("Hurt_Up")
+				Pointing.Right:
+					Animation_player.play("Hurt_Right")
+				Pointing.Left:
+					Animation_player.play("Hurt_Left")
 	
 func Shoot():
 	match Playerstats.weapon_selected:
@@ -185,12 +201,17 @@ func Shoot():
 func damage_player(val):
 	if val < 1:
 		val = 1
+	animation_can_play = false
+	current_state = State.Hurt
 	Playerstats.health -= val
 	Playerstats.dampval = val
 	var new_number = number.instantiate()
 	new_number.global_position=global_position
 	add_sibling(new_number)
+	emit_signal("red", clampf(float(val)/10, 0.35 , 0.95))
 	flash()
+	await get_tree().create_timer(0.2).timeout
+	animation_can_play = true
 		
 func heal(val):
 	Playerstats.health += val
@@ -218,8 +239,8 @@ func shake(amt,time,rep,damp):
 func dash():
 	if not dash_timer.is_stopped():
 		return
-	SPEED=1350.0
-	velocity = velocity.move_toward(direction * SPEED, ACCELERATION*25)
+	SPEED=1500.0
+	velocity = velocity.move_toward(direction * SPEED, ACCELERATION*30)
 	await get_tree().create_timer(0.12).timeout
 	SPEED=500.0
 	emit_signal("dash_cooldown")

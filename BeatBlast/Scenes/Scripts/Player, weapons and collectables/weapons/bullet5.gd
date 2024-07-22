@@ -22,6 +22,8 @@ func _on_body_entered(body):
 		Playerstats.damval=damage
 		add_sibling(new_number)
 		Playerstats.bullets_hit += 1
+	elif body.is_in_group("Button") and body.has_method("pressed"):
+		body.pressed()
 	queue_free()
 	var new_collide = collide.instantiate()
 	new_collide.global_position=global_position

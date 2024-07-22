@@ -1,13 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://tms6bvw6qjdh"]
+[gd_scene load_steps=14 format=3 uid="uid://tms6bvw6qjdh"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Other/Heal_numbers.gd" id="1_oarcn"]
 [ext_resource type="Texture2D" uid="uid://bm7b3un0vndg2" path="res://Sprites/Hud/Numbers/10Heal.png" id="2_omm1x"]
+[ext_resource type="Texture2D" uid="uid://b1sypjhwftvuh" path="res://Sprites/Hud/Numbers/1Heal.png" id="2_pqe01"]
 [ext_resource type="Texture2D" uid="uid://dhvhifilfq4kn" path="res://Sprites/Hud/Numbers/5Heal.png" id="2_xeewy"]
 [ext_resource type="Texture2D" uid="uid://g3e4car48a1q" path="res://Sprites/Hud/Numbers/40Heal.png" id="3_5255e"]
 [ext_resource type="Texture2D" uid="uid://bw5i7kqy1gd0m" path="res://Sprites/Hud/Numbers/2Heal.png" id="3_e1pml"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p3vex"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pqe01")
+}],
+"loop": true,
+"name": &"1",
+"speed": 0.76
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_omm1x")
@@ -40,6 +49,72 @@ animations = [{
 "name": &"5",
 "speed": 0.76
 }]
+
+[sub_resource type="Animation" id="Animation_rqqur"]
+resource_name = "1"
+length = 1.31579
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["1"]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0, 4.5),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1, -0.25, 0, 0, -12.5, -108.5, -1.05, 6, 0.597263, 3),
+"times": PackedFloat32Array(0.000253458, 1.3)
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_stigf"]
 resource_name = "10"
@@ -307,6 +382,7 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f07tr"]
 _data = {
+"1": SubResource("Animation_rqqur"),
 "10": SubResource("Animation_stigf"),
 "2": SubResource("Animation_roqjm"),
 "40": SubResource("Animation_muhlw"),
@@ -318,10 +394,10 @@ z_index = 100
 script = ExtResource("1_oarcn")
 
 [node name="number" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -108.5)
+position = Vector2(0, -90.2648)
 scale = Vector2(4.5, 4.5)
 sprite_frames = SubResource("SpriteFrames_p3vex")
-animation = &"2"
+animation = &"1"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../number")

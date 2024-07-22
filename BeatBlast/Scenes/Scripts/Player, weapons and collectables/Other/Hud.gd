@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var bar = $bar
+@onready var red = $RedScreenFade
 @onready var heart1 = $heart
 @onready var heart2 = $heart2
 @onready var heart3 = $heart3
@@ -29,6 +30,10 @@ extends CanvasLayer
 func _ready():
 	player.cooldown.connect(start_cooldown)
 	player.dash_cooldown.connect(start_dash_cooldown)
+	player.red.connect(damaged)
+	Cooldown_sprite.modulate = Color(1.15,1.15,1.15,1)
+	Dash_cooldown.modulate = Color(1.15,1.15,1.15,1)
+	
 	hands.visible = true
 	pistol.visible = false
 	revolver.visible = false
@@ -133,3 +138,11 @@ func _on_cooldown_animation_finished():
 func _on_dash_cooldown_animation_finished():
 	Dash_cooldown.speed_scale = 0
 	Dash_cooldown.play("still")
+	
+func damaged(val):
+	red.visible = true
+	for i in range(10):
+		red.modulate.a = val
+		await get_tree().create_timer(0.075).timeout
+		val = val/1.5
+	red.visible = false

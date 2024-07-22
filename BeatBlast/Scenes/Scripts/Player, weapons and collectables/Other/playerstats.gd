@@ -17,3 +17,4 @@ var bullets_shot = 0
 var bullets_hit = 0
 var accuracy = 0
 var cooldown = 0
+var door_open = 0

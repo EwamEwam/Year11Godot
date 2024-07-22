@@ -2,10 +2,11 @@ extends StaticBody2D
 
 @onready var button = $Button
 @onready var input = $Input
-var id: int = 1
+@export var id = 1
 
-signal button_pressed
+func _ready():
+	pass
 
 func pressed():
-	emit_signal("button_pressed")
+	Playerstats.door_open = id
 	queue_free()

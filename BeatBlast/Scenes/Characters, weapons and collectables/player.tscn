@@ -1,8 +1,8 @@
-[gd_scene load_steps=158 format=3 uid="uid://b1lyax7mlenna"]
+[gd_scene load_steps=159 format=3 uid="uid://b1lyax7mlenna"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/PlayerMovement.gd" id="1_gyp3l"]
 [ext_resource type="Texture2D" uid="uid://b51xnl5cbro81" path="res://Sprites/Characters and items/Player_Spritesheet_Rev1.png" id="2_fwmi3"]
-[ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_Shadow.png" id="2_s50a2"]
+[ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_shadow.png" id="2_s50a2"]
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Other/Hud.gd" id="3_ex22d"]
 [ext_resource type="Texture2D" uid="uid://c1mdakkcixtlx" path="res://Sprites/Hud/health_bar_background.png" id="4_m550f"]
 [ext_resource type="Texture2D" uid="uid://dme52gv7pug5i" path="res://Sprites/Hud/Health_Hearts_Spritesheet.png" id="5_c6u80"]
@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://d4ft4gxw22sed" path="res://Sprites/Hud/red screen fade.png" id="17_y0f3u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsncw"]
-size = Vector2(10.5815, 14.6551)
+size = Vector2(9.92011, 15.9483)
 
 [sub_resource type="Animation" id="Animation_q5074"]
 resource_name = "Down"
@@ -739,6 +739,9 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwhyl"]
+size = Vector2(14, 2)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_btb0q"]
 atlas = ExtResource("4_m550f")
 region = Rect2(0, 0, 184, 8)
@@ -1383,7 +1386,7 @@ position = Vector2(0, 15)
 texture = ExtResource("2_s50a2")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8.49999)
+position = Vector2(0, 8.24999)
 scale = Vector2(1.51208, 1.16)
 shape = SubResource("RectangleShape2D_qsncw")
 
@@ -1405,6 +1408,13 @@ libraries = {
 sprite_frames = SubResource("SpriteFrames_ilyhk")
 animation = &"Idle_Down"
 autoplay = "Idle_Right"
+
+[node name="Wall_collision" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_collision"]
+shape = SubResource("RectangleShape2D_cwhyl")
 
 [node name="Hud" type="CanvasLayer" parent="."]
 script = ExtResource("3_ex22d")
@@ -1552,7 +1562,7 @@ animation = &"running"
 autoplay = "still"
 
 [node name="Cooldown" type="AnimatedSprite2D" parent="Hud"]
-position = Vector2(40, 123)
+position = Vector2(40, 125)
 rotation = -1.5708
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3moos")

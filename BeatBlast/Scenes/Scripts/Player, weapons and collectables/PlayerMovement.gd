@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var Animation_player = $AnimationPlayer
 @onready var timer = $Timer
 @onready var dash_timer = $Dash_Timer
+@onready var wall_collision = $Wall_collision
 const Bullet = preload("res://Scenes/Characters, weapons and collectables/bullet.tscn")
 const Bullet2 = preload("res://Scenes/Characters, weapons and collectables/bullet2.tscn")
 const Bullet3 = preload("res://Scenes/Characters, weapons and collectables/bullet3.tscn")
@@ -88,13 +89,21 @@ func Update_state():
 		if abs(direction.x) < 0.1:
 			if direction.y > 0:
 				current_direction = Pointing.Down
+				wall_collision.position = Vector2(0,17)
+				wall_collision.rotation = 0
 			elif direction.y < 0:
 				current_direction = Pointing.Up
+				wall_collision.position = Vector2(0,-1)
+				wall_collision.rotation = 0
 		else:
 			if direction.x > 0:
 				current_direction = Pointing.Right
+				wall_collision.position = Vector2(8,8)
+				wall_collision.rotation = deg_to_rad(90)
 			elif direction.x < 0:
 				current_direction = Pointing.Left
+				wall_collision.position = Vector2(-8,8)
+				wall_collision.rotation = deg_to_rad(90)
 	else:
 		current_state = State.Idle
 		
@@ -103,13 +112,45 @@ func Update_animation():
 		State.Running:
 			match current_direction:
 				Pointing.Down:
-					Animation_player.play("Down")
+					var colliding = wall_collision.get_overlapping_bodies()
+					if colliding:
+						for collision in colliding:
+							if collision.is_in_group("Collision"):
+								Animation_player.play("Idle_Down")
+							else:
+								Animation_player.play("Down")
+					else:
+						Animation_player.play("Down")
 				Pointing.Up:
-					Animation_player.play("Up")
+					var colliding = wall_collision.get_overlapping_bodies()
+					if colliding:
+						for collision in colliding:
+							if collision.is_in_group("Collision"):
+								Animation_player.play("Idle_Up")
+							else:
+								Animation_player.play("Up")
+					else:
+						Animation_player.play("Up")
 				Pointing.Right:
-					Animation_player.play("Right")
+					var colliding = wall_collision.get_overlapping_bodies()
+					if colliding:
+						for collision in colliding:
+							if collision.is_in_group("Collision"):
+								Animation_player.play("Idle_Right")
+							else:
+								Animation_player.play("Right")
+					else:
+						Animation_player.play("Right")
 				Pointing.Left:
-					Animation_player.play("Left")
+					var colliding = wall_collision.get_overlapping_bodies()
+					if colliding:
+						for collision in colliding:
+							if collision.is_in_group("Collision"):
+								Animation_player.play("Idle_Left")
+							else:
+								Animation_player.play("Left")
+					else:
+						Animation_player.play("Left")
 		State.Idle:
 			match current_direction:
 				Pointing.Down:

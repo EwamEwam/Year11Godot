@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://28enctkqdfyj" path="res://Sprites/World/Door.webp" id="2_dhhww"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mecn3"]
-size = Vector2(300, 150)
+size = Vector2(300, 147)
 
 [node name="Door" type="Node2D"]
 script = ExtResource("1_altr2")
@@ -14,6 +14,7 @@ collision_layer = 131
 collision_mask = 131
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_mecn3")
 
 [node name="Door" type="Sprite2D" parent="."]

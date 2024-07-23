@@ -22,7 +22,7 @@ var animation_can_play = true
 var dead = false
 
 func _ready():
-	Sprite.modulate = Color(0.8, 0.8, 0.8, 0.95)
+	Sprite.modulate = Color(0.7, 0.7, 0.7, 0.95)
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -105,7 +105,7 @@ func take_damage(dmg):
 	if health > 0:
 		animation_can_play = false
 		current_state = state.Hurt
-		Sprite.modulate = Color(1.2, 1.2 ,1.2, 0.75)
+		Sprite.modulate = Color(1, 1 ,1, 0.75)
 		await get_tree().create_timer(0.15).timeout
-		Sprite.modulate = Color(0.8, 0.8 , 0.8, 0.95)
+		Sprite.modulate = Color(0.7, 0.7 , 0.7, 0.95)
 		animation_can_play = true

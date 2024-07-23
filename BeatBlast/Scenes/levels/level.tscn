@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://rqlvdkbur7as"]
+[gd_scene load_steps=24 format=3 uid="uid://rqlvdkbur7as"]
 
 [ext_resource type="PackedScene" uid="uid://b1lyax7mlenna" path="res://Scenes/Characters, weapons and collectables/player.tscn" id="2_3bt0i"]
 [ext_resource type="Texture2D" uid="uid://di05e3j3taqie" path="res://Sprites/World/Dungeon_floor_rev2.png" id="2_xw2qd"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://65f63h3remed" path="res://Sprites/World/Torch.png" id="4_0phsa"]
 [ext_resource type="Texture2D" uid="uid://can7kmxf1e788" path="res://Sprites/World/light.png" id="5_fdgal"]
 [ext_resource type="PackedScene" uid="uid://bkryvvuq63l5d" path="res://Scenes/Enemies/slime.tscn" id="6_5epkj"]
+[ext_resource type="PackedScene" uid="uid://m2tgp4b64peh" path="res://Scenes/levels/box.tscn" id="7_y8136"]
+[ext_resource type="PackedScene" uid="uid://5yy6sv432dpm" path="res://Scenes/Enemies/elite_slime.tscn" id="8_jurrj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g0snr"]
 texture = ExtResource("2_xw2qd")
@@ -382,11 +384,21 @@ texture = ExtResource("3_wget7")
 [node name="Level_elements" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="Props" type="Node2D" parent="Level_elements"]
+y_sort_enabled = true
+scale = Vector2(0.997819, 1.00486)
+
+[node name="Box" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
+position = Vector2(536, -224)
+
 [node name="Enemies" type="Node2D" parent="Level_elements"]
+y_sort_enabled = true
 
 [node name="slime" parent="Level_elements/Enemies" instance=ExtResource("6_5epkj")]
-z_index = 0
 position = Vector2(98, -146)
+
+[node name="slime2" parent="Level_elements/Enemies" instance=ExtResource("8_jurrj")]
+position = Vector2(1278, -679)
 
 [node name="Lighting" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true

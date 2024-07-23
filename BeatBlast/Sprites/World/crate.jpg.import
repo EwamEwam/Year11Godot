@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br1wcmuv2tn76"
-path="res://.godot/imported/Player_Shadow.png-397c5aafdccb618a22a0ee0954f7b4b6.ctex"
+uid="uid://d1l45t2owd513"
+path="res://.godot/imported/crate.jpg-9d702c649b0c374f10f9a07981d94495.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters and items/Player_Shadow.png"
-dest_files=["res://.godot/imported/Player_Shadow.png-397c5aafdccb618a22a0ee0954f7b4b6.ctex"]
+source_file="res://Sprites/World/crate.jpg"
+dest_files=["res://.godot/imported/crate.jpg-9d702c649b0c374f10f9a07981d94495.ctex"]
 
 [params]
 

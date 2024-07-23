@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://rqlvdkbur7as"]
+[gd_scene load_steps=14 format=3 uid="uid://rqlvdkbur7as"]
 
 [ext_resource type="PackedScene" uid="uid://b1lyax7mlenna" path="res://Scenes/Characters, weapons and collectables/player.tscn" id="2_3bt0i"]
 [ext_resource type="Texture2D" uid="uid://di05e3j3taqie" path="res://Sprites/World/Dungeon_floor_rev2.png" id="2_xw2qd"]
-[ext_resource type="Texture2D" uid="uid://cvpaq2s366joa" path="res://Sprites/World/light.webp" id="11_6khd7"]
+[ext_resource type="Texture2D" uid="uid://6j0ax2ux8t08" path="res://Sprites/World/Dungeon_floor_rev1.png" id="3_wget7"]
+[ext_resource type="Texture2D" uid="uid://65f63h3remed" path="res://Sprites/World/Torch.png" id="4_0phsa"]
+[ext_resource type="Texture2D" uid="uid://can7kmxf1e788" path="res://Sprites/World/light.png" id="5_fdgal"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g0snr"]
 texture = ExtResource("2_xw2qd")
@@ -273,16 +275,59 @@ terrain_set_0/terrain_0/name = "Greem"
 terrain_set_0/terrain_0/color = Color(0.643173, 0.229761, 0.644507, 1)
 sources/0 = SubResource("TileSetAtlasSource_g0snr")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_nclur"]
+atlas = ExtResource("4_0phsa")
+region = Rect2(0, 0, 10, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx3o2"]
+atlas = ExtResource("4_0phsa")
+region = Rect2(10, 0, 10, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lghb"]
+atlas = ExtResource("4_0phsa")
+region = Rect2(20, 0, 10, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qahxu"]
+atlas = ExtResource("4_0phsa")
+region = Rect2(30, 0, 10, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3107u"]
+atlas = ExtResource("4_0phsa")
+region = Rect2(40, 0, 10, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p1npc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nclur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx3o2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lghb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qahxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3107u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.5
+}]
+
 [node name="level" type="Node2D" groups=["Level"]]
 
 [node name="Player" parent="." instance=ExtResource("2_3bt0i")]
 modulate = Color(0.772247, 0.772247, 0.772247, 1)
 z_index = 25
 position = Vector2(728, -47)
-scale = Vector2(7, 7)
+scale = Vector2(8, 8)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(0.39, 0.39)
+zoom = Vector2(0.36, 0.36)
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
 
@@ -293,12 +338,33 @@ tile_set = SubResource("TileSet_76j8t")
 format = 2
 layer_0/tile_data = PackedInt32Array(-196604, 65536, 2, -131068, 65536, 4, -65532, 196608, 5, 4, 65536, 4, 5, 65536, 2, 6, 65536, 2, -65530, 65536, 2, -131066, 65536, 2, -196602, 131072, 2, -196603, 65536, 2, -131067, 65536, 2, -65531, 131072, 2, 65544, 131072, 3, 8, 65536, 2, -65528, 65536, 4, -131064, 131072, 3, -196600, 65536, 2, -262136, 131072, 4, 65543, 65536, 2, 7, 65536, 2, -65529, 65536, 2, -131065, 196608, 2, -196601, 131072, 4, -262137, 65536, 2, 65542, 131072, 4, -262138, 65536, 2, 65541, 131072, 2, -262139, 65536, 3, 65540, 196608, 3, -262140, 196608, 3, 65539, 65536, 2, 3, 65536, 2, -65533, 196608, 2, -131069, 196608, 5, -196605, 131072, 2, -262141, 65536, 2, 65538, 131072, 5, 2, 65536, 2, -65534, 131072, 5, -131070, 131072, 3, -196606, 131072, 2, -262142, 65536, 2, 196618, 65536, 2, 131082, 131072, 3, 65546, 131072, 2, 10, 131072, 4, -65526, 65536, 2, -131062, 65536, 2, -196598, 65536, 2, -262134, 65536, 2, -327670, 131072, 3, -393206, 131072, 3, 196617, 131072, 3, 131081, 65536, 2, 65545, 65536, 2, 9, 65536, 2, -65527, 196608, 3, -131063, 65536, 2, -196599, 131072, 2, -262135, 196608, 3, -327671, 65536, 2, -393207, 196608, 5, 196616, 65536, 2, 131080, 131072, 2, -327672, 65536, 2, -393208, 65536, 2, 196615, 196608, 6, 131079, 65536, 2, -327673, 65536, 2, -393209, 65536, 2, 196614, 196608, 2, 131078, 65536, 2, -327674, 196608, 5, -393210, 196608, 1, 196613, 65536, 2, 131077, 196608, 2, -327675, 65536, 2, -393211, 65536, 1, 196612, 131072, 3, 131076, 65536, 2, -327676, 196608, 2, -393212, 131072, 1, 196611, 65536, 2, 131075, 65536, 2, -327677, 65536, 2, -393213, 65536, 1, 196610, 65536, 2, 131074, 131072, 6, -327678, 65536, 2, -393214, 131072, 1, 196609, 0, 3, 131073, 0, 6, 65537, 0, 5, 1, 0, 4, -65535, 196608, 0, -131071, 196608, 0, -196607, 196608, 0, -262143, 0, 3, -327679, 0, 6, -393215, 0, 1, -458742, 65536, 2, -524278, 65536, 4, -589814, 65536, 2, -458743, 196608, 2, -524279, 65536, 2, -589815, 196608, 3, -458744, 65536, 3, -524280, 196608, 5, -589816, 131072, 4, -458745, 131072, 3, -524281, 65536, 2, -589817, 65536, 3, -458746, 0, 3, -524282, 0, 5, -589818, 0, 4, -655350, 65536, 2, -720886, 65536, 2, -655351, 65536, 2, -720887, 65536, 2, -655352, 65536, 5, -720888, 65536, 2, -655353, 65536, 2, -720889, 196608, 5, -655354, 0, 2, -720890, 196608, 2, -786422, 65536, 2, -851958, 65536, 1, -786423, 196608, 3, -851959, 131072, 1, -786424, 196608, 2, -851960, 131072, 1, -786425, 131072, 6, -851961, 65536, 1, -786426, 65536, 2, -851962, 65536, 1, -720891, 65536, 2, -786427, 131072, 2, -851963, 196608, 2, -720892, 65536, 2, -786428, 65536, 2, -851964, 65536, 5, -720893, 131072, 2, -786429, 65536, 2, -851965, 65536, 2, -720894, 0, 5, -786430, 0, 4, -851966, 0, 5, -917499, 65536, 2, -983035, 131072, 2, -1048571, 65536, 1, -917500, 196608, 6, -983036, 65536, 6, -1048572, 131072, 1, -917501, 131072, 6, -983037, 65536, 2, -1048573, 65536, 1, -917502, 0, 3, -983038, 0, 3, -1048574, 0, 1)
 
+[node name="DungeonFloorRev1" type="Sprite2D" parent="."]
+position = Vector2(506, -940)
+scale = Vector2(8, 8)
+texture = ExtResource("3_wget7")
+
 [node name="Enemies" type="Node2D" parent="."]
 visible = false
 
 [node name="Lighting" type="Node2D" parent="."]
 
-[node name="PointLight2D" type="PointLight2D" parent="Lighting"]
-position = Vector2(461, -818)
-scale = Vector2(0.742708, 0.743995)
-texture = ExtResource("11_6khd7")
+[node name="torch" type="AnimatedSprite2D" parent="Lighting"]
+position = Vector2(464, -928)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_p1npc")
+autoplay = "default"
+frame_progress = 0.674597
+
+[node name="PointLight2D" type="PointLight2D" parent="Lighting/torch"]
+position = Vector2(0.125, -2.125)
+scale = Vector2(0.61, 0.61)
+color = Color(0.960503, 0.597031, 0.459931, 1)
+energy = 4.81
+texture = ExtResource("5_fdgal")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lighting/torch"]
+position = Vector2(0, -2.5)
+scale = Vector2(0.065, 0.065)
+color = Color(0.961763, 0.328122, 0.0767179, 1)
+energy = 11.82
+texture = ExtResource("5_fdgal")

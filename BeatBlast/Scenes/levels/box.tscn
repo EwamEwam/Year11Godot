@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://m2tgp4b64peh"]
 
-[ext_resource type="Texture2D" uid="uid://d1l45t2owd513" path="res://Sprites/World/crate.jpg" id="1_6b4fc"]
 [ext_resource type="Script" path="res://Scenes/Scripts/World/box.gd" id="1_xywdu"]
+[ext_resource type="Texture2D" uid="uid://7s3kka38h82g" path="res://Sprites/World/crate.png" id="2_tcfmv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ddruu"]
-size = Vector2(82.5034, 34.0614)
+size = Vector2(133.656, 36.5385)
 
 [node name="Box" type="StaticBody2D" groups=["Collision", "Prop"]]
 scale = Vector2(1.25, 1.25)
@@ -13,10 +13,10 @@ collision_mask = 131
 script = ExtResource("1_xywdu")
 
 [node name="Crate" type="Sprite2D" parent="."]
-scale = Vector2(0.085197, 0.0851971)
-texture = ExtResource("1_6b4fc")
+scale = Vector2(8, 8)
+texture = ExtResource("2_tcfmv")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 22)
+position = Vector2(0, 23.6)
 scale = Vector2(0.969657, 1.29179)
 shape = SubResource("RectangleShape2D_ddruu")

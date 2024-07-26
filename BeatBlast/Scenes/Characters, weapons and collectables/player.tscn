@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/PlayerMovement.gd" id="1_gyp3l"]
 [ext_resource type="Texture2D" uid="uid://b51xnl5cbro81" path="res://Sprites/Characters and items/Player_Spritesheet_Rev1.png" id="2_fwmi3"]
-[ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_shadow.png" id="2_s50a2"]
+[ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_Shadow.png" id="2_s50a2"]
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Other/Hud.gd" id="3_ex22d"]
 [ext_resource type="Texture2D" uid="uid://c1mdakkcixtlx" path="res://Sprites/Hud/health_bar_background.png" id="4_m550f"]
 [ext_resource type="Texture2D" uid="uid://dme52gv7pug5i" path="res://Sprites/Hud/Health_Hearts_Spritesheet.png" id="5_c6u80"]
@@ -1608,6 +1608,16 @@ offset_left = 77.0
 offset_top = 145.0
 offset_right = 240.0
 offset_bottom = 66.72
+theme_override_colors/font_color = Color(0.574328, 0.574328, 0.574328, 1)
+text = "0"
+
+[node name="Timer" type="Label" parent="Hud"]
+anchors_preset = -1
+anchor_bottom = 0.211
+offset_left = 64.0
+offset_top = 162.0
+offset_right = 227.0
+offset_bottom = 83.72
 theme_override_colors/font_color = Color(0.574328, 0.574328, 0.574328, 1)
 text = "0"
 

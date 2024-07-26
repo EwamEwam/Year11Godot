@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://rqlvdkbur7as"]
 
 [ext_resource type="Texture2D" uid="uid://b1uv32qbh13hb" path="res://Sprites/World/Dungeon_tileset_rev3.png" id="1_7orlm"]
-[ext_resource type="Script" path="res://Scenes/levels/level.gd" id="1_hbluw"]
+[ext_resource type="Script" path="res://Scenes/Scripts/World/level.gd" id="1_hbluw"]
 [ext_resource type="PackedScene" uid="uid://b1lyax7mlenna" path="res://Scenes/Characters, weapons and collectables/player.tscn" id="2_3bt0i"]
 [ext_resource type="PackedScene" uid="uid://blt48oj31jynf" path="res://Scenes/levels/Torch.tscn" id="3_0f45g"]
 [ext_resource type="PackedScene" uid="uid://xj5r58g4saqh" path="res://Scenes/levels/Side_Torch.tscn" id="4_rx33b"]
@@ -659,6 +659,39 @@ scale = Vector2(1.25273, 1.24395)
 [node name="Box4" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
 position = Vector2(1170.55, 289.593)
 scale = Vector2(1.25273, 1.24395)
+
+[node name="Box5" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
+position = Vector2(-1587.46, -3041.22)
+scale = Vector2(1.25273, 1.24395)
+health = 15
+drop = 1
+
+[node name="Box6" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
+position = Vector2(-1393.04, -3042.21)
+scale = Vector2(1.25273, 1.24395)
+
+[node name="Box7" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
+position = Vector2(433.946, -2025.16)
+scale = Vector2(1.25273, 1.24395)
+
+[node name="Box8" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
+position = Vector2(592.292, -2116.71)
+scale = Vector2(1.25273, 1.24395)
+drop = 1
+
+[node name="Box9" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
+position = Vector2(756.65, -3896.06)
+scale = Vector2(1.25273, 1.24395)
+drop = 1
+
+[node name="Box10" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
+position = Vector2(2389.21, -1619.13)
+scale = Vector2(1.25273, 1.24395)
+
+[node name="Box11" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
+position = Vector2(2549.56, -1619.13)
+scale = Vector2(1.25273, 1.24395)
+drop = 1
 
 [node name="Enemies" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true

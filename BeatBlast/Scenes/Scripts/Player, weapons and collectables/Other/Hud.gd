@@ -27,6 +27,8 @@ extends CanvasLayer
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var Black_screen = $BlackScreen
 @onready var score = $Score
+@onready var timer = $Timer
+@onready var world = get_node('/root/level')
 
 #now thats a lot of if statements ;)
 func _ready():
@@ -120,6 +122,7 @@ func _physics_process(delta):
 		heart12.visible=true
 		
 	score.text = var_to_str(Playerstats.score)
+	timer.text = var_to_str(world.timer)
 		
 	selection.global_position.x = Playerstats.weapon_selected * 40 - 9
 	

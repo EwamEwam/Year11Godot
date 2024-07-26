@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/weapons/punch_box.gd" id="1_qs4t3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5wmjt"]
-radius = 7.0
-height = 26.0
+radius = 5.5
+height = 13.6667
 
 [node name="Punch_box" type="Area2D"]
 scale = Vector2(7.5, 7.5)

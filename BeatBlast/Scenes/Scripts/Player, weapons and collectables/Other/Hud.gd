@@ -25,9 +25,13 @@ extends CanvasLayer
 @onready var Cooldown_sprite = $Cooldown
 @onready var Dash_cooldown = $Dash_cooldown
 @onready var player = get_tree().get_first_node_in_group("Player")
+@onready var Black_screen = $BlackScreen
+@onready var score = $Score
 
 #now thats a lot of if statements ;)
 func _ready():
+	player.died.connect(black_screen)
+	player.Reload.connect(reloaded)
 	player.cooldown.connect(start_cooldown)
 	player.dash_cooldown.connect(start_dash_cooldown)
 	player.red.connect(damaged)
@@ -115,6 +119,8 @@ func _physics_process(delta):
 	else:
 		heart12.visible=true
 		
+	score.text = var_to_str(Playerstats.score)
+		
 	selection.global_position.x = Playerstats.weapon_selected * 40 - 9
 	
 	if Playerstats.health > Playerstats.max_health:
@@ -140,9 +146,32 @@ func _on_dash_cooldown_animation_finished():
 	Dash_cooldown.play("still")
 	
 func damaged(val):
-	red.visible = true
+	if Playerstats.health > 0:
+		red.visible = true
+		for i in range(10):
+			red.modulate.a = val
+			await get_tree().create_timer(0.075).timeout
+			val = val/1.5
+		red.visible = false
+
+func black_screen():
+	var val = 0
+	Black_screen.visible = true
+	Black_screen.modulate.a = 0
+	await get_tree().create_timer(1).timeout
+	for i in range(25):
+		Black_screen.visible = true
+		val += 0.04
+		Black_screen.modulate.a = val
+		await get_tree().create_timer(0.035).timeout
+	
+func reloaded():
+	var val = 1
+	Black_screen.visible = true
+	Black_screen.modulate.a = val
 	for i in range(10):
-		red.modulate.a = val
-		await get_tree().create_timer(0.075).timeout
-		val = val/1.5
-	red.visible = false
+		Black_screen.visible = true
+		val -= 0.1
+		Black_screen.modulate.a = val
+		await get_tree().create_timer(0.035).timeout
+	Black_screen.visible = false

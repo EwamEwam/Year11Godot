@@ -23,17 +23,20 @@ var direction=Vector2.ZERO
 enum Pointing {Down, Right, Left, Up}
 enum State {Idle, Running, Hurt,}
 var current_state = State.Idle
-var current_direction = Pointing.Right
+var current_direction = Pointing.Up
 var last_facing_direction = Vector2(0,1)
 var animation_can_play = true
+var dead = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 signal cooldown
 signal dash_cooldown
 signal red(val)
+signal died
+signal Reload
 
 func _ready():
-	pass
+	Playerstats.reloaded.connect(reload)
 
 func _physics_process(delta):
 	direction = Input.get_vector("left","right","up","down").normalized()
@@ -80,8 +83,19 @@ func _physics_process(delta):
 	else:
 		Playerstats.cooldown = 1
 	
+	if Playerstats.health < 1:
+		death()
+	
 	Update_animation()
 	move_and_slide()
+	
+func reload():
+	current_direction = Pointing.Up
+	current_state = State.Idle
+	emit_signal("Reload")
+	
+func death():
+	emit_signal("died")
 	
 func Update_state():
 	if velocity.length() > 0:
@@ -89,7 +103,7 @@ func Update_state():
 		if abs(direction.x) < 0.1:
 			if direction.y > 0:
 				current_direction = Pointing.Down
-				wall_collision.position = Vector2(0,17)
+				wall_collision.position = Vector2(0,16)
 				wall_collision.rotation = 0
 			elif direction.y < 0:
 				current_direction = Pointing.Up
@@ -179,8 +193,9 @@ func Shoot():
 				return
 			var new_punch = Punch_box.instantiate()
 			new_punch.global_position=global_position
+			new_punch.global_position.y += 50
 			new_punch.look_at(get_global_mouse_position())
-			world.add_child(new_punch)
+			add_sibling(new_punch)
 			emit_signal("cooldown")
 			timer.start(0.65)
 		2:
@@ -190,7 +205,7 @@ func Shoot():
 			var bulle = Bullet.instantiate()
 			bulle.global_position = global_position
 			bulle.look_at(get_global_mouse_position())
-			world.add_child(bulle)
+			add_sibling(bulle)
 			shake(7.5,0.05,4,1.25)
 			emit_signal("cooldown")
 			timer.start(0.8)
@@ -201,7 +216,7 @@ func Shoot():
 			var bulle5 = Bullet5.instantiate()
 			bulle5.global_position = global_position
 			bulle5.look_at(get_global_mouse_position())
-			world.add_child(bulle5)
+			add_sibling(bulle5)
 			shake(12,0.05,6,1.2)
 			emit_signal("cooldown")
 			timer.start(1.7)
@@ -213,7 +228,7 @@ func Shoot():
 				var bulle2 = Bullet2.instantiate()
 				bulle2.global_position = global_position
 				bulle2.look_at(get_global_mouse_position())
-				world.add_child(bulle2)
+				add_sibling(bulle2)
 			shake(10,0.05,5,1.2)
 			emit_signal("cooldown")
 			timer.start(1.15)
@@ -224,7 +239,7 @@ func Shoot():
 			var bulle3 = Bullet3.instantiate()
 			bulle3.global_position = global_position
 			bulle3.look_at(get_global_mouse_position())
-			world.add_child(bulle3)
+			add_sibling(bulle3)
 			shake(4,0.05,3,1.25)
 			timer.start(0.2)
 		6:
@@ -235,7 +250,7 @@ func Shoot():
 				var bulle4 = Bullet4.instantiate()
 				bulle4.global_position = global_position
 				bulle4.look_at(get_global_mouse_position())
-				world.add_child(bulle4)
+				add_sibling(bulle4)
 			shake(2,0.05,3,1.25)
 			timer.start(0.1)
 	
@@ -262,20 +277,22 @@ func heal(val):
 	add_sibling(new_heal)
 	
 func flash():
-	for i in range(6):
-		Sprite.visible=false
-		await get_tree().create_timer(0.05).timeout
-		Sprite.visible=true
-		await get_tree().create_timer(0.05).timeout
+	if Playerstats.health > 0:
+		for i in range(6):
+			Sprite.visible=false
+			await get_tree().create_timer(0.05).timeout
+			Sprite.visible=true
+			await get_tree().create_timer(0.05).timeout
 		
 func shake(amt,time,rep,damp):
-	for i in range(rep):
-		Camera.offset.x=(randf_range(-amt,amt))
-		Camera.offset.y=(randf_range(-amt,amt))
-		amt = amt/damp
-		await get_tree().create_timer(time).timeout
-	Camera.offset.x=0
-	Camera.offset.y=0
+	if Playerstats.health > 0:
+		for i in range(rep):
+			Camera.offset.x=(randf_range(-amt,amt))
+			Camera.offset.y=(randf_range(-amt,amt))
+			amt = amt/damp
+			await get_tree().create_timer(time).timeout
+		Camera.offset.x=0
+		Camera.offset.y=0
 
 func dash():
 	if not dash_timer.is_stopped():

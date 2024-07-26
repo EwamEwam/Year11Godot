@@ -20,6 +20,9 @@ enum state {Running, Death}
 var current_state = state.Running
 var dead = false
 
+func _ready():
+	Sprite.rotate(deg_to_rad(randi_range(0,360)))
+
 func check_collision():
 	if not timer.is_stopped() or health < 1:
 		return

@@ -8,11 +8,12 @@ size = Vector2(133.656, 36.5385)
 
 [node name="Box" type="StaticBody2D" groups=["Collision", "Prop"]]
 scale = Vector2(1.25, 1.25)
-collision_layer = 131
-collision_mask = 131
+collision_layer = 130
+collision_mask = 130
 script = ExtResource("1_xywdu")
 
 [node name="Crate" type="Sprite2D" parent="."]
+modulate = Color(0.866111, 0.866111, 0.866111, 1)
 scale = Vector2(8, 8)
 texture = ExtResource("2_tcfmv")
 

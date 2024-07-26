@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var SPEED = 750
-var damage = 2
+var damage = 3
 
 func _ready():
 	pass

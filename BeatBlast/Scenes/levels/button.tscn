@@ -8,7 +8,7 @@ radius = 13.0
 height = 54.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oysnu"]
-radius = 17.1172
+radius = 21.0238
 
 [node name="Button" type="StaticBody2D" groups=["Button"]]
 collision_layer = 131
@@ -27,7 +27,7 @@ texture = ExtResource("2_kk14u")
 [node name="Input" type="Area2D" parent="." groups=["Button"]]
 
 [node name="CollisionShape" type="CollisionShape2D" parent="Input" groups=["Button"]]
-position = Vector2(5, 0)
+position = Vector2(13, 1)
 shape = SubResource("CircleShape2D_oysnu")
 
 [connection signal="body_entered" from="Input" to="." method="_on_input_body_entered"]

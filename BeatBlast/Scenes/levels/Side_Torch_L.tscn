@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://ddbvwpephgd52"]
+
+[ext_resource type="Texture2D" uid="uid://65f63h3remed" path="res://Sprites/World/Torch.png" id="1_i28r7"]
+[ext_resource type="Texture2D" uid="uid://can7kmxf1e788" path="res://Sprites/World/light.png" id="2_8abd4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3nqw"]
+atlas = ExtResource("1_i28r7")
+region = Rect2(0, 23, 10, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jch02"]
+atlas = ExtResource("1_i28r7")
+region = Rect2(10, 23, 10, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4dyh"]
+atlas = ExtResource("1_i28r7")
+region = Rect2(20, 23, 10, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5gwk"]
+atlas = ExtResource("1_i28r7")
+region = Rect2(30, 23, 10, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u2vn"]
+atlas = ExtResource("1_i28r7")
+region = Rect2(40, 23, 10, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hdv0k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3nqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jch02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4dyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5gwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u2vn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.5
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01r4x"]
+size = Vector2(7.625, 7)
+
+[node name="Side_Torch" type="StaticBody2D" groups=["Collision"]]
+modulate = Color(0.661081, 0.661081, 0.661081, 1)
+y_sort_enabled = true
+scale = Vector2(8, 8)
+collision_layer = 131
+collision_mask = 131
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hdv0k")
+autoplay = "default"
+frame_progress = 0.794845
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_01r4x")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+z_index = 25
+position = Vector2(-0.125, -2.375)
+scale = Vector2(0.065, 0.065)
+color = Color(0.961763, 0.328122, 0.0767179, 1)
+energy = 11.82
+texture = ExtResource("2_8abd4")
+
+[node name="PointLight2D" type="PointLight2D" parent="." groups=["Collision"]]
+scale = Vector2(0.61, 0.61)
+color = Color(0.960503, 0.597031, 0.459931, 1)
+energy = 4.81
+texture = ExtResource("2_8abd4")

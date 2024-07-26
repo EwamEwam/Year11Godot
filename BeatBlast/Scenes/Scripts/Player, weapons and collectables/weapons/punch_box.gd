@@ -21,4 +21,6 @@ func _on_body_entered(body):
 		queue_free()
 	elif body.is_in_group("Button") and body.has_method("pressed"):
 		body.pressed()
+	elif body.is_in_group("Prop") and body.has_method("damage"):
+		body.damage(damage)
 	

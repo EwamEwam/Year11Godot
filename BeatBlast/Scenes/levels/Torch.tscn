@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://blt48oj31jynf"]
+
+[ext_resource type="Texture2D" uid="uid://65f63h3remed" path="res://Sprites/World/Torch.png" id="1_t5gyq"]
+[ext_resource type="Texture2D" uid="uid://can7kmxf1e788" path="res://Sprites/World/light.png" id="2_5erp3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nclur"]
+atlas = ExtResource("1_t5gyq")
+region = Rect2(0, 0, 10, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx3o2"]
+atlas = ExtResource("1_t5gyq")
+region = Rect2(10, 0, 10, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lghb"]
+atlas = ExtResource("1_t5gyq")
+region = Rect2(20, 0, 10, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qahxu"]
+atlas = ExtResource("1_t5gyq")
+region = Rect2(30, 0, 10, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3107u"]
+atlas = ExtResource("1_t5gyq")
+region = Rect2(40, 0, 10, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p1npc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nclur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx3o2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lghb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qahxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3107u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.5
+}]
+
+[node name="Torch" type="AnimatedSprite2D"]
+modulate = Color(0.662745, 0.662745, 0.662745, 1)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_p1npc")
+autoplay = "default"
+frame_progress = 0.72847
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0.125, -2.125)
+scale = Vector2(0.61, 0.61)
+color = Color(0.960503, 0.597031, 0.459931, 1)
+energy = 4.81
+texture = ExtResource("2_5erp3")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+z_index = -4096
+position = Vector2(-0.125, -2.375)
+scale = Vector2(0.065, 0.065)
+color = Color(0.961763, 0.328122, 0.0767179, 1)
+energy = 11.82
+texture = ExtResource("2_5erp3")

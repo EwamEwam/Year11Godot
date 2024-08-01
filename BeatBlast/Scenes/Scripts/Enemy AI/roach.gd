@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 450.0
+const SPEED = 400.0
 const ACCELLERATION = 20.0
 const FRICTION = 3.0
 var score_value = 2

@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://b5b1h3fj0qdgr"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/Big_slime.gd" id="1_gurdi"]
+[ext_resource type="Texture2D" uid="uid://v1qtbni4id5o" path="res://Sprites/Characters and items/Ultraviolet_6598bd2b-fd20-41d4-93ce-1c7a6d155de4_1024x1024.webp" id="2_gprq6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xy88o"]
+radius = 81.0555
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jdkck"]
+radius = 82.0244
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wd1rf"]
+radius = 665.433
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmhxp"]
+bg_color = Color(0.0509804, 0.129412, 0.0470588, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_msn60"]
+bg_color = Color(0.360784, 0.556863, 0.168627, 1)
+
+[node name="Big_slime" type="CharacterBody2D" groups=["Collision", "Enemy"]]
+collision_layer = 5
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_gurdi")
+
+[node name="Slime_sprite" type="Sprite2D" parent="."]
+modulate = Color(0.10942, 0.530198, 0.662154, 1)
+position = Vector2(0, -5.96046e-07)
+scale = Vector2(0.175781, 0.181274)
+texture = ExtResource("2_gprq6")
+flip_h = true
+flip_v = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["Collision", "Enemy"]]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(25, 25)
+collision_mask = 128
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_xy88o")
+
+[node name="hurttimer" type="Timer" parent="."]
+
+[node name="hurtbox" type="Area2D" parent="."]
+visible = false
+
+[node name="Hurtbox_collision" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("CircleShape2D_jdkck")
+
+[node name="Movement_circle" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
+shape = SubResource("CircleShape2D_wd1rf")
+
+[node name="Health_metre" type="ProgressBar" parent="."]
+offset_left = -52.0
+offset_top = 86.0
+offset_right = 52.0
+offset_bottom = 94.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xmhxp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_msn60")
+max_value = 16.0
+value = 8.0
+show_percentage = false

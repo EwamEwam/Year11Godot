@@ -16,4 +16,5 @@ func _on_body_entered(body):
 	if body.is_in_group("Player") and body.has_method("damage_player"):
 		body.damage_player(damage - Playerstats.defence)
 		body.shake(5,0.05,4,1.1)
-	queue_free()
+	if not body.is_in_group("Enemy"):
+		queue_free()

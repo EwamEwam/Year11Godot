@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw87pi1xddwnr"]
+[gd_scene load_steps=5 format=3 uid="uid://cw87pi1xddwnr"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/weapons/Bullet.gd" id="1_jg2si"]
 [ext_resource type="Texture2D" uid="uid://cpb4bssawxj7w" path="res://Sprites/Characters and items/Bullet_1.png" id="2_q1nbc"]
+[ext_resource type="Texture2D" uid="uid://can7kmxf1e788" path="res://Sprites/World/light.png" id="3_w3sp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nncrg"]
 size = Vector2(8, 3.55556)
@@ -21,6 +22,13 @@ shape = SubResource("RectangleShape2D_nncrg")
 [node name="Bullet1" type="Sprite2D" parent="."]
 rotation = 1.5708
 texture = ExtResource("2_q1nbc")
+
+[node name="Light" type="PointLight2D" parent="."]
+position = Vector2(-3.33334, 0)
+scale = Vector2(0.136852, 0.136852)
+color = Color(0.741892, 0.304619, 0.069324, 1)
+energy = 6.0
+texture = ExtResource("3_w3sp3")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

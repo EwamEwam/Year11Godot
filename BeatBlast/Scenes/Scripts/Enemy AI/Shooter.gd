@@ -10,13 +10,16 @@ const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const bullet = preload("res://Scenes/Enemies/enemy_bullet.tscn")
 @export var health = 12
+@export var max_health = 12
 @onready var timer = $Hurt_Timer
+@onready var hitbox = $hitbox
 @onready var shoot_timer = $Shoot_Timer
 @export var damage = 2
 @onready var hurtbox = $Hurtbox
 @onready var circle = $Player_Detection_Range
 @onready var Too_Close_Circle = $PLayer_Too_Close_Range
 @onready var Raycast = $RayCast2D
+@onready var health_bar = $Health_metre
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -41,16 +44,20 @@ func _physics_process(delta):
 			for collision in too_close:
 				if collision.is_in_group("Player"):
 					check_collision()
+					print("1")
 					return
 		if in_circle:
 			for collision in in_circle:
 				if collision.is_in_group("Player") and Raycast.is_colliding()==false:
 					var direction_to_player = global_position.direction_to(player.global_position)
 					velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
+					print("2")
 				else:
 					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+					print("3")
 		else:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+			print("4")
 	else:
 		velocity = Vector2.ZERO
 	
@@ -59,12 +66,15 @@ func _physics_process(delta):
 	elif velocity.x < 0:
 		Sprite.flip_h = false
 	
+	update_health_bar()
 	check_for_death()
 	check_collision()
 	move_and_slide()
 	
 func check_for_death():
 	if health <= 0:
+		hitbox.disabled = true
+		Sprite.z_index = -1
 		await get_tree().create_timer(1).timeout
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
@@ -89,3 +99,11 @@ func _on_shoot_timer_timeout():
 				new_bullet.look_at(Vector2(Playerstats.player_x, Playerstats.player_y))
 				add_sibling(new_bullet)
 	shoot_timer.start(1.5)
+
+func update_health_bar():
+	health_bar.max_value = max_health
+	health_bar.value = health
+	if health != max_health:
+		health_bar.visible = true
+	else:
+		health_bar.visible = false

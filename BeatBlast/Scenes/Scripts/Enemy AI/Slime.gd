@@ -9,7 +9,7 @@ var score_value = 10
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
-@export var health = 7
+@export var health = 8
 @onready var timer = $hurttimer
 @onready var hitbox = $hitbox
 @export var damage = 3
@@ -22,7 +22,7 @@ enum state {Right, Left, Hurt, Death}
 var current_state = state.Right
 var animation_can_play = true
 var dead = false
-@export var max_health = 7
+@export var max_health = 8
 
 func _ready():
 	Sprite.modulate = Color(0.7, 0.7, 0.7, 0.95)
@@ -92,6 +92,7 @@ func animation_play():
 func check_for_death():
 	if health <= 0:
 		dead = true
+		Sprite.z_index = -1
 		hitbox.disabled = true
 		animation_can_play = false
 		current_state = state.Death

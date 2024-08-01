@@ -1,4 +1,4 @@
-[gd_scene load_steps=162 format=3 uid="uid://b1lyax7mlenna"]
+[gd_scene load_steps=161 format=3 uid="uid://b1lyax7mlenna"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/PlayerMovement.gd" id="1_gyp3l"]
 [ext_resource type="Texture2D" uid="uid://b51xnl5cbro81" path="res://Sprites/Characters and items/Player_Spritesheet_Rev1.png" id="2_fwmi3"]
@@ -19,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://dhujapiolfjqk" path="res://Sprites/Hud/shotgun_cooldown.png" id="15_k64j3"]
 [ext_resource type="Texture2D" uid="uid://d4ft4gxw22sed" path="res://Sprites/Hud/red screen fade.png" id="17_y0f3u"]
 [ext_resource type="Texture2D" uid="uid://bjqtd3wy32b4v" path="res://Sprites/Hud/Score_time_Sprint_1.png" id="19_bj6xn"]
-[ext_resource type="FontFile" uid="uid://br5tea7ial2m7" path="res://Sprites/Hud/fuckoff.ttf" id="20_h2tu0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsncw"]
 size = Vector2(9.92011, 15.5172)
@@ -1592,7 +1591,7 @@ offset_top = 162.0
 offset_right = 104.0
 offset_bottom = 185.0
 theme_override_colors/font_color = Color(0.572549, 0.572549, 0.572549, 1)
-theme_override_fonts/font = ExtResource("20_h2tu0")
+text = "0"
 
 [node name="Score" type="Label" parent="Hud"]
 anchors_preset = -1
@@ -1601,16 +1600,6 @@ offset_left = 77.0
 offset_top = 145.0
 offset_right = 240.0
 offset_bottom = 66.72
-theme_override_colors/font_color = Color(0.574328, 0.574328, 0.574328, 1)
-text = "0"
-
-[node name="Timer" type="Label" parent="Hud"]
-anchors_preset = -1
-anchor_bottom = 0.211
-offset_left = 64.0
-offset_top = 162.0
-offset_right = 227.0
-offset_bottom = 83.72
 theme_override_colors/font_color = Color(0.574328, 0.574328, 0.574328, 1)
 text = "0"
 

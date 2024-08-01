@@ -278,7 +278,7 @@ bg_color = Color(0.360437, 0.555103, 0.167512, 1)
 
 [node name="slime" type="CharacterBody2D" groups=["Collision", "Enemy"]]
 position = Vector2(0, 1)
-collision_layer = 2
+collision_layer = 5
 collision_mask = 3
 collision_priority = 5.0
 motion_mode = 1

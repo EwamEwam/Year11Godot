@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://rqlvdkbur7as"]
+[gd_scene load_steps=14 format=3 uid="uid://rqlvdkbur7as"]
 
 [ext_resource type="Texture2D" uid="uid://b1uv32qbh13hb" path="res://Sprites/World/Dungeon_tileset_rev3.png" id="1_7orlm"]
 [ext_resource type="Script" path="res://Scenes/Scripts/World/level.gd" id="1_hbluw"]
@@ -7,9 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://xj5r58g4saqh" path="res://Scenes/levels/Side_Torch.tscn" id="4_rx33b"]
 [ext_resource type="PackedScene" uid="uid://ddbvwpephgd52" path="res://Scenes/levels/Side_Torch_L.tscn" id="5_iua6n"]
 [ext_resource type="PackedScene" uid="uid://bkryvvuq63l5d" path="res://Scenes/Enemies/slime.tscn" id="7_0jdfm"]
-[ext_resource type="PackedScene" uid="uid://m2tgp4b64peh" path="res://Scenes/levels/box.tscn" id="7_y8136"]
 [ext_resource type="PackedScene" uid="uid://c1xbilv51dpju" path="res://Scenes/Characters, weapons and collectables/heart_capsule.tscn" id="8_pt3bm"]
-[ext_resource type="PackedScene" uid="uid://6pwnx50n7l7g" path="res://Scenes/Enemies/roach.tscn" id="10_wjasn"]
+[ext_resource type="PackedScene" uid="uid://nre8vvqmqqoi" path="res://Scenes/Enemies/shooter.tscn" id="9_pfgtk"]
 [ext_resource type="PackedScene" uid="uid://byb3bgxsvmojy" path="res://Scenes/levels/button.tscn" id="12_341od"]
 [ext_resource type="PackedScene" uid="uid://ll60qr3vjhjn" path="res://Scenes/levels/door.tscn" id="13_m2nrh"]
 
@@ -648,70 +647,14 @@ position = Vector2(56.1224, -2293.85)
 rotation = -1.5708
 scale = Vector2(0.995163, 1.00219)
 
-[node name="Box" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
-position = Vector2(216.472, 165.197)
-scale = Vector2(1.25273, 1.24395)
-
-[node name="Box2" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
-position = Vector2(376.822, 165.197)
-scale = Vector2(1.25273, 1.24395)
-drop = 1
-
-[node name="Box3" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
-position = Vector2(1330.9, 289.593)
-scale = Vector2(1.25273, 1.24395)
-
-[node name="Box4" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
-position = Vector2(1170.55, 289.593)
-scale = Vector2(1.25273, 1.24395)
-
-[node name="Box5" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
-position = Vector2(-1587.46, -3041.22)
-scale = Vector2(1.25273, 1.24395)
-health = 15
-drop = 1
-
-[node name="Box6" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
-position = Vector2(-1393.04, -3042.21)
-scale = Vector2(1.25273, 1.24395)
-
-[node name="Box7" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
-position = Vector2(433.946, -2025.16)
-scale = Vector2(1.25273, 1.24395)
-
-[node name="Box8" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
-position = Vector2(592.292, -2116.71)
-scale = Vector2(1.25273, 1.24395)
-drop = 1
-
-[node name="Box9" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
-position = Vector2(756.65, -3896.06)
-scale = Vector2(1.25273, 1.24395)
-drop = 1
-
-[node name="Box10" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
-position = Vector2(2389.21, -1619.13)
-scale = Vector2(1.25273, 1.24395)
-
-[node name="Box11" parent="Level_elements/Props" instance=ExtResource("7_y8136")]
-position = Vector2(2549.56, -1619.13)
-scale = Vector2(1.25273, 1.24395)
-drop = 1
-
 [node name="Enemies" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true
 
 [node name="slime" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(360, -145)
+position = Vector2(442, -430)
 
-[node name="slime2" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(1216, -497)
-
-[node name="Roach" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(767, -2100)
-
-[node name="Roach2" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(672, -2035)
+[node name="Shooter" parent="Level_elements/Enemies" instance=ExtResource("9_pfgtk")]
+position = Vector2(1048, -606)
 
 [node name="Lighting" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true

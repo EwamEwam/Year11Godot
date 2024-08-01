@@ -3,6 +3,7 @@ extends Area2D
 const collide = preload("res://Scenes/Characters, weapons and collectables/bullet_1_collision.tscn")
 const number = preload("res://Scenes/Other/DamageE_numbers.tscn")
 @export var SPEED = 950
+@onready var light = $Light
 var damage = 4
 
 func _ready():
@@ -10,6 +11,8 @@ func _ready():
 
 func _process(delta):
 	translate(Vector2.RIGHT.rotated(rotation) * SPEED * delta)
+	if light.energy > 0:
+		light.energy -= 0.5
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

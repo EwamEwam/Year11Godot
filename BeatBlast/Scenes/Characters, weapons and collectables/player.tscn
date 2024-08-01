@@ -1,4 +1,4 @@
-[gd_scene load_steps=161 format=3 uid="uid://b1lyax7mlenna"]
+[gd_scene load_steps=162 format=3 uid="uid://b1lyax7mlenna"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/PlayerMovement.gd" id="1_gyp3l"]
 [ext_resource type="Texture2D" uid="uid://b51xnl5cbro81" path="res://Sprites/Characters and items/Player_Spritesheet_Rev1.png" id="2_fwmi3"]
@@ -19,9 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://dhujapiolfjqk" path="res://Sprites/Hud/shotgun_cooldown.png" id="15_k64j3"]
 [ext_resource type="Texture2D" uid="uid://d4ft4gxw22sed" path="res://Sprites/Hud/red screen fade.png" id="17_y0f3u"]
 [ext_resource type="Texture2D" uid="uid://bjqtd3wy32b4v" path="res://Sprites/Hud/Score_time_Sprint_1.png" id="19_bj6xn"]
+[ext_resource type="FontFile" uid="uid://br5tea7ial2m7" path="res://Sprites/Hud/fuckoff.ttf" id="20_h2tu0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsncw"]
-size = Vector2(9.92011, 13.7931)
+size = Vector2(9.92011, 15.5172)
 
 [sub_resource type="Animation" id="Animation_q5074"]
 resource_name = "Down"
@@ -1345,7 +1346,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"3",
-"speed": 5.88
+"speed": 6.25
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1388,7 +1389,7 @@ position = Vector2(0, 15)
 texture = ExtResource("2_s50a2")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6.99999)
+position = Vector2(0, 8)
 scale = Vector2(1.51208, 1.16)
 shape = SubResource("RectangleShape2D_qsncw")
 
@@ -1576,7 +1577,7 @@ position = Vector2(40, 125)
 rotation = -1.5708
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3moos")
-animation = &"1"
+animation = &"3"
 centered = false
 offset = Vector2(-8.08334, 0.0349541)
 
@@ -1585,21 +1586,13 @@ position = Vector2(37, 166)
 scale = Vector2(2, 2)
 texture = ExtResource("19_bj6xn")
 
-[node name="Sprint number" type="Label" parent="Hud"]
-offset_left = 6.0
-offset_top = 445.0
-offset_right = 139.0
-offset_bottom = 468.0
-theme_override_font_sizes/font_size = 10
-text = "Sprint 1 (26/7/24)"
-
-[node name="Credits" type="Label" parent="Hud"]
-offset_left = 5.0
-offset_top = 460.0
-offset_right = 352.0
-offset_bottom = 483.0
-theme_override_font_sizes/font_size = 10
-text = "Spritework and Coding By Bourbon and Coke"
+[node name="Timer" type="Label" parent="Hud"]
+offset_left = 64.0
+offset_top = 162.0
+offset_right = 104.0
+offset_bottom = 185.0
+theme_override_colors/font_color = Color(0.572549, 0.572549, 0.572549, 1)
+theme_override_fonts/font = ExtResource("20_h2tu0")
 
 [node name="Score" type="Label" parent="Hud"]
 anchors_preset = -1

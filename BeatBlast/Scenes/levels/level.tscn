@@ -1,16 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://rqlvdkbur7as"]
+[gd_scene load_steps=15 format=3 uid="uid://rqlvdkbur7as"]
 
 [ext_resource type="Texture2D" uid="uid://b1uv32qbh13hb" path="res://Sprites/World/Dungeon_tileset_rev3.png" id="1_7orlm"]
-[ext_resource type="Script" path="res://Scenes/levels/level.gd" id="1_hbluw"]
+[ext_resource type="Script" path="res://Scenes/Scripts/World/level.gd" id="1_hbluw"]
 [ext_resource type="PackedScene" uid="uid://b1lyax7mlenna" path="res://Scenes/Characters, weapons and collectables/player.tscn" id="2_3bt0i"]
 [ext_resource type="PackedScene" uid="uid://blt48oj31jynf" path="res://Scenes/levels/Torch.tscn" id="3_0f45g"]
 [ext_resource type="PackedScene" uid="uid://xj5r58g4saqh" path="res://Scenes/levels/Side_Torch.tscn" id="4_rx33b"]
 [ext_resource type="PackedScene" uid="uid://ddbvwpephgd52" path="res://Scenes/levels/Side_Torch_L.tscn" id="5_iua6n"]
 [ext_resource type="PackedScene" uid="uid://bkryvvuq63l5d" path="res://Scenes/Enemies/slime.tscn" id="7_0jdfm"]
-[ext_resource type="PackedScene" uid="uid://5yy6sv432dpm" path="res://Scenes/Enemies/elite_slime.tscn" id="7_4tlmb"]
 [ext_resource type="PackedScene" uid="uid://m2tgp4b64peh" path="res://Scenes/levels/box.tscn" id="7_y8136"]
 [ext_resource type="PackedScene" uid="uid://c1xbilv51dpju" path="res://Scenes/Characters, weapons and collectables/heart_capsule.tscn" id="8_pt3bm"]
-[ext_resource type="PackedScene" uid="uid://nre8vvqmqqoi" path="res://Scenes/Enemies/shooter.tscn" id="9_uj7ar"]
 [ext_resource type="PackedScene" uid="uid://6pwnx50n7l7g" path="res://Scenes/Enemies/roach.tscn" id="10_wjasn"]
 [ext_resource type="PackedScene" uid="uid://byb3bgxsvmojy" path="res://Scenes/levels/button.tscn" id="12_341od"]
 [ext_resource type="PackedScene" uid="uid://ll60qr3vjhjn" path="res://Scenes/levels/door.tscn" id="13_m2nrh"]
@@ -19,7 +17,7 @@
 texture = ExtResource("1_7orlm")
 margins = Vector2i(1, 1)
 3:0/0 = 0
-3:0/0/z_index = 1
+3:0/0/z_index = 2
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_0/angular_velocity = 0.0
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 8, 0, 8)
@@ -27,12 +25,12 @@ margins = Vector2i(1, 1)
 4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:0/0/physics_layer_0/angular_velocity = 0.0
 5:0/0 = 0
-5:0/0/z_index = 1
+5:0/0/z_index = 2
 5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:0/0/physics_layer_0/angular_velocity = 0.0
 5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
 0:1/0 = 0
-0:1/0/z_index = 1
+0:1/0/z_index = 2
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 8, 0, 8)
@@ -52,20 +50,20 @@ margins = Vector2i(1, 1)
 4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:1/0/physics_layer_0/angular_velocity = 0.0
 5:1/0 = 0
-5:1/0/z_index = 1
+5:1/0/z_index = 2
 5:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:1/0/physics_layer_0/angular_velocity = 0.0
 5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
 6:1/0 = 0
-6:1/0/z_index = 1
+6:1/0/z_index = 2
 6:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:1/0/physics_layer_0/angular_velocity = 0.0
 7:1/0 = 0
-7:1/0/z_index = 1
+7:1/0/z_index = 2
 7:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:1/0/physics_layer_0/angular_velocity = 0.0
 0:2/0 = 0
-0:2/0/z_index = 1
+0:2/0/z_index = 2
 0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:2/0/physics_layer_0/angular_velocity = 0.0
 0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 8, 0, 8)
@@ -92,7 +90,7 @@ margins = Vector2i(1, 1)
 4:2/0/terrains_peering_bit/top_side = 0
 4:2/0/terrains_peering_bit/top_right_corner = 0
 5:2/0 = 0
-5:2/0/z_index = 1
+5:2/0/z_index = 2
 5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:2/0/physics_layer_0/angular_velocity = 0.0
 5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 0, -8, 0, 8, -8, 8)
@@ -103,7 +101,7 @@ margins = Vector2i(1, 1)
 7:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:2/0/physics_layer_0/angular_velocity = 0.0
 0:3/0 = 0
-0:3/0/z_index = 1
+0:3/0/z_index = 2
 0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:3/0/physics_layer_0/angular_velocity = 0.0
 0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 8, 0, 8)
@@ -148,7 +146,7 @@ margins = Vector2i(1, 1)
 4:3/0/terrains_peering_bit/top_side = 0
 4:3/0/terrains_peering_bit/top_right_corner = 0
 5:3/0 = 0
-5:3/0/z_index = 1
+5:3/0/z_index = 2
 5:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:3/0/physics_layer_0/angular_velocity = 0.0
 5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
@@ -159,7 +157,7 @@ margins = Vector2i(1, 1)
 7:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:3/0/physics_layer_0/angular_velocity = 0.0
 0:4/0 = 0
-0:4/0/z_index = 1
+0:4/0/z_index = 2
 0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:4/0/physics_layer_0/angular_velocity = 0.0
 0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, 0, 8, 0, -8)
@@ -215,19 +213,19 @@ margins = Vector2i(1, 1)
 4:4/0/terrains_peering_bit/top_side = 0
 4:4/0/terrains_peering_bit/top_right_corner = 0
 5:4/0 = 0
-5:4/0/z_index = 1
+5:4/0/z_index = 2
 5:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:4/0/physics_layer_0/angular_velocity = 0.0
 5:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
 6:4/0 = 0
-6:4/0/z_index = 1
+6:4/0/z_index = 2
 6:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:4/0/physics_layer_0/angular_velocity = 0.0
 7:4/0 = 0
 7:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:4/0/physics_layer_0/angular_velocity = 0.0
 0:5/0 = 0
-0:5/0/z_index = 1
+0:5/0/z_index = 2
 0:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:5/0/physics_layer_0/angular_velocity = 0.0
 0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 8, 0, 8)
@@ -284,19 +282,19 @@ margins = Vector2i(1, 1)
 4:5/0/terrains_peering_bit/top_side = 0
 4:5/0/terrains_peering_bit/top_right_corner = 0
 5:5/0 = 0
-5:5/0/z_index = 1
+5:5/0/z_index = 2
 5:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:5/0/physics_layer_0/angular_velocity = 0.0
 5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
 6:5/0 = 0
-6:5/0/z_index = 1
+6:5/0/z_index = 2
 6:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:5/0/physics_layer_0/angular_velocity = 0.0
 7:5/0 = 0
 7:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:5/0/physics_layer_0/angular_velocity = 0.0
 0:6/0 = 0
-0:6/0/z_index = 1
+0:6/0/z_index = 2
 0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:6/0/physics_layer_0/angular_velocity = 0.0
 0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 8, 0, 8)
@@ -353,12 +351,12 @@ margins = Vector2i(1, 1)
 4:6/0/terrains_peering_bit/top_side = 0
 4:6/0/terrains_peering_bit/top_right_corner = 0
 5:6/0 = 0
-5:6/0/z_index = 1
+5:6/0/z_index = 2
 5:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:6/0/physics_layer_0/angular_velocity = 0.0
 5:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
 6:6/0 = 0
-6:6/0/z_index = 1
+6:6/0/z_index = 2
 6:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:6/0/physics_layer_0/angular_velocity = 0.0
 6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -366,7 +364,7 @@ margins = Vector2i(1, 1)
 7:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:6/0/physics_layer_0/angular_velocity = 0.0
 0:7/0 = 0
-0:7/0/z_index = 1
+0:7/0/z_index = 2
 0:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:7/0/physics_layer_0/angular_velocity = 0.0
 0:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 8, 0, 8)
@@ -423,11 +421,12 @@ margins = Vector2i(1, 1)
 4:7/0/terrains_peering_bit/top_side = 0
 4:7/0/terrains_peering_bit/top_right_corner = 0
 5:7/0 = 0
-5:7/0/z_index = 1
+5:7/0/z_index = 2
 5:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:7/0/physics_layer_0/angular_velocity = 0.0
 5:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
 6:7/0 = 0
+6:7/0/z_index = 2
 6:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:7/0/physics_layer_0/angular_velocity = 0.0
 6:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -435,7 +434,7 @@ margins = Vector2i(1, 1)
 7:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:7/0/physics_layer_0/angular_velocity = 0.0
 0:8/0 = 0
-0:8/0/z_index = 1
+0:8/0/z_index = 2
 0:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:8/0/physics_layer_0/angular_velocity = 0.0
 0:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 8, 0, 8)
@@ -492,85 +491,90 @@ margins = Vector2i(1, 1)
 4:8/0/terrains_peering_bit/top_side = 0
 4:8/0/terrains_peering_bit/top_right_corner = 0
 5:8/0 = 0
-5:8/0/z_index = 1
+5:8/0/z_index = 2
 5:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:8/0/physics_layer_0/angular_velocity = 0.0
 5:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
 6:8/0 = 0
+6:8/0/z_index = 2
 6:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:8/0/physics_layer_0/angular_velocity = 0.0
+6:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 4, -8, 4)
 7:8/0 = 0
 7:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:8/0/physics_layer_0/angular_velocity = 0.0
 0:9/0 = 0
-0:9/0/z_index = 1
+0:9/0/z_index = 2
 0:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:9/0/physics_layer_0/angular_velocity = 0.0
 0:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 8, 0, 8)
 1:9/0 = 0
-1:9/0/z_index = 1
+1:9/0/z_index = 2
 1:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:9/0/physics_layer_0/angular_velocity = 0.0
 2:9/0 = 0
-2:9/0/z_index = 1
+2:9/0/z_index = 2
 2:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:9/0/physics_layer_0/angular_velocity = 0.0
 3:9/0 = 0
-3:9/0/z_index = 1
+3:9/0/z_index = 2
 3:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:9/0/physics_layer_0/angular_velocity = 0.0
 4:9/0 = 0
-4:9/0/z_index = 1
+4:9/0/z_index = 2
 4:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:9/0/physics_layer_0/angular_velocity = 0.0
 5:9/0 = 0
-5:9/0/z_index = 1
+5:9/0/z_index = 2
 5:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:9/0/physics_layer_0/angular_velocity = 0.0
 5:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
 0:10/0 = 0
-0:10/0/z_index = 1
+0:10/0/z_index = 2
 0:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:10/0/physics_layer_0/angular_velocity = 0.0
 0:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 8, -8, 8, 8, 0, 8)
 1:10/0 = 0
-1:10/0/z_index = 1
+1:10/0/z_index = 2
 1:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:10/0/physics_layer_0/angular_velocity = 0.0
 1:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:10/0 = 0
-2:10/0/z_index = 1
+2:10/0/z_index = 2
 2:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:10/0/physics_layer_0/angular_velocity = 0.0
 2:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:10/0 = 0
-3:10/0/z_index = 1
+3:10/0/z_index = 2
 3:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:10/0/physics_layer_0/angular_velocity = 0.0
 3:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:10/0 = 0
-4:10/0/z_index = 1
+4:10/0/z_index = 2
 4:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:10/0/physics_layer_0/angular_velocity = 0.0
 5:10/0 = 0
-5:10/0/z_index = 1
+5:10/0/z_index = 2
 5:10/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:10/0/physics_layer_0/angular_velocity = 0.0
 5:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
 8:8/0 = 0
+8:8/0/z_index = 2
 8:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:8/0/physics_layer_0/angular_velocity = 0.0
+8:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 4, -8, 4)
 8:7/0 = 0
+8:7/0/z_index = 2
 8:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:7/0/physics_layer_0/angular_velocity = 0.0
 8:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:6/0 = 0
-8:6/0/z_index = 1
+8:6/0/z_index = 2
 8:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:6/0/physics_layer_0/angular_velocity = 0.0
 8:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:5/0 = 0
-8:5/0/z_index = 1
+8:5/0/z_index = 2
 8:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:5/0/physics_layer_0/angular_velocity = 0.0
 
@@ -590,6 +594,7 @@ autostart = true
 
 [node name="TileMap" type="TileMap" parent="." groups=["Collision"]]
 process_mode = 3
+z_index = -1
 scale = Vector2(8, 8)
 tile_set = SubResource("TileSet_2obly")
 format = 2
@@ -664,226 +669,16 @@ scale = Vector2(1.25273, 1.24395)
 y_sort_enabled = true
 
 [node name="slime" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(1133, -629)
+position = Vector2(360, -145)
 
 [node name="slime2" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(406, -276)
-
-[node name="slime3" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(1099, -216)
-
-[node name="Shooter" parent="Level_elements/Enemies" instance=ExtResource("9_uj7ar")]
-position = Vector2(-1153, -3969)
-
-[node name="Shooter2" parent="Level_elements/Enemies" instance=ExtResource("9_uj7ar")]
-position = Vector2(-1007, -3584)
+position = Vector2(1216, -497)
 
 [node name="Roach" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(-1206, -3460)
+position = Vector2(767, -2100)
 
 [node name="Roach2" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(-1112, -3383)
-
-[node name="Roach3" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(-1183, -3619)
-
-[node name="Roach4" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(-1027, -3740)
-
-[node name="Roach5" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(-1114, -3838)
-
-[node name="Roach6" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(-968, -4037)
-
-[node name="Roach7" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(-1177, -4278)
-
-[node name="Roach8" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(-1187, -4087)
-
-[node name="Roach9" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(-954, -4256)
-
-[node name="slime4" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(870, -2072)
-
-[node name="Roach10" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(282, -2621)
-
-[node name="Roach11" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(610, -2695)
-
-[node name="Roach12" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(508, -2592)
-
-[node name="Roach13" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(330, -2487)
-
-[node name="Roach14" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(439, -2763)
-
-[node name="Roach15" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(421, -2641)
-
-[node name="Roach16" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(275, -2758)
-
-[node name="Roach17" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(223, -2387)
-
-[node name="Roach18" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(558, -2771)
-
-[node name="slime5" parent="Level_elements/Enemies" instance=ExtResource("7_4tlmb")]
-position = Vector2(327, -4358)
-
-[node name="slime6" parent="Level_elements/Enemies" instance=ExtResource("7_4tlmb")]
-position = Vector2(1193, -4353)
-
-[node name="slime7" parent="Level_elements/Enemies" instance=ExtResource("7_4tlmb")]
-position = Vector2(-1505, -4779)
-
-[node name="slime8" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(-1080, -2379)
-
-[node name="slime9" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(-1527, -2284)
-
-[node name="Shooter3" parent="Level_elements/Enemies" instance=ExtResource("9_uj7ar")]
-position = Vector2(-1875, -4297)
-
-[node name="slime10" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(-1845, -3368)
-
-[node name="slime11" parent="Level_elements/Enemies" instance=ExtResource("7_4tlmb")]
-position = Vector2(3656, -2092)
-
-[node name="Shooter4" parent="Level_elements/Enemies" instance=ExtResource("9_uj7ar")]
-position = Vector2(2578, -2285)
-
-[node name="Roach19" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(1858, -1469)
-
-[node name="Roach20" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(2115, -1475)
-
-[node name="Roach21" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(1948, -1460)
-
-[node name="Roach22" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(2022, -1493)
-
-[node name="Roach23" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(1893, -1535)
-
-[node name="Roach24" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(2095, -1593)
-
-[node name="Roach25" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(1979, -1599)
-
-[node name="Roach26" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(1862, -1633)
-
-[node name="Roach27" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(2073, -1696)
-
-[node name="Roach28" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(1895, -1719)
-
-[node name="Roach29" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(2012, -1785)
-
-[node name="slime12" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(1923, -2303)
-
-[node name="slime13" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(1960, -2698)
-
-[node name="slime14" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(2101, -2824)
-
-[node name="slime15" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(1888, -2954)
-
-[node name="slime16" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(4032, -3119)
-
-[node name="slime17" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(538, -1912)
-
-[node name="slime18" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(1117, -2491)
-
-[node name="Shooter5" parent="Level_elements/Enemies" instance=ExtResource("9_uj7ar")]
-position = Vector2(739, -4750)
-
-[node name="slime19" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(-1859, -4049)
-
-[node name="Shooter6" parent="Level_elements/Enemies" instance=ExtResource("9_uj7ar")]
-position = Vector2(-1129, -4833)
-
-[node name="slime20" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(307, -3885)
-
-[node name="slime21" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(755, -4159)
-
-[node name="slime22" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(1212, -3881)
-
-[node name="slime23" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(-242, -2365)
-
-[node name="slime24" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(-606, -2331)
-
-[node name="Roach30" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(-1663, -2871)
-
-[node name="Roach31" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(-1373, -2655)
-
-[node name="Roach32" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(-1821, -3492)
-
-[node name="Roach33" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(-1910, -4503)
-
-[node name="Roach34" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(-1914, -5005)
-
-[node name="Roach35" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(-1081, -4961)
-
-[node name="Roach36" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(447, -3668)
-
-[node name="Roach37" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(597, -3688)
-
-[node name="Roach38" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(1099, -3556)
-
-[node name="Shooter7" parent="Level_elements/Enemies" instance=ExtResource("9_uj7ar")]
-position = Vector2(2784, -1813)
-
-[node name="slime25" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(3343, -1621)
-
-[node name="slime26" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(557, -6774)
-
-[node name="Shooter8" parent="Level_elements/Enemies" instance=ExtResource("9_uj7ar")]
-position = Vector2(791, -6803)
-
-[node name="Roach39" parent="Level_elements/Enemies" instance=ExtResource("10_wjasn")]
-position = Vector2(964, -6740)
-
-[node name="slime27" parent="Level_elements/Enemies" instance=ExtResource("7_4tlmb")]
-position = Vector2(1211, -6813)
+position = Vector2(672, -2035)
 
 [node name="Lighting" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true
@@ -963,18 +758,8 @@ position = Vector2(728, 690.24)
 scale = Vector2(8, 8)
 
 [node name="Camera2D" type="Camera2D" parent="Level_elements/Player"]
-zoom = Vector2(0.36, 0.36)
+zoom = Vector2(0.3, 0.3)
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
-
-[node name="Label" type="Label" parent="Level_elements"]
-offset_left = 351.0
-offset_top = -7215.0
-offset_right = 1445.0
-offset_bottom = -7078.0
-theme_override_font_sizes/font_size = 100
-text = "THANKS FOR PLAYING!"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

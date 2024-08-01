@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cux8xvj6jwoyl"
-path="res://.godot/imported/bourbon-and-coke-blocks.ttf-add89467f4a2961a20711e48d6ce9315.fontdata"
+uid="uid://br5tea7ial2m7"
+path="res://.godot/imported/fuckoff.ttf-88c3ac87d419e786b309e717784e2a10.fontdata"
 
 [deps]
 
-source_file="res://Sprites/Hud/bourbon-and-coke-blocks.ttf"
-dest_files=["res://.godot/imported/bourbon-and-coke-blocks.ttf-add89467f4a2961a20711e48d6ce9315.fontdata"]
+source_file="res://Sprites/Hud/fuckoff.ttf"
+dest_files=["res://.godot/imported/fuckoff.ttf-88c3ac87d419e786b309e717784e2a10.fontdata"]
 
 [params]
 

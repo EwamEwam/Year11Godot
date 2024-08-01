@@ -1,6 +1,6 @@
 extends Node2D
 
-var timer = 200
+var timer = 400
 
 func _on_timer_timeout():
 	if timer > 0:

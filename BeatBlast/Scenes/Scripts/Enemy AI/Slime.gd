@@ -9,17 +9,20 @@ var score_value = 10
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
-@export var health = 8
+@export var health = 7
 @onready var timer = $hurttimer
+@onready var hitbox = $hitbox
 @export var damage = 3
 @onready var hurtbox = $hurtbox
 @onready var circle = $Movement_circle
 @onready var Raycast = $RayCast2D
+@onready var health_bar = $Health_Metre
 
 enum state {Right, Left, Hurt, Death}
 var current_state = state.Right
 var animation_can_play = true
 var dead = false
+@export var max_health = 7
 
 func _ready():
 	Sprite.modulate = Color(0.7, 0.7, 0.7, 0.95)
@@ -62,6 +65,7 @@ func _physics_process(delta):
 	if not dead:
 		check_for_death()
 		
+	update_health_bar()
 	change_state()
 	animation_play()
 	check_collision()
@@ -69,7 +73,7 @@ func _physics_process(delta):
 	
 func change_state():
 	if animation_can_play:
-		if velocity .x > 0:
+		if velocity.x > 0:
 			current_state = state.Right
 		elif velocity.x < 0:
 			current_state = state.Left
@@ -88,6 +92,7 @@ func animation_play():
 func check_for_death():
 	if health <= 0:
 		dead = true
+		hitbox.disabled = true
 		animation_can_play = false
 		current_state = state.Death
 		await get_tree().create_timer(0.75).timeout
@@ -109,3 +114,11 @@ func take_damage(dmg):
 		await get_tree().create_timer(0.15).timeout
 		Sprite.modulate = Color(0.7, 0.7 , 0.7, 0.95)
 		animation_can_play = true
+
+func update_health_bar():
+	health_bar.max_value = max_health
+	health_bar.value = health
+	if health != max_health:
+		health_bar.visible = true
+	else:
+		health_bar.visible = false

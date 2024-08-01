@@ -86,6 +86,7 @@ func _physics_process(delta):
 	if Playerstats.health < 1:
 		death()
 	
+	check_item_select()
 	Update_animation()
 	move_and_slide()
 	
@@ -219,7 +220,7 @@ func Shoot():
 			add_sibling(bulle5)
 			shake(12,0.05,6,1.2)
 			emit_signal("cooldown")
-			timer.start(1.7)
+			timer.start(1.6)
 		4:
 			if not timer.is_stopped() or Playerstats.health < 4:
 				return
@@ -303,3 +304,18 @@ func dash():
 	SPEED=500.0
 	emit_signal("dash_cooldown")
 	dash_timer.start(1.75)
+
+func check_item_select():
+	if Input.is_action_just_pressed("1"):
+		Playerstats.weapon_selected = 1
+	if Input.is_action_just_pressed("2") and Playerstats.weapons_unlocked > 1:
+		Playerstats.weapon_selected = 2
+	if Input.is_action_just_pressed("3") and Playerstats.weapons_unlocked > 2:
+		Playerstats.weapon_selected = 3
+	if Input.is_action_just_pressed("4") and Playerstats.weapons_unlocked > 3:
+		Playerstats.weapon_selected = 4
+	if Input.is_action_just_pressed("5") and Playerstats.weapons_unlocked > 4:
+		Playerstats.weapon_selected = 5
+	if Input.is_action_just_pressed("6") and Playerstats.weapons_unlocked > 5:
+		Playerstats.weapon_selected = 6
+	

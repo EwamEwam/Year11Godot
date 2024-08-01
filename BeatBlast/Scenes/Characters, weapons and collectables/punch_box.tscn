@@ -8,11 +8,11 @@ height = 13.6667
 
 [node name="Punch_box" type="Area2D"]
 scale = Vector2(7.5, 7.5)
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_qs4t3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(10.5, 0)
+position = Vector2(14, 0)
 shape = SubResource("CapsuleShape2D_5wmjt")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

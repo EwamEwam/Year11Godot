@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bkryvvuq63l5d"]
+[gd_scene load_steps=29 format=3 uid="uid://bkryvvuq63l5d"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/Slime.gd" id="1_w2g43"]
 [ext_resource type="Texture2D" uid="uid://cpwdnmkwoc0mc" path="res://Sprites/Characters and items/green_slime_shadow.png" id="2_m4hly"]
@@ -13,7 +13,7 @@ radius = 40.0
 height = 132.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3gl2h"]
-radius = 906.079
+radius = 766.261
 
 [sub_resource type="Animation" id="Animation_dbvv5"]
 length = 0.769231
@@ -270,6 +270,12 @@ animations = [{
 "speed": 2.5
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2iqs"]
+bg_color = Color(0.0511426, 0.130704, 0.0452494, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6u01"]
+bg_color = Color(0.360437, 0.555103, 0.167512, 1)
+
 [node name="slime" type="CharacterBody2D" groups=["Collision", "Enemy"]]
 position = Vector2(0, 1)
 collision_layer = 2
@@ -320,3 +326,14 @@ scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_drgqc")
 animation = &"Movement_Right"
 autoplay = "Movement_Right"
+
+[node name="Health_Metre" type="ProgressBar" parent="."]
+offset_left = -52.0
+offset_top = 52.0
+offset_right = 52.0
+offset_bottom = 60.0
+theme_override_styles/background = SubResource("StyleBoxFlat_k2iqs")
+theme_override_styles/fill = SubResource("StyleBoxFlat_v6u01")
+max_value = 8.0
+value = 4.0
+show_percentage = false

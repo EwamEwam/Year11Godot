@@ -651,10 +651,10 @@ scale = Vector2(0.995163, 1.00219)
 y_sort_enabled = true
 
 [node name="slime" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(442, -430)
+position = Vector2(674, -372)
 
 [node name="Shooter" parent="Level_elements/Enemies" instance=ExtResource("9_pfgtk")]
-position = Vector2(1048, -606)
+position = Vector2(1209, -812)
 
 [node name="Lighting" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true

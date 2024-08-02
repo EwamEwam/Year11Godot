@@ -211,21 +211,21 @@ func Shoot():
 			emit_signal("cooldown")
 			timer.start(0.8)
 		3:
-			if not timer.is_stopped() or Playerstats.health < 3:
+			if not timer.is_stopped() or Playerstats.health < 2:
 				return
-			Playerstats.health -= 2
+			Playerstats.health -= 1
 			var bulle5 = Bullet5.instantiate()
 			bulle5.global_position = global_position
 			bulle5.look_at(get_global_mouse_position())
 			add_sibling(bulle5)
 			shake(12,0.05,6,1.2)
 			emit_signal("cooldown")
-			timer.start(1.6)
+			timer.start(2)
 		4:
-			if not timer.is_stopped() or Playerstats.health < 4:
+			if not timer.is_stopped() or Playerstats.health < 5:
 				return
 			Playerstats.health -= 4
-			for i in range(6):
+			for i in range(12):
 				var bulle2 = Bullet2.instantiate()
 				bulle2.global_position = global_position
 				bulle2.look_at(get_global_mouse_position())

@@ -24,6 +24,7 @@ rotation = 1.5708
 texture = ExtResource("2_q1nbc")
 
 [node name="Light" type="PointLight2D" parent="."]
+visible = false
 position = Vector2(-3.33334, 0)
 scale = Vector2(0.136852, 0.136852)
 color = Color(0.741892, 0.304619, 0.069324, 1)

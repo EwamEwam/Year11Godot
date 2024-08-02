@@ -92,7 +92,7 @@ func animation_play():
 func check_for_death():
 	if health <= 0:
 		dead = true
-		Sprite.z_index = -1
+		z_index = -1
 		hitbox.disabled = true
 		animation_can_play = false
 		current_state = state.Death

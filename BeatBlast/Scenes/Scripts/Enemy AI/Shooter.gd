@@ -9,6 +9,7 @@ var score_value = 25
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const bullet = preload("res://Scenes/Enemies/enemy_bullet.tscn")
+const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
 @export var health = 12
 @export var max_health = 12
 @onready var timer = $Hurt_Timer
@@ -38,6 +39,7 @@ func _physics_process(delta):
 	Raycast.target_position.y = Playerstats.player_y - global_position.y
 	
 	if health > 0: 
+		var can_move = true
 		var too_close = Too_Close_Circle.get_overlapping_bodies()
 		var in_circle = circle.get_overlapping_bodies()
 		if too_close:
@@ -45,10 +47,10 @@ func _physics_process(delta):
 				if collision.is_in_group("Player"):
 					check_collision()
 					update_health_bar()
-					return
+					can_move = false
 		if in_circle:
 			for collision in in_circle:
-				if collision.is_in_group("Player") and not Raycast.is_colliding():
+				if collision.is_in_group("Player") and not Raycast.is_colliding() and can_move:
 					var direction_to_player = global_position.direction_to(player.global_position)
 					velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
 				elif not collision.is_in_group("Enemy"):
@@ -82,6 +84,10 @@ func check_for_death():
 		add_sibling(new_score)
 		Playerstats.score += score_value
 		queue_free()
+		for i in range(randi_range(5,6)):
+			var new_gem = gem1.instantiate()
+			new_gem.global_position = global_position
+			add_sibling(new_gem)
 		
 func take_damage(dmg):
 	health -= dmg

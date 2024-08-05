@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+const gems_number = preload("res://Scenes/Other/Gems_numbers.tscn")
 @onready var bar = $bar
 @onready var red = $RedScreenFade
 @onready var heart1 = $heart
@@ -29,6 +30,7 @@ extends CanvasLayer
 @onready var score = $Score
 @onready var timer = $Timer
 @onready var gems = $Gem_Count
+@onready var gem_icon = $Gem
 
 @onready var world = get_node('/root/level')
 
@@ -137,6 +139,12 @@ func _physics_process(delta):
 		
 	if Playerstats.cooldown == 0:
 		Cooldown_sprite.play(var_to_str(Playerstats.weapon_selected + 100))
+		
+	if Playerstats.gemsval != 0:
+		var new_number = gems_number.instantiate()
+		new_number.global_position = gem_icon.global_position
+		add_child(new_number)
+		Playerstats.gemsval = 0
 		
 func start_dash_cooldown():
 	Dash_cooldown.play("running")

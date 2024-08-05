@@ -28,6 +28,7 @@ extends CanvasLayer
 @onready var Black_screen = $BlackScreen
 @onready var score = $Score
 @onready var timer = $Timer
+@onready var gems = $Gem_Count
 
 @onready var world = get_node('/root/level')
 
@@ -124,8 +125,12 @@ func _physics_process(delta):
 		
 	score.text = var_to_str(Playerstats.score)
 	timer.text = var_to_str(world.timer)
+	gems.text = var_to_str(Playerstats.gems)
 		
 	selection.global_position.x = Playerstats.weapon_selected * 40 - 9
+	
+	if Playerstats.gems > 999:
+		Playerstats.gems = 999
 	
 	if Playerstats.health > Playerstats.max_health:
 		Playerstats.health = Playerstats.max_health

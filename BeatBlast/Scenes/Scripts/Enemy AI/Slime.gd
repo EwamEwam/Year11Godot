@@ -9,6 +9,7 @@ var score_value = 10
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
+const gem = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
 @export var health = 8
 @onready var timer = $hurttimer
 @onready var hitbox = $hitbox
@@ -50,7 +51,7 @@ func _physics_process(delta):
 				if collision.is_in_group("Player") and Raycast.is_colliding()==false:
 					var direction_to_player = global_position.direction_to(player.global_position)
 					velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
-				else:
+				elif not collision.is_in_group("Enemy"):
 					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		else:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -105,6 +106,10 @@ func check_for_death():
 		new_score.global_position = global_position
 		add_sibling(new_score)
 		Playerstats.score += score_value
+		for i in range(randi_range(3,4)):
+			var new_gem = gem.instantiate()
+			new_gem.global_position = global_position
+			add_sibling(new_gem)
 		
 func take_damage(dmg):
 	health -= dmg

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://rqlvdkbur7as"]
+[gd_scene load_steps=15 format=3 uid="uid://rqlvdkbur7as"]
 
 [ext_resource type="Texture2D" uid="uid://b1uv32qbh13hb" path="res://Sprites/World/Dungeon_tileset_rev3.png" id="1_7orlm"]
 [ext_resource type="Script" path="res://Scenes/Scripts/World/level.gd" id="1_hbluw"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bkryvvuq63l5d" path="res://Scenes/Enemies/slime.tscn" id="7_0jdfm"]
 [ext_resource type="PackedScene" uid="uid://c1xbilv51dpju" path="res://Scenes/Characters, weapons and collectables/heart_capsule.tscn" id="8_pt3bm"]
 [ext_resource type="PackedScene" uid="uid://nre8vvqmqqoi" path="res://Scenes/Enemies/shooter.tscn" id="9_pfgtk"]
+[ext_resource type="PackedScene" uid="uid://5yy6sv432dpm" path="res://Scenes/Enemies/elite_slime.tscn" id="12_20eri"]
 [ext_resource type="PackedScene" uid="uid://byb3bgxsvmojy" path="res://Scenes/levels/button.tscn" id="12_341od"]
 [ext_resource type="PackedScene" uid="uid://ll60qr3vjhjn" path="res://Scenes/levels/door.tscn" id="13_m2nrh"]
 
@@ -558,12 +559,10 @@ margins = Vector2i(1, 1)
 5:10/0/physics_layer_0/angular_velocity = 0.0
 5:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0, -8, 0, 8, -8, 8)
 8:8/0 = 0
-8:8/0/z_index = 2
 8:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:8/0/physics_layer_0/angular_velocity = 0.0
 8:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 4, -8, 4)
 8:7/0 = 0
-8:7/0/z_index = 2
 8:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:7/0/physics_layer_0/angular_velocity = 0.0
 8:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -650,11 +649,20 @@ scale = Vector2(0.995163, 1.00219)
 [node name="Enemies" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true
 
+[node name="slime2" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
+position = Vector2(422, -146)
+
+[node name="slime3" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
+position = Vector2(1100, -196)
+
 [node name="slime" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
 position = Vector2(674, -372)
 
 [node name="Shooter" parent="Level_elements/Enemies" instance=ExtResource("9_pfgtk")]
 position = Vector2(1209, -812)
+
+[node name="slime4" parent="Level_elements/Enemies" instance=ExtResource("12_20eri")]
+position = Vector2(942, -1919)
 
 [node name="Lighting" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true

@@ -23,7 +23,7 @@ bg_color = Color(0.0509804, 0.129412, 0.0470588, 0.392157)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hku1"]
 bg_color = Color(0.360784, 0.556863, 0.168627, 1)
 
-[node name="Shooter" type="CharacterBody2D" groups=["Collision", "Enemy"]]
+[node name="Shooter" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 5
 collision_mask = 3
 motion_mode = 1
@@ -51,22 +51,19 @@ one_shot = true
 autostart = true
 
 [node name="Hurtbox" type="Area2D" parent="."]
-collision_layer = 5
-collision_mask = 3
+collision_layer = 0
 
 [node name="Hurtbox_collision" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape2D_nfhye")
 
 [node name="Player_Detection_Range" type="Area2D" parent="."]
-collision_layer = 5
-collision_mask = 3
+collision_layer = 0
 
 [node name="Collision_Shape" type="CollisionShape2D" parent="Player_Detection_Range"]
 shape = SubResource("CircleShape2D_iiktk")
 
 [node name="PLayer_Too_Close_Range" type="Area2D" parent="."]
-collision_layer = 5
-collision_mask = 3
+collision_layer = 0
 
 [node name="Collision_Shape_2" type="CollisionShape2D" parent="PLayer_Too_Close_Range"]
 shape = SubResource("CircleShape2D_13upx")

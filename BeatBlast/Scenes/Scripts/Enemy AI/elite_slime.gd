@@ -8,8 +8,8 @@ var score_value = 250
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart40.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
-@export var health = 60
-@export var max_health = 60
+@export var health = 75
+@export var max_health = 75
 @onready var timer = $hurttimer
 @export var damage = 21
 @onready var hurtbox = $hurtbox
@@ -40,7 +40,7 @@ func _physics_process(delta):
 				if collision.is_in_group("Player") and Raycast.is_colliding()==false:
 					var direction_to_player = global_position.direction_to(player.global_position)
 					velocity = velocity.move_toward(direction_to_player * clampf(SPEED/clampf((health/0.9),1,100),210,380), ACCELLERATION)
-				else:
+				elif not collision.is_in_group("Enemy"):
 					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		else:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)

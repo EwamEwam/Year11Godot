@@ -47,7 +47,7 @@ func _physics_process(delta):
 					var direction_to_player = global_position.direction_to(player.global_position)
 					Sprite.look_at(Vector2(Playerstats.player_x, Playerstats.player_y))
 					velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
-				else:
+				elif not collision.is_in_group("Enemy"):
 					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		else:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)

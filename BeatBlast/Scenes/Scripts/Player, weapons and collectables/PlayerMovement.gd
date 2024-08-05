@@ -225,7 +225,7 @@ func Shoot():
 			if not timer.is_stopped() or Playerstats.health < 5:
 				return
 			Playerstats.health -= 4
-			for i in range(12):
+			for i in range(6):
 				var bulle2 = Bullet2.instantiate()
 				bulle2.global_position = global_position
 				bulle2.look_at(get_global_mouse_position())

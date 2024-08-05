@@ -44,20 +44,17 @@ func _physics_process(delta):
 			for collision in too_close:
 				if collision.is_in_group("Player"):
 					check_collision()
-					print("1")
+					update_health_bar()
 					return
 		if in_circle:
 			for collision in in_circle:
-				if collision.is_in_group("Player") and Raycast.is_colliding()==false:
+				if collision.is_in_group("Player") and not Raycast.is_colliding():
 					var direction_to_player = global_position.direction_to(player.global_position)
 					velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
-					print("2")
-				else:
+				elif not collision.is_in_group("Enemy"):
 					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
-					print("3")
 		else:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
-			print("4")
 	else:
 		velocity = Vector2.ZERO
 	
@@ -74,7 +71,7 @@ func _physics_process(delta):
 func check_for_death():
 	if health <= 0:
 		hitbox.disabled = true
-		Sprite.z_index = -1
+		z_index = -1
 		await get_tree().create_timer(1).timeout
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position

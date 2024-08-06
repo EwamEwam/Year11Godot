@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c34d82p4n2ir"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Collectables/Gem5.gd" id="1_jptxb"]
+[ext_resource type="Texture2D" uid="uid://ck4yn4ev4gc25" path="res://Sprites/Characters and items/gem.png" id="2_aurpd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dvjn0"]
+radius = 26.0768
+
+[node name="Gem5" type="Area2D"]
+script = ExtResource("1_jptxb")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dvjn0")
+
+[node name="Gem" type="Sprite2D" parent="."]
+modulate = Color(0.283333, 1, 0, 1)
+position = Vector2(-5.96046e-08, -5.96046e-08)
+scale = Vector2(0.142349, 0.142349)
+texture = ExtResource("2_aurpd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

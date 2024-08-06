@@ -8,6 +8,7 @@ var score_value = 250
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart40.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
+const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
 @export var health = 75
 @export var max_health = 75
 @onready var timer = $hurttimer
@@ -69,6 +70,10 @@ func check_for_death():
 		add_sibling(new_score)
 		Playerstats.score += score_value
 		queue_free()
+		for i in range(randi_range(4,5)):
+			var new_gem = gem5.instantiate()
+			new_gem.global_position = global_position
+			add_sibling(new_gem)
 	
 func take_damage(dmg):
 	health -= dmg

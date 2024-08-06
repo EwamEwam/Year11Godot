@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var value = 1
+@export var value = 5
 @export var SPEED = 1000
 
 func _ready():
@@ -15,6 +15,7 @@ func _physics_process(delta):
 	
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
-		Playerstats.gemsval = 1
+		Playerstats.gemsval = 5
 		Playerstats.gems += value
 		queue_free()
+

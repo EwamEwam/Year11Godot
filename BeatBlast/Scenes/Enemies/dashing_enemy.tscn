@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://wdoi22iiikmr"]
+
+[ext_resource type="Texture2D" uid="uid://dmdt0gsa2x7iv" path="res://Sprites/Characters and items/Heart.png" id="1_yt5mr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7lpwe"]
+radius = 34.0
+height = 108.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5srph"]
+radius = 38.0
+height = 114.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqm7n"]
+radius = 1042.25
+
+[node name="Dashing_enemy" type="CharacterBody2D"]
+
+[node name="Dashtimer" type="Timer" parent="."]
+
+[node name="hurttimer" type="Timer" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 22)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7lpwe")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(0.498663, 0.62172, 0.696176, 1)
+self_modulate = Color(0.960784, 0, 0.956863, 1)
+position = Vector2(1, -3)
+scale = Vector2(0.221875, 0.221875)
+texture = ExtResource("1_yt5mr")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 22)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5srph")
+
+[node name="Movement_circle" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
+shape = SubResource("CircleShape2D_hqm7n")
+
+[node name="Health_metre" type="ProgressBar" parent="."]
+offset_right = 4.0
+offset_bottom = 27.0

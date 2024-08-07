@@ -4,7 +4,7 @@ extends Node
 var health = 30
 var max_health = 30
 var weapon_selected = 1
-var weapons_unlocked = 2
+var weapons_unlocked = 4
 var level = 1
 var gems = 0
 var gun_parts = 0

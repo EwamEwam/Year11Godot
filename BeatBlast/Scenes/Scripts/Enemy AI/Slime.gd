@@ -25,9 +25,11 @@ var animation_can_play = true
 var dead = false
 @export var max_health = 8
 
+#sets the slime's colour right for the level
 func _ready():
 	Sprite.modulate = Color(0.7, 0.7, 0.7, 0.9)
 
+#Checks for any collision and if the player is inside it.
 func check_collision():
 	if not timer.is_stopped() or health < 1:
 		return
@@ -39,8 +41,10 @@ func check_collision():
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
+#Runs every frame and does all the essential operations and functions
 func _physics_process(delta):
 	
+	#The raycast that points towards the player and detects if there are any walls in the way
 	Raycast.target_position.x = Playerstats.player_x - global_position.x
 	Raycast.target_position.y = Playerstats.player_y - global_position.y
 	
@@ -79,6 +83,7 @@ func change_state():
 		elif velocity.x < 0:
 			current_state = state.Left
 	
+#Plays the animation based on the current state
 func animation_play():
 	match current_state:
 		state.Right:
@@ -90,6 +95,7 @@ func animation_play():
 		state.Death:
 			animation.play("Death")
 	
+#The function which runs when the slime reaches 0 or below health
 func check_for_death():
 	if health <= 0:
 		dead = true
@@ -121,6 +127,7 @@ func take_damage(dmg):
 		Sprite.modulate = Color(0.7, 0.7 , 0.7, 0.9)
 		animation_can_play = true
 
+#The script which controls the health bar
 func update_health_bar():
 	health_bar.max_value = max_health
 	health_bar.value = health

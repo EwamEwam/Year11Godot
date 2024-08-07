@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+#Lots of variables need to be declared.
 @export var SPEED = 500.0
 @export var ACCELERATION = 100.0
 @export var FRICTION = 70.0
@@ -38,6 +38,7 @@ signal Reload
 func _ready():
 	Playerstats.reloaded.connect(reload)
 
+#The function that runs every frame and does all the essential operations like movement, collision check, checking for other actions and running other functions
 func _physics_process(delta):
 	direction = Input.get_vector("left","right","up","down").normalized()
 	if direction:
@@ -98,6 +99,7 @@ func reload():
 func death():
 	emit_signal("died")
 	
+#Updates the player's state based on where they are facing and if they are moving.
 func Update_state():
 	if velocity.length() > 0:
 		current_state = State.Running
@@ -122,6 +124,7 @@ func Update_state():
 	else:
 		current_state = State.Idle
 		
+#function for player animation. matches the current state the player, then the current direction the player is facing
 func Update_animation():
 	match current_state:
 		State.Running:
@@ -186,7 +189,8 @@ func Update_animation():
 					Animation_player.play("Hurt_Right")
 				Pointing.Left:
 					Animation_player.play("Hurt_Left")
-	
+
+#Function for when the player shoots, the selected weapon will match with one of these scripts and a bullet will spawn
 func Shoot():
 	match Playerstats.weapon_selected:
 		1:
@@ -285,6 +289,7 @@ func flash():
 			Sprite.visible=true
 			await get_tree().create_timer(0.05).timeout
 		
+#Just uses the camera offset along with a random value to make a shake effect.
 func shake(amt,time,rep,damp):
 	if Playerstats.health > 0:
 		for i in range(rep):
@@ -305,6 +310,7 @@ func dash():
 	emit_signal("dash_cooldown")
 	dash_timer.start(1.75)
 
+#Hotkeys with the numbers
 func check_item_select():
 	if Input.is_action_just_pressed("1"):
 		Playerstats.weapon_selected = 1

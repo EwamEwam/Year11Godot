@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://rqlvdkbur7as"]
+[gd_scene load_steps=17 format=3 uid="uid://rqlvdkbur7as"]
 
 [ext_resource type="Texture2D" uid="uid://b1uv32qbh13hb" path="res://Sprites/World/Dungeon_tileset_rev3.png" id="1_7orlm"]
 [ext_resource type="Script" path="res://Scenes/Scripts/World/level.gd" id="1_hbluw"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://byb3bgxsvmojy" path="res://Scenes/levels/button.tscn" id="12_341od"]
 [ext_resource type="PackedScene" uid="uid://ll60qr3vjhjn" path="res://Scenes/levels/door.tscn" id="13_m2nrh"]
 [ext_resource type="PackedScene" uid="uid://b5b1h3fj0qdgr" path="res://Scenes/Enemies/big_slime.tscn" id="13_mj5ph"]
+[ext_resource type="PackedScene" uid="uid://6pwnx50n7l7g" path="res://Scenes/Enemies/roach.tscn" id="14_ba1ap"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kmwat"]
 texture = ExtResource("1_7orlm")
@@ -749,5 +750,8 @@ scale = Vector2(8, 8)
 zoom = Vector2(0.3, 0.3)
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
+
+[node name="Roach" parent="." instance=ExtResource("14_ba1ap")]
+position = Vector2(1239, -60)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

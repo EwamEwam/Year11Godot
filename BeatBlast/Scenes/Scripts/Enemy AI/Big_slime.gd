@@ -10,6 +10,8 @@ var score_value = 25
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const slime = preload("res://Scenes/Enemies/slime.tscn")
+const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
+const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
 @export var health = 16
 @onready var timer = $hurttimer
 @onready var hitbox = $hitbox
@@ -112,6 +114,14 @@ func check_for_death():
 			new_slime.global_position.x += randf_range(-5,5)
 			new_slime.global_position.y += randf_range(-5,5)
 			add_sibling(new_slime)
+		for i in range(randi_range(5,7)):
+			var new_gem = gem1 .instantiate()
+			new_gem.global_position = global_position
+			add_sibling(new_gem)
+		for i in range(randi_range(0,1)):
+			var new_gem = gem5.instantiate()
+			new_gem.global_position = global_position
+			add_sibling(new_gem)
 		queue_free()
 		
 func take_damage(dmg):

@@ -268,7 +268,7 @@ radius = 47.0
 height = 212.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wd1rf"]
-radius = 834.614
+radius = 937.009
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmhxp"]
 bg_color = Color(0.0509804, 0.129412, 0.0470588, 0.392157)
@@ -294,6 +294,7 @@ scale = Vector2(9, 9)
 sprite_frames = SubResource("SpriteFrames_mpetr")
 animation = &"Right"
 autoplay = "Right"
+frame_progress = 0.720185
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["Collision", "Enemy"]]
 libraries = {
@@ -305,7 +306,6 @@ target_position = Vector2(25, 25)
 collision_mask = 128
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 42)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_iwxh1")
@@ -314,7 +314,6 @@ shape = SubResource("CapsuleShape2D_iwxh1")
 one_shot = true
 
 [node name="hurtbox" type="Area2D" parent="."]
-visible = false
 
 [node name="Hurtbox_collision" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2(0, 42)
@@ -322,7 +321,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_u42tx")
 
 [node name="Movement_circle" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
 shape = SubResource("CircleShape2D_wd1rf")

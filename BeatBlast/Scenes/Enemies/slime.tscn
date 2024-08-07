@@ -326,6 +326,8 @@ scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_drgqc")
 animation = &"Death"
 autoplay = "Movement_Right"
+frame = 4
+frame_progress = 1.0
 
 [node name="Health_Metre" type="ProgressBar" parent="."]
 offset_left = -52.0

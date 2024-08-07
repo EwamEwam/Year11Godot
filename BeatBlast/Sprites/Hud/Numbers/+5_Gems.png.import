@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br1wcmuv2tn76"
-path="res://.godot/imported/Player_shadow.png-9c97fae54b83291dcee54262581f8474.ctex"
+uid="uid://qxhyq4jfbt4n"
+path="res://.godot/imported/+5_Gems.png-8cb17fd185ab89d792fc36f86da2e3d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters and items/Player_shadow.png"
-dest_files=["res://.godot/imported/Player_shadow.png-9c97fae54b83291dcee54262581f8474.ctex"]
+source_file="res://Sprites/Hud/Numbers/+5_Gems.png"
+dest_files=["res://.godot/imported/+5_Gems.png-8cb17fd185ab89d792fc36f86da2e3d3.ctex"]
 
 [params]
 

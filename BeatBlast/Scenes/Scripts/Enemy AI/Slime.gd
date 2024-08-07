@@ -26,7 +26,7 @@ var dead = false
 @export var max_health = 8
 
 func _ready():
-	Sprite.modulate = Color(0.7, 0.7, 0.7, 0.95)
+	Sprite.modulate = Color(0.7, 0.7, 0.7, 0.9)
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -118,7 +118,7 @@ func take_damage(dmg):
 		current_state = state.Hurt
 		Sprite.modulate = Color(1, 1 ,1, 0.75)
 		await get_tree().create_timer(0.15).timeout
-		Sprite.modulate = Color(0.7, 0.7 , 0.7, 0.95)
+		Sprite.modulate = Color(0.7, 0.7 , 0.7, 0.9)
 		animation_can_play = true
 
 func update_health_bar():

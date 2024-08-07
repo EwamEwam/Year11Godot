@@ -143,6 +143,7 @@ func _physics_process(delta):
 	if Playerstats.gemsval != 0:
 		var new_number = gems_number.instantiate()
 		new_number.global_position = gem_icon.global_position
+		new_number.global_position.y -= 20
 		add_child(new_number)
 		Playerstats.gemsval = 0
 		

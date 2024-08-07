@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://rqlvdkbur7as"]
+[gd_scene load_steps=16 format=3 uid="uid://rqlvdkbur7as"]
 
 [ext_resource type="Texture2D" uid="uid://b1uv32qbh13hb" path="res://Sprites/World/Dungeon_tileset_rev3.png" id="1_7orlm"]
 [ext_resource type="Script" path="res://Scenes/Scripts/World/level.gd" id="1_hbluw"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://5yy6sv432dpm" path="res://Scenes/Enemies/elite_slime.tscn" id="12_20eri"]
 [ext_resource type="PackedScene" uid="uid://byb3bgxsvmojy" path="res://Scenes/levels/button.tscn" id="12_341od"]
 [ext_resource type="PackedScene" uid="uid://ll60qr3vjhjn" path="res://Scenes/levels/door.tscn" id="13_m2nrh"]
+[ext_resource type="PackedScene" uid="uid://b5b1h3fj0qdgr" path="res://Scenes/Enemies/big_slime.tscn" id="13_mj5ph"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kmwat"]
 texture = ExtResource("1_7orlm")
@@ -663,6 +664,9 @@ position = Vector2(1209, -812)
 
 [node name="slime4" parent="Level_elements/Enemies" instance=ExtResource("12_20eri")]
 position = Vector2(942, -1919)
+
+[node name="Big_slime" parent="Level_elements/Enemies" instance=ExtResource("13_mj5ph")]
+position = Vector2(656, 4)
 
 [node name="Lighting" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true

@@ -26,7 +26,7 @@ var dead = false
 @export var max_health = 16
 
 func _ready():
-	Sprite.modulate = Color(0.1, 0.52, 0.66, 0.95)
+	Sprite.modulate = Color(0.7,0.7,0.7,0.9)
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -51,7 +51,7 @@ func _physics_process(delta):
 				if collision.is_in_group("Player") and Raycast.is_colliding()==false:
 					var direction_to_player = global_position.direction_to(player.global_position)
 					velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
-				else:
+				elif not collision.is_in_group("Enemy"):
 					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		else:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -59,7 +59,7 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO
 	
 	if animation_can_play:
-		animation.speed_scale = clampf(velocity.length()/50, 0.8, 10)
+		animation.speed_scale = clampf(velocity.length()/70, 0.5, 8)
 	else:
 		animation.speed_scale = 1
 	
@@ -80,12 +80,20 @@ func change_state():
 			current_state = state.Left
 	
 func animation_play():
-	pass
+	match current_state:
+		state.Right:
+			animation.play("Right")
+		state.Left:
+			animation.play("Left")
+		state.Hurt:
+			animation.play("Hurt")
+		state.Death:
+			animation.play("Death")
 	
 func check_for_death():
 	if health <= 0:
 		dead = true
-		Sprite.z_index = -1
+		z_index = -1
 		hitbox.disabled = true
 		animation_can_play = false
 		current_state = state.Death
@@ -103,7 +111,6 @@ func check_for_death():
 			new_slime.global_position = global_position
 			new_slime.global_position.x += randf_range(-5,5)
 			new_slime.global_position.y += randf_range(-5,5)
-			new_slime.modulate = Color(0.2,0.6,0.75,1)
 			add_sibling(new_slime)
 		queue_free()
 		
@@ -112,10 +119,10 @@ func take_damage(dmg):
 	if health > 0:
 		animation_can_play = false
 		current_state = state.Hurt
-		Sprite.modulate = Color(0.05, 0.47, 0.61, 1)
-		await get_tree().create_timer(0.15).timeout
-		Sprite.modulate = Color(0.1, 0.52, 0.66, 1)
-		animation_can_play = true
+	Sprite.modulate = Color(1,1,1,1)
+	await get_tree().create_timer(0.15).timeout
+	Sprite.modulate = Color(0.7,0.7,0.7,0.9)
+	animation_can_play = true
 
 func update_health_bar():
 	health_bar.max_value = max_health

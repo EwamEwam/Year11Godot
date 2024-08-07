@@ -2,8 +2,8 @@ extends Area2D
 
 const collide = preload("res://Scenes/Characters, weapons and collectables/bullet_2_collision.tscn")
 const number = preload("res://Scenes/Other/DamageE_numbers.tscn")
-@export var SPEED = 900
-var damage = 1
+@export var SPEED = 1225
+var damage = 2
 
 func _ready():
 	rotate(deg_to_rad(randf_range(-6,6)))

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/PlayerMovement.gd" id="1_gyp3l"]
 [ext_resource type="Texture2D" uid="uid://b51xnl5cbro81" path="res://Sprites/Characters and items/Player_Spritesheet_Rev1.png" id="2_fwmi3"]
-[ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_Shadow.png" id="2_s50a2"]
+[ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_shadow.png" id="2_s50a2"]
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Other/Hud.gd" id="3_ex22d"]
 [ext_resource type="Texture2D" uid="uid://c1mdakkcixtlx" path="res://Sprites/Hud/health_bar_background.png" id="4_m550f"]
 [ext_resource type="Texture2D" uid="uid://dme52gv7pug5i" path="res://Sprites/Hud/Health_Hearts_Spritesheet.png" id="5_c6u80"]
@@ -1566,14 +1566,14 @@ scale = Vector2(2, 2)
 texture = ExtResource("7_1yiri")
 
 [node name="Dash_cooldown" type="AnimatedSprite2D" parent="Hud"]
-position = Vector2(15, 122)
+position = Vector2(19, 122)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_htct1")
 animation = &"running"
 autoplay = "still"
 
 [node name="Cooldown" type="AnimatedSprite2D" parent="Hud"]
-position = Vector2(40, 125)
+position = Vector2(44, 125)
 rotation = -1.5708
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3moos")
@@ -1582,7 +1582,7 @@ centered = false
 offset = Vector2(-8.08334, 0.0349541)
 
 [node name="ScoreTimeSprint1" type="Sprite2D" parent="Hud"]
-position = Vector2(37, 166)
+position = Vector2(43, 166)
 scale = Vector2(2, 2)
 texture = ExtResource("19_bj6xn")
 
@@ -1592,9 +1592,9 @@ scale = Vector2(0.191782, 0.155027)
 texture = ExtResource("20_rnwsc")
 
 [node name="Timer" type="Label" parent="Hud"]
-offset_left = 64.0
+offset_left = 70.0
 offset_top = 162.0
-offset_right = 104.0
+offset_right = 110.0
 offset_bottom = 185.0
 theme_override_colors/font_color = Color(0.572549, 0.572549, 0.572549, 1)
 text = "0"
@@ -1602,9 +1602,9 @@ text = "0"
 [node name="Score" type="Label" parent="Hud"]
 anchors_preset = -1
 anchor_bottom = 0.211
-offset_left = 77.0
+offset_left = 83.0
 offset_top = 145.0
-offset_right = 240.0
+offset_right = 246.0
 offset_bottom = 66.72
 theme_override_colors/font_color = Color(0.574328, 0.574328, 0.574328, 1)
 text = "0"

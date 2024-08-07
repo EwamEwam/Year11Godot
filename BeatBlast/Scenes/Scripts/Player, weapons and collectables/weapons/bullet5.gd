@@ -2,7 +2,7 @@ extends Area2D
 
 const collide = preload("res://Scenes/Characters, weapons and collectables/bullet_1_collision.tscn")
 const number = preload("res://Scenes/Other/DamageE_numbers.tscn")
-@export var SPEED = 1250
+@export var SPEED = 1500
 var damage = 8
 
 func _ready():

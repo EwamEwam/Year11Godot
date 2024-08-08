@@ -4,6 +4,7 @@ const collide = preload("res://Scenes/Characters, weapons and collectables/bulle
 const number = preload("res://Scenes/Other/DamageE_numbers.tscn")
 @export var SPEED = 1500
 var damage = 8
+var times_hit = 0
 
 func _ready():
 	Playerstats.bullets_shot += 1
@@ -22,6 +23,16 @@ func _on_body_entered(body):
 		Playerstats.damval=damage
 		add_sibling(new_number)
 		Playerstats.bullets_hit += 1
+		if times_hit == 0:
+			times_hit = 1
+			SPEED = 1000
+		else:
+			queue_free()
+			var new_collide = collide.instantiate()
+			new_collide.global_position=global_position
+			new_collide.global_rotation=global_rotation+90
+			add_sibling(new_collide)
+
 	elif body.is_in_group("Button") and body.has_method("pressed"):
 		body.pressed()
 	elif body.is_in_group("Prop") and body.has_method("damage"):

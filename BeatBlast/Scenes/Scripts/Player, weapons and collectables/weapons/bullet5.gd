@@ -23,9 +23,10 @@ func _on_body_entered(body):
 		Playerstats.damval=damage
 		add_sibling(new_number)
 		Playerstats.bullets_hit += 1
-		if times_hit == 0:
-			times_hit = 1
-			SPEED = 1000
+		if times_hit != 2:
+			damage -= 2
+			times_hit += 1
+			SPEED -= 300
 		else:
 			queue_free()
 			var new_collide = collide.instantiate()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://wdoi22iiikmr"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/dashing_enemy.gd" id="1_7a152"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/dashing_enemy.gd" id="1_7a152"]
 [ext_resource type="Texture2D" uid="uid://dmdt0gsa2x7iv" path="res://Sprites/Characters and items/Heart.png" id="1_yt5mr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7lpwe"]

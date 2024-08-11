@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://rqlvdkbur7as"]
+[gd_scene load_steps=16 format=3 uid="uid://rqlvdkbur7as"]
 
 [ext_resource type="Texture2D" uid="uid://b1uv32qbh13hb" path="res://Sprites/World/Dungeon_tileset_rev3.png" id="1_7orlm"]
 [ext_resource type="Script" path="res://Scenes/Scripts/World/level.gd" id="1_hbluw"]
@@ -8,12 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://ddbvwpephgd52" path="res://Scenes/levels/Side_Torch_L.tscn" id="5_iua6n"]
 [ext_resource type="PackedScene" uid="uid://bkryvvuq63l5d" path="res://Scenes/Enemies/slime.tscn" id="7_0jdfm"]
 [ext_resource type="PackedScene" uid="uid://c1xbilv51dpju" path="res://Scenes/Characters, weapons and collectables/heart_capsule.tscn" id="8_pt3bm"]
-[ext_resource type="PackedScene" uid="uid://nre8vvqmqqoi" path="res://Scenes/Enemies/shooter.tscn" id="9_pfgtk"]
-[ext_resource type="PackedScene" uid="uid://5yy6sv432dpm" path="res://Scenes/Enemies/elite_slime.tscn" id="12_20eri"]
 [ext_resource type="PackedScene" uid="uid://byb3bgxsvmojy" path="res://Scenes/levels/button.tscn" id="12_341od"]
+[ext_resource type="PackedScene" uid="uid://d3omqjrpduuwv" path="res://Scenes/Enemies/Spider.tscn" id="13_6pxws"]
 [ext_resource type="PackedScene" uid="uid://ll60qr3vjhjn" path="res://Scenes/levels/door.tscn" id="13_m2nrh"]
 [ext_resource type="PackedScene" uid="uid://b5b1h3fj0qdgr" path="res://Scenes/Enemies/big_slime.tscn" id="13_mj5ph"]
-[ext_resource type="PackedScene" uid="uid://6pwnx50n7l7g" path="res://Scenes/Enemies/roach.tscn" id="14_ba1ap"]
+[ext_resource type="PackedScene" uid="uid://wdoi22iiikmr" path="res://Scenes/Enemies/dashing_enemy.tscn" id="15_p4q3b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kmwat"]
 texture = ExtResource("1_7orlm")
@@ -651,185 +650,26 @@ scale = Vector2(0.995163, 1.00219)
 [node name="Enemies" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true
 
-[node name="slime2" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(422, -146)
+[node name="Dashing_enemy" parent="Level_elements/Enemies" instance=ExtResource("15_p4q3b")]
+position = Vector2(532, -500)
 
-[node name="slime3" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(1100, -196)
+[node name="Dashing_enemy2" parent="Level_elements/Enemies" instance=ExtResource("15_p4q3b")]
+position = Vector2(281, -237)
+
+[node name="Dashing_enemy3" parent="Level_elements/Enemies" instance=ExtResource("15_p4q3b")]
+position = Vector2(1266, -479)
+
+[node name="Dashing_enemy4" parent="Level_elements/Enemies" instance=ExtResource("15_p4q3b")]
+position = Vector2(886, -216)
+
+[node name="Dashing_enemy5" parent="Level_elements/Enemies" instance=ExtResource("15_p4q3b")]
+position = Vector2(841, -740)
 
 [node name="slime" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(674, -372)
-
-[node name="Shooter" parent="Level_elements/Enemies" instance=ExtResource("9_pfgtk")]
-position = Vector2(1209, -812)
-
-[node name="slime4" parent="Level_elements/Enemies" instance=ExtResource("12_20eri")]
-position = Vector2(2688, -1996)
+position = Vector2(455, 43)
 
 [node name="Big_slime" parent="Level_elements/Enemies" instance=ExtResource("13_mj5ph")]
-position = Vector2(656, 4)
-
-[node name="Roach" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(1239, -60)
-
-[node name="Big_slime2" parent="Level_elements/Enemies" instance=ExtResource("13_mj5ph")]
-position = Vector2(1248, -1113)
-
-[node name="Big_slime3" parent="Level_elements/Enemies" instance=ExtResource("13_mj5ph")]
-position = Vector2(357, -700)
-
-[node name="Shooter2" parent="Level_elements/Enemies" instance=ExtResource("9_pfgtk")]
-position = Vector2(732, -826)
-
-[node name="Shooter3" parent="Level_elements/Enemies" instance=ExtResource("9_pfgtk")]
-position = Vector2(573, -2414)
-
-[node name="Shooter4" parent="Level_elements/Enemies" instance=ExtResource("9_pfgtk")]
-position = Vector2(1125, -2445)
-
-[node name="Roach2" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(381, -2107)
-
-[node name="Roach3" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(324, -1888)
-
-[node name="Roach4" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(457, -2007)
-
-[node name="Roach5" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(604, -2202)
-
-[node name="Roach6" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(438, -2221)
-
-[node name="Roach7" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(652, -2069)
-
-[node name="Roach8" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(462, -1869)
-
-[node name="Roach9" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(814, -2349)
-
-[node name="Roach10" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(1965, -2925)
-
-[node name="Roach11" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(2093, -2792)
-
-[node name="Roach12" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(1941, -2768)
-
-[node name="Roach13" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(2012, -2597)
-
-[node name="Big_slime4" parent="Level_elements/Enemies" instance=ExtResource("13_mj5ph")]
-position = Vector2(1980, -1923)
-
-[node name="Shooter5" parent="Level_elements/Enemies" instance=ExtResource("9_pfgtk")]
-position = Vector2(1950, -1565)
-
-[node name="Shooter6" parent="Level_elements/Enemies" instance=ExtResource("9_pfgtk")]
-position = Vector2(3442, -2221)
-
-[node name="slime5" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(3426, -1922)
-
-[node name="slime6" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(3084, -1504)
-
-[node name="slime7" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(4026, -2693)
-
-[node name="Roach14" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(3966, -2190)
-
-[node name="Big_slime5" parent="Level_elements/Enemies" instance=ExtResource("13_mj5ph")]
-position = Vector2(-1366, -2538)
-
-[node name="Big_slime6" parent="Level_elements/Enemies" instance=ExtResource("13_mj5ph")]
-position = Vector2(-1780, -2982)
-
-[node name="Big_slime7" parent="Level_elements/Enemies" instance=ExtResource("13_mj5ph")]
-position = Vector2(-1094, -3254)
-
-[node name="slime8" parent="Level_elements/Enemies" instance=ExtResource("12_20eri")]
-position = Vector2(-1810, -3929)
-
-[node name="slime9" parent="Level_elements/Enemies" instance=ExtResource("12_20eri")]
-position = Vector2(-1442, -4735)
-
-[node name="slime10" parent="Level_elements/Enemies" instance=ExtResource("12_20eri")]
-position = Vector2(-1749, -4861)
-
-[node name="Roach15" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(-1245, -3738)
-
-[node name="Roach16" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(-1094, -3889)
-
-[node name="Roach17" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(-1074, -3687)
-
-[node name="Roach18" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(-1185, -3985)
-
-[node name="Roach19" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(-1013, -4035)
-
-[node name="Big_slime8" parent="Level_elements/Enemies" instance=ExtResource("13_mj5ph")]
-position = Vector2(-1815, -4327)
-
-[node name="Roach20" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(-1885, -4141)
-
-[node name="Shooter7" parent="Level_elements/Enemies" instance=ExtResource("9_pfgtk")]
-position = Vector2(-1790, -4599)
-
-[node name="Shooter8" parent="Level_elements/Enemies" instance=ExtResource("9_pfgtk")]
-position = Vector2(-1205, -4922)
-
-[node name="Shooter9" parent="Level_elements/Enemies" instance=ExtResource("9_pfgtk")]
-position = Vector2(-1371, -2881)
-
-[node name="Shooter10" parent="Level_elements/Enemies" instance=ExtResource("9_pfgtk")]
-position = Vector2(-1905, -3254)
-
-[node name="slime11" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(-293, -2315)
-
-[node name="slime12" parent="Level_elements/Enemies" instance=ExtResource("7_0jdfm")]
-position = Vector2(-746, -2265)
-
-[node name="Roach21" parent="Level_elements/Enemies" instance=ExtResource("14_ba1ap")]
-position = Vector2(846, -4272)
-
-[node name="slime13" parent="Level_elements/Enemies" instance=ExtResource("12_20eri")]
-position = Vector2(485, -3603)
-
-[node name="slime14" parent="Level_elements/Enemies" instance=ExtResource("12_20eri")]
-position = Vector2(832, -1800)
-
-[node name="slime15" parent="Level_elements/Enemies" instance=ExtResource("12_20eri")]
-position = Vector2(1113, -1895)
-
-[node name="slime16" parent="Level_elements/Enemies" instance=ExtResource("12_20eri")]
-position = Vector2(899, -2147)
-
-[node name="slime17" parent="Level_elements/Enemies" instance=ExtResource("12_20eri")]
-position = Vector2(1241, -2228)
-
-[node name="slime18" parent="Level_elements/Enemies" instance=ExtResource("12_20eri")]
-position = Vector2(937, -2561)
-
-[node name="slime19" parent="Level_elements/Enemies" instance=ExtResource("12_20eri")]
-position = Vector2(556, -2661)
-
-[node name="slime20" parent="Level_elements/Enemies" instance=ExtResource("12_20eri")]
-position = Vector2(323, -2394)
-
-[node name="slime21" parent="Level_elements/Enemies" instance=ExtResource("12_20eri")]
-position = Vector2(1222, -2775)
+position = Vector2(1188, -270)
 
 [node name="Lighting" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true
@@ -912,5 +752,8 @@ scale = Vector2(8, 8)
 zoom = Vector2(0.3, 0.3)
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
+
+[node name="Spider" parent="." instance=ExtResource("13_6pxws")]
+position = Vector2(761, -2251)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,10 +1,10 @@
 extends Node
 
 #All variables that must be accessed in mutilple scenes are put here for ease of access.
-var health = 30
-var max_health = 30
+var health = 120
+var max_health = 120
 var weapon_selected = 1
-var weapons_unlocked = 4
+var weapons_unlocked = 5
 var level = 1
 var gems = 0
 var gun_parts = 0
@@ -38,6 +38,12 @@ var high_scores = {
 "Level2HighScore" = 0
 }
 
+var current_status = {
+"Poison" = 0
+}
+
+var can_do = false
+
 signal reloaded
 
 func _physics_process(delta):
@@ -55,3 +61,15 @@ func reload():
 	get_tree().paused = false
 	await get_tree().create_timer(0.001).timeout
 	emit_signal("reloaded")
+	
+func _process(delta):
+	if not can_do:
+		can_do = true
+		await get_tree().create_timer(1).timeout
+		update_status()
+		can_do = false
+		
+func update_status():
+	if current_status.Poison > 0:
+		player.damage_player(1)
+		current_status.Poison -= 1

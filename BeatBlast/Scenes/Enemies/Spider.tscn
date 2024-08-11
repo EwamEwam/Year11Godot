@@ -1,0 +1,204 @@
+[gd_scene load_steps=19 format=3 uid="uid://d3omqjrpduuwv"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/Spider.gd" id="1_tpyqw"]
+[ext_resource type="Texture2D" uid="uid://c22r6vya4dc2m" path="res://Sprites/Characters and items/roach_shadow.png" id="2_es28y"]
+[ext_resource type="Texture2D" uid="uid://dmyc8hcgkvtnm" path="res://Sprites/Characters and items/Roach.png" id="3_7ems8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptu2j"]
+size = Vector2(52, 48)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8jkij"]
+radius = 683.381
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3lub"]
+size = Vector2(58, 52)
+
+[sub_resource type="Animation" id="Animation_baxtw"]
+length = 0.727273
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.181818, 0.363636, 0.545455),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Death"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wieeg"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Running"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kg12a"]
+_data = {
+"Death": SubResource("Animation_baxtw"),
+"Running": SubResource("Animation_wieeg")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_soh7w"]
+atlas = ExtResource("3_7ems8")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk4f5"]
+atlas = ExtResource("3_7ems8")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54jio"]
+atlas = ExtResource("3_7ems8")
+region = Rect2(16, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwtsm"]
+atlas = ExtResource("3_7ems8")
+region = Rect2(24, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmwn5"]
+atlas = ExtResource("3_7ems8")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cvus"]
+atlas = ExtResource("3_7ems8")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2yd7"]
+atlas = ExtResource("3_7ems8")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juq2d"]
+atlas = ExtResource("3_7ems8")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_secwp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_soh7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk4f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54jio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwtsm")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmwn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cvus")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2yd7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juq2d")
+}],
+"loop": false,
+"name": &"Running",
+"speed": 5.0
+}]
+
+[node name="Spider" type="CharacterBody2D" groups=["Enemy"]]
+z_index = -1
+collision_layer = 5
+collision_mask = 6
+motion_mode = 1
+script = ExtResource("1_tpyqw")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 128
+
+[node name="hurttimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ptu2j")
+
+[node name="Movement_circle" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
+shape = SubResource("CircleShape2D_8jkij")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="Collision_shape" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_i3lub")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Roach_sprite")
+libraries = {
+"": SubResource("AnimationLibrary_kg12a")
+}
+
+[node name="RoachShadow" type="Sprite2D" parent="."]
+scale = Vector2(8, 8)
+texture = ExtResource("2_es28y")
+
+[node name="Roach_sprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.243569, 0.243569, 0.243569, 1)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_secwp")
+animation = &"Running"
+autoplay = "Running"
+flip_h = true

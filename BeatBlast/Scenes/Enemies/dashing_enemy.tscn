@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://wdoi22iiikmr"]
+[gd_scene load_steps=8 format=3 uid="uid://wdoi22iiikmr"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/dashing_enemy.gd" id="1_7a152"]
 [ext_resource type="Texture2D" uid="uid://dmdt0gsa2x7iv" path="res://Sprites/Characters and items/Heart.png" id="1_yt5mr"]
@@ -12,16 +12,32 @@ radius = 38.0
 height = 114.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hqm7n"]
-radius = 1042.25
+radius = 844.038
 
-[node name="Dashing_enemy" type="CharacterBody2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6kruy"]
+bg_color = Color(0.0509804, 0.129412, 0.0470588, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ep7it"]
+bg_color = Color(0.360784, 0.556863, 0.168627, 1)
+
+[node name="Dashing_enemy" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 5
+collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_7a152")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
 [node name="Dashtimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [node name="hurttimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 128
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 22)
@@ -47,6 +63,13 @@ shape = SubResource("CapsuleShape2D_5srph")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
 shape = SubResource("CircleShape2D_hqm7n")
 
-[node name="Health_metre" type="ProgressBar" parent="."]
-offset_right = 4.0
-offset_bottom = 27.0
+[node name="Health_Metre" type="ProgressBar" parent="."]
+offset_left = -52.0
+offset_top = 62.0
+offset_right = 52.0
+offset_bottom = 70.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6kruy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ep7it")
+max_value = 18.0
+value = 9.0
+show_percentage = false

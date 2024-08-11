@@ -2,8 +2,11 @@ extends Area2D
 
 @export var value = 1
 @export var SPEED = 1000
+@onready var sprite = $Gem
 
 func _ready():
+	sprite.speed_scale += randf_range(-0.1,0.1)
+	sprite.modulate = Color(0.7,0.7,0.7,1)
 	SPEED += randf_range(-500,300)
 	rotate(deg_to_rad(randf_range(0,360)))
 	z_index = -1

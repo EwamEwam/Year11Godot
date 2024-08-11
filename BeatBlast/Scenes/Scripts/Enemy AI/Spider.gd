@@ -1,34 +1,28 @@
 extends CharacterBody2D
 
-const SPEED = 225.0
-const ACCELLERATION = 18.0
-const FRICTION = 3.5
-var score_value = 25
-@onready var Sprite = $Slime_sprite
+const SPEED = 400.0
+const ACCELLERATION = 20.0
+const FRICTION = 3.0
+var score_value = 5
+@onready var Sprite = $Roach_sprite
 @onready var animation = $AnimationPlayer
 @onready var player = get_tree().get_first_node_in_group("Player")
-const heart = preload("res://Scenes/Characters, weapons and collectables/heart10.tscn")
+const heart = preload("res://Scenes/Characters, weapons and collectables/heart1.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
-const slime = preload("res://Scenes/Enemies/slime.tscn")
 const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
-const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
-@export var health = 16
+@export var health = 1
 @onready var timer = $hurttimer
-@onready var hitbox = $hitbox
-@export var damage = 4
-@onready var hurtbox = $hurtbox
+@export var damage = 1
+@onready var hurtbox = $Hurtbox
 @onready var circle = $Movement_circle
 @onready var Raycast = $RayCast2D
-@onready var health_bar = $Health_metre
 
-enum state {Right, Left, Hurt, Death}
-var current_state = state.Right
-var animation_can_play = true
+enum state {Running, Death}
+var current_state = state.Running
 var dead = false
-@export var max_health = 16
 
 func _ready():
-	Sprite.modulate = Color(0.7,0.7,0.7,0.9)
+	Sprite.rotate(deg_to_rad(randi_range(0,360)))
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -37,8 +31,9 @@ func check_collision():
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(6,0.05,3,1.2)
+				collision.shake(2.5,0.05,2,1.25)
 				collision.damage_player(damage-Playerstats.defence)
+				collision.poisoned(2)
 				timer.start()
 				
 func _physics_process(delta):
@@ -52,6 +47,7 @@ func _physics_process(delta):
 			for collision in in_circle:
 				if collision.is_in_group("Player") and Raycast.is_colliding()==false:
 					var direction_to_player = global_position.direction_to(player.global_position)
+					Sprite.look_at(Vector2(Playerstats.player_x, Playerstats.player_y))
 					velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
 				elif not collision.is_in_group("Enemy"):
 					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -60,46 +56,29 @@ func _physics_process(delta):
 	else:
 		velocity = Vector2.ZERO
 	
-	if animation_can_play:
-		animation.speed_scale = clampf(velocity.length()/70, 0.5, 8)
-	else:
-		animation.speed_scale = 1
-	
 	if not dead:
-		check_for_death()
-		
-	update_health_bar()
-	change_state()
+		current_state = state.Running
+		animation.speed_scale = velocity.length()/225
+	else:
+		current_state = state.Death
+		animation.speed_scale = true
+	
 	animation_play()
+	check_for_death()
 	check_collision()
 	move_and_slide()
 	
-func change_state():
-	if animation_can_play:
-		if velocity.x > 0:
-			current_state = state.Right
-		elif velocity.x < 0:
-			current_state = state.Left
-	
 func animation_play():
 	match current_state:
-		state.Right:
-			animation.play("Right")
-		state.Left:
-			animation.play("Left")
-		state.Hurt:
-			animation.play("Hurt")
+		state.Running:
+			animation.play("Running")
 		state.Death:
 			animation.play("Death")
 	
 func check_for_death():
 	if health <= 0:
 		dead = true
-		z_index = -1
-		hitbox.disabled = true
-		animation_can_play = false
-		current_state = state.Death
-		await get_tree().create_timer(0.75).timeout
+		await get_tree().create_timer(0.7).timeout
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
 		add_sibling(new_heart)
@@ -108,35 +87,11 @@ func check_for_death():
 		new_score.global_position = global_position
 		add_sibling(new_score)
 		Playerstats.score += score_value
-		for i in range(2):
-			var new_slime = slime.instantiate()
-			new_slime.global_position = global_position
-			new_slime.global_position.x += randf_range(-5,5)
-			new_slime.global_position.y += randf_range(-5,5)
-			add_sibling(new_slime)
-		for i in range(randi_range(5,7)):
-			var new_gem = gem1 .instantiate()
-			new_gem.global_position = global_position
-			add_sibling(new_gem)
 		for i in range(randi_range(0,1)):
-			var new_gem = gem5.instantiate()
+			var new_gem = gem1.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
+		queue_free()
 		
 func take_damage(dmg):
 	health -= dmg
-	if health > 0:
-		animation_can_play = false
-		current_state = state.Hurt
-	Sprite.modulate = Color(1,1,1,1)
-	await get_tree().create_timer(0.15).timeout
-	Sprite.modulate = Color(0.7,0.7,0.7,0.9)
-	animation_can_play = true
-
-func update_health_bar():
-	health_bar.max_value = max_health
-	health_bar.value = health
-	if health != max_health:
-		health_bar.visible = true
-	else:
-		health_bar.visible = false

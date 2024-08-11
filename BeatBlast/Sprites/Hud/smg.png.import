@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b51xnl5cbro81"
-path="res://.godot/imported/Player_Spritesheet_Rev1.png-aa4924c283c8bd7cf2128834d0486be6.ctex"
+uid="uid://dvnu6xjxa5w41"
+path="res://.godot/imported/smg.png-09177861d42b855f83b777901fa50e9d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters and items/Player_Spritesheet_Rev1.png"
-dest_files=["res://.godot/imported/Player_Spritesheet_Rev1.png-aa4924c283c8bd7cf2128834d0486be6.ctex"]
+source_file="res://Sprites/Hud/smg.png"
+dest_files=["res://.godot/imported/smg.png-09177861d42b855f83b777901fa50e9d.ctex"]
 
 [params]
 

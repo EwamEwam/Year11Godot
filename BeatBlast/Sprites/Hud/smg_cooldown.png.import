@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drau02cxhlf33"
-path="res://.godot/imported/Big_Slime_Spritesheet_Rev1.png-98e8fe2eab153adfc0cd63a9b1c3f1b2.ctex"
+uid="uid://bpmqpsi3iuob2"
+path="res://.godot/imported/smg_cooldown.png-ec5bf9c3e9f929d269b713fa4d898036.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Characters and items/Big_Slime_Spritesheet_Rev1.png"
-dest_files=["res://.godot/imported/Big_Slime_Spritesheet_Rev1.png-98e8fe2eab153adfc0cd63a9b1c3f1b2.ctex"]
+source_file="res://Sprites/Hud/smg_cooldown.png"
+dest_files=["res://.godot/imported/smg_cooldown.png-ec5bf9c3e9f929d269b713fa4d898036.ctex"]
 
 [params]
 

@@ -2,62 +2,62 @@
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/Big_slime.gd" id="1_gurdi"]
 [ext_resource type="Texture2D" uid="uid://cpwdnmkwoc0mc" path="res://Sprites/Characters and items/green_slime_shadow.png" id="2_fc4ej"]
-[ext_resource type="Texture2D" uid="uid://drau02cxhlf33" path="res://Sprites/Characters and items/Big_Slime_Spritesheet_Rev1.png" id="2_vhfsx"]
+[ext_resource type="Texture2D" uid="uid://drau02cxhlf33" path="res://Sprites/Characters and items/Big_Slime_Spritesheet_Rev2.png" id="3_aih1g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r4fbb"]
-atlas = ExtResource("2_vhfsx")
+atlas = ExtResource("3_aih1g")
 region = Rect2(0, 42, 26, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mwknm"]
-atlas = ExtResource("2_vhfsx")
+atlas = ExtResource("3_aih1g")
 region = Rect2(26, 42, 26, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_usb0i"]
-atlas = ExtResource("2_vhfsx")
+atlas = ExtResource("3_aih1g")
 region = Rect2(52, 42, 26, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x0vhx"]
-atlas = ExtResource("2_vhfsx")
+atlas = ExtResource("3_aih1g")
 region = Rect2(78, 42, 26, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xtgmv"]
-atlas = ExtResource("2_vhfsx")
+atlas = ExtResource("3_aih1g")
 region = Rect2(104, 42, 26, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ax0m"]
-atlas = ExtResource("2_vhfsx")
+atlas = ExtResource("3_aih1g")
 region = Rect2(0, 42, 26, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3mym3"]
-atlas = ExtResource("2_vhfsx")
+atlas = ExtResource("3_aih1g")
 region = Rect2(0, 0, 26, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dgoxg"]
-atlas = ExtResource("2_vhfsx")
+atlas = ExtResource("3_aih1g")
 region = Rect2(26, 0, 26, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g3xgd"]
-atlas = ExtResource("2_vhfsx")
+atlas = ExtResource("3_aih1g")
 region = Rect2(52, 0, 26, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_04anb"]
-atlas = ExtResource("2_vhfsx")
+atlas = ExtResource("3_aih1g")
 region = Rect2(78, 0, 26, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_whx32"]
-atlas = ExtResource("2_vhfsx")
+atlas = ExtResource("3_aih1g")
 region = Rect2(0, 21, 26, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_od7a5"]
-atlas = ExtResource("2_vhfsx")
+atlas = ExtResource("3_aih1g")
 region = Rect2(26, 21, 26, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_js3bb"]
-atlas = ExtResource("2_vhfsx")
+atlas = ExtResource("3_aih1g")
 region = Rect2(52, 21, 26, 21)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rwdsj"]
-atlas = ExtResource("2_vhfsx")
+atlas = ExtResource("3_aih1g")
 region = Rect2(78, 21, 26, 21)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mpetr"]
@@ -292,9 +292,9 @@ texture = ExtResource("2_fc4ej")
 [node name="Slime_sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(9, 9)
 sprite_frames = SubResource("SpriteFrames_mpetr")
-animation = &"Right"
+animation = &"Death"
 autoplay = "Right"
-frame_progress = 0.720185
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["Collision", "Enemy"]]
 libraries = {
@@ -311,6 +311,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_iwxh1")
 
 [node name="hurttimer" type="Timer" parent="."]
+wait_time = 1.5
 one_shot = true
 
 [node name="hurtbox" type="Area2D" parent="."]

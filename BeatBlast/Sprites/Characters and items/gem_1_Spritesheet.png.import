@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6j0ax2ux8t08"
-path="res://.godot/imported/Dungeon_floor_rev1.png-d107f3f085291cb806e1a667cf7593cf.ctex"
+uid="uid://mqgyk4v485ms"
+path="res://.godot/imported/gem_1_Spritesheet.png-9f70a44934ea1ef1866e65f701b1f5c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/World/Dungeon_floor_rev1.png"
-dest_files=["res://.godot/imported/Dungeon_floor_rev1.png-d107f3f085291cb806e1a667cf7593cf.ctex"]
+source_file="res://Sprites/Characters and items/gem_1_Spritesheet.png"
+dest_files=["res://.godot/imported/gem_1_Spritesheet.png-9f70a44934ea1ef1866e65f701b1f5c3.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di05e3j3taqie"
-path="res://.godot/imported/Dungeon_floor_rev2.png-f79daf6da4835a1481fc6b280ad46973.ctex"
+uid="uid://cmb2vpqygxu4g"
+path="res://.godot/imported/Poison.png-349a69f405593abb75660aa682b7e5fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/World/Dungeon_floor_rev2.png"
-dest_files=["res://.godot/imported/Dungeon_floor_rev2.png-f79daf6da4835a1481fc6b280ad46973.ctex"]
+source_file="res://Sprites/Hud/Poison.png"
+dest_files=["res://.godot/imported/Poison.png-349a69f405593abb75660aa682b7e5fe.ctex"]
 
 [params]
 

@@ -31,6 +31,8 @@ const gems_number = preload("res://Scenes/Other/Gems_numbers.tscn")
 @onready var timer = $Timer
 @onready var gems = $Gem_Count
 @onready var gem_icon = $Gem
+@onready var poison = $Poison
+@onready var poison_timer = $Poison_timer
 
 @onready var world = get_node('/root/level')
 
@@ -129,7 +131,7 @@ func _physics_process(delta):
 	timer.text = var_to_str(world.timer)
 	gems.text = var_to_str(Playerstats.gems)
 		
-	selection.global_position.x = Playerstats.weapon_selected * 40 - 9
+	selection.global_position.x = Playerstats.weapon_selected * 40 - 12
 	
 	if Playerstats.gems > 999:
 		Playerstats.gems = 999
@@ -146,6 +148,8 @@ func _physics_process(delta):
 		new_number.global_position.y -= 20
 		add_child(new_number)
 		Playerstats.gemsval = 0
+		
+	update_status()
 		
 func start_dash_cooldown():
 	Dash_cooldown.play("running")
@@ -193,3 +197,12 @@ func reloaded():
 		Black_screen.modulate.a = val
 		await get_tree().create_timer(0.035).timeout
 	Black_screen.visible = false
+
+func update_status():
+	if Playerstats.current_status.Poison > 0:
+		poison.visible = true
+		poison_timer.visible = true
+		poison_timer.text = var_to_str(Playerstats.current_status.Poison)
+	else:
+		poison.visible = false
+		poison_timer.visible = false

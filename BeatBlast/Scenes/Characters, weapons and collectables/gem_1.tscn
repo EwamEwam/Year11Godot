@@ -1,10 +1,60 @@
-[gd_scene load_steps=4 format=3 uid="uid://dywe4fpqh4675"]
+[gd_scene load_steps=11 format=3 uid="uid://dywe4fpqh4675"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Collectables/gem_1.gd" id="1_8aygp"]
-[ext_resource type="Texture2D" uid="uid://ck4yn4ev4gc25" path="res://Sprites/Characters and items/gem.png" id="1_lnihi"]
+[ext_resource type="Texture2D" uid="uid://mqgyk4v485ms" path="res://Sprites/Characters and items/gem_1_Spritesheet.png" id="2_16alf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2tkqw"]
 radius = 26.1725
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7qje"]
+atlas = ExtResource("2_16alf")
+region = Rect2(0, 0, 10, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icbfi"]
+atlas = ExtResource("2_16alf")
+region = Rect2(0, 11, 10, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dq7d"]
+atlas = ExtResource("2_16alf")
+region = Rect2(0, 22, 10, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ui2w0"]
+atlas = ExtResource("2_16alf")
+region = Rect2(0, 33, 10, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_271kr"]
+atlas = ExtResource("2_16alf")
+region = Rect2(0, 44, 10, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_doddm"]
+atlas = ExtResource("2_16alf")
+region = Rect2(0, 55, 10, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_evju6"]
+animations = [{
+"frames": [{
+"duration": 11.0,
+"texture": SubResource("AtlasTexture_e7qje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icbfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dq7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ui2w0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_271kr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_doddm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
 
 [node name="Gem1" type="Area2D"]
 scale = Vector2(0.571117, 0.567374)
@@ -13,9 +63,10 @@ script = ExtResource("1_8aygp")
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2tkqw")
 
-[node name="Gem" type="Sprite2D" parent="."]
-position = Vector2(-5.96046e-08, -5.96046e-08)
-scale = Vector2(0.142349, 0.142349)
-texture = ExtResource("1_lnihi")
+[node name="Gem" type="AnimatedSprite2D" parent="."]
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_evju6")
+autoplay = "default"
+frame_progress = 0.963535
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

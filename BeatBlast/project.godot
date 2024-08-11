@@ -31,6 +31,10 @@ window/snap/snap_2d_transforms_to_pixel=true
 
 enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")
 
+[gui]
+
+timers/tooltip_delay_sec=0.0
+
 [input]
 
 left={

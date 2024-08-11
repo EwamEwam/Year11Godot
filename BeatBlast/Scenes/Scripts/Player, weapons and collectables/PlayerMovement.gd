@@ -87,6 +87,11 @@ func _physics_process(delta):
 	if Playerstats.health < 1:
 		death()
 	
+	if Playerstats.current_status.Poison != 0:
+		Sprite.modulate = Color(0.688, 0.99, 0.386,1)
+	else:
+		Sprite.modulate = Color(1,1,1,1)
+	
 	check_item_select()
 	Update_animation()
 	move_and_slide()
@@ -246,7 +251,8 @@ func Shoot():
 			bulle3.look_at(get_global_mouse_position())
 			add_sibling(bulle3)
 			shake(4,0.05,3,1.25)
-			timer.start(0.2)
+			emit_signal("cooldown")
+			timer.start(0.25)
 		6:
 			if not timer.is_stopped() or Playerstats.health < 2:
 				return
@@ -303,9 +309,9 @@ func shake(amt,time,rep,damp):
 func dash():
 	if not dash_timer.is_stopped():
 		return
-	SPEED=1500.0
-	velocity = velocity.move_toward(direction * SPEED, ACCELERATION*30)
-	await get_tree().create_timer(0.12).timeout
+	SPEED=1800.0
+	velocity = velocity.move_toward(direction * SPEED, ACCELERATION*42)
+	await get_tree().create_timer(0.11).timeout
 	SPEED=500.0
 	emit_signal("dash_cooldown")
 	dash_timer.start(1.75)
@@ -325,3 +331,6 @@ func check_item_select():
 	if Input.is_action_just_pressed("6") and Playerstats.weapons_unlocked > 5:
 		Playerstats.weapon_selected = 6
 	
+func poisoned(time):
+	if time > Playerstats.current_status.Poison:
+		Playerstats.current_status.Poison = time

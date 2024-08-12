@@ -218,6 +218,7 @@ func Shoot():
 			add_sibling(bulle)
 			shake(7.5,0.05,4,1.25)
 			emit_signal("cooldown")
+			get_mouse_direction()
 			timer.start(0.65)
 		3:
 			if not timer.is_stopped() or Playerstats.health < 3:
@@ -334,3 +335,21 @@ func check_item_select():
 func poisoned(time):
 	if time > Playerstats.current_status.Poison:
 		Playerstats.current_status.Poison = time
+
+#Calculates the mouse position relationship with the player position relationship
+func get_mouse_direction():
+	var difference_in_y = get_global_mouse_position().y - global_position.y
+	var difference_in_x = get_global_mouse_position().x - global_position.x
+	if difference_in_y < 0:
+		if abs(difference_in_x) > 300:
+			if abs(difference_in_y) > 150:
+				if difference_in_x > 0:
+					print("Up-Right")
+				else:
+					print("Up-Left")
+			elif difference_in_x > 0:
+				print("Right")
+			else:
+				print("Left")
+		else:
+			print("Up")

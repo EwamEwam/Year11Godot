@@ -22,7 +22,6 @@ var bullets_hit = 0
 var accuracy = 0
 var cooldown = 0
 var door_open = 0
-@onready var player = get_tree().get_first_node_in_group("Player")
 
 #Dictionary, used to track what collectables the player has collected in each level
 var items_collected = {
@@ -38,6 +37,7 @@ var high_scores = {
 "Level2HighScore" = 0
 }
 
+#Timers for each status effect that the player can get, it's 0 if the player doesn't have the effect.
 var current_status = {
 "Poison" = 0
 }
@@ -70,6 +70,7 @@ func _process(delta):
 		can_do = false
 		
 func update_status():
+	var player = get_tree().get_first_node_in_group("Player")
 	if current_status.Poison > 0:
 		player.damage_player(1)
 		current_status.Poison -= 1

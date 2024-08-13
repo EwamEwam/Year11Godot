@@ -2,41 +2,41 @@
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Collectables/heart10.gd" id="1_osajp"]
 [ext_resource type="Texture2D" uid="uid://cnwlaeh1j83ds" path="res://Sprites/Characters and items/heart5_shadow.png" id="2_mamas"]
-[ext_resource type="Texture2D" uid="uid://jw3ith78c7mn" path="res://Sprites/Characters and items/heart5.png" id="3_32615"]
+[ext_resource type="Texture2D" uid="uid://qgqe5vcftyx0" path="res://Sprites/Characters and items/Heart10.png" id="3_xcras"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uy5oe"]
 radius = 46.0435
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eyh71"]
-atlas = ExtResource("3_32615")
-region = Rect2(0, 0, 11, 11)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qa1ao"]
+atlas = ExtResource("3_xcras")
+region = Rect2(0, 0, 13, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dofe0"]
-atlas = ExtResource("3_32615")
-region = Rect2(0, 11, 11, 11)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyjfw"]
+atlas = ExtResource("3_xcras")
+region = Rect2(0, 12, 13, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wuen8"]
-atlas = ExtResource("3_32615")
-region = Rect2(0, 22, 11, 11)
+[sub_resource type="AtlasTexture" id="AtlasTexture_tk7wt"]
+atlas = ExtResource("3_xcras")
+region = Rect2(0, 24, 13, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dbr6r"]
-atlas = ExtResource("3_32615")
-region = Rect2(0, 33, 11, 11)
+[sub_resource type="AtlasTexture" id="AtlasTexture_47wpx"]
+atlas = ExtResource("3_xcras")
+region = Rect2(0, 36, 13, 12)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xrv8v"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eyh71")
+"texture": SubResource("AtlasTexture_qa1ao")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dofe0")
+"texture": SubResource("AtlasTexture_xyjfw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wuen8")
+"texture": SubResource("AtlasTexture_tk7wt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dbr6r")
+"texture": SubResource("AtlasTexture_47wpx")
 }],
 "loop": true,
 "name": &"default",
@@ -55,10 +55,10 @@ scale = Vector2(8, 8)
 texture = ExtResource("2_mamas")
 
 [node name="Heart" type="AnimatedSprite2D" parent="."]
-position = Vector2(4, 5)
+position = Vector2(-1, 0)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_xrv8v")
 autoplay = "default"
-frame_progress = 0.166809
+frame_progress = 0.876081
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

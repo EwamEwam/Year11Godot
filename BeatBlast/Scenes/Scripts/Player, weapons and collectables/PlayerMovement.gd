@@ -353,3 +353,17 @@ func get_mouse_direction():
 				print("Left")
 		else:
 			print("Up")
+	else:
+		if abs(difference_in_x) > 300:
+			if abs(difference_in_y) > 150:
+				if difference_in_x > 0:
+					print("Down-Right")
+				else:
+					print("Down-Left")
+			elif difference_in_x > 0:
+				print("Right")
+			else:
+				print("Left")
+		else:
+			print("Down")
+		

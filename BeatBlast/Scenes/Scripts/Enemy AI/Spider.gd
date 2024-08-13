@@ -33,7 +33,7 @@ func check_collision():
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
 				collision.shake(2.5,0.05,2,1.25)
 				collision.damage_player(damage-Playerstats.defence)
-				collision.poisoned(2)
+				collision.poisoned(15)
 				timer.start()
 				
 func _physics_process(delta):

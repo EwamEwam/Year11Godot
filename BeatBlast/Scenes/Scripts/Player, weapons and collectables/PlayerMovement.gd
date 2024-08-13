@@ -22,8 +22,10 @@ var direction=Vector2.ZERO
 
 enum Pointing {Down, Right, Left, Up}
 enum State {Idle, Running, Hurt,}
+enum Direction_to_mouse {Up, Down, Left, Right, Up_left, Up_right, Down_left, Down_right}
 var current_state = State.Idle
 var current_direction = Pointing.Up
+var Pointing_to_mouse = null
 var last_facing_direction = Vector2(0,1)
 var animation_can_play = true
 var dead = false
@@ -266,6 +268,9 @@ func Shoot():
 			shake(2,0.05,3,1.25)
 			timer.start(0.1)
 	
+func shoot_animation():
+	pass
+	
 func damage_player(val):
 	if val < 1:
 		val = 1
@@ -344,26 +349,26 @@ func get_mouse_direction():
 		if abs(difference_in_x) > 300:
 			if abs(difference_in_y) > 150:
 				if difference_in_x > 0:
-					print("Up-Right")
+					Pointing_to_mouse = Direction_to_mouse.Up_right
 				else:
-					print("Up-Left")
+					Pointing_to_mouse = Direction_to_mouse.Up_left
 			elif difference_in_x > 0:
-				print("Right")
+				Pointing_to_mouse = Direction_to_mouse.Right
 			else:
-				print("Left")
+				Pointing_to_mouse = Direction_to_mouse.Left
 		else:
-			print("Up")
+			Pointing_to_mouse = Direction_to_mouse.Up
 	else:
 		if abs(difference_in_x) > 300:
 			if abs(difference_in_y) > 150:
 				if difference_in_x > 0:
-					print("Down-Right")
+					Pointing_to_mouse = Direction_to_mouse.Down_right
 				else:
-					print("Down-Left")
+					Pointing_to_mouse = Direction_to_mouse.Down_left
 			elif difference_in_x > 0:
-				print("Right")
+				Pointing_to_mouse = Direction_to_mouse.Right
 			else:
-				print("Left")
+				Pointing_to_mouse = Direction_to_mouse.Left
 		else:
-			print("Down")
+			Pointing_to_mouse = Direction_to_mouse.Down
 		

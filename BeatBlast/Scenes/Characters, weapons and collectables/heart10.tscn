@@ -59,6 +59,7 @@ position = Vector2(-1, 0)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_xrv8v")
 autoplay = "default"
-frame_progress = 0.876081
+frame = 2
+frame_progress = 0.425053
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

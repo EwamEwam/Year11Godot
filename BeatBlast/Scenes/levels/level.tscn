@@ -671,6 +671,9 @@ position = Vector2(455, 43)
 [node name="Big_slime" parent="Level_elements/Enemies" instance=ExtResource("13_mj5ph")]
 position = Vector2(1188, -270)
 
+[node name="Spider" parent="Level_elements/Enemies" instance=ExtResource("13_6pxws")]
+position = Vector2(761, -2251)
+
 [node name="Lighting" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true
 
@@ -752,8 +755,5 @@ scale = Vector2(8, 8)
 zoom = Vector2(0.3, 0.3)
 position_smoothing_enabled = true
 position_smoothing_speed = 12.0
-
-[node name="Spider" parent="." instance=ExtResource("13_6pxws")]
-position = Vector2(761, -2251)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

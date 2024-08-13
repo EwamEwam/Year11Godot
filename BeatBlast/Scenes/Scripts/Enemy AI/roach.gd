@@ -5,6 +5,7 @@ const ACCELLERATION = 20.0
 const FRICTION = 3.0
 var score_value = 2
 @onready var Sprite = $Roach_sprite
+@onready var hitbox = $Hitbox
 @onready var animation = $AnimationPlayer
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart1.tscn")
@@ -77,6 +78,7 @@ func animation_play():
 func check_for_death():
 	if health <= 0:
 		dead = true
+		hitbox.disabled = true
 		await get_tree().create_timer(0.7).timeout
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position

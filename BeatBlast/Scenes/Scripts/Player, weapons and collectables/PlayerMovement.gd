@@ -113,7 +113,7 @@ func Update_state():
 		if abs(direction.x) < 0.1:
 			if direction.y > 0:
 				current_direction = Pointing.Down
-				wall_collision.position = Vector2(0,16)
+				wall_collision.position = Vector2(0,17)
 				wall_collision.rotation = 0
 			elif direction.y < 0:
 				current_direction = Pointing.Up

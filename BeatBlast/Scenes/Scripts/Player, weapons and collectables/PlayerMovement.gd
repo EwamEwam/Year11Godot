@@ -21,7 +21,7 @@ var direction=Vector2.ZERO
 @onready var Camera = $Camera2D
 
 enum Pointing {Down, Right, Left, Up}
-enum State {Idle, Running, Hurt,}
+enum State {Idle, Running, Hurt, Shooting}
 enum Direction_to_mouse {Up, Down, Left, Right, Up_left, Up_right, Down_left, Down_right}
 var current_state = State.Idle
 var current_direction = Pointing.Up
@@ -108,7 +108,7 @@ func death():
 	
 #Updates the player's state based on where they are facing and if they are moving.
 func Update_state():
-	if velocity.length() > 0:
+	if velocity.length() > 0 and not current_state == State.Shooting:
 		current_state = State.Running
 		if abs(direction.x) < 0.1:
 			if direction.y > 0:
@@ -128,7 +128,7 @@ func Update_state():
 				current_direction = Pointing.Left
 				wall_collision.position = Vector2(-8,8)
 				wall_collision.rotation = deg_to_rad(90)
-	else:
+	elif not current_state == State.Shooting:
 		current_state = State.Idle
 		
 #function for player animation. matches the current state the player, then the current direction the player is facing
@@ -221,6 +221,7 @@ func Shoot():
 			shake(7.5,0.05,4,1.25)
 			emit_signal("cooldown")
 			get_mouse_direction()
+			shoot_animation(0.2)
 			timer.start(0.65)
 		3:
 			if not timer.is_stopped() or Playerstats.health < 3:
@@ -268,9 +269,14 @@ func Shoot():
 			shake(2,0.05,3,1.25)
 			timer.start(0.1)
 	
-func shoot_animation():
-	pass
-	
+func shoot_animation(time):
+	current_state = State.Shooting
+	match Pointing_to_mouse:
+		Direction_to_mouse.Down:
+			Animation_player.play("Shoot_down" + str(Playerstats.weapon_selected))
+			await get_tree().create_timer(time).timeout
+			current_state = State.Idle
+			
 func damage_player(val):
 	if val < 1:
 		val = 1

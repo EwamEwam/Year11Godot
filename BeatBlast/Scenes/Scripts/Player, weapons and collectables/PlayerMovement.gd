@@ -37,9 +37,6 @@ signal red(val)
 signal died
 signal Reload
 
-func _ready():
-	Playerstats.reloaded.connect(reload)
-
 #The function that runs every frame and does all the essential operations like movement, collision check, checking for other actions and running other functions
 func _physics_process(delta):
 	direction = Input.get_vector("left","right","up","down").normalized()
@@ -76,7 +73,7 @@ func _physics_process(delta):
 	
 	if animation_can_play:
 		Update_state()
-		if abs(velocity.length()) > 0.1:
+		if abs(velocity.length()) > 0.1 and not current_state == State.Shooting:
 			Animation_player.speed_scale = clampf((sqrt(velocity.x * velocity.x + velocity.y * velocity.y)/500),0,1.75)
 	else:
 		Animation_player.speed_scale = 1
@@ -97,11 +94,6 @@ func _physics_process(delta):
 	check_item_select()
 	Update_animation()
 	move_and_slide()
-	
-func reload():
-	current_direction = Pointing.Up
-	current_state = State.Idle
-	emit_signal("Reload")
 	
 func death():
 	emit_signal("died")
@@ -273,6 +265,7 @@ func shoot_animation(time):
 	current_state = State.Shooting
 	match Pointing_to_mouse:
 		Direction_to_mouse.Down:
+			Animation_player.speed_scale = 1
 			Animation_player.play("Shoot_down" + str(Playerstats.weapon_selected))
 			await get_tree().create_timer(time).timeout
 			current_state = State.Idle

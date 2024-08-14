@@ -39,7 +39,6 @@ const gems_number = preload("res://Scenes/Other/Gems_numbers.tscn")
 #now thats a lot of if statements ;)
 func _ready():
 	player.died.connect(black_screen)
-	player.Reload.connect(reloaded)
 	player.cooldown.connect(start_cooldown)
 	player.dash_cooldown.connect(start_dash_cooldown)
 	player.red.connect(damaged)
@@ -177,6 +176,7 @@ func damaged(val):
 		red.visible = false
 
 func black_screen():
+	get_tree().paused = true
 	var val = 0
 	Black_screen.visible = true
 	Black_screen.modulate.a = 0
@@ -186,18 +186,8 @@ func black_screen():
 		val += 0.04
 		Black_screen.modulate.a = val
 		await get_tree().create_timer(0.035).timeout
+	get_tree().change_scene_to_file("res://Scenes/levels/level_select.tscn")
 	
-func reloaded():
-	var val = 1
-	Black_screen.visible = true
-	Black_screen.modulate.a = val
-	for i in range(10):
-		Black_screen.visible = true
-		val -= 0.1
-		Black_screen.modulate.a = val
-		await get_tree().create_timer(0.035).timeout
-	Black_screen.visible = false
-
 func update_status():
 	if Playerstats.current_status.Poison > 0:
 		poison.visible = true

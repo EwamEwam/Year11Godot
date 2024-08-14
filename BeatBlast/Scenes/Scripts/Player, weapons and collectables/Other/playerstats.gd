@@ -43,24 +43,6 @@ var current_status = {
 }
 
 var can_do = false
-
-signal reloaded
-
-func _physics_process(delta):
-	if health < 1:
-		reload()
-	
-func reload():
-	get_tree().paused = true
-	await get_tree().create_timer(3).timeout
-	get_tree().reload_current_scene()
-	max_health = 30
-	health = max_health
-	score = 0
-	weapon_selected = 1
-	get_tree().paused = false
-	await get_tree().create_timer(0.001).timeout
-	emit_signal("reloaded")
 	
 func _process(delta):
 	if not can_do:

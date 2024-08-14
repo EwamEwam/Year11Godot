@@ -2,7 +2,8 @@ extends Area2D
 
 @export var id = 0
 
-signal level_collected
+signal level_complete
 
 func _on_body_entered(body):
-	pass # Replace with function body.
+	if body.is_in_group("Player"):
+		emit_signal("level_complete")

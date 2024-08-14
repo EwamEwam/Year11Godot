@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Scripts/World/level_select.gd" id="1_2wxdh"]
 
 [node name="level_select" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_2wxdh")
 
 [node name="level_1_select" type="Button" parent="."]

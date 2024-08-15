@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var timer = $Timer
 @onready var dash_timer = $Dash_Timer
 @onready var wall_collision = $Wall_collision
+@onready var spawner = $Bullet_spawner
+@onready var light = $Bullet_spawner/Light
 const Bullet = preload("res://Scenes/Characters, weapons and collectables/bullet.tscn")
 const Bullet2 = preload("res://Scenes/Characters, weapons and collectables/bullet2.tscn")
 const Bullet3 = preload("res://Scenes/Characters, weapons and collectables/bullet3.tscn")
@@ -37,6 +39,9 @@ signal red(val)
 signal died
 signal Reload
 
+func _ready():
+	light.visible = false 
+
 #The function that runs every frame and does all the essential operations like movement, collision check, checking for other actions and running other functions
 func _physics_process(delta):
 	direction = Input.get_vector("left","right","up","down").normalized()
@@ -44,7 +49,7 @@ func _physics_process(delta):
 		if Playerstats.health > 0:
 			velocity = velocity.move_toward(direction * SPEED, ACCELERATION)
 		else:
-			return
+			pass
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 	
@@ -73,7 +78,7 @@ func _physics_process(delta):
 	
 	if animation_can_play:
 		Update_state()
-		if abs(velocity.length()) > 0.1 and not current_state == State.Shooting:
+		if abs(velocity.length()) > 5 and not current_state == State.Shooting:
 			Animation_player.speed_scale = clampf((sqrt(velocity.x * velocity.x + velocity.y * velocity.y)/500),0,1.75)
 	else:
 		Animation_player.speed_scale = 1
@@ -133,51 +138,51 @@ func Update_animation():
 					if colliding:
 						for collision in colliding:
 							if collision.is_in_group("Collision"):
-								Animation_player.play("Idle_Down")
+								Animation_player.play("Idle_Down"+ str(Playerstats.weapon_selected))
 							else:
-								Animation_player.play("Down")
+								Animation_player.play("Down" + str(Playerstats.weapon_selected))
 					else:
-						Animation_player.play("Down")
+						Animation_player.play("Down" + str(Playerstats.weapon_selected))
 				Pointing.Up:
 					var colliding = wall_collision.get_overlapping_bodies()
 					if colliding:
 						for collision in colliding:
 							if collision.is_in_group("Collision"):
-								Animation_player.play("Idle_Up")
+								Animation_player.play("Idle_Up" + str(Playerstats.weapon_selected))
 							else:
-								Animation_player.play("Up")
+								Animation_player.play("Up" + str(Playerstats.weapon_selected))
 					else:
-						Animation_player.play("Up")
+						Animation_player.play("Up" + str(Playerstats.weapon_selected))
 				Pointing.Right:
 					var colliding = wall_collision.get_overlapping_bodies()
 					if colliding:
 						for collision in colliding:
 							if collision.is_in_group("Collision"):
-								Animation_player.play("Idle_Right")
+								Animation_player.play("Idle_Right" + str(Playerstats.weapon_selected))
 							else:
-								Animation_player.play("Right")
+								Animation_player.play("Right" + str(Playerstats.weapon_selected))
 					else:
-						Animation_player.play("Right")
+						Animation_player.play("Right" + str(Playerstats.weapon_selected))
 				Pointing.Left:
 					var colliding = wall_collision.get_overlapping_bodies()
 					if colliding:
 						for collision in colliding:
 							if collision.is_in_group("Collision"):
-								Animation_player.play("Idle_Left")
+								Animation_player.play("Idle_Left" + str(Playerstats.weapon_selected))
 							else:
-								Animation_player.play("Left")
+								Animation_player.play("Left" + str(Playerstats.weapon_selected))
 					else:
-						Animation_player.play("Left")
+						Animation_player.play("Left" + str(Playerstats.weapon_selected))
 		State.Idle:
 			match current_direction:
 				Pointing.Down:
-					Animation_player.play("Idle_Down")
+					Animation_player.play("Idle_Down" + str(Playerstats.weapon_selected))
 				Pointing.Up:
-					Animation_player.play("Idle_Up")
+					Animation_player.play("Idle_Up" + str(Playerstats.weapon_selected))
 				Pointing.Right:
-					Animation_player.play("Idle_Right")
+					Animation_player.play("Idle_Right" + str(Playerstats.weapon_selected))
 				Pointing.Left:
-					Animation_player.play("Idle_Left")
+					Animation_player.play("Idle_Left" + str(Playerstats.weapon_selected))
 		State.Hurt:
 			match current_direction:
 				Pointing.Down:
@@ -206,14 +211,15 @@ func Shoot():
 			if not timer.is_stopped() or Playerstats.health < 2:
 				return
 			Playerstats.health -= 1
+			get_mouse_direction()
+			set_spawner(Pointing_to_mouse)
 			var bulle = Bullet.instantiate()
-			bulle.global_position = global_position
+			bulle.global_position = spawner.global_position
 			bulle.look_at(get_global_mouse_position())
 			add_sibling(bulle)
 			shake(7.5,0.05,4,1.25)
 			emit_signal("cooldown")
-			get_mouse_direction()
-			shoot_animation(0.2)
+			shoot_animation(0.1)
 			timer.start(0.65)
 		3:
 			if not timer.is_stopped() or Playerstats.health < 3:
@@ -267,6 +273,31 @@ func shoot_animation(time):
 		Direction_to_mouse.Down:
 			Animation_player.speed_scale = 1
 			Animation_player.play("Shoot_down" + str(Playerstats.weapon_selected))
+			await get_tree().create_timer(time).timeout
+			current_state = State.Idle
+		Direction_to_mouse.Right:
+			Animation_player.speed_scale = 1
+			Animation_player.play("Shoot_right" + str(Playerstats.weapon_selected))
+			await get_tree().create_timer(time).timeout
+			current_state = State.Idle
+		Direction_to_mouse.Up:
+			Animation_player.speed_scale = 1
+			Animation_player.play("Shoot_up" + str(Playerstats.weapon_selected))
+			await get_tree().create_timer(time).timeout
+			current_state = State.Idle
+		Direction_to_mouse.Left:
+			Animation_player.speed_scale = 1
+			Animation_player.play("Shoot_left" + str(Playerstats.weapon_selected))
+			await get_tree().create_timer(time).timeout
+			current_state = State.Idle
+		Direction_to_mouse.Down_left:
+			Animation_player.speed_scale = 1
+			Animation_player.play("Shoot_down_left" + str(Playerstats.weapon_selected))
+			await get_tree().create_timer(time).timeout
+			current_state = State.Idle
+		Direction_to_mouse.Down_right:
+			Animation_player.speed_scale = 1
+			Animation_player.play("Shoot_down_right" + str(Playerstats.weapon_selected))
 			await get_tree().create_timer(time).timeout
 			current_state = State.Idle
 			
@@ -345,8 +376,8 @@ func get_mouse_direction():
 	var difference_in_y = get_global_mouse_position().y - global_position.y
 	var difference_in_x = get_global_mouse_position().x - global_position.x
 	if difference_in_y < 0:
-		if abs(difference_in_x) > 300:
-			if abs(difference_in_y) > 150:
+		if abs(difference_in_x) > 200:
+			if abs(difference_in_y) > 125:
 				if difference_in_x > 0:
 					Pointing_to_mouse = Direction_to_mouse.Up_right
 				else:
@@ -358,8 +389,8 @@ func get_mouse_direction():
 		else:
 			Pointing_to_mouse = Direction_to_mouse.Up
 	else:
-		if abs(difference_in_x) > 300:
-			if abs(difference_in_y) > 150:
+		if abs(difference_in_x) > 200:
+			if abs(difference_in_y) > 125:
 				if difference_in_x > 0:
 					Pointing_to_mouse = Direction_to_mouse.Down_right
 				else:
@@ -371,3 +402,53 @@ func get_mouse_direction():
 		else:
 			Pointing_to_mouse = Direction_to_mouse.Down
 		
+func set_spawner(val):
+	match val:
+		Direction_to_mouse.Down:
+			spawner.position = Vector2(0,4)
+			light.visible = true
+			light.energy = 80
+			for i in range(2):
+				await get_tree().create_timer(0.075).timeout
+				light.energy -= 40
+			light.visible = false
+		Direction_to_mouse.Left:
+			spawner.position = Vector2(-8,-1)
+			light.visible = true
+			light.energy = 80
+			for i in range(2):
+				await get_tree().create_timer(0.075).timeout
+				light.energy -= 40
+			light.visible = false
+		Direction_to_mouse.Up:
+			spawner.position = Vector2(0,-4)
+			light.visible = true
+			light.energy = 10
+			for i in range(2):
+				await get_tree().create_timer(0.075).timeout
+				light.energy -= 5
+			light.visible = false
+		Direction_to_mouse.Right:
+			spawner.position = Vector2(8,-1)
+			light.visible = true
+			light.energy = 80
+			for i in range(2):
+				await get_tree().create_timer(0.075).timeout
+				light.energy -= 40
+			light.visible = false
+		Direction_to_mouse.Down_left:
+			spawner.position = Vector2(-7,1)
+			light.visible = true
+			light.energy = 80
+			for i in range(2):
+				await get_tree().create_timer(0.075).timeout
+				light.energy -= 40
+			light.visible = false
+		Direction_to_mouse.Down_right:
+			spawner.position = Vector2(7,1)
+			light.visible = true
+			light.energy = 80
+			for i in range(2):
+				await get_tree().create_timer(0.075).timeout
+				light.energy -= 40
+			light.visible = false

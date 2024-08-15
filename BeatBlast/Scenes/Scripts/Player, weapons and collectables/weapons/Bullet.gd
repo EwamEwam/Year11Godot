@@ -12,7 +12,7 @@ func _ready():
 func _process(delta):
 	translate(Vector2.RIGHT.rotated(rotation) * SPEED * delta)
 	if light.energy > 0:
-		light.energy -= 0.5
+		light.energy -= 4
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

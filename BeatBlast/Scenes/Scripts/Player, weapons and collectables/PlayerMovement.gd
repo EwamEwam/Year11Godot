@@ -37,7 +37,6 @@ signal cooldown
 signal dash_cooldown
 signal red(val)
 signal died
-signal Reload
 
 func _ready():
 	light.visible = false 
@@ -57,7 +56,8 @@ func _physics_process(delta):
 	Playerstats.player_y = global_position.y
 	
 	if Input.is_action_pressed("shoot"):
-		Shoot()
+		if Playerstats.current_status.Blocked == 0:
+				Shoot()
 		
 	if Input.is_action_just_pressed("Dash"):
 		if abs(velocity) > Vector2.ZERO and dash_timer.is_stopped() and Playerstats.health > 0:
@@ -90,7 +90,8 @@ func _physics_process(delta):
 	
 	if Playerstats.health < 1:
 		death()
-	
+		get_tree().paused = true
+		
 	if Playerstats.current_status.Poison != 0:
 		Sprite.modulate = Color(0.688, 0.99, 0.386,1)
 	else:

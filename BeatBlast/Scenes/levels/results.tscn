@@ -1,0 +1,271 @@
+[gd_scene load_steps=5 format=3 uid="uid://cen7cowhh073f"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/World/results.gd" id="1_sp4wg"]
+[ext_resource type="Texture2D" uid="uid://misl73u72xsh" path="res://Sprites/Hud/Line.png" id="1_wvdig"]
+[ext_resource type="FontFile" uid="uid://c2wf2bpy718q5" path="res://Sprites/Hud/Bourbon_and_coke_blocks.png" id="2_3fiej"]
+[ext_resource type="PackedScene" uid="uid://cppt3jx0ayy7d" path="res://Scenes/levels/fade.tscn" id="4_t26wo"]
+
+[node name="Results" type="Node2D"]
+script = ExtResource("1_sp4wg")
+
+[node name="Headings" type="Node2D" parent="."]
+
+[node name="Score" type="Label" parent="Headings"]
+offset_left = 86.0
+offset_top = 68.0
+offset_right = 150.0
+offset_bottom = 75.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Score"
+
+[node name="Heading" type="Label" parent="Headings"]
+offset_left = 77.0
+offset_top = 21.0
+offset_right = 183.0
+offset_bottom = 28.0
+scale = Vector2(4.5, 4.5)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "RESULTS - SUCCESS"
+horizontal_alignment = 1
+
+[node name="Enemies" type="Label" parent="Headings"]
+offset_left = 86.0
+offset_top = 122.0
+offset_right = 167.0
+offset_bottom = 129.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Enemies Defeated
+"
+
+[node name="Time" type="Label" parent="Headings"]
+offset_left = 86.0
+offset_top = 95.0
+offset_right = 150.0
+offset_bottom = 102.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Time Left
+"
+
+[node name="shot" type="Label" parent="Headings"]
+offset_left = 86.0
+offset_top = 169.0
+offset_right = 167.0
+offset_bottom = 176.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Bullets Shot
+"
+
+[node name="hot" type="Label" parent="Headings"]
+offset_left = 86.0
+offset_top = 195.0
+offset_right = 167.0
+offset_bottom = 202.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Bullets Hit
+"
+
+[node name="accuracy" type="Label" parent="Headings"]
+offset_left = 86.0
+offset_top = 221.0
+offset_right = 167.0
+offset_bottom = 228.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Accuracy
+"
+
+[node name="time_bonus" type="Label" parent="Headings"]
+offset_left = 86.0
+offset_top = 271.0
+offset_right = 167.0
+offset_bottom = 278.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Time Bonus (20X)
+"
+
+[node name="accuracy_bonus" type="Label" parent="Headings"]
+offset_left = 86.0
+offset_top = 297.0
+offset_right = 187.0
+offset_bottom = 304.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Accuracy Bonus (15X)"
+
+[node name="Life_bonus" type="Label" parent="Headings"]
+offset_left = 86.0
+offset_top = 324.0
+offset_right = 167.0
+offset_bottom = 331.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Life Bonus (10X)"
+
+[node name="Gem_bonus" type="Label" parent="Headings"]
+offset_left = 86.0
+offset_top = 388.0
+offset_right = 167.0
+offset_bottom = 395.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "Gem Bonus"
+
+[node name="Total_score" type="Label" parent="Headings"]
+offset_left = 85.0
+offset_top = 437.0
+offset_right = 166.0
+offset_bottom = 444.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "TOTAL SCORE"
+
+[node name="Line" type="Sprite2D" parent="."]
+position = Vector2(317, 57)
+scale = Vector2(31.8824, 3)
+texture = ExtResource("1_wvdig")
+
+[node name="Line2" type="Sprite2D" parent="."]
+position = Vector2(317, 155)
+scale = Vector2(31.8824, 3)
+texture = ExtResource("1_wvdig")
+
+[node name="Line3" type="Sprite2D" parent="."]
+position = Vector2(317, 255)
+scale = Vector2(31.8824, 3)
+texture = ExtResource("1_wvdig")
+
+[node name="Line4" type="Sprite2D" parent="."]
+position = Vector2(317, 361)
+scale = Vector2(31.8824, 3)
+texture = ExtResource("1_wvdig")
+
+[node name="Score_val" type="Label" parent="."]
+offset_left = 224.0
+offset_top = 68.0
+offset_right = 332.0
+offset_bottom = 75.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_3fiej")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Time_left_val" type="Label" parent="."]
+offset_left = 212.0
+offset_top = 95.0
+offset_right = 324.0
+offset_bottom = 102.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_3fiej")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Enemies_val" type="Label" parent="."]
+offset_left = 224.0
+offset_top = 122.0
+offset_right = 332.0
+offset_bottom = 129.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_3fiej")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Shot_val" type="Label" parent="."]
+offset_left = 224.0
+offset_top = 169.0
+offset_right = 332.0
+offset_bottom = 176.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_3fiej")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Hit_val" type="Label" parent="."]
+offset_left = 224.0
+offset_top = 195.0
+offset_right = 332.0
+offset_bottom = 202.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_3fiej")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Accuracy_val" type="Label" parent="."]
+offset_left = 191.0
+offset_top = 221.0
+offset_right = 310.0
+offset_bottom = 228.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_3fiej")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Bonus_val" type="Label" parent="."]
+offset_left = 227.0
+offset_top = 271.0
+offset_right = 335.0
+offset_bottom = 278.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_3fiej")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Bonus_accu_val" type="Label" parent="."]
+offset_left = 227.0
+offset_top = 297.0
+offset_right = 335.0
+offset_bottom = 304.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_3fiej")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Bonus_life_val" type="Label" parent="."]
+offset_left = 227.0
+offset_top = 324.0
+offset_right = 335.0
+offset_bottom = 331.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_3fiej")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Gem_Bonus_val" type="Label" parent="."]
+offset_left = 224.0
+offset_top = 388.0
+offset_right = 332.0
+offset_bottom = 395.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_3fiej")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Total_score_val" type="Label" parent="."]
+offset_left = 224.0
+offset_top = 437.0
+offset_right = 332.0
+offset_bottom = 444.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_3fiej")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Fade" parent="." instance=ExtResource("4_t26wo")]
+position = Vector2(3, 2)

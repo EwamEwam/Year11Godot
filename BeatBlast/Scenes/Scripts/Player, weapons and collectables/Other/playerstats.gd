@@ -1,10 +1,10 @@
 extends Node
 
 #All variables that must be accessed in mutilple scenes are put here for ease of access.
-var health = INF
-var max_health = INF
+var health = 30
+var max_health = 30
 var weapon_selected = 1
-var weapons_unlocked = 5
+var weapons_unlocked = 2
 var level = 1
 var gems = 0
 var gun_parts = 0
@@ -17,9 +17,9 @@ var dampval = 0
 var scorenum = 0
 var healnum = 0
 var defence = 0
+var attack = 0
 var bullets_shot = 0
 var bullets_hit = 0
-var accuracy = 0
 var cooldown = 0
 var door_open = 0
 
@@ -39,8 +39,19 @@ var high_scores = {
 
 #Timers for each status effect that the player can get, it's 0 if the player doesn't have the effect.
 var current_status = {
-"Poison" = 0
+"Poison" = 0,
+"Blocked" = 0
 }
+
+#Another dictionary used to store the current inventory. pickled hearts restore 20 hp, heart_salad restore 50 hp, heart_essence restores 100 hp
+var healing_items = {
+"Jar_of_pickled_hearts" = 0,
+"Dried_hearts_in_a_can" = 0,
+"Heart_essence" = 0
+}
+
+var time_left = 0
+var enemies_defeated = 0
 
 var can_do = false
 	
@@ -56,3 +67,5 @@ func update_status():
 	if current_status.Poison > 0:
 		player.damage_player(1)
 		current_status.Poison -= 1
+	if current_status.Blocked > 0:
+		current_status.Blocked -= 1

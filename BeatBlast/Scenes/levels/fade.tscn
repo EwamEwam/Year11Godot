@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cppt3jx0ayy7d"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/World/fade.gd" id="1_7plsg"]
+[ext_resource type="Texture2D" uid="uid://beekseo4bhrkn" path="res://Sprites/Hud/black_Screen.png" id="2_cp7yi"]
+
+[node name="Fade" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_7plsg")
+
+[node name="BlackScreen" type="Sprite2D" parent="."]
+modulate = Color(0.202723, 0.202723, 0.202723, 1)
+position = Vector2(320, 242)
+scale = Vector2(34.0455, 23.6667)
+texture = ExtResource("2_cp7yi")

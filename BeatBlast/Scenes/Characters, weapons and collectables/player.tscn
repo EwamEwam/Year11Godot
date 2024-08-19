@@ -1,4 +1,4 @@
-[gd_scene load_steps=237 format=3 uid="uid://b1lyax7mlenna"]
+[gd_scene load_steps=238 format=3 uid="uid://b1lyax7mlenna"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/PlayerMovement.gd" id="1_gyp3l"]
 [ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_shadow.png" id="2_s50a2"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://c1mdakkcixtlx" path="res://Sprites/Hud/health_bar_background.png" id="4_m550f"]
 [ext_resource type="Texture2D" uid="uid://dme52gv7pug5i" path="res://Sprites/Hud/Health_Hearts_Spritesheet.png" id="5_c6u80"]
 [ext_resource type="Texture2D" uid="uid://dgf3e100gg1gp" path="res://Sprites/Characters and items/Player_Spritesheet_Pistol.png" id="5_hlbje"]
-[ext_resource type="Texture2D" uid="uid://beekseo4bhrkn" path="res://Sprites/Hud/black_Screen.png" id="5_o8e8e"]
 [ext_resource type="Texture2D" uid="uid://tunrd810ewky" path="res://Sprites/Hud/weapon selector.png" id="7_1yiri"]
 [ext_resource type="Texture2D" uid="uid://cwjnrukcefikj" path="res://Sprites/Hud/Hands.png" id="8_ignrp"]
 [ext_resource type="Texture2D" uid="uid://cx1lh2xq0g6bg" path="res://Sprites/Hud/revolver.png" id="9_du020"]
@@ -21,10 +20,12 @@
 [ext_resource type="Texture2D" uid="uid://dvnu6xjxa5w41" path="res://Sprites/Hud/smg.png" id="13_uspk7"]
 [ext_resource type="Texture2D" uid="uid://dhujapiolfjqk" path="res://Sprites/Hud/shotgun_cooldown.png" id="15_k64j3"]
 [ext_resource type="Texture2D" uid="uid://d4ft4gxw22sed" path="res://Sprites/Hud/red screen fade.png" id="17_y0f3u"]
-[ext_resource type="Texture2D" uid="uid://bjqtd3wy32b4v" path="res://Sprites/Hud/Score_time_Sprint_1.png" id="19_bj6xn"]
 [ext_resource type="Texture2D" uid="uid://ck4yn4ev4gc25" path="res://Sprites/Characters and items/gem.png" id="20_rnwsc"]
 [ext_resource type="Texture2D" uid="uid://bpmqpsi3iuob2" path="res://Sprites/Hud/smg_cooldown.png" id="20_sflj7"]
 [ext_resource type="Texture2D" uid="uid://cmb2vpqygxu4g" path="res://Sprites/Hud/Poison.png" id="22_ok5xa"]
+[ext_resource type="Texture2D" uid="uid://cjjf5nxiqs5mm" path="res://Sprites/Hud/Score_and_timer.png" id="23_ahiql"]
+[ext_resource type="FontFile" uid="uid://c2wf2bpy718q5" path="res://Sprites/Hud/Bourbon_and_coke_blocks.png" id="26_0axcd"]
+[ext_resource type="Texture2D" uid="uid://ddtg5df3niiqi" path="res://Sprites/Hud/Blocked.png" id="26_103gs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsncw"]
 size = Vector2(9.25877, 15.5172)
@@ -2255,6 +2256,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+process_mode = 1
 collision_mask = 2
 platform_on_leave = 2
 platform_floor_layers = 4294967040
@@ -2307,47 +2309,42 @@ shape = SubResource("RectangleShape2D_cwhyl")
 process_mode = 3
 script = ExtResource("3_ex22d")
 
-[node name="BlackScreen" type="Sprite2D" parent="Hud"]
-visible = false
-modulate = Color(0.666569, 0.666569, 0.666569, 1)
-position = Vector2(322, 248)
-scale = Vector2(40, 40)
-texture = ExtResource("5_o8e8e")
+[node name="CanvasModulate" type="CanvasModulate" parent="Hud"]
 
-[node name="RedScreenFade" type="Sprite2D" parent="Hud"]
+[node name="RedScreenFade" type="Sprite2D" parent="Hud/CanvasModulate"]
 visible = false
 texture = ExtResource("17_y0f3u")
 centered = false
 
-[node name="bar" type="AnimatedSprite2D" parent="Hud"]
+[node name="bar" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(262, 39)
 scale = Vector2(2.8, 2.8)
 sprite_frames = SubResource("SpriteFrames_3rvtn")
 animation = &"Bar_sprites"
 speed_scale = 0.0
 
-[node name="heart" type="AnimatedSprite2D" parent="Hud"]
+[node name="heart" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(31.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
 animation = &"Sprites"
 speed_scale = 0.0
 
-[node name="heart2" type="AnimatedSprite2D" parent="Hud"]
+[node name="heart2" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(73.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
 animation = &"Sprites"
 speed_scale = 0.0
 
-[node name="heart3" type="AnimatedSprite2D" parent="Hud"]
+[node name="heart3" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(115.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
 animation = &"Sprites"
 speed_scale = 0.0
 
-[node name="heart4" type="AnimatedSprite2D" parent="Hud"]
+[node name="heart4" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(157.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
@@ -2355,108 +2352,108 @@ animation = &"Sprites"
 autoplay = "Sprites"
 speed_scale = 0.0
 
-[node name="heart5" type="AnimatedSprite2D" parent="Hud"]
+[node name="heart5" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(199.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
 animation = &"Sprites"
 speed_scale = 0.0
 
-[node name="heart6" type="AnimatedSprite2D" parent="Hud"]
+[node name="heart6" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(241.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
 animation = &"Sprites"
 speed_scale = 0.0
 
-[node name="heart7" type="AnimatedSprite2D" parent="Hud"]
+[node name="heart7" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(283.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
 animation = &"Sprites"
 speed_scale = 0.0
 
-[node name="heart8" type="AnimatedSprite2D" parent="Hud"]
+[node name="heart8" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(325.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
 animation = &"Sprites"
 speed_scale = 0.0
 
-[node name="heart9" type="AnimatedSprite2D" parent="Hud"]
+[node name="heart9" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(367.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
 animation = &"Sprites"
 speed_scale = 0.0
 
-[node name="heart10" type="AnimatedSprite2D" parent="Hud"]
+[node name="heart10" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(409.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
 animation = &"Sprites"
 speed_scale = 0.0
 
-[node name="heart11" type="AnimatedSprite2D" parent="Hud"]
+[node name="heart11" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(451.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
 animation = &"Sprites"
 speed_scale = 0.0
 
-[node name="heart12" type="AnimatedSprite2D" parent="Hud"]
+[node name="heart12" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(493.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
 animation = &"Sprites"
 speed_scale = 0.0
 
-[node name="Hands" type="Sprite2D" parent="Hud"]
+[node name="Hands" type="Sprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(28, 72)
 scale = Vector2(2, 2)
 texture = ExtResource("8_ignrp")
 
-[node name="Pistol" type="Sprite2D" parent="Hud"]
+[node name="Pistol" type="Sprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(68, 74)
 scale = Vector2(2, 2)
 texture = ExtResource("9_i5eox")
 
-[node name="Revovler" type="Sprite2D" parent="Hud"]
+[node name="Revovler" type="Sprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(108, 74)
 scale = Vector2(2, 2)
 texture = ExtResource("9_du020")
 
-[node name="Shotgun" type="Sprite2D" parent="Hud"]
+[node name="Shotgun" type="Sprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(148, 74)
 scale = Vector2(2, 2)
 texture = ExtResource("10_fr0ec")
 
-[node name="SMG" type="Sprite2D" parent="Hud"]
+[node name="SMG" type="Sprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(188, 73)
 scale = Vector2(2, 2)
 texture = ExtResource("13_uspk7")
 
-[node name="AK-47" type="Sprite2D" parent="Hud"]
+[node name="AK-47" type="Sprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(228, 74)
 scale = Vector2(2, 2)
 
-[node name="Rocket_launcher" type="Sprite2D" parent="Hud"]
+[node name="Rocket_launcher" type="Sprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(268, 74)
 scale = Vector2(2, 2)
 
-[node name="WeaponSelector" type="Sprite2D" parent="Hud"]
+[node name="WeaponSelector" type="Sprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(28, 74)
 scale = Vector2(2, 2)
 texture = ExtResource("7_1yiri")
 
-[node name="Dash_cooldown" type="AnimatedSprite2D" parent="Hud"]
+[node name="Dash_cooldown" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(21, 116)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_htct1")
 animation = &"still"
 autoplay = "still"
 
-[node name="Cooldown" type="AnimatedSprite2D" parent="Hud"]
+[node name="Cooldown" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
 position = Vector2(46, 118)
 rotation = -1.5708
 scale = Vector2(2, 2)
@@ -2465,69 +2462,99 @@ animation = &"1"
 centered = false
 offset = Vector2(-8.08334, 0.0349541)
 
-[node name="ScoreTimeSprint1" type="Sprite2D" parent="Hud"]
-position = Vector2(606, 19)
-scale = Vector2(2, 2)
-texture = ExtResource("19_bj6xn")
+[node name="Score_timer_hud" type="Sprite2D" parent="Hud/CanvasModulate"]
+position = Vector2(588, 48)
+scale = Vector2(3, 3)
+texture = ExtResource("23_ahiql")
 
-[node name="Poison" type="Sprite2D" parent="Hud"]
-position = Vector2(23, 459)
+[node name="Poison" type="Sprite2D" parent="Hud/CanvasModulate"]
+position = Vector2(24, 459)
 scale = Vector2(3, 3)
 texture = ExtResource("22_ok5xa")
 
-[node name="Gem" type="Sprite2D" parent="Hud"]
-position = Vector2(612, 444)
+[node name="Gem" type="Sprite2D" parent="Hud/CanvasModulate"]
+position = Vector2(612, 447)
 scale = Vector2(0.191782, 0.155027)
 texture = ExtResource("20_rnwsc")
 
-[node name="Poison_timer" type="Label" parent="Hud"]
-anchors_preset = -1
-anchor_left = -2.838
-anchor_top = 0.287
-anchor_right = -2.838
-anchor_bottom = 0.287
-offset_left = 1850.32
-offset_top = 311.24
-offset_right = 1878.32
-offset_bottom = 346.24
-tooltip_text = "Poisoned"
-mouse_filter = 1
-theme_override_font_sizes/font_size = 25
-text = "99"
+[node name="Blocked" type="Sprite2D" parent="Hud/CanvasModulate"]
+position = Vector2(27, 411)
+scale = Vector2(3, 3)
+texture = ExtResource("26_103gs")
 
-[node name="Timer" type="Label" parent="Hud"]
-offset_left = 533.0
-offset_top = 15.0
-offset_right = 573.0
-offset_bottom = 38.0
-theme_override_colors/font_color = Color(0.572549, 0.572549, 0.572549, 1)
-text = "0"
-horizontal_alignment = 2
-
-[node name="Score" type="Label" parent="Hud"]
+[node name="Score" type="Label" parent="Hud/CanvasModulate"]
 anchors_preset = -1
 anchor_bottom = 0.211
-offset_left = 410.0
-offset_top = -1.0
-offset_right = 573.0
-offset_bottom = -79.28
-theme_override_colors/font_color = Color(0.574328, 0.574328, 0.574328, 1)
+offset_left = 309.0
+offset_top = 33.0
+offset_right = 472.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("26_0axcd")
+theme_override_font_sizes/font_size = 1
 text = "0"
 horizontal_alignment = 2
 
-[node name="Gem_Count" type="Label" parent="Hud"]
+[node name="Gem_Count" type="Label" parent="Hud/CanvasModulate"]
 anchors_preset = -1
 anchor_left = 0.048
 anchor_top = -0.008
 anchor_right = 0.048
 anchor_bottom = -0.008
-offset_left = 540.28
-offset_top = 457.84
-offset_right = 603.28
-offset_bottom = 480.84
-text = "0
-"
+offset_left = 510.0
+offset_top = 464.0
+offset_right = 573.0
+offset_bottom = 471.0
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("26_0axcd")
+text = "0"
 horizontal_alignment = 2
 
-[connection signal="animation_finished" from="Hud/Dash_cooldown" to="Hud" method="_on_dash_cooldown_animation_finished"]
-[connection signal="animation_finished" from="Hud/Cooldown" to="Hud" method="_on_cooldown_animation_finished"]
+[node name="Timer" type="Label" parent="Hud/CanvasModulate"]
+offset_left = 497.0
+offset_top = 96.0
+offset_right = 566.0
+offset_bottom = 103.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("26_0axcd")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Blocked_timer" type="Label" parent="Hud/CanvasModulate"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.055
+anchor_top = 0.875
+anchor_right = 0.102
+anchor_bottom = 0.904
+offset_left = 35.0
+offset_top = 420.0
+offset_right = 47.0
+offset_bottom = 427.0
+scale = Vector2(2, 2)
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("26_0axcd")
+theme_override_font_sizes/font_size = 25
+text = "99"
+
+[node name="Poison_timer" type="Label" parent="Hud/CanvasModulate"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.055
+anchor_top = 0.965
+anchor_right = 0.105
+anchor_bottom = 0.994
+offset_left = 34.9999
+offset_top = 463.0
+offset_right = 46.9999
+offset_bottom = 470.0
+scale = Vector2(2, 2)
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("26_0axcd")
+theme_override_font_sizes/font_size = 25
+text = "99"
+
+[connection signal="animation_finished" from="Hud/CanvasModulate/Dash_cooldown" to="Hud" method="_on_dash_cooldown_animation_finished"]
+[connection signal="animation_finished" from="Hud/CanvasModulate/Cooldown" to="Hud" method="_on_cooldown_animation_finished"]

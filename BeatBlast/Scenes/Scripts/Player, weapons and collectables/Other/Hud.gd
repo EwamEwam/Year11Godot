@@ -1,44 +1,46 @@
 extends CanvasLayer
 
 const gems_number = preload("res://Scenes/Other/Gems_numbers.tscn")
-@onready var bar = $bar
-@onready var red = $RedScreenFade
-@onready var heart1 = $heart
-@onready var heart2 = $heart2
-@onready var heart3 = $heart3
-@onready var heart4 = $heart4
-@onready var heart5 = $heart5
-@onready var heart6 = $heart6
-@onready var heart7 = $heart7
-@onready var heart8 = $heart8
-@onready var heart9 = $heart9
-@onready var heart10 = $heart10
-@onready var heart11 = $heart11
-@onready var heart12 = $heart12
-@onready var selection = $WeaponSelector
-@onready var hands = $Hands
-@onready var pistol = $Pistol
-@onready var revolver = $Revovler
-@onready var shotgun = $Shotgun
-@onready var smg = $SMG
-@onready var ak47 = $"AK-47"
-@onready var rocket = $Rocket_launcher
-@onready var Cooldown_sprite = $Cooldown
-@onready var Dash_cooldown = $Dash_cooldown
+@onready var bar = $CanvasModulate/bar
+@onready var red = $CanvasModulate/RedScreenFade
+@onready var heart1 = $CanvasModulate/heart
+@onready var heart2 = $CanvasModulate/heart2
+@onready var heart3 = $CanvasModulate/heart3
+@onready var heart4 = $CanvasModulate/heart4
+@onready var heart5 = $CanvasModulate/heart5
+@onready var heart6 = $CanvasModulate/heart6
+@onready var heart7 = $CanvasModulate/heart7
+@onready var heart8 = $CanvasModulate/heart8
+@onready var heart9 = $CanvasModulate/heart9
+@onready var heart10 = $CanvasModulate/heart10
+@onready var heart11 = $CanvasModulate/heart11
+@onready var heart12 = $CanvasModulate/heart12
+@onready var selection = $CanvasModulate/WeaponSelector
+@onready var hands = $CanvasModulate/Hands
+@onready var pistol = $CanvasModulate/Pistol
+@onready var revolver = $CanvasModulate/Revovler
+@onready var shotgun = $CanvasModulate/Shotgun
+@onready var smg = $CanvasModulate/SMG
+@onready var ak47 = $"CanvasModulate/AK-47"
+@onready var rocket = $CanvasModulate/Rocket_launcher
+@onready var Cooldown_sprite = $CanvasModulate/Cooldown
+@onready var Dash_cooldown = $CanvasModulate/Dash_cooldown
 @onready var player = get_tree().get_first_node_in_group("Player")
-@onready var Black_screen = $BlackScreen
-@onready var score = $Score
-@onready var timer = $Timer
-@onready var gems = $Gem_Count
-@onready var gem_icon = $Gem
-@onready var poison = $Poison
-@onready var poison_timer = $Poison_timer
+@onready var score = $CanvasModulate/Score
+@onready var timer = $CanvasModulate/Timer
+@onready var gems = $CanvasModulate/Gem_Count
+@onready var gem_icon = $CanvasModulate/Gem
+@onready var poison = $CanvasModulate/Poison
+@onready var poison_timer = $CanvasModulate/Poison_timer
+@onready var blocked = $CanvasModulate/Blocked
+@onready var blocked_timer = $CanvasModulate/Blocked_timer
+@onready var hud = $CanvasModulate
 
 @onready var world = get_node('/root/level')
 
 #now thats a lot of if statements ;)
 func _ready():
-	player.died.connect(black_screen)
+	player.died.connect(fade)
 	player.cooldown.connect(start_cooldown)
 	player.dash_cooldown.connect(start_dash_cooldown)
 	player.red.connect(damaged)
@@ -66,6 +68,12 @@ func _ready():
 	if Playerstats.weapons_unlocked > 6:
 		rocket.visible = true
 	
+	hud.modulate.a = 0
+	await get_tree().create_timer(1).timeout
+	for i in range(20):
+		hud.modulate.a += 0.05
+		await get_tree().create_timer(0.05).timeout
+		
 func _physics_process(delta):
 	bar.set_frame(Playerstats.max_health/10-3)
 	heart1.set_frame(clampf(Playerstats.health,0,10))
@@ -132,8 +140,8 @@ func _physics_process(delta):
 		
 	selection.global_position.x = Playerstats.weapon_selected * 40 - 12
 	
-	if Playerstats.gems > 999:
-		Playerstats.gems = 999
+	if Playerstats.gems > 9999:
+		Playerstats.gems = 9999
 	
 	if Playerstats.health > Playerstats.max_health:
 		Playerstats.health = Playerstats.max_health
@@ -175,19 +183,6 @@ func damaged(val):
 			val = val/1.5
 		red.visible = false
 
-func black_screen():
-	get_tree().paused = true
-	var val = 0
-	Black_screen.visible = true
-	Black_screen.modulate.a = 0
-	await get_tree().create_timer(1).timeout
-	for i in range(25):
-		Black_screen.visible = true
-		val += 0.04
-		Black_screen.modulate.a = val
-		await get_tree().create_timer(0.035).timeout
-	get_tree().change_scene_to_file("res://Scenes/levels/level_select.tscn")
-	
 func update_status():
 	if Playerstats.current_status.Poison > 0:
 		poison.visible = true
@@ -196,3 +191,16 @@ func update_status():
 	else:
 		poison.visible = false
 		poison_timer.visible = false
+	if Playerstats.current_status.Blocked > 0:
+		blocked.visible = true
+		blocked_timer.visible = true
+		blocked_timer.text = var_to_str(Playerstats.current_status.Blocked)
+	else:
+		blocked.visible = false
+		blocked_timer.visible = false
+
+func fade():
+	await get_tree().create_timer(2).timeout
+	for i in range(20):
+		hud.modulate.a -= 0.05
+		await get_tree().create_timer(0.05).timeout

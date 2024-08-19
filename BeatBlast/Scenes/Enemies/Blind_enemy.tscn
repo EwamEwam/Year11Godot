@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://ckxij2marce8w"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/blind_enemy.gd" id="1_vt2ta"]
+[ext_resource type="Texture2D" uid="uid://cpwdnmkwoc0mc" path="res://Sprites/Characters and items/green_slime_shadow.png" id="2_pm8jt"]
+[ext_resource type="Texture2D" uid="uid://by4rbbdcvt8k2" path="res://Sprites/Hud/Pistol.png" id="3_k77yc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5p6wr"]
+radius = 31.0
+height = 122.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rfs76"]
+radius = 40.0
+height = 132.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3gl2h"]
+radius = 766.261
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_drgqc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_k77yc")
+}],
+"loop": true,
+"name": &"Default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2iqs"]
+bg_color = Color(0.0511426, 0.130704, 0.0452494, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6u01"]
+bg_color = Color(0.360437, 0.555103, 0.167512, 1)
+
+[node name="blind_enemy" type="CharacterBody2D" groups=["Enemy"]]
+process_mode = 1
+position = Vector2(0, 1)
+collision_layer = 5
+collision_mask = 3
+collision_priority = 5.0
+motion_mode = 1
+script = ExtResource("1_vt2ta")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 18)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5p6wr")
+
+[node name="Movement_timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="hurttimer" type="Timer" parent="."]
+wait_time = 1.25
+one_shot = true
+autostart = true
+
+[node name="hurtbox" type="Area2D" parent="."]
+visible = false
+
+[node name="collision_shape" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(0, 15)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rfs76")
+
+[node name="Movement_circle" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
+shape = SubResource("CircleShape2D_3gl2h")
+
+[node name="GreenSlimeShadow" type="Sprite2D" parent="."]
+position = Vector2(0, 48)
+scale = Vector2(8, 8)
+texture = ExtResource("2_pm8jt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Slime_sprite")
+
+[node name="Slime_sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_drgqc")
+animation = &"Default"
+
+[node name="Health_Metre" type="ProgressBar" parent="."]
+offset_left = -52.0
+offset_top = 52.0
+offset_right = 52.0
+offset_bottom = 60.0
+theme_override_styles/background = SubResource("StyleBoxFlat_k2iqs")
+theme_override_styles/fill = SubResource("StyleBoxFlat_v6u01")
+max_value = 8.0
+value = 4.0
+show_percentage = false

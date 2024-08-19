@@ -34,6 +34,7 @@ enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/abfi/plu
 [gui]
 
 timers/tooltip_delay_sec=0.0
+theme/custom_font="res://Sprites/Hud/Bourbon_and_coke_blocks.png"
 
 [importer_defaults]
 

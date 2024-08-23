@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://wdoi22iiikmr"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/dashing_enemy.gd" id="1_7a152"]
-[ext_resource type="Texture2D" uid="uid://dmdt0gsa2x7iv" path="res://Sprites/Characters and items/Heart.png" id="1_yt5mr"]
+[ext_resource type="Texture2D" uid="uid://cqxeo2avq4tdh" path="res://Sprites/Characters and items/spring.png" id="2_3lsqm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7lpwe"]
 radius = 34.0
@@ -46,11 +46,10 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_7lpwe")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-modulate = Color(0.498663, 0.62172, 0.696176, 1)
-self_modulate = Color(0.960784, 0, 0.956863, 1)
-position = Vector2(1, -3)
-scale = Vector2(0.221875, 0.221875)
-texture = ExtResource("1_yt5mr")
+modulate = Color(0.864309, 0.273698, 0.55174, 1)
+position = Vector2(-0.151787, 2)
+scale = Vector2(0.207239, 0.285714)
+texture = ExtResource("2_3lsqm")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 

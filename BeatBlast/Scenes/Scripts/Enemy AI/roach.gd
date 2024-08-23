@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 400.0
-const ACCELLERATION = 20.0
+const ACCELLERATION = 15.0
 const FRICTION = 3.0
 var score_value = 2
 @onready var Sprite = $Roach_sprite
@@ -49,7 +49,7 @@ func _physics_process(delta):
 					var direction_to_player = global_position.direction_to(player.global_position)
 					Sprite.look_at(Vector2(Playerstats.player_x, Playerstats.player_y))
 					velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
-				elif not collision.is_in_group("Enemy"):
+				elif not collision.is_in_group("Enemy") and not collision == self:
 					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		else:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -88,7 +88,8 @@ func check_for_death():
 		new_score.global_position = global_position
 		add_sibling(new_score)
 		Playerstats.score += score_value
-		for i in range(randi_range(0,1)):
+		Playerstats.enemies_defeated += 1
+		for i in range(randi_range(1,2)):
 			var new_gem = gem1.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)

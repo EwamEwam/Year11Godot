@@ -53,7 +53,7 @@ func _physics_process(delta):
 				if collision.is_in_group("Player") and not Raycast.is_colliding() and can_move:
 					var direction_to_player = global_position.direction_to(player.global_position)
 					velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
-				elif not collision.is_in_group("Enemy"):
+				elif not collision.is_in_group("Enemy") and not collision == self:
 					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		else:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -83,8 +83,9 @@ func check_for_death():
 		new_score.global_position = global_position
 		add_sibling(new_score)
 		Playerstats.score += score_value
+		Playerstats.enemies_defeated += 1
 		queue_free()
-		for i in range(randi_range(5,6)):
+		for i in range(randi_range(10,11)):
 			var new_gem = gem1.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)

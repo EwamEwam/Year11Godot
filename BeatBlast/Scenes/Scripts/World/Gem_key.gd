@@ -7,3 +7,4 @@ signal level_complete
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		emit_signal("level_complete")
+		queue_free()

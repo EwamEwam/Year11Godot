@@ -94,7 +94,7 @@ offset_bottom = 278.0
 scale = Vector2(3, 3)
 size_flags_horizontal = 6
 size_flags_vertical = 6
-text = "Time Bonus (20X)
+text = "Time Bonus (10X)
 "
 
 [node name="accuracy_bonus" type="Label" parent="Headings"]
@@ -105,7 +105,7 @@ offset_bottom = 304.0
 scale = Vector2(3, 3)
 size_flags_horizontal = 6
 size_flags_vertical = 6
-text = "Accuracy Bonus (15X)"
+text = "Accuracy Bonus (10X)"
 
 [node name="Life_bonus" type="Label" parent="Headings"]
 offset_left = 86.0

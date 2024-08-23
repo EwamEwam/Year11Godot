@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/blind_enemy.gd" id="1_vt2ta"]
 [ext_resource type="Texture2D" uid="uid://cpwdnmkwoc0mc" path="res://Sprites/Characters and items/green_slime_shadow.png" id="2_pm8jt"]
-[ext_resource type="Texture2D" uid="uid://by4rbbdcvt8k2" path="res://Sprites/Hud/Pistol.png" id="3_k77yc"]
+[ext_resource type="Texture2D" uid="uid://dt6f03417irn1" path="res://Sprites/Characters and items/Particle.png" id="3_py2ve"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5p6wr"]
 radius = 31.0
@@ -19,7 +19,7 @@ radius = 766.261
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_k77yc")
+"texture": ExtResource("3_py2ve")
 }],
 "loop": true,
 "name": &"Default",
@@ -42,7 +42,6 @@ motion_mode = 1
 script = ExtResource("1_vt2ta")
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 18)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_5p6wr")
@@ -80,7 +79,7 @@ texture = ExtResource("2_pm8jt")
 root_node = NodePath("../Slime_sprite")
 
 [node name="Slime_sprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(8, 8)
+scale = Vector2(30, 30)
 sprite_frames = SubResource("SpriteFrames_drgqc")
 animation = &"Default"
 

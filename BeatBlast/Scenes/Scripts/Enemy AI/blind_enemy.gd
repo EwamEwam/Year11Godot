@@ -1,15 +1,16 @@
 extends CharacterBody2D
 
-const SPEED = 200.0
-const ACCELLERATION = 15.0
+const SPEED = 300.0
+const ACCELLERATION = 20.0
 const FRICTION = 2.5
-var score_value = 10
+var score_value = 25
 @onready var Sprite = $Slime_sprite
 @onready var animation = $AnimationPlayer
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const gem = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
+const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
 @export var health = 20
 @onready var timer = $hurttimer
 @onready var movement_timer = $Movement_timer
@@ -96,10 +97,15 @@ func check_for_death():
 		new_score.global_position = global_position
 		add_sibling(new_score)
 		Playerstats.score += score_value
-		for i in range(randi_range(3,4)):
+		for i in range(randi_range(12,13)):
 			var new_gem = gem.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
+		for i in range(randi_range(3,4)):
+			var new_gem = gem5.instantiate()
+			new_gem.global_position = global_position
+			add_sibling(new_gem)
+		queue_free()
 		
 func take_damage(dmg):
 	health -= dmg
@@ -121,7 +127,7 @@ func update_health_bar():
 	
 func set_direction() -> void:
 	setting = true
-	await get_tree().create_timer(randf_range(1.2,4)).timeout
+	await get_tree().create_timer(randf_range(0.5,1)).timeout
 	direction = Vector2(randf_range(-1,1),randf_range(-1,1))
-	movement_timer.start(randf_range(1.2,4))
+	movement_timer.start(randf_range(1,4))
 	setting = false

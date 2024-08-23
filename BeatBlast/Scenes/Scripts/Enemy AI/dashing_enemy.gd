@@ -110,11 +110,12 @@ func check_for_death():
 		new_score.global_position = global_position
 		add_sibling(new_score)
 		Playerstats.score += score_value
-		for i in range(randi_range(5,6)):
+		Playerstats.enemies_defeated += 1
+		for i in range(randi_range(10,11)):
 			var new_gem = gem1.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
-		for i in range(randi_range(1,2)):
+		for i in range(randi_range(3,4)):
 			var new_gem = gem5.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)

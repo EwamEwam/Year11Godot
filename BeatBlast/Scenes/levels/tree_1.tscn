@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://drykstjbemitf"]
+
+[ext_resource type="Texture2D" uid="uid://dsert4p0sb5e3" path="res://Sprites/World/Tree2.png" id="1_vchje"]
+[ext_resource type="Texture2D" uid="uid://bnislg57ejh70" path="res://Sprites/World/Tree_shadow.png" id="2_xi1q6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j0ibw"]
+size = Vector2(20, 22.375)
+
+[node name="Tree1" type="Sprite2D" groups=["Collision"]]
+modulate = Color(0.75582, 0.78, 0.5382, 1)
+scale = Vector2(8, 8)
+texture = ExtResource("1_vchje")
+
+[node name="TreeShadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1.5, 21.625)
+texture = ExtResource("2_xi1q6")
+
+[node name="Collision" type="StaticBody2D" parent="." groups=["Collision"]]
+collision_layer = 130
+collision_mask = 130
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+position = Vector2(0.75, 10.5625)
+shape = SubResource("RectangleShape2D_j0ibw")

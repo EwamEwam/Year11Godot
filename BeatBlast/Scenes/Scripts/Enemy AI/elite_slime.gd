@@ -11,6 +11,7 @@ var score_value = 250
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart40.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
+const gem = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
 @export var health = 60
 @export var max_health = 60
 @onready var timer = $hurttimer
@@ -51,7 +52,7 @@ func _physics_process(delta):
 				if collision.is_in_group("Player") and not Raycast.is_colliding():
 					var direction_to_player = global_position.direction_to(player.global_position)
 					velocity = velocity.move_toward(direction_to_player * clampf(SPEED/clampf((health/0.9),1,100),210,380), ACCELLERATION)
-				elif not collision.is_in_group("Enemy"):
+				elif not collision.is_in_group("Enemy") and not collision == self:
 					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		else:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -95,7 +96,7 @@ func check_for_death():
 		hitbox.disabled = true
 		animation_can_play = false
 		current_state = state.Death
-		await get_tree().create_timer(0.75).timeout
+		await get_tree().create_timer(0.8).timeout
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
 		add_sibling(new_heart)
@@ -104,8 +105,12 @@ func check_for_death():
 		new_score.global_position = global_position
 		add_sibling(new_score)
 		Playerstats.score += score_value
-		queue_free()
-		for i in range(randi_range(4,5)):
+		Playerstats.enemies_defeated += 1
+		for i in range(randi_range(10,13)):
+			var new_gem = gem.instantiate()
+			new_gem.global_position = global_position
+			add_sibling(new_gem)
+		for i in range(randi_range(9,10)):
 			var new_gem = gem5.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)

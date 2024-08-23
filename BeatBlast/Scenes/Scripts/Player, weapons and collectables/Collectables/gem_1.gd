@@ -18,6 +18,15 @@ func _physics_process(delta):
 	
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
-		Playerstats.gemsval = 1
+		$Animation_Player.speed_scale = 2
+		shadow()
+		rotation = 0
+		$Collision.disabled = true
+		Playerstats.gemsval = value
 		Playerstats.gems += value
-		queue_free()
+		$Animation_Player.play("Collected")
+
+func shadow():
+	for i in range(10):
+		await get_tree().create_timer(0.05).timeout
+		$Shadow.modulate.a -= 0.1

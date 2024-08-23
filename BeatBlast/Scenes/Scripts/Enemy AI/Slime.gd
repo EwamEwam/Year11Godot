@@ -52,10 +52,10 @@ func _physics_process(delta):
 		var in_circle = circle.get_overlapping_bodies()
 		if in_circle:
 			for collision in in_circle:
-				if collision.is_in_group("Player") and Raycast.is_colliding()==false:
+				if collision.is_in_group("Player") and not Raycast.is_colliding():
 					var direction_to_player = global_position.direction_to(player.global_position)
 					velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
-				elif not collision.is_in_group("Enemy"):
+				elif not collision.is_in_group("Enemy") and not collision == self:
 					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		else:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -112,7 +112,8 @@ func check_for_death():
 		new_score.global_position = global_position
 		add_sibling(new_score)
 		Playerstats.score += score_value
-		for i in range(randi_range(3,4)):
+		Playerstats.enemies_defeated += 1
+		for i in range(randi_range(6,8)):
 			var new_gem = gem.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)

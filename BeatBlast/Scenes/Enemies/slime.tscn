@@ -13,7 +13,7 @@ radius = 40.0
 height = 132.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3gl2h"]
-radius = 766.261
+radius = 897.295
 
 [sub_resource type="Animation" id="Animation_dbvv5"]
 length = 0.769231
@@ -309,7 +309,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rfs76")
 
 [node name="Movement_circle" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
 shape = SubResource("CircleShape2D_3gl2h")

@@ -17,16 +17,16 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	
 func _on_body_entered(body):
 	if body.is_in_group("Enemy") and body.has_method("take_damage"):
-		body.take_damage(damage)
+		body.take_damage(damage+Playerstats.attack)
 		var new_number = number.instantiate()
 		new_number.global_position = global_position
-		Playerstats.damval=damage
+		Playerstats.damval=damage+Playerstats.attack
 		add_sibling(new_number)
 		Playerstats.bullets_hit += 1
 	elif body.is_in_group("Button") and body.has_method("pressed"):
 		body.pressed()
 	elif body.is_in_group("Prop") and body.has_method("damage"):
-		body.damage(damage)
+		body.damage(damage+Playerstats.attack)
 	queue_free()
 	var new_collide = collide.instantiate()
 	new_collide.global_position=global_position

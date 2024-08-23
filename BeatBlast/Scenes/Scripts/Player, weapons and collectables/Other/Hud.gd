@@ -36,6 +36,8 @@ const gems_number = preload("res://Scenes/Other/Gems_numbers.tscn")
 @onready var blocked_timer = $CanvasModulate/Blocked_timer
 @onready var hud = $CanvasModulate
 
+
+@onready var key = get_tree().get_first_node_in_group("Key")
 @onready var world = get_node('/root/level')
 
 #now thats a lot of if statements ;)
@@ -47,6 +49,9 @@ func _ready():
 	Cooldown_sprite.modulate = Color(1.15,1.15,1.15,1)
 	Dash_cooldown.modulate = Color(1.15,1.15,1.15,1)
 	
+	if key != null:
+		key.level_complete.connect(fade_level_complete)
+		
 	hands.visible = true
 	pistol.visible = false
 	revolver.visible = false
@@ -200,7 +205,12 @@ func update_status():
 		blocked_timer.visible = false
 
 func fade():
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(3).timeout
 	for i in range(20):
 		hud.modulate.a -= 0.05
+		await get_tree().create_timer(0.05).timeout
+
+func fade_level_complete():
+	for i in range(5):
+		hud.modulate.a -= 0.2
 		await get_tree().create_timer(0.05).timeout

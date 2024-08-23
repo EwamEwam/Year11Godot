@@ -16,8 +16,10 @@ const Bullet3 = preload("res://Scenes/Characters, weapons and collectables/bulle
 const Bullet4 = preload("res://Scenes/Characters, weapons and collectables/bullet4.tscn")
 const Bullet5 = preload("res://Scenes/Characters, weapons and collectables/bullet5.tscn")
 const Punch_box = preload("res://Scenes/Characters, weapons and collectables/punch_box.tscn")
+const gun_particle = preload("res://Scenes/Other/gun_particle.tscn")
 const number = preload("res://Scenes/Other/DamageP_numbers.tscn")
 const heal_num = preload ("res://Scenes/Other/Heal_numbers.tscn")
+const running_particle = preload("res://Scenes/Other/running_particle.tscn")
 @onready var world = get_node('/root/level')
 var direction=Vector2.ZERO
 @onready var Camera = $Camera2D
@@ -33,6 +35,8 @@ var animation_can_play = true
 var dead = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var particle_timer = 4
+
 signal cooldown
 signal dash_cooldown
 signal red(val)
@@ -47,6 +51,7 @@ func _physics_process(delta):
 	if direction:
 		if Playerstats.health > 0:
 			velocity = velocity.move_toward(direction * SPEED, ACCELERATION)
+			particle_check()
 		else:
 			pass
 	else:
@@ -100,6 +105,16 @@ func _physics_process(delta):
 	check_item_select()
 	Update_animation()
 	move_and_slide()
+	
+func particle_check():
+	if particle_timer <= 0:
+		particle_timer = randi_range(3,4)
+		var new_particle = running_particle.instantiate()
+		new_particle.global_position = $Particle_spawner.global_position
+		add_sibling(new_particle)
+		new_particle.set_direction(direction)
+	else:
+		particle_timer -= 1
 	
 func death():
 	emit_signal("died")
@@ -221,40 +236,53 @@ func Shoot():
 			shake(7.5,0.05,4,1.25)
 			emit_signal("cooldown")
 			shoot_animation(0.1)
-			timer.start(0.65)
+			make_particles(randi_range(3,4))
+			timer.start(0.75)
 		3:
 			if not timer.is_stopped() or Playerstats.health < 3:
 				return
 			Playerstats.health -= 2
+			get_mouse_direction()
+			set_spawner(Pointing_to_mouse)
 			var bulle5 = Bullet5.instantiate()
-			bulle5.global_position = global_position
+			bulle5.global_position = spawner.global_position
 			bulle5.look_at(get_global_mouse_position())
 			add_sibling(bulle5)
 			shake(12,0.05,6,1.2)
 			emit_signal("cooldown")
+			shoot_animation(0.2)
+			make_particles(randi_range(5,6))
 			timer.start(2)
 		4:
 			if not timer.is_stopped() or Playerstats.health < 5:
 				return
 			Playerstats.health -= 4
+			get_mouse_direction()
+			set_spawner(Pointing_to_mouse)
 			for i in range(6):
 				var bulle2 = Bullet2.instantiate()
-				bulle2.global_position = global_position
+				bulle2.global_position = spawner.global_position
 				bulle2.look_at(get_global_mouse_position())
 				add_sibling(bulle2)
 			shake(10,0.05,5,1.2)
 			emit_signal("cooldown")
+			shoot_animation(0.15)
+			make_particles(randi_range(6,7))
 			timer.start(1.15)
 		5:
 			if not timer.is_stopped() or Playerstats.health < 2:
 				return
 			Playerstats.health -= 1
+			get_mouse_direction()
+			set_spawner(Pointing_to_mouse)
 			var bulle3 = Bullet3.instantiate()
-			bulle3.global_position = global_position
+			bulle3.global_position = spawner.global_position
 			bulle3.look_at(get_global_mouse_position())
 			add_sibling(bulle3)
 			shake(4,0.05,3,1.25)
 			emit_signal("cooldown")
+			shoot_animation(0.05)
+			make_particles(randi_range(2,3))
 			timer.start(0.25)
 		6:
 			if not timer.is_stopped() or Playerstats.health < 2:
@@ -299,6 +327,16 @@ func shoot_animation(time):
 		Direction_to_mouse.Down_right:
 			Animation_player.speed_scale = 1
 			Animation_player.play("Shoot_down_right" + str(Playerstats.weapon_selected))
+			await get_tree().create_timer(time).timeout
+			current_state = State.Idle
+		Direction_to_mouse.Up_right:
+			Animation_player.speed_scale = 1
+			Animation_player.play("Shoot_up_right" + str(Playerstats.weapon_selected))
+			await get_tree().create_timer(time).timeout
+			current_state = State.Idle
+		Direction_to_mouse.Up_left:
+			Animation_player.speed_scale = 1
+			Animation_player.play("Shoot_up_left" + str(Playerstats.weapon_selected))
 			await get_tree().create_timer(time).timeout
 			current_state = State.Idle
 			
@@ -453,3 +491,26 @@ func set_spawner(val):
 				await get_tree().create_timer(0.075).timeout
 				light.energy -= 40
 			light.visible = false
+		Direction_to_mouse.Up_right:
+			spawner.position = Vector2(6,-2)
+			light.visible = true
+			light.energy = 10
+			for i in range(2):
+				await get_tree().create_timer(0.075).timeout
+				light.energy -= 5
+			light.visible = false
+		Direction_to_mouse.Up_left:
+			spawner.position = Vector2(-6,2)
+			light.visible = true
+			light.energy = 10
+			for i in range(2):
+				await get_tree().create_timer(0.075).timeout
+				light.energy -= 5
+			light.visible = false
+
+func make_particles(amt):
+	for i in range(amt):
+		var new_particle = gun_particle.instantiate()
+		new_particle.global_position = spawner.global_position
+		add_sibling(new_particle)
+		

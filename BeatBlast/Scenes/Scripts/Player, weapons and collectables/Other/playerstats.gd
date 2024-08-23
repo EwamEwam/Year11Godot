@@ -4,10 +4,10 @@ extends Node
 var health = 30
 var max_health = 30
 var weapon_selected = 1
-var weapons_unlocked = 2
+var weapons_unlocked = 5
 var level = 1
+var levels_unlocked = 1
 var gems = 0
-var gun_parts = 0
 var player_x = 0
 var player_y = 0
 var score = 0
@@ -50,10 +50,27 @@ var healing_items = {
 "Heart_essence" = 0
 }
 
+var stats = {
+"Bullets_shot" = 0,
+"Bullets_hit" = 0,
+"Enemies_defeated" = 0,
+"Total_score" = 0,
+"Play_time" = 0
+}
+
 var time_left = 0
 var enemies_defeated = 0
 
 var can_do = false
+
+#Stores the store information like the level of each stat and the price of each item
+var health_cost = 400
+var health_lv = 0
+var defence_cost = 750
+var defence_lv = 0
+var attack_cost = 1000
+var attack_lv = 0
+
 	
 func _process(delta):
 	if not can_do:
@@ -63,6 +80,9 @@ func _process(delta):
 		can_do = false
 		
 func update_status():
+	stats.Play_time += 1
+	clampi(stats.Play_time,0,3599)
+	gems = int(gems)
 	var player = get_tree().get_first_node_in_group("Player")
 	if current_status.Poison > 0:
 		player.damage_player(1)

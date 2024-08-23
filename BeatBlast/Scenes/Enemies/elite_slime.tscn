@@ -1,7 +1,8 @@
-[gd_scene load_steps=39 format=3 uid="uid://5yy6sv432dpm"]
+[gd_scene load_steps=40 format=3 uid="uid://5yy6sv432dpm"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/elite_slime.gd" id="1_77e7d"]
 [ext_resource type="Texture2D" uid="uid://c532x0awtrmqg" path="res://Sprites/Characters and items/Elite_slime_spritesheet.png" id="2_21bku"]
+[ext_resource type="Texture2D" uid="uid://sxanpwntgyem" path="res://Sprites/Characters and items/Elite_slime_shadow.png" id="2_uykdl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kh8ja"]
 radius = 79.0
@@ -16,7 +17,6 @@ height = 292.0
 
 [sub_resource type="Animation" id="Animation_bqnjw"]
 length = 0.8
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -275,7 +275,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6s2pm")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 10.0
 }, {
@@ -359,6 +359,12 @@ collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_77e7d")
 
+[node name="EliteSlimeShadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.596078)
+position = Vector2(2, 110)
+scale = Vector2(8, 8)
+texture = ExtResource("2_uykdl")
+
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(25, 25)
 collision_mask = 128
@@ -369,6 +375,7 @@ one_shot = true
 autostart = true
 
 [node name="hurtbox" type="Area2D" parent="."]
+visible = false
 
 [node name="collision_shape" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2(0, 59)
@@ -376,8 +383,10 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_kh8ja")
 
 [node name="Movement_circle" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
+visible = false
 shape = SubResource("CircleShape2D_3gl2h")
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
@@ -393,9 +402,9 @@ libraries = {
 [node name="Slime_sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_aajyd")
-animation = &"Hurt"
+animation = &"Death"
 autoplay = "Right"
-frame_progress = 0.192683
+frame = 7
 
 [node name="Health_metre" type="ProgressBar" parent="."]
 offset_left = -52.0

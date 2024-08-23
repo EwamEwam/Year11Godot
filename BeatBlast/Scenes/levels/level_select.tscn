@@ -1,30 +1,301 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxljylm4j4evh"]
+[gd_scene load_steps=7 format=3 uid="uid://bxljylm4j4evh"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/World/level_select.gd" id="1_2wxdh"]
+[ext_resource type="Texture2D" uid="uid://qg6vl67wucn0" path="res://Sprites/Hud/level_select_background.png" id="2_lnscf"]
 [ext_resource type="FontFile" uid="uid://c2wf2bpy718q5" path="res://Sprites/Hud/Bourbon_and_coke_blocks.png" id="2_lylxr"]
 [ext_resource type="PackedScene" uid="uid://cppt3jx0ayy7d" path="res://Scenes/levels/fade.tscn" id="3_bxy3v"]
+[ext_resource type="Texture2D" uid="uid://misl73u72xsh" path="res://Sprites/Hud/Line.png" id="4_7mcjw"]
+[ext_resource type="Texture2D" uid="uid://cfdwvs6r4lj3d" path="res://Sprites/Characters and items/NC-0008_Ketamine_HCl_150_mg_mL_Medetomidine_HCl_5_mg_mL_30_mL_Sterile__49981.png" id="5_ocmrx"]
 
 [node name="level_select" type="Node2D"]
+position = Vector2(0, 3)
 script = ExtResource("1_2wxdh")
 
+[node name="LevelSelectBackground" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+scale = Vector2(3, 3)
+texture = ExtResource("2_lnscf")
+centered = false
+
 [node name="level_1_select" type="Button" parent="."]
-offset_left = 11.0
-offset_top = 14.0
-offset_right = 208.0
-offset_bottom = 91.0
+offset_left = 244.0
+offset_top = 327.0
+offset_right = 364.0
+offset_bottom = 358.0
+scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("2_lylxr")
 text = "Level 1 Select"
 
+[node name="level_2_select" type="Button" parent="."]
+offset_left = 245.0
+offset_top = 203.0
+offset_right = 363.0
+offset_bottom = 234.0
+scale = Vector2(3, 3)
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_lylxr")
+text = "Level 2 Select"
+
 [node name="Store" type="Button" parent="."]
-offset_left = 16.0
-offset_top = 103.0
-offset_right = 195.0
-offset_bottom = 171.0
+offset_left = 29.0
+offset_top = 27.0
+offset_right = 73.0
+offset_bottom = 42.0
+scale = Vector2(4, 4)
+focus_mode = 0
 text = "Store
 "
+
+[node name="Text" type="Node2D" parent="."]
+
+[node name="High Scores" type="Label" parent="Text"]
+offset_left = 237.0
+offset_top = 33.0
+offset_right = 320.0
+offset_bottom = 40.0
+scale = Vector2(3, 3)
+text = "Lv 1 High Score"
+
+[node name="High_score_value" type="Label" parent="Text"]
+offset_left = 462.0
+offset_top = 37.0
+offset_right = 521.0
+offset_bottom = 44.0
+scale = Vector2(2.5, 2.5)
+text = "0"
+horizontal_alignment = 2
+
+[node name="Line" type="Sprite2D" parent="Text"]
+position = Vector2(424.5, 58)
+scale = Vector2(25, 3)
+texture = ExtResource("4_7mcjw")
+
+[node name="Heart_capsule" type="Sprite2D" parent="Text"]
+position = Vector2(486, 43)
+scale = Vector2(0.013924, 0.013924)
+texture = ExtResource("5_ocmrx")
+
+[node name="High Scores2" type="Label" parent="Text"]
+offset_left = 237.0
+offset_top = 62.0
+offset_right = 320.0
+offset_bottom = 69.0
+scale = Vector2(3, 3)
+text = "Lv 2 High Score"
+
+[node name="High_score_value2" type="Label" parent="Text"]
+offset_left = 462.0
+offset_top = 66.0
+offset_right = 521.0
+offset_bottom = 73.0
+scale = Vector2(2.5, 2.5)
+text = "0"
+horizontal_alignment = 2
+
+[node name="Line2" type="Sprite2D" parent="Text"]
+position = Vector2(424.5, 87)
+scale = Vector2(25, 3)
+texture = ExtResource("4_7mcjw")
+
+[node name="Heart_capsule2" type="Sprite2D" parent="Text"]
+position = Vector2(495, 73)
+scale = Vector2(0.013924, 0.013924)
+texture = ExtResource("5_ocmrx")
+
+[node name="Line3" type="Sprite2D" parent="Text"]
+position = Vector2(120.408, 223.469)
+scale = Vector2(9.48379, 3)
+texture = ExtResource("4_7mcjw")
+
+[node name="Line4" type="Sprite2D" parent="Text"]
+modulate = Color(0.777882, 0.777882, 0.777882, 1)
+position = Vector2(169, 333)
+scale = Vector2(0.161763, 2.16667)
+texture = ExtResource("4_7mcjw")
+
+[node name="Line5" type="Sprite2D" parent="Text"]
+modulate = Color(0.783523, 0.783523, 0.783523, 1)
+position = Vector2(169, 337)
+scale = Vector2(0.161763, 2.16667)
+texture = ExtResource("4_7mcjw")
+
+[node name="Stat_heading" type="Label" parent="Text"]
+offset_left = 80.6123
+offset_top = 197.959
+offset_right = 163.612
+offset_bottom = 204.959
+scale = Vector2(3, 3)
+text = "Stats"
+
+[node name="Max_hp" type="Label" parent="Text"]
+offset_left = 41.8368
+offset_top = 233.673
+offset_right = 124.837
+offset_bottom = 240.673
+scale = Vector2(2, 2)
+text = "Max HP"
+
+[node name="Max_hp2" type="Label" parent="Text"]
+offset_left = 42.0
+offset_top = 234.0
+offset_right = 119.0
+offset_bottom = 241.0
+scale = Vector2(2, 2)
+text = "30"
+horizontal_alignment = 2
+
+[node name="Damage" type="Label" parent="Text"]
+offset_left = 41.8368
+offset_top = 248.98
+offset_right = 124.837
+offset_bottom = 255.98
+scale = Vector2(2, 2)
+text = "Damage"
+
+[node name="Damage2" type="Label" parent="Text"]
+offset_left = 42.0
+offset_top = 249.0
+offset_right = 119.0
+offset_bottom = 256.0
+scale = Vector2(2, 2)
+text = "III"
+horizontal_alignment = 2
+
+[node name="Defense" type="Label" parent="Text"]
+offset_left = 41.8368
+offset_top = 265.306
+offset_right = 124.837
+offset_bottom = 272.306
+scale = Vector2(2, 2)
+text = "Defense"
+
+[node name="Defense2" type="Label" parent="Text"]
+offset_left = 42.0
+offset_top = 265.0
+offset_right = 119.0
+offset_bottom = 272.0
+scale = Vector2(2, 2)
+text = "IV"
+horizontal_alignment = 2
+
+[node name="Bullets_shot" type="Label" parent="Text"]
+offset_left = 41.8368
+offset_top = 354.265
+offset_right = 124.837
+offset_bottom = 361.265
+scale = Vector2(2, 2)
+text = "Shots"
+
+[node name="Bullets_shot2" type="Label" parent="Text"]
+offset_left = 42.0
+offset_top = 354.0
+offset_right = 119.0
+offset_bottom = 361.0
+scale = Vector2(2, 2)
+text = "253"
+horizontal_alignment = 2
+
+[node name="Bullets_hit" type="Label" parent="Text"]
+offset_left = 41.8368
+offset_top = 369.51
+offset_right = 124.837
+offset_bottom = 376.51
+scale = Vector2(2, 2)
+text = "Hits"
+
+[node name="Bullets_hit2" type="Label" parent="Text"]
+offset_left = 42.0
+offset_top = 370.0
+offset_right = 119.0
+offset_bottom = 377.0
+scale = Vector2(2, 2)
+text = "253"
+horizontal_alignment = 2
+
+[node name="Accuracy" type="Label" parent="Text"]
+offset_left = 41.8368
+offset_top = 385.755
+offset_right = 124.837
+offset_bottom = 392.755
+scale = Vector2(2, 2)
+text = "Accuracy
+"
+
+[node name="Accuracy2" type="Label" parent="Text"]
+offset_left = 42.0
+offset_top = 386.0
+offset_right = 119.0
+offset_bottom = 393.0
+scale = Vector2(2, 2)
+text = "100%"
+horizontal_alignment = 2
+
+[node name="Score" type="Label" parent="Text"]
+offset_left = 42.0
+offset_top = 294.0
+offset_right = 125.0
+offset_bottom = 301.0
+scale = Vector2(2, 2)
+text = "Score
+"
+
+[node name="Score2" type="Label" parent="Text"]
+offset_left = 42.0
+offset_top = 294.0
+offset_right = 119.0
+offset_bottom = 301.0
+scale = Vector2(2, 2)
+text = "283405"
+horizontal_alignment = 2
+
+[node name="Kills" type="Label" parent="Text"]
+offset_left = 41.8368
+offset_top = 311.306
+offset_right = 124.837
+offset_bottom = 318.306
+scale = Vector2(2, 2)
+text = "Kills
+"
+
+[node name="Kills2" type="Label" parent="Text"]
+offset_left = 42.0
+offset_top = 311.0
+offset_right = 119.0
+offset_bottom = 318.0
+scale = Vector2(2, 2)
+text = "1437"
+horizontal_alignment = 2
+
+[node name="Play_time" type="Label" parent="Text"]
+offset_left = 41.8368
+offset_top = 327.551
+offset_right = 124.837
+offset_bottom = 334.551
+scale = Vector2(2, 2)
+text = "Play Time
+"
+
+[node name="Time1" type="Label" parent="Text"]
+offset_left = 172.0
+offset_top = 328.0
+offset_right = 184.0
+offset_bottom = 335.0
+scale = Vector2(2, 2)
+text = "59"
+horizontal_alignment = 2
+
+[node name="Time2" type="Label" parent="Text"]
+offset_left = 140.0
+offset_top = 328.0
+offset_right = 152.0
+offset_bottom = 335.0
+scale = Vector2(2, 2)
+text = "59"
+horizontal_alignment = 2
 
 [node name="Fade" parent="." instance=ExtResource("3_bxy3v")]
 position = Vector2(-3, 5)
 
 [connection signal="pressed" from="level_1_select" to="." method="_on_level_1_select_pressed"]
+[connection signal="pressed" from="level_2_select" to="." method="_on_level_2_select_pressed"]
 [connection signal="pressed" from="Store" to="." method="_on_store_pressed"]

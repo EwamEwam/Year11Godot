@@ -14,7 +14,7 @@ extends Node2D
 @onready var total_score = $Total_score_val
 @onready var screen = $Fade
 
-var accuracy_value
+var accuracy_value = 0
 var time_bonus_value = 0
 var accuracy_bonus_value = 0
 var life_bonus_value = 0
@@ -22,10 +22,21 @@ var bonus_gems = 0
 var total_score_value = 0
 
 func _ready() -> void:
+	Playerstats.stats.Bullets_shot += Playerstats.bullets_shot
+	Playerstats.stats.Bullets_hit += Playerstats.bullets_hit
+	Playerstats.stats.Enemies_defeated += Playerstats.enemies_defeated
 	if Playerstats.health > 0:
 		heading.text = "RESULTS - SUCCESS"
+		if Playerstats.level == Playerstats.levels_unlocked:
+			Playerstats.levels_unlocked += 1
 	else:
 		heading.text = "RESULTS - FAILURE"
+		Playerstats.health = 0
+		Playerstats.score = 0
+		Playerstats.enemies_defeated = 0
+		Playerstats.bullets_hit = 0
+		Playerstats.bullets_shot = 0
+		Playerstats.time_left = 0
 	score.visible =false
 	time.visible =false
 	enemies.visible =false
@@ -60,12 +71,13 @@ func calculate_values():
 		accuracy_value = round(accuracy_value)
 	else:
 		accuracy_value = 0
-	time_bonus_value = Playerstats.time_left * 20
-	accuracy_bonus_value = accuracy_value * 15
+	time_bonus_value = Playerstats.time_left * 10
+	accuracy_bonus_value = accuracy_value * 10
 	life_bonus_value = Playerstats.health * 10
 	total_score_value = Playerstats.score + time_bonus_value + accuracy_bonus_value + life_bonus_value
-	bonus_gems = floor(total_score_value / 15)
-
+	bonus_gems = floor(total_score_value / 5)
+	Playerstats.stats.Total_score += total_score_value
+	
 func animation():
 	await get_tree().create_timer(2.5).timeout
 	score.visible = true
@@ -92,3 +104,10 @@ func animation():
 	await get_tree().create_timer(2.5).timeout
 	Playerstats.gems += bonus_gems
 	screen.fade_in(0.05,20,"res://Scenes/levels/level_select.tscn")
+	match Playerstats.level:
+		1:
+			if total_score_value > Playerstats.high_scores.Level1HighScore:
+				Playerstats.high_scores.Level1HighScore = total_score_value
+		2:
+			if total_score_value > Playerstats.high_scores.Level2HighScore:
+				Playerstats.high_scores.Level2HighScore = total_score_value

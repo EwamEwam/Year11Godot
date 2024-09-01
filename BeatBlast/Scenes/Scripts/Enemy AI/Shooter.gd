@@ -5,11 +5,13 @@ const ACCELLERATION = 25.0
 const FRICTION = 5.5
 var score_value = 25
 @onready var Sprite = $Gun
+@onready var onscreen = $VisibleOnScreenNotifier2D
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const bullet = preload("res://Scenes/Enemies/enemy_bullet.tscn")
 const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
+const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
 @export var health = 12
 @export var max_health = 12
 @onready var timer = $Hurt_Timer
@@ -34,40 +36,41 @@ func check_collision():
 				timer.start()
 				
 func _physics_process(delta):
-	
-	Raycast.target_position.x = Playerstats.player_x - global_position.x
-	Raycast.target_position.y = Playerstats.player_y - global_position.y
-	
-	if health > 0: 
-		var can_move = true
-		var too_close = Too_Close_Circle.get_overlapping_bodies()
-		var in_circle = circle.get_overlapping_bodies()
-		if too_close:
-			for collision in too_close:
-				if collision.is_in_group("Player"):
-					check_collision()
-					update_health_bar()
-					can_move = false
-		if in_circle:
-			for collision in in_circle:
-				if collision.is_in_group("Player") and not Raycast.is_colliding() and can_move:
-					var direction_to_player = global_position.direction_to(player.global_position)
-					velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
-				elif not collision.is_in_group("Enemy") and not collision == self:
-					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+	if onscreen.is_on_screen():
+		Raycast.target_position.x = Playerstats.player_x - global_position.x
+		Raycast.target_position.y = Playerstats.player_y - global_position.y
+		
+		if health > 0: 
+			var can_move = true
+			var too_close = Too_Close_Circle.get_overlapping_bodies()
+			var in_circle = circle.get_overlapping_bodies()
+			if too_close:
+				for collision in too_close:
+					if collision.is_in_group("Player"):
+						check_collision()
+						update_health_bar()
+						can_move = false
+			if in_circle:
+				for collision in in_circle:
+					if collision.is_in_group("Player") and not Raycast.is_colliding() and can_move:
+						var direction_to_player = global_position.direction_to(player.global_position)
+						velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
+					elif not collision.is_in_group("Enemy") and not collision == self:
+						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+			else:
+				velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		else:
-			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
-	else:
-		velocity = Vector2.ZERO
-	
-	if velocity .x > 0:
-		Sprite.flip_h = true
-	elif velocity.x < 0:
-		Sprite.flip_h = false
+			velocity = Vector2.ZERO
+		
+		check_for_death()
+		check_collision()
+		
+		if velocity .x > 0:
+			Sprite.flip_h = true
+		elif velocity.x < 0:
+			Sprite.flip_h = false
 	
 	update_health_bar()
-	check_for_death()
-	check_collision()
 	move_and_slide()
 	
 func check_for_death():
@@ -89,7 +92,7 @@ func check_for_death():
 			var new_gem = gem1.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
-		
+
 func take_damage(dmg):
 	health -= dmg
 
@@ -97,7 +100,7 @@ func _on_shoot_timer_timeout():
 	var in_circle = circle.get_overlapping_bodies()
 	if in_circle:
 		for collision in in_circle:
-			if collision.is_in_group("Player") and Raycast.is_colliding()==false and health > 0:
+			if collision.is_in_group("Player") and not Raycast.is_colliding() and health > 0:
 				var new_bullet = bullet.instantiate()
 				new_bullet.global_position = global_position
 				new_bullet.look_at(Vector2(Playerstats.player_x, Playerstats.player_y))

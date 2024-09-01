@@ -6,6 +6,7 @@ const FRICTION = 2.5
 var score_value = 25
 @onready var Sprite = $Slime_sprite
 @onready var animation = $AnimationPlayer
+@onready var onscreen = $VisibleOnScreenNotifier2D
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
@@ -28,11 +29,9 @@ var animation_can_play = true
 var dead = false
 @export var max_health = 20
 
-#sets the slime's colour right for the level
 func _ready():
 	Sprite.modulate = Color(0.7, 0.7, 0.7, 0.9)
 
-#Checks for any collision and if the player is inside it.
 func check_collision():
 	if not timer.is_stopped() or health < 1:
 		return
@@ -45,29 +44,31 @@ func check_collision():
 				timer.start()
 				
 func _physics_process(delta):
-	if health > 0:
-		if not movement_timer.is_stopped():
-			velocity = velocity.move_toward(direction * SPEED, ACCELLERATION)
+	if onscreen.is_on_screen():
+		if health > 0:
+			if not movement_timer.is_stopped():
+				velocity = velocity.move_toward(direction * SPEED, ACCELLERATION)
+			else:
+				velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		else:
-			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
-	else:
-		velocity = Vector2.ZERO
-	
-	if animation_can_play:
-		animation.speed_scale = clampf(velocity.length()/50, 0.8, 10)
-	else:
-		animation.speed_scale = 1
-	
+			velocity = Vector2.ZERO
+		
+		if animation_can_play:
+			animation.speed_scale = clampf(velocity.length()/50, 0.8, 10)
+		else:
+			animation.speed_scale = 1
+		
+		check_collision()
+		change_state()
+		animation_play()
+		
+		if not setting and movement_timer.is_stopped():
+			set_direction()
+			
 	if not dead:
 		check_for_death()
-		
-	if not setting and movement_timer.is_stopped():
-		set_direction()
-		
+	
 	update_health_bar()
-	change_state()
-	animation_play()
-	check_collision()
 	move_and_slide()
 	
 func change_state():

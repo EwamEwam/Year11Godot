@@ -285,6 +285,8 @@ collision_priority = 5.0
 motion_mode = 1
 script = ExtResource("1_w2g43")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(25, 25)
 collision_mask = 128

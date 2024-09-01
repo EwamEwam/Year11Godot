@@ -24,5 +24,5 @@ func set_direction(val):
 
 func get_colour() -> Color:
 	var image: Image = get_viewport().get_texture().get_image()
-	var color: Color = image.get_pixel(320,289)
+	var color: Color = image.get_pixel(320,291)
 	return color

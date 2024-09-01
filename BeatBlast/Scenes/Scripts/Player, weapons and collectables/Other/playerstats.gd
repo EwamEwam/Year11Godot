@@ -1,8 +1,8 @@
 extends Node
 
 #All variables that must be accessed in mutilple scenes are put here for ease of access.
-var health = 30
-var max_health = 30
+var health = 120
+var max_health = 120
 var weapon_selected = 1
 var weapons_unlocked = 5
 var level = 1
@@ -40,7 +40,10 @@ var high_scores = {
 #Timers for each status effect that the player can get, it's 0 if the player doesn't have the effect.
 var current_status = {
 "Poison" = 0,
-"Blocked" = 0
+"Blocked" = 0,
+"Slimed" = 0,
+"Burning" = 0,
+"Super_Poison" = 0
 }
 
 #Another dictionary used to store the current inventory. pickled hearts restore 20 hp, heart_salad restore 50 hp, heart_essence restores 100 hp
@@ -84,8 +87,17 @@ func update_status():
 	clampi(stats.Play_time,0,3599)
 	gems = int(gems)
 	var player = get_tree().get_first_node_in_group("Player")
-	if current_status.Poison > 0:
-		player.damage_player(1)
-		current_status.Poison -= 1
-	if current_status.Blocked > 0:
-		current_status.Blocked -= 1
+	if player != null:
+		if current_status.Poison > 0:
+			player.damage_player(1)
+			current_status.Poison -= 1
+		if current_status.Blocked > 0:
+			current_status.Blocked -= 1
+		if current_status.Super_Poison > 0:
+			player.damage_player(2)
+			current_status.Super_Poison -= 1
+		if current_status.Burning > 0:
+			player.damage_player(1)
+			current_status.Burning -= 1
+		if current_status.Slimed > 0:
+			current_status.Slimed -= 1

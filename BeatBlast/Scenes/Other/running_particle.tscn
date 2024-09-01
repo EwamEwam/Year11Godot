@@ -9,5 +9,5 @@ z_index = -1
 script = ExtResource("2_gggcm")
 
 [node name="Particle_sprite" type="Sprite2D" parent="."]
-scale = Vector2(6, 6)
+scale = Vector2(6.5, 6.5)
 texture = ExtResource("1_2o6qx")

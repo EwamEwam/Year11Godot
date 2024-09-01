@@ -1,0 +1,105 @@
+[gd_scene load_steps=14 format=3 uid="uid://cwf6hrcxkmnmp"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/fire_spell_1.gd" id="1_c54dg"]
+[ext_resource type="Texture2D" uid="uid://b021w6tnwpeqk" path="res://Sprites/Characters and items/Fireball.png" id="2_1bdew"]
+[ext_resource type="Texture2D" uid="uid://can7kmxf1e788" path="res://Sprites/World/light.png" id="3_1nyvf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_netue"]
+atlas = ExtResource("2_1bdew")
+region = Rect2(0, 0, 5, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4trm"]
+atlas = ExtResource("2_1bdew")
+region = Rect2(5, 0, 5, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lo3mg"]
+atlas = ExtResource("2_1bdew")
+region = Rect2(10, 0, 5, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uuq0h"]
+atlas = ExtResource("2_1bdew")
+region = Rect2(15, 0, 5, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6xd4"]
+atlas = ExtResource("2_1bdew")
+region = Rect2(20, 0, 5, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5613f"]
+atlas = ExtResource("2_1bdew")
+region = Rect2(25, 0, 5, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duvp3"]
+atlas = ExtResource("2_1bdew")
+region = Rect2(30, 0, 5, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eui2y"]
+atlas = ExtResource("2_1bdew")
+region = Rect2(35, 0, 5, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d0g2g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_netue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4trm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lo3mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uuq0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6xd4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5613f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_duvp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eui2y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfeqh"]
+size = Vector2(106, 40)
+
+[node name="Fire_spell_1" type="Node2D"]
+position = Vector2(-15, 0)
+script = ExtResource("1_c54dg")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_d0g2g")
+autoplay = "default"
+frame_progress = 0.689215
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(15, 0)
+shape = SubResource("RectangleShape2D_rfeqh")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(15, 9.53674e-07)
+scale = Vector2(5.2, 1.9)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(44, 1)
+scale = Vector2(0.475073, 0.475073)
+color = Color(0.843484, 0.47523, 0.152095, 1)
+energy = 4.0
+texture = ExtResource("3_1nyvf")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

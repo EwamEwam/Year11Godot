@@ -6,6 +6,7 @@ const FRICTION = 3.5
 var score_value = 35
 @onready var Sprite = $Sprite
 @onready var animation = $AnimationPlayer
+@onready var onscreen = $VisibleOnScreenNotifier2D
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart10.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
@@ -43,39 +44,40 @@ func check_collision():
 				timer.start()
 				
 func _physics_process(delta):
-	
-	Raycast.target_position.x = Playerstats.player_x - global_position.x
-	Raycast.target_position.y = Playerstats.player_y - global_position.y
-	
-	if health > 0:
-		var in_circle = circle.get_overlapping_bodies()
-		if in_circle:
-			for collision in in_circle:
-				if collision.is_in_group("Player") and not Raycast.is_colliding() and dashtimer.is_stopped():
-					dash()
-					dashtimer.start()
-				elif not collision.is_in_group("Enemy"):
-					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+	if onscreen.is_on_screen():
+		Raycast.target_position.x = Playerstats.player_x - global_position.x
+		Raycast.target_position.y = Playerstats.player_y - global_position.y
+		
+		if health > 0:
+			var in_circle = circle.get_overlapping_bodies()
+			if in_circle:
+				for collision in in_circle:
+					if collision.is_in_group("Player") and not Raycast.is_colliding() and dashtimer.is_stopped():
+						dash()
+						dashtimer.start()
+					elif not collision.is_in_group("Enemy"):
+						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+			else:
+				velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		else:
-			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
-	else:
-		velocity = Vector2.ZERO
-	
-	if animation_can_play:
-		animation.speed_scale = clampf(velocity.length()/50, 0.8, 10)
-	else:
-		animation.speed_scale = 1
-	
-	if velocity == Vector2.ZERO:
-		damage = 2
-	
+			velocity = Vector2.ZERO
+		
+		if animation_can_play:
+			animation.speed_scale = clampf(velocity.length()/50, 0.8, 10)
+		else:
+			animation.speed_scale = 1
+		
+		if velocity == Vector2.ZERO:
+			damage = 2
+			
+			check_collision()
+			animation_play()
+			change_state()
+			
 	if not dead:
 		check_for_death()
 		
 	update_health_bar()
-	change_state()
-	animation_play()
-	check_collision()
 	move_and_slide()
 	
 func dash():

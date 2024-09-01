@@ -7,6 +7,7 @@ var score_value = 250
 @onready var Sprite = $Slime_sprite
 @onready var animation = $AnimationPlayer
 @onready var hitbox = $hitbox
+@onready var onscreen = $VisibleOnScreenNotifier2D
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart40.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
@@ -41,41 +42,42 @@ func check_collision() -> void:
 				timer.start()
 				
 func _physics_process(delta):
-	
-	Raycast.target_position.x = Playerstats.player_x - global_position.x
-	Raycast.target_position.y = Playerstats.player_y - global_position.y
-	
-	if health > 0:
-		var in_circle = circle.get_overlapping_bodies()
-		if in_circle:
-			for collision in in_circle:
-				if collision.is_in_group("Player") and not Raycast.is_colliding():
-					var direction_to_player = global_position.direction_to(player.global_position)
-					velocity = velocity.move_toward(direction_to_player * clampf(SPEED/clampf((health/0.9),1,100),210,380), ACCELLERATION)
-				elif not collision.is_in_group("Enemy") and not collision == self:
-					velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
-		else:
-			velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
-	else:
-		velocity = Vector2.ZERO
-	
-	if animation_can_play:
-		if velocity .x > 0:
-			current_state = state.Right
-		elif velocity.x < 0:
-			current_state = state.Left
+	if onscreen.is_on_screen():
+		Raycast.target_position.x = Playerstats.player_x - global_position.x
+		Raycast.target_position.y = Playerstats.player_y - global_position.y
 		
-	if animation_can_play:
-		animation.speed_scale = clampf(velocity.length()/60, 0.5, 15)
-	else:
-		animation.speed_scale = 1
-	
+		if health > 0:
+			var in_circle = circle.get_overlapping_bodies()
+			if in_circle:
+				for collision in in_circle:
+					if collision.is_in_group("Player") and not Raycast.is_colliding():
+						var direction_to_player = global_position.direction_to(player.global_position)
+						velocity = velocity.move_toward(direction_to_player * clampf(SPEED/clampf((health/0.9),1,100),210,380), ACCELLERATION)
+					elif not collision.is_in_group("Enemy") and not collision == self:
+						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+			else:
+				velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+		else:
+			velocity = Vector2.ZERO
+		
+		if animation_can_play:
+			if velocity .x > 0:
+				current_state = state.Right
+			elif velocity.x < 0:
+				current_state = state.Left
+			
+		if animation_can_play:
+			animation.speed_scale = clampf(velocity.length()/60, 0.5, 15)
+		else:
+			animation.speed_scale = 1
+		
+		check_collision()
+		animation_play()
+		
 	if not dead:
 		check_for_death()
 	
-	animation_play()
 	update_health_bar()
-	check_collision()
 	move_and_slide()
 	
 func animation_play():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=450 format=3 uid="uid://b1lyax7mlenna"]
+[gd_scene load_steps=451 format=3 uid="uid://b1lyax7mlenna"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/PlayerMovement.gd" id="1_gyp3l"]
 [ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_shadow.png" id="2_s50a2"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://dy11vsr8q0j3c" path="res://Sprites/Hud/Gem.png" id="24_u53ek"]
 [ext_resource type="FontFile" uid="uid://c2wf2bpy718q5" path="res://Sprites/Hud/Bourbon_and_coke_blocks.png" id="26_0axcd"]
 [ext_resource type="Texture2D" uid="uid://ddtg5df3niiqi" path="res://Sprites/Hud/Blocked.png" id="26_103gs"]
+[ext_resource type="Texture2D" uid="uid://dix10eog3gi3m" path="res://Sprites/Hud/Slimed.png" id="29_ijb7g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsncw"]
 size = Vector2(9.25877, 15.5172)
@@ -5354,7 +5355,7 @@ texture = ExtResource("17_y0f3u")
 centered = false
 
 [node name="bar" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
-position = Vector2(262, 39)
+position = Vector2(262, 38.5)
 scale = Vector2(2.8, 2.8)
 sprite_frames = SubResource("SpriteFrames_3rvtn")
 animation = &"Bar_sprites"
@@ -5505,7 +5506,6 @@ scale = Vector2(3, 3)
 texture = ExtResource("23_ahiql")
 
 [node name="Poison" type="Sprite2D" parent="Hud/CanvasModulate"]
-visible = false
 position = Vector2(24, 459)
 scale = Vector2(3, 3)
 texture = ExtResource("22_ok5xa")
@@ -5516,10 +5516,14 @@ scale = Vector2(3, 3)
 texture = ExtResource("24_u53ek")
 
 [node name="Blocked" type="Sprite2D" parent="Hud/CanvasModulate"]
-visible = false
 position = Vector2(27, 411)
 scale = Vector2(3, 3)
 texture = ExtResource("26_103gs")
+
+[node name="Slimed" type="Sprite2D" parent="Hud/CanvasModulate"]
+position = Vector2(26, 359)
+scale = Vector2(3, 3)
+texture = ExtResource("29_ijb7g")
 
 [node name="Score" type="Label" parent="Hud/CanvasModulate"]
 anchors_preset = -1
@@ -5562,7 +5566,6 @@ text = "0"
 horizontal_alignment = 2
 
 [node name="Blocked_timer" type="Label" parent="Hud/CanvasModulate"]
-visible = false
 anchors_preset = -1
 anchor_left = 0.055
 anchor_top = 0.875
@@ -5578,19 +5581,7 @@ theme_override_fonts/font = ExtResource("26_0axcd")
 theme_override_font_sizes/font_size = 25
 text = "99"
 
-[node name="Label" type="Label" parent="Hud/CanvasModulate"]
-offset_left = 73.0
-offset_top = 434.0
-offset_right = 393.0
-offset_bottom = 461.0
-scale = Vector2(1.5, 1.5)
-text = "Sprint 2 Build
-Sprites and Coding by Bourbon and Coke 
-Idea By Roobuc"
-horizontal_alignment = 1
-
 [node name="Poison_timer" type="Label" parent="Hud/CanvasModulate"]
-visible = false
 anchors_preset = -1
 anchor_left = 0.055
 anchor_top = 0.965
@@ -5600,6 +5591,22 @@ offset_left = 34.9999
 offset_top = 463.0
 offset_right = 46.9999
 offset_bottom = 470.0
+scale = Vector2(2, 2)
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("26_0axcd")
+theme_override_font_sizes/font_size = 25
+text = "99"
+
+[node name="Slimed_timer" type="Label" parent="Hud/CanvasModulate"]
+anchors_preset = -1
+anchor_left = 0.055
+anchor_top = 0.965
+anchor_right = 0.105
+anchor_bottom = 0.994
+offset_left = 33.0
+offset_top = 368.0
+offset_right = 45.0
+offset_bottom = 375.0
 scale = Vector2(2, 2)
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("26_0axcd")

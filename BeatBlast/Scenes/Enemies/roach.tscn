@@ -165,6 +165,8 @@ collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_x8r7m")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [node name="RayCast2D" type="RayCast2D" parent="."]
 collision_mask = 128
 

@@ -5,7 +5,7 @@ var SPEED = 3
 
 func _ready() -> void:
 	look_at(get_global_mouse_position())
-	rotate(deg_to_rad(randf_range(-20,20)))
+	rotate(deg_to_rad(randf_range(-35,35)))
 	SPEED *= randf_range(0.9,1.1)
 	
 func _physics_process(delta: float) -> void:

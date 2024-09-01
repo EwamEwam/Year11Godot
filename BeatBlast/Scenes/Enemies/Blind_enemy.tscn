@@ -41,6 +41,8 @@ collision_priority = 5.0
 motion_mode = 1
 script = ExtResource("1_vt2ta")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [node name="hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 18)
 rotation = 1.5708

@@ -34,6 +34,8 @@ const gems_number = preload("res://Scenes/Other/Gems_numbers.tscn")
 @onready var poison_timer = $CanvasModulate/Poison_timer
 @onready var blocked = $CanvasModulate/Blocked
 @onready var blocked_timer = $CanvasModulate/Blocked_timer
+@onready var slimed = $CanvasModulate/Slimed
+@onready var slimed_timer = $CanvasModulate/Slimed_timer
 @onready var hud = $CanvasModulate
 
 
@@ -203,6 +205,13 @@ func update_status():
 	else:
 		blocked.visible = false
 		blocked_timer.visible = false
+	if Playerstats.current_status.Slimed > 0:
+		slimed.visible = true
+		slimed_timer.visible = true
+		slimed_timer.text = var_to_str(Playerstats.current_status.Slimed)
+	else:
+		slimed.visible = false
+		slimed_timer.visible = false
 
 func fade():
 	await get_tree().create_timer(3).timeout

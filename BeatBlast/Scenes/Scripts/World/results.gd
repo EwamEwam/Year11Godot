@@ -22,6 +22,11 @@ var bonus_gems = 0
 var total_score_value = 0
 
 func _ready() -> void:
+	Playerstats.current_status.Poison = 0
+	Playerstats.current_status.Blocked = 0
+	Playerstats.current_status.Super_Poison = 0
+	Playerstats.current_status.Burning = 0
+	Playerstats.current_status.Slimed = 0
 	Playerstats.stats.Bullets_shot += Playerstats.bullets_shot
 	Playerstats.stats.Bullets_hit += Playerstats.bullets_hit
 	Playerstats.stats.Enemies_defeated += Playerstats.enemies_defeated

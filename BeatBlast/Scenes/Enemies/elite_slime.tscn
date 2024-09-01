@@ -359,6 +359,10 @@ collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_77e7d")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 5.99999)
+scale = Vector2(14.2, 12.2)
+
 [node name="EliteSlimeShadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.596078)
 position = Vector2(2, 110)
@@ -402,9 +406,8 @@ libraries = {
 [node name="Slime_sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_aajyd")
-animation = &"Death"
+animation = &"Right"
 autoplay = "Right"
-frame = 7
 
 [node name="Health_metre" type="ProgressBar" parent="."]
 offset_left = -52.0

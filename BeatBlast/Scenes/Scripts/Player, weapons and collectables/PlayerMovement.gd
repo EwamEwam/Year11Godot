@@ -50,6 +50,10 @@ func _physics_process(delta):
 	direction = Input.get_vector("left","right","up","down").normalized()
 	if direction:
 		if Playerstats.health > 0:
+			if Playerstats.current_status.Slimed > 0:
+				SPEED = 300.0
+			else:
+				SPEED = 500.0
 			velocity = velocity.move_toward(direction * SPEED, ACCELERATION)
 			particle_check()
 		else:
@@ -65,7 +69,7 @@ func _physics_process(delta):
 				Shoot()
 		
 	if Input.is_action_just_pressed("Dash"):
-		if abs(velocity) > Vector2.ZERO and dash_timer.is_stopped() and Playerstats.health > 0:
+		if abs(velocity) > Vector2.ZERO and dash_timer.is_stopped() and Playerstats.health > 0 and Playerstats.current_status.Slimed == 0:
 			shake(3.5,0.05,3,1.2)
 			dash()
 		
@@ -236,7 +240,7 @@ func Shoot():
 			shake(7.5,0.05,4,1.25)
 			emit_signal("cooldown")
 			shoot_animation(0.1)
-			make_particles(randi_range(3,4))
+			make_particles(randi_range(5,6))
 			timer.start(0.75)
 		3:
 			if not timer.is_stopped() or Playerstats.health < 3:
@@ -251,7 +255,7 @@ func Shoot():
 			shake(12,0.05,6,1.2)
 			emit_signal("cooldown")
 			shoot_animation(0.2)
-			make_particles(randi_range(5,6))
+			make_particles(randi_range(8,9))
 			timer.start(2)
 		4:
 			if not timer.is_stopped() or Playerstats.health < 5:
@@ -267,7 +271,7 @@ func Shoot():
 			shake(10,0.05,5,1.2)
 			emit_signal("cooldown")
 			shoot_animation(0.15)
-			make_particles(randi_range(6,7))
+			make_particles(randi_range(7,8))
 			timer.start(1.15)
 		5:
 			if not timer.is_stopped() or Playerstats.health < 2:
@@ -282,7 +286,7 @@ func Shoot():
 			shake(4,0.05,3,1.25)
 			emit_signal("cooldown")
 			shoot_animation(0.05)
-			make_particles(randi_range(2,3))
+			make_particles(randi_range(4,5))
 			timer.start(0.25)
 		6:
 			if not timer.is_stopped() or Playerstats.health < 2:
@@ -409,6 +413,18 @@ func check_item_select():
 func poisoned(time):
 	if time > Playerstats.current_status.Poison:
 		Playerstats.current_status.Poison = time
+
+func blocked(time):
+	if time > Playerstats.current_status.Blocked:
+		Playerstats.current_status.Blocked = time
+
+func slimed(time):
+	if time > Playerstats.current_status.Slimed:
+		Playerstats.current_status.Slimed = time
+		
+func burned(time):
+	if time > Playerstats.current_status.Burning:
+		Playerstats.current_status.Burning = time
 
 #Calculates the mouse position relationship with the player position relationship
 func get_mouse_direction():

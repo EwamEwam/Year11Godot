@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var sprite = $Particle_sprite
-var SPEED = 3
+var SPEED = 1.8
 
 func _ready() -> void:
 	var color = get_colour()
@@ -20,6 +20,7 @@ func _physics_process(delta: float) -> void:
 	
 func set_direction(val):
 	rotation = val.angle()
+	rotation += deg_to_rad(180)
 	rotate(deg_to_rad(randf_range(-30,30)))
 
 func get_colour() -> Color:

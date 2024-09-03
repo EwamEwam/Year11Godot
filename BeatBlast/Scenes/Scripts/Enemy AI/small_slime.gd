@@ -18,7 +18,6 @@ const gem = preload("res://Scenes/Characters, weapons and collectables/gem_1.tsc
 @onready var hurtbox = $hurtbox
 @onready var circle = $Movement_circle
 @onready var Raycast = $RayCast2D
-@onready var health_bar = $Health_Metre
 
 enum state {Right, Left, Hurt, Death}
 var current_state = state.Right
@@ -40,7 +39,7 @@ func check_collision():
 				collision.slimed(2)
 				timer.start()
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	if onscreen.is_on_screen():
 		Raycast.target_position.x = Playerstats.player_x - global_position.x
 		Raycast.target_position.y = Playerstats.player_y - global_position.y
@@ -91,7 +90,7 @@ func animation_play():
 		state.Death:
 			animation.play("Death")
 
-func check_for_death():
+func check_for_death() -> void:
 	if health <= 0:
 		dead = true
 		z_index = -1

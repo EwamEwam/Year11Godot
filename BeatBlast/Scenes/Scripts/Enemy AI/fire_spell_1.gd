@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") and body.has_method("damage_player"):
 		body.damage_player(Damage-Playerstats.defence)
-		body.shake(11,0.05,7,1.125)
+		body.shake(11,0.05,9,1.25)
 		body.burned(2)
 	if not body.is_in_group("Enemy"):
 		queue_free()

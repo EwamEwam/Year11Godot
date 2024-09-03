@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwfsmvjcyh3lt"]
+[gd_scene load_steps=4 format=3 uid="uid://ctx6r1hjb117h"]
 
-[ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/Enemy_Bullet.gd" id="1_jasuf"]
-[ext_resource type="Texture2D" uid="uid://vx27rpw25ce2" path="res://Sprites/Characters and items/bullet_enemy.png" id="2_74jya"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/enemy_bullet_2.gd" id="1_p18xe"]
+[ext_resource type="Texture2D" uid="uid://vx27rpw25ce2" path="res://Sprites/Characters and items/bullet_enemy.png" id="2_3j14f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js3ed"]
 size = Vector2(4, 4)
@@ -9,13 +9,13 @@ size = Vector2(4, 4)
 [node name="Enemy_Bullet" type="Area2D"]
 scale = Vector2(8, 8)
 collision_layer = 2
-script = ExtResource("1_jasuf")
+script = ExtResource("1_p18xe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_js3ed")
 
 [node name="BulletEnemy" type="Sprite2D" parent="."]
-texture = ExtResource("2_74jya")
+texture = ExtResource("2_3j14f")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, 1.19209e-07)

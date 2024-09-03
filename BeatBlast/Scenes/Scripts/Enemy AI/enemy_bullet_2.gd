@@ -1,7 +1,7 @@
 extends Area2D
 
-@export var SPEED :float = 700.0
-var damage :int = 3
+@export var SPEED :float = 800
+var damage :int = 4
 const particle :PackedScene = preload("res://Scenes/Other/Shooting_Particle.tscn")
 
 func _ready() -> void:

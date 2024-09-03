@@ -2,6 +2,7 @@ extends Area2D
 
 const collide = preload("res://Scenes/Characters, weapons and collectables/bullet_2_collision.tscn")
 const number = preload("res://Scenes/Other/DamageE_numbers.tscn")
+const particle = preload("res://Scenes/Other/Shooting_Particle.tscn")
 @export var SPEED = 1250
 var damage = 3
 
@@ -15,7 +16,7 @@ func _process(delta):
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 	
-func _on_body_entered(body):
+func _on_body_entered(body) -> void:
 	if body.is_in_group("Enemy") and body.has_method("take_damage"):
 		body.take_damage(damage+Playerstats.attack)
 		var new_number = number.instantiate()
@@ -32,3 +33,10 @@ func _on_body_entered(body):
 	new_collide.global_position=global_position
 	new_collide.global_rotation=global_rotation+90
 	add_sibling(new_collide)
+
+func _on_timer_timeout() -> void:
+	var new_particle = particle.instantiate()
+	new_particle.global_position = global_position
+	new_particle.set_direction(rotation)
+	add_sibling(new_particle)
+	$Timer.start(randf_range(0.04,0.06))

@@ -2,6 +2,7 @@ extends Area2D
 
 const collide = preload("res://Scenes/Characters, weapons and collectables/bullet_1_collision.tscn")
 const number = preload("res://Scenes/Other/DamageE_numbers.tscn")
+const particle = preload("res://Scenes/Other/Shooting_Particle.tscn")
 @export var SPEED = 1500
 var damage = 8
 var times_hit = 0
@@ -44,3 +45,10 @@ func _on_body_entered(body):
 		new_collide.global_position=global_position
 		new_collide.global_rotation=global_rotation+90
 		add_sibling(new_collide)
+
+func _on_timer_timeout() -> void:
+	var new_particle = particle.instantiate()
+	new_particle.global_position = global_position
+	new_particle.set_direction(rotation)
+	add_sibling(new_particle)
+	$Timer.start(randf_range(0.04,0.06))

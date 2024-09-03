@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-const SPEED = 225.0
-const ACCELLERATION = 18.0
-const FRICTION = 4.0
-var score_value = 25
+const SPEED = 250.0
+const ACCELLERATION = 22.5
+const FRICTION = 5.5
+var score_value = 40
 @onready var Sprite = $Slime_sprite
 @onready var animation = $AnimationPlayer
 @onready var onscreen = $VisibleOnScreenNotifier2D
@@ -11,10 +11,10 @@ var score_value = 25
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const gem = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
-@export var health = 18
+@export var health = 22
 @onready var timer = $hurttimer
 @onready var hitbox = $hitbox
-@export var damage = 6
+@export var damage = 7
 @onready var hurtbox = $hurtbox
 @onready var circle = $Movement_circle
 @onready var Raycast = $RayCast2D
@@ -24,7 +24,7 @@ enum state {Right, Left, Hurt, Death}
 var current_state = state.Right
 var animation_can_play = true
 var dead = false
-@export var max_health = 18
+@export var max_health = 22
 
 func _ready():
 	Sprite.modulate = Color(0.6, 0.6, 0.6, 0.9)

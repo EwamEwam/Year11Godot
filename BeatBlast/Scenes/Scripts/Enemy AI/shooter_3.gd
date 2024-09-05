@@ -1,23 +1,23 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const ACCELLERATION = 35.0
-const FRICTION = 7.0
-var score_value = 70
+const SPEED = 175.0
+const ACCELLERATION = 20.0
+const FRICTION = 4.5
+var score_value = 50
 @onready var Sprite = $Gun
 @onready var onscreen = $VisibleOnScreenNotifier2D
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart10.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
-const bullet = preload("res://Scenes/Enemies/enemy_bullet3.tscn")
+const arrow = preload("res://Scenes/Enemies/Arrow.tscn")
 const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
 const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
-@export var health = 32
-@export var max_health = 32
+@export var health = 25
+@export var max_health = 25
 @onready var timer = $Hurt_Timer
 @onready var hitbox = $hitbox
 @onready var shoot_timer = $Shoot_Timer
-@export var damage = 6
+@export var damage = 4
 @onready var hurtbox = $Hurtbox
 @onready var circle = $Player_Detection_Range
 @onready var Too_Close_Circle = $PLayer_Too_Close_Range
@@ -31,7 +31,7 @@ func check_collision():
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(2.5,0.05,2,1.3)
+				collision.shake(4,0.05,4,1.25)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
@@ -101,11 +101,11 @@ func _on_shoot_timer_timeout():
 	if in_circle:
 		for collision in in_circle:
 			if collision.is_in_group("Player") and not Raycast.is_colliding() and health > 0:
-				var new_bullet = bullet.instantiate()
-				new_bullet.global_position = global_position
-				new_bullet.look_at(Vector2(Playerstats.player_x, Playerstats.player_y))
-				new_bullet.rotate(deg_to_rad(randf_range(-6,6)))
-				add_sibling(new_bullet)
+				var new_arrow = arrow.instantiate()
+				new_arrow.global_position = global_position
+				new_arrow.look_at(Vector2(Playerstats.player_x, Playerstats.player_y))
+				new_arrow.rotate(deg_to_rad(randf_range(-6,6)))
+				add_sibling(new_arrow)
 	shoot_timer.start(0.3)
 
 func update_health_bar():

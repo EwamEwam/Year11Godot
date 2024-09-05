@@ -17,10 +17,12 @@ func _on_body_entered(body) -> void:
 	if body.is_in_group("Player") and body.has_method("damage_player"):
 		body.damage_player(damage - Playerstats.defence)
 		body.shake(7.5,0.05,5,1.1)
+		self.get_parent().remove_child(self)
+		body.add_child(self)
 	elif body.is_in_group("Prop") and body.has_method("damage"):
 		body.damage(damage)
 		queue_free()
-	if not body.is_in_group("Enemy"):
+	if not body.is_in_group("Enemy") and not body.is_in_group("Player"):
 		queue_free()
 		
 func _on_timer_timeout() -> void:
@@ -29,3 +31,8 @@ func _on_timer_timeout() -> void:
 	new_particle.set_direction(rotation)
 	add_sibling(new_particle)
 	$Timer.start(0.05)
+
+func set_power(speed,dam) -> void:
+	damage = dam
+	SPEED = speed
+	

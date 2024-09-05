@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://rqlvdkbur7as"]
+[gd_scene load_steps=20 format=4 uid="uid://rqlvdkbur7as"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/World/level_2.gd" id="1_xqfi6"]
 [ext_resource type="Texture2D" uid="uid://b1uv32qbh13hb" path="res://Sprites/World/Dungeon_tileset_rev3.png" id="2_khl55"]
@@ -16,8 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b1lyax7mlenna" path="res://Scenes/Characters, weapons and collectables/player.tscn" id="11_xcrw0"]
 [ext_resource type="PackedScene" uid="uid://cppt3jx0ayy7d" path="res://Scenes/levels/fade.tscn" id="12_up48r"]
 [ext_resource type="PackedScene" uid="uid://dp3qj3setksmo" path="res://Scenes/Enemies/Skeleton_mage.tscn" id="14_0urau"]
-[ext_resource type="PackedScene" uid="uid://dn8fhsgela1vs" path="res://Scenes/Enemies/shooter_2.tscn" id="17_gn0ns"]
-[ext_resource type="PackedScene" uid="uid://kjvj32fa65b3" path="res://Scenes/Enemies/shooter_3.tscn" id="18_n1y3b"]
+[ext_resource type="PackedScene" uid="uid://or40iaxcsvvj" path="res://Scenes/Enemies/Skeleton_archer.tscn" id="17_42hvw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kmwat"]
 texture = ExtResource("2_khl55")
@@ -459,21 +458,6 @@ position = Vector2(1110, -2067)
 
 [node name="Small_Slime" parent="Level_elements/Enemies" instance=ExtResource("5_3x0rp")]
 position = Vector2(712, -959)
-
-[node name="Shooter2" parent="Level_elements/Enemies" instance=ExtResource("17_gn0ns")]
-position = Vector2(627, -1171)
-
-[node name="Shooter3" parent="Level_elements/Enemies" instance=ExtResource("17_gn0ns")]
-position = Vector2(-11, -254)
-
-[node name="Shooter4" parent="Level_elements/Enemies" instance=ExtResource("17_gn0ns")]
-position = Vector2(1519, -258)
-
-[node name="Shooter5" parent="Level_elements/Enemies" instance=ExtResource("17_gn0ns")]
-position = Vector2(929, 644)
-
-[node name="Shooter_3" parent="Level_elements/Enemies" instance=ExtResource("18_n1y3b")]
-position = Vector2(112, -773)
 
 [node name="Props" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true
@@ -1228,5 +1212,8 @@ offset_bottom = -17339.0
 scale = Vector2(15, 15)
 theme_override_font_sizes/font_size = 1000
 text = "Thanks For Playing!"
+
+[node name="Shooter_3" parent="." instance=ExtResource("17_42hvw")]
+position = Vector2(359, -783)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

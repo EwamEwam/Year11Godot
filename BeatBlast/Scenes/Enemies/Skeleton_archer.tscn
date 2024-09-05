@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://or40iaxcsvvj"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/shooter_3.gd" id="1_bms8m"]
+[ext_resource type="Texture2D" uid="uid://chiswos0gntdd" path="res://Sprites/Characters and items/Gun.png" id="2_wthlb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5xtno"]
+radius = 61.0
+height = 192.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nfhye"]
+radius = 70.0
+height = 214.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iiktk"]
+radius = 1016.08
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_13upx"]
+radius = 447.881
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8syyl"]
+bg_color = Color(0.0509804, 0.129412, 0.0470588, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hku1"]
+bg_color = Color(0.360784, 0.556863, 0.168627, 1)
+
+[node name="Skeleton_archer" type="CharacterBody2D" groups=["Enemy"]]
+process_mode = 1
+collision_layer = 5
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_bms8m")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(2.86102e-06, 4.00001)
+scale = Vector2(6.2, 7.1)
+
+[node name="Gun" type="Sprite2D" parent="."]
+modulate = Color(0.608, 1, 0.52, 1)
+position = Vector2(0, 7.10543e-15)
+scale = Vector2(0.0232092, 0.0868644)
+texture = ExtResource("2_wthlb")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(25, 25)
+collision_mask = 128
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_5xtno")
+
+[node name="Hurt_Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Shoot_Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="Hurtbox_collision" type="CollisionShape2D" parent="Hurtbox"]
+visible = false
+shape = SubResource("CapsuleShape2D_nfhye")
+
+[node name="Player_Detection_Range" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="Collision_Shape" type="CollisionShape2D" parent="Player_Detection_Range"]
+visible = false
+shape = SubResource("CircleShape2D_iiktk")
+
+[node name="PLayer_Too_Close_Range" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+
+[node name="Collision_Shape_2" type="CollisionShape2D" parent="PLayer_Too_Close_Range"]
+shape = SubResource("CircleShape2D_13upx")
+
+[node name="Health_metre" type="ProgressBar" parent="."]
+offset_left = -52.0
+offset_top = 80.0
+offset_right = 52.0
+offset_bottom = 88.0
+theme_override_styles/background = SubResource("StyleBoxFlat_8syyl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8hku1")
+max_value = 12.0
+value = 6.0
+show_percentage = false
+
+[connection signal="timeout" from="Shoot_Timer" to="." method="_on_shoot_timer_timeout"]

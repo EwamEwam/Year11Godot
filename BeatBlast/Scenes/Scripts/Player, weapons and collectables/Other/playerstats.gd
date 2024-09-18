@@ -1,10 +1,11 @@
 extends Node
 
 #All variables that must be accessed in mutilple scenes are put here for ease of access.
-var health = 30
-var max_health = 30
+var health = 90
+var max_health = 90
 var weapon_selected = 1
 var weapons_unlocked = 5
+var healing_item_selected = 1
 var level = 1
 var levels_unlocked = 1
 var gems = 0
@@ -16,19 +17,27 @@ var damval = 0
 var dampval = 0
 var scorenum = 0
 var healnum = 0
-var defence = 0
-var attack = 0
+var defence = 3
+var attack = 3
 var bullets_shot = 0
 var bullets_hit = 0
 var cooldown = 0
 var door_open = 0
+var healing_cooldown = 0
+
+var blueprints = 0
+
+#Settings for the player. Changes the games visuals, audio and other aspects of gameplay:
+var settings = {
+"Allow_Shaking" = true,
+}
 
 #Dictionary, used to track what collectables the player has collected in each level
 var items_collected = {
 "Level1Heart" = 0,
-"Level1WeaponBlueprint" = 0,
+"Level1Blueprint" = 0,
 "Level2Heart" = 0,
-"Level2WeaponBlueprint" = 0
+"Level2Blueprint" = 0
 }
 
 #Another dictionary for tracking the player's high score in each level.
@@ -48,11 +57,12 @@ var current_status = {
 
 #Another dictionary used to store the current inventory. pickled hearts restore 20 hp, heart_salad restore 50 hp, heart_essence restores 100 hp
 var healing_items = {
-"Jar_of_pickled_hearts" = 0,
-"Dried_hearts_in_a_can" = 0,
-"Heart_essence" = 0
+"Jar_of_pickled_hearts" = 1,
+"Dried_hearts_in_a_can" = 1,
+"Heart_essence" = 1
 }
 
+#Stores total stats for the player
 var stats = {
 "Bullets_shot" = 0,
 "Bullets_hit" = 0,
@@ -82,6 +92,7 @@ func _process(delta):
 		update_status()
 		can_do = false
 		
+#Runs every second and manages the status effects and other cooldowns
 func update_status():
 	stats.Play_time += 1
 	clampi(stats.Play_time,0,3599)
@@ -101,3 +112,5 @@ func update_status():
 			current_status.Burning -= 1
 		if current_status.Slimed > 0:
 			current_status.Slimed -= 1
+	if healing_cooldown > 0:
+		healing_cooldown -= 1

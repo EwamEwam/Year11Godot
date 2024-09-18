@@ -1,11 +1,374 @@
-[gd_scene format=3 uid="uid://bwkm5un880qfn"]
+[gd_scene load_steps=13 format=3 uid="uid://dham5ulds3rb8"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/World/weapons.gd" id="1_8sob8"]
+[ext_resource type="Texture2D" uid="uid://tqh4060vsd0n" path="res://Sprites/Hud/Store_background.png" id="2_81nuh"]
+[ext_resource type="Texture2D" uid="uid://dy11vsr8q0j3c" path="res://Sprites/Hud/Gem.png" id="3_68moc"]
+[ext_resource type="FontFile" uid="uid://c2wf2bpy718q5" path="res://Sprites/Hud/Bourbon_and_coke_blocks.png" id="4_q2blo"]
+[ext_resource type="Texture2D" uid="uid://misl73u72xsh" path="res://Sprites/Hud/Line.png" id="5_dmvx3"]
+[ext_resource type="PackedScene" uid="uid://cppt3jx0ayy7d" path="res://Scenes/levels/fade.tscn" id="6_4jdhu"]
+[ext_resource type="Texture2D" uid="uid://cqjea2f2piyjl" path="res://Sprites/Characters and items/Blueprint.png" id="6_hnr4a"]
+[ext_resource type="Texture2D" uid="uid://cx1lh2xq0g6bg" path="res://Sprites/Hud/revolver.png" id="7_hvkfv"]
+[ext_resource type="Texture2D" uid="uid://4hm40kkkp682" path="res://Sprites/Hud/shotgun.png" id="8_mwiac"]
+[ext_resource type="Texture2D" uid="uid://dvnu6xjxa5w41" path="res://Sprites/Hud/smg.png" id="9_46wf2"]
+[ext_resource type="Texture2D" uid="uid://7x6gx4pbe442" path="res://Sprites/Hud/Smile.png" id="9_xbgmb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pfhkn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_hvkfv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mwiac")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_46wf2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xbgmb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Weapons" type="Node2D"]
+script = ExtResource("1_8sob8")
 
-[node name="Back" type="Button" parent="."]
-offset_left = 25.0
-offset_top = 25.0
-offset_right = 58.0
+[node name="Weapons_Background" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_81nuh")
+centered = false
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Gem2" type="Sprite2D" parent="Sprites"]
+modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
+position = Vector2(581, 59.9)
+rotation = 0.00182722
+scale = Vector2(2.935, 2.935)
+texture = ExtResource("3_68moc")
+
+[node name="Gem" type="Sprite2D" parent="Sprites"]
+position = Vector2(581, 57)
+rotation = 0.00182722
+scale = Vector2(2.935, 2.935)
+texture = ExtResource("3_68moc")
+
+[node name="Blueprint2" type="Sprite2D" parent="Sprites"]
+modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
+position = Vector2(75, 211)
+scale = Vector2(2.935, 2.935)
+texture = ExtResource("6_hnr4a")
+
+[node name="Blueprint" type="Sprite2D" parent="Sprites"]
+position = Vector2(75, 208)
+scale = Vector2(2.935, 2.935)
+texture = ExtResource("6_hnr4a")
+
+[node name="Line" type="Sprite2D" parent="Sprites"]
+position = Vector2(243.5, 86)
+scale = Vector2(28.4118, 4)
+texture = ExtResource("5_dmvx3")
+
+[node name="Line2" type="Sprite2D" parent="Sprites"]
+position = Vector2(319.75, 163)
+scale = Vector2(38.0882, 4)
+texture = ExtResource("5_dmvx3")
+
+[node name="Line4" type="Sprite2D" parent="Sprites"]
+position = Vector2(316, 344)
+scale = Vector2(38.0882, 4)
+texture = ExtResource("5_dmvx3")
+
+[node name="Blueprint3" type="Sprite2D" parent="Sprites"]
+modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
+position = Vector2(496.22, 62.7525)
+scale = Vector2(2.935, 2.935)
+texture = ExtResource("6_hnr4a")
+
+[node name="Blueprint4" type="Sprite2D" parent="Sprites"]
+position = Vector2(496.22, 59.7525)
+scale = Vector2(2.935, 2.935)
+texture = ExtResource("6_hnr4a")
+
+[node name="Gem3" type="Sprite2D" parent="Sprites"]
+modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
+position = Vector2(177.883, 209.783)
+scale = Vector2(2.935, 2.935)
+texture = ExtResource("3_68moc")
+
+[node name="Gem4" type="Sprite2D" parent="Sprites"]
+position = Vector2(177.883, 206.883)
+scale = Vector2(2.935, 2.935)
+texture = ExtResource("3_68moc")
+
+[node name="Gun_Sprite2" type="AnimatedSprite2D" parent="Sprites"]
+modulate = Color(0.07, 0.07, 0.07, 0.345098)
+position = Vector2(381, 211.95)
+scale = Vector2(2.935, 2.935)
+sprite_frames = SubResource("SpriteFrames_pfhkn")
+frame = 2
+speed_scale = 0.0
+
+[node name="Gun_Sprite" type="AnimatedSprite2D" parent="Sprites"]
+position = Vector2(381, 209)
+scale = Vector2(2.935, 2.935)
+sprite_frames = SubResource("SpriteFrames_pfhkn")
+frame = 2
+speed_scale = 0.0
+
+[node name="Text" type="Node2D" parent="."]
+
+[node name="Heading2" type="Label" parent="Text"]
+modulate = Color(0.466181, 0.466181, 0.466181, 0.423529)
+offset_top = 42.0
+offset_right = 128.0
 offset_bottom = 52.0
-scale = Vector2(4, 4)
-text = "Back"
+scale = Vector2(5, 5)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "WEAPONS"
+horizontal_alignment = 1
+
+[node name="Heading" type="Label" parent="Text"]
+offset_top = 37.0
+offset_right = 128.0
+offset_bottom = 47.0
+scale = Vector2(5, 5)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "WEAPONS"
+horizontal_alignment = 1
+
+[node name="Description2" type="Label" parent="Text"]
+modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
+offset_left = 23.0
+offset_top = 99.0
+offset_right = 318.0
+offset_bottom = 128.0
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "Hidden in levels are blueprints. Collect them to unlock 
+new weapons. You'll need to pay a fee of gems alongside 
+the blueprint itself to actually make the weapon."
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Text"]
+offset_left = 23.0
+offset_top = 97.0
+offset_right = 318.0
+offset_bottom = 126.0
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "Hidden in levels are blueprints. Collect them to unlock 
+new weapons. You'll need to pay a fee of gems alongside 
+the blueprint itself to actually make the weapon."
+horizontal_alignment = 1
+
+[node name="Gem_Value2" type="Label" parent="Text"]
+modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
+offset_left = 534.0
+offset_top = 70.0
+offset_right = 558.0
+offset_bottom = 77.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="Gem_Value" type="Label" parent="Text"]
+offset_left = 534.0
+offset_top = 67.0
+offset_right = 558.0
+offset_bottom = 74.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "0"
+horizontal_alignment = 2
+
+[node name="Plus2" type="Label" parent="Text"]
+modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
+offset_left = 106.0
+offset_top = 201.0
+offset_right = 118.0
+offset_bottom = 208.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "+"
+horizontal_alignment = 1
+
+[node name="Plus" type="Label" parent="Text"]
+offset_left = 106.0
+offset_top = 198.0
+offset_right = 118.0
+offset_bottom = 205.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "+"
+horizontal_alignment = 1
+
+[node name="To_make2" type="Label" parent="Text"]
+modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
+offset_left = 224.0
+offset_top = 200.0
+offset_right = 262.0
+offset_bottom = 207.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "To make
+"
+horizontal_alignment = 1
+
+[node name="To_make" type="Label" parent="Text"]
+offset_left = 224.0
+offset_top = 197.0
+offset_right = 262.0
+offset_bottom = 204.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "To make
+"
+horizontal_alignment = 1
+
+[node name="Blueprint_count2" type="Label" parent="Text"]
+modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
+offset_left = 454.0
+offset_top = 70.0
+offset_right = 478.0
+offset_bottom = 77.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="Blueprint_count" type="Label" parent="Text"]
+offset_left = 454.0
+offset_top = 67.0
+offset_right = 478.0
+offset_bottom = 74.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="Gem_Cost2" type="Label" parent="Text"]
+modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
+offset_left = 137.0
+offset_top = 217.0
+offset_right = 161.0
+offset_bottom = 224.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="Gem_Cost" type="Label" parent="Text"]
+offset_left = 137.0
+offset_top = 214.0
+offset_right = 161.0
+offset_bottom = 221.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="Weapon_Name2" type="Label" parent="Text"]
+modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
+offset_left = 420.0
+offset_top = 200.0
+offset_right = 484.0
+offset_bottom = 207.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "(Revolver)
+"
+
+[node name="Weapon_Name" type="Label" parent="Text"]
+offset_left = 420.0
+offset_top = 197.0
+offset_right = 484.0
+offset_bottom = 204.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "(Revolver)
+"
+
+[node name="Weapon_description2" type="Label" parent="Text"]
+modulate = Color(0.4704, 0.4704, 0.49, 0.501961)
+offset_left = 25.0
+offset_top = 256.0
+offset_right = 261.0
+offset_bottom = 293.0
+scale = Vector2(2.5, 2.5)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "Crafts the Shotgun. Costs 4 Hp to shoot, has a firerate of x seconds and shoots a spread of 6 bullets that each deal 4 damage."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Weapon_description" type="Label" parent="Text"]
+offset_left = 25.0
+offset_top = 254.0
+offset_right = 261.0
+offset_bottom = 291.0
+scale = Vector2(2.5, 2.5)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "Crafts the Shotgun. Costs 4 Hp to shoot, has a firerate of x seconds and shoots a spread of 6 bullets that each deal 4 damage."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Weapons_unlocked2" type="Label" parent="Text"]
+modulate = Color(0.4704, 0.4704, 0.49, 0.501961)
+offset_left = 36.0
+offset_top = 361.0
+offset_right = 99.375
+offset_bottom = 398.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "Weapons Unlocked (5/5)"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Weapons_unlocked" type="Label" parent="Text"]
+offset_left = 36.0
+offset_top = 358.0
+offset_right = 99.375
+offset_bottom = 395.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("4_q2blo")
+text = "Weapons Unlocked (5/5)"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Buttons" type="Node2D" parent="."]
+process_mode = 3
+
+[node name="Craft" type="Button" parent="Buttons"]
+offset_left = 230.0
+offset_top = 360.0
+offset_right = 355.0
+offset_bottom = 387.0
+scale = Vector2(3, 3)
+focus_mode = 0
+text = "Craft (Costs 9999)"
+icon = ExtResource("3_68moc")
+
+[node name="Back" type="Button" parent="Buttons"]
+offset_left = 33.0
+offset_top = 30.0
+offset_right = 65.0
+offset_bottom = 45.0
+scale = Vector2(3, 3)
+focus_mode = 0
+text = "BACK"
+text_overrun_behavior = 1
+clip_text = true
+
+[node name="Fade" parent="." instance=ExtResource("6_4jdhu")]
+position = Vector2(27, 3)
+
+[connection signal="pressed" from="Buttons/Craft" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/Back" to="." method="_on_back_pressed"]

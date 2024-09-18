@@ -7,6 +7,8 @@ var timer = 800
 @onready var lighting = $Level_elements/Lighting
 @onready var capsule = $Level_elements/Props/Heart_capsule
 
+@onready var music = $Background_Music
+
 func _ready() -> void:
 	Playerstats.enemies_defeated = 0
 	Playerstats.bullets_shot = 0
@@ -27,8 +29,12 @@ func _on_timer_timeout():
 		Playerstats.health = 0
 
 func death():
+	for i in range(20):
+		music.volume_db -= linear_to_db(1.5) 
+		await get_tree().create_timer(0.05).timeout
+	music.stream_paused = true
 	get_tree().paused = true
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	screen.fade_in(0.04,25,"res://Scenes/levels/results.tscn")
 	
 func lights_out():

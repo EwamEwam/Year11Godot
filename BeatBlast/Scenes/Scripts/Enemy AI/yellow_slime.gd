@@ -36,7 +36,7 @@ func check_collision():
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(5,0.05,3,1.2)
+				collision.shake(12,0.025,12,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				collision.slimed(2)
 				timer.start()
@@ -48,12 +48,14 @@ func _physics_process(delta):
 	
 		if health > 0:
 			var in_circle = circle.get_overlapping_bodies()
+			var slowed_down = false
 			if in_circle:
 				for collision in in_circle:
 					if collision.is_in_group("Player") and not Raycast.is_colliding():
 						var direction_to_player = global_position.direction_to(player.global_position)
 						velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
-					elif not collision.is_in_group("Enemy") and not collision == self:
+					elif not collision.is_in_group("Enemy") and not collision == self and not slowed_down:
+						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 			else:
 				velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -61,7 +63,7 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO
 	
 		if animation_can_play:
-			animation.speed_scale = clampf(velocity.length()/50, 0.8, 10)
+			animation.speed_scale = clampf(velocity.length()/44, 0.8, 12.5)
 		else:
 			animation.speed_scale = 1
 			
@@ -120,7 +122,7 @@ func take_damage(dmg):
 	if health > 0:
 		animation_can_play = false
 		current_state = state.Hurt
-		Sprite.modulate = Color(0.9, 0.9 ,0.9, 0.75)
+		Sprite.modulate = Color(0.8, 0.8 ,0.8, 0.75)
 		await get_tree().create_timer(0.15).timeout
 		Sprite.modulate = Color(0.6, 0.6, 0.6, 0.9)
 		animation_can_play = true

@@ -23,6 +23,7 @@ offset_top = 327.0
 offset_right = 364.0
 offset_bottom = 358.0
 scale = Vector2(3, 3)
+focus_mode = 0
 theme_override_fonts/font = ExtResource("2_lylxr")
 text = "Level 1 Select"
 
@@ -44,6 +45,16 @@ offset_bottom = 42.0
 scale = Vector2(4, 4)
 focus_mode = 0
 text = "Store
+"
+
+[node name="Weapon" type="Button" parent="."]
+offset_left = 29.0
+offset_top = 99.0
+offset_right = 73.0
+offset_bottom = 114.0
+scale = Vector2(4, 4)
+focus_mode = 0
+text = "Weapons
 "
 
 [node name="Text" type="Node2D" parent="."]
@@ -299,3 +310,4 @@ position = Vector2(-3, 5)
 [connection signal="pressed" from="level_1_select" to="." method="_on_level_1_select_pressed"]
 [connection signal="pressed" from="level_2_select" to="." method="_on_level_2_select_pressed"]
 [connection signal="pressed" from="Store" to="." method="_on_store_pressed"]
+[connection signal="pressed" from="Weapon" to="." method="_on_weapon_pressed"]

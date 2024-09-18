@@ -23,7 +23,8 @@ func _on_body_entered(body):
 		new_number.global_position = global_position
 		Playerstats.damval=damage+Playerstats.attack
 		add_sibling(new_number)
-		Playerstats.bullets_hit += 1
+		if times_hit == 1:
+			Playerstats.bullets_hit += 1
 		if times_hit != 2:
 			damage -= 2
 			times_hit += 1

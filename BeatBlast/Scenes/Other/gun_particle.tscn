@@ -1,14 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://bss5lsqx5oh8y"]
+[gd_scene load_steps=5 format=3 uid="uid://bss5lsqx5oh8y"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/World/gun_particle.gd" id="1_1fbc2"]
+[ext_resource type="Texture2D" uid="uid://dlhm2x8f2lcnj" path="res://Sprites/Characters and items/Big_particle.png" id="2_6c3vp"]
 [ext_resource type="Texture2D" uid="uid://dt6f03417irn1" path="res://Sprites/Characters and items/Particle.png" id="2_m3w1i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7erj0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6c3vp")
+}],
+"loop": true,
+"name": &"Big",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_m3w1i")
+}],
+"loop": true,
+"name": &"Small",
+"speed": 5.0
+}]
 
 [node name="Particle" type="Node2D"]
 modulate = Color(0.892034, 0.892034, 0.892034, 1)
 z_index = -1
 script = ExtResource("1_1fbc2")
 
-[node name="Particle_sprite" type="Sprite2D" parent="."]
-modulate = Color(0.23, 0.1587, 0.17296, 1)
-scale = Vector2(9, 9)
-texture = ExtResource("2_m3w1i")
+[node name="Particle_sprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.231373, 0.156863, 0.172549, 1)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_7erj0")
+animation = &"Small"
+autoplay = "Big"

@@ -13,10 +13,10 @@ const heart = preload("res://Scenes/Characters, weapons and collectables/heart40
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
 const gem = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
-@export var health = 60
-@export var max_health = 60
+@export var health = 85
+@export var max_health = 85
 @onready var timer = $hurttimer
-@export var damage = 15
+@export var damage = 16
 @onready var hurtbox = $hurtbox
 @onready var circle = $Movement_circle
 @onready var Raycast = $RayCast2D
@@ -37,7 +37,7 @@ func check_collision() -> void:
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(25,0.05,10,1.35)
+				collision.shake(32,0.025,32,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
@@ -48,12 +48,14 @@ func _physics_process(delta):
 		
 		if health > 0:
 			var in_circle = circle.get_overlapping_bodies()
+			var slowed_down = false
 			if in_circle:
 				for collision in in_circle:
 					if collision.is_in_group("Player") and not Raycast.is_colliding():
 						var direction_to_player = global_position.direction_to(player.global_position)
 						velocity = velocity.move_toward(direction_to_player * clampf(SPEED/clampf((health/0.9),1,100),210,380), ACCELLERATION)
-					elif not collision.is_in_group("Enemy") and not collision == self:
+					elif not collision.is_in_group("Enemy") and not collision == self and not slowed_down:
+						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 			else:
 				velocity = velocity.move_toward(Vector2.ZERO, FRICTION)

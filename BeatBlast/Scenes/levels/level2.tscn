@@ -1,22 +1,18 @@
-[gd_scene load_steps=20 format=4 uid="uid://rqlvdkbur7as"]
+[gd_scene load_steps=16 format=4 uid="uid://rqlvdkbur7as"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/World/level_2.gd" id="1_xqfi6"]
 [ext_resource type="Texture2D" uid="uid://b1uv32qbh13hb" path="res://Sprites/World/Dungeon_tileset_rev3.png" id="2_khl55"]
 [ext_resource type="PackedScene" uid="uid://c1xbilv51dpju" path="res://Scenes/Characters, weapons and collectables/heart_capsule.tscn" id="3_vt7u5"]
 [ext_resource type="PackedScene" uid="uid://byb3bgxsvmojy" path="res://Scenes/levels/button.tscn" id="4_4a2ed"]
 [ext_resource type="PackedScene" uid="uid://ll60qr3vjhjn" path="res://Scenes/levels/door.tscn" id="5_2qv4d"]
-[ext_resource type="PackedScene" uid="uid://bpogjh7m367f5" path="res://Scenes/Enemies/Small_Slime.tscn" id="5_3x0rp"]
 [ext_resource type="PackedScene" uid="uid://m2tgp4b64peh" path="res://Scenes/levels/box.tscn" id="6_wftnr"]
-[ext_resource type="PackedScene" uid="uid://nre8vvqmqqoi" path="res://Scenes/Enemies/shooter.tscn" id="7_4pd2w"]
 [ext_resource type="PackedScene" uid="uid://blt48oj31jynf" path="res://Scenes/levels/Torch.tscn" id="7_40mww"]
 [ext_resource type="PackedScene" uid="uid://xj5r58g4saqh" path="res://Scenes/levels/Side_Torch.tscn" id="8_blcjn"]
 [ext_resource type="PackedScene" uid="uid://ddbvwpephgd52" path="res://Scenes/levels/Side_Torch_L.tscn" id="9_sjvrw"]
-[ext_resource type="PackedScene" uid="uid://d3omqjrpduuwv" path="res://Scenes/Enemies/Spider.tscn" id="9_vdwaa"]
 [ext_resource type="PackedScene" uid="uid://brxqvjo44ft00" path="res://Scenes/levels/gem_key.tscn" id="10_cxagf"]
 [ext_resource type="PackedScene" uid="uid://b1lyax7mlenna" path="res://Scenes/Characters, weapons and collectables/player.tscn" id="11_xcrw0"]
 [ext_resource type="PackedScene" uid="uid://cppt3jx0ayy7d" path="res://Scenes/levels/fade.tscn" id="12_up48r"]
-[ext_resource type="PackedScene" uid="uid://dp3qj3setksmo" path="res://Scenes/Enemies/Skeleton_mage.tscn" id="14_0urau"]
-[ext_resource type="PackedScene" uid="uid://or40iaxcsvvj" path="res://Scenes/Enemies/Skeleton_archer.tscn" id="17_42hvw"]
+[ext_resource type="AudioStream" uid="uid://dw8i871h5bd02" path="res://Audio/Music/Level5.mp3" id="13_bfg6y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kmwat"]
 texture = ExtResource("2_khl55")
@@ -449,15 +445,6 @@ y_sort_enabled = true
 
 [node name="Enemies" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true
-
-[node name="Shooter" parent="Level_elements/Enemies" instance=ExtResource("14_0urau")]
-position = Vector2(843, -1141)
-
-[node name="Spider" parent="Level_elements/Enemies" instance=ExtResource("9_vdwaa")]
-position = Vector2(1110, -2067)
-
-[node name="Small_Slime" parent="Level_elements/Enemies" instance=ExtResource("5_3x0rp")]
-position = Vector2(712, -959)
 
 [node name="Props" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true
@@ -1176,15 +1163,6 @@ position = Vector2(7404, -13916)
 [node name="Torch43" parent="Level_elements/Lighting" instance=ExtResource("7_40mww")]
 position = Vector2(6464, -13424)
 
-[node name="Shooter" parent="Level_elements/Lighting" instance=ExtResource("7_4pd2w")]
-position = Vector2(5021, -5676)
-
-[node name="Shooter2" parent="Level_elements/Lighting" instance=ExtResource("7_4pd2w")]
-position = Vector2(4326, -6325)
-
-[node name="Shooter3" parent="Level_elements/Lighting" instance=ExtResource("7_4pd2w")]
-position = Vector2(6858, -5640)
-
 [node name="Gem_key" parent="Level_elements" instance=ExtResource("10_cxagf")]
 position = Vector2(6149, -16826)
 
@@ -1204,16 +1182,10 @@ z_index = 100
 position = Vector2(-156.75, -118.03)
 scale = Vector2(0.5, 0.5)
 
-[node name="Label" type="Label" parent="."]
-offset_left = 5439.0
-offset_top = -17404.0
-offset_right = 5548.0
-offset_bottom = -17339.0
-scale = Vector2(15, 15)
-theme_override_font_sizes/font_size = 1000
-text = "Thanks For Playing!"
-
-[node name="Shooter_3" parent="." instance=ExtResource("17_42hvw")]
-position = Vector2(359, -783)
+[node name="Background_Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_bfg6y")
+volume_db = -8.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

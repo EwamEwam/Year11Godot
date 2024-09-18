@@ -62,7 +62,7 @@ animations = [{
 
 [node name="Bullet_collision1" type="AnimatedSprite2D"]
 rotation = 1.5708
-scale = Vector2(4.5, 4.5)
+scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_xg0y0")
 animation = &"Collide"
 autoplay = "Collide"

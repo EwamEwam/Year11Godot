@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://kjvj32fa65b3"]
 
-[ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/shooter_3.gd" id="1_68b0q"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/shooter_3.gd" id="1_lrhna"]
 [ext_resource type="Texture2D" uid="uid://chiswos0gntdd" path="res://Sprites/Characters and items/Gun.png" id="2_xdflj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5xtno"]
@@ -28,7 +28,7 @@ process_mode = 1
 collision_layer = 5
 collision_mask = 3
 motion_mode = 1
-script = ExtResource("1_68b0q")
+script = ExtResource("1_lrhna")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(2.86102e-06, 4.00001)

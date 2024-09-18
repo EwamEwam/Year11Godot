@@ -15,6 +15,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		body.damage_player(Damage-Playerstats.defence)
 		body.shake(13.5,0.05,9,1.1)
 		body.blocked(3)
+	if not body.is_in_group("Enemy"):
 		queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

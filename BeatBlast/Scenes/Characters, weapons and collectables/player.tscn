@@ -1,7 +1,7 @@
-[gd_scene load_steps=451 format=3 uid="uid://b1lyax7mlenna"]
+[gd_scene load_steps=458 format=3 uid="uid://b1lyax7mlenna"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/PlayerMovement.gd" id="1_gyp3l"]
-[ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_Shadow.png" id="2_s50a2"]
+[ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_shadow.png" id="2_s50a2"]
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Other/Hud.gd" id="3_ex22d"]
 [ext_resource type="Texture2D" uid="uid://can7kmxf1e788" path="res://Sprites/World/light.png" id="3_gwtbm"]
 [ext_resource type="Texture2D" uid="uid://b51xnl5cbro81" path="res://Sprites/Characters and items/Player_Spritesheet_Rev2.png" id="3_l5yne"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bedtieud14vi3" path="res://Sprites/Hud/pistol_cooldown.png" id="10_4jl61"]
 [ext_resource type="Texture2D" uid="uid://4hm40kkkp682" path="res://Sprites/Hud/shotgun.png" id="10_fr0ec"]
 [ext_resource type="Texture2D" uid="uid://dcafef4swca52" path="res://Sprites/Hud/hands_cooldown.png" id="11_7xprr"]
+[ext_resource type="Texture2D" uid="uid://c6xp6ed7jcxw1" path="res://Sprites/Hud/Black_Screen_Edge.PNG" id="11_jnkoc"]
 [ext_resource type="Texture2D" uid="uid://cxghmooq3vt4e" path="res://Sprites/Hud/Dash Cooldown.png" id="12_tqmhq"]
 [ext_resource type="Texture2D" uid="uid://7jtd703hkogy" path="res://Sprites/Hud/revolver_cooldown.png" id="13_fjfcp"]
 [ext_resource type="Texture2D" uid="uid://dvnu6xjxa5w41" path="res://Sprites/Hud/smg.png" id="13_uspk7"]
@@ -30,13 +31,20 @@
 [ext_resource type="FontFile" uid="uid://c2wf2bpy718q5" path="res://Sprites/Hud/Bourbon_and_coke_blocks.png" id="26_0axcd"]
 [ext_resource type="Texture2D" uid="uid://ddtg5df3niiqi" path="res://Sprites/Hud/Blocked.png" id="26_103gs"]
 [ext_resource type="Texture2D" uid="uid://dix10eog3gi3m" path="res://Sprites/Hud/Slimed.png" id="29_ijb7g"]
+[ext_resource type="Texture2D" uid="uid://5usog0bbxep1" path="res://Sprites/Hud/Burning.png" id="30_ecnlo"]
+[ext_resource type="AudioStream" uid="uid://cpi6exchdkdsf" path="res://Audio/Character_Sounds/Hit_Hurt.wav" id="33_klkdj"]
+[ext_resource type="AudioStream" uid="uid://do80dp44lbhhp" path="res://Audio/Character_Sounds/Gun1.mp3" id="34_j51qr"]
+[ext_resource type="AudioStream" uid="uid://bmdv3rnp3n0ry" path="res://Audio/Character_Sounds/Gun2.mp3" id="35_poemb"]
+[ext_resource type="AudioStream" uid="uid://cx4jwv5cc55sn" path="res://Audio/Character_Sounds/Step.mp3" id="36_ct5tl"]
+[ext_resource type="AudioStream" uid="uid://cyojbtk8yobfc" path="res://Audio/Character_Sounds/Step 2.mp3" id="37_a6hmu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsncw"]
-size = Vector2(9.25877, 15.5172)
+size = Vector2(6.61341, 15.5172)
 
 [sub_resource type="Animation" id="Animation_73pe5"]
 length = 0.666667
 loop_mode = 1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -60,6 +68,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Down1"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_pt24v"]
@@ -89,6 +114,23 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Down2"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_7riud"]
 length = 0.666667
@@ -116,6 +158,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Down3"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_qw8r7"]
@@ -145,6 +204,23 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Down4"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_55k17"]
 length = 0.666667
@@ -172,6 +248,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Down5"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_o5i87"]
@@ -873,6 +966,23 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Left1"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_kptel"]
 length = 0.666667
@@ -900,6 +1010,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Left2"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_a2mwo"]
@@ -929,6 +1056,23 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Left3"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_rmotv"]
 length = 0.666667
@@ -956,6 +1100,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Left4"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_gv7yq"]
@@ -985,6 +1146,23 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Left5"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_el0ul"]
 length = 0.666667
@@ -1012,6 +1190,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Right1"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_bvbn2"]
@@ -1041,6 +1236,23 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Right2"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_8i5dh"]
 length = 0.666667
@@ -1068,6 +1280,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Right3"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_8fo8a"]
@@ -1097,6 +1326,23 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Right4"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_6g84r"]
 length = 0.666667
@@ -1124,6 +1370,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Right5"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_2x15m"]
@@ -2268,6 +2531,23 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Up1"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_tbgwd"]
 length = 0.666667
@@ -2295,6 +2575,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Up2"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_5l5h0"]
@@ -2324,6 +2621,23 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Up3"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_3tvx5"]
 length = 0.666667
@@ -2352,6 +2666,23 @@ tracks/1/keys = {
 "update": 1,
 "values": ["Up4"]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_78kkn"]
 length = 0.666667
@@ -2379,6 +2710,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Up5"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step_sound"
+}, {
+"args": [],
+"method": &"step_sound"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tenmp"]
@@ -4566,7 +4914,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwhyl"]
-size = Vector2(14, 2)
+size = Vector2(10, 2)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u020h"]
 atlas = ExtResource("4_m550f")
@@ -5250,7 +5598,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"4",
-"speed": 6.96
+"speed": 5.93
 }, {
 "frames": [{
 "duration": 1.0,
@@ -5295,6 +5643,16 @@ platform_on_leave = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_gyp3l")
 
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
+
+[node name="Burning_Light" type="PointLight2D" parent="."]
+visible = false
+scale = Vector2(0.0645161, 0.134897)
+color = Color(0.945098, 0.509804, 0.0666667, 1)
+energy = 12.0
+texture = ExtResource("3_gwtbm")
+
 [node name="PlayerShadow" type="Sprite2D" parent="."]
 position = Vector2(0, 15)
 texture = ExtResource("2_s50a2")
@@ -5311,6 +5669,10 @@ one_shot = true
 [node name="Dash_Timer" type="Timer" parent="."]
 wait_time = 1.75
 one_shot = true
+
+[node name="Camera_Timer" type="Timer" parent="."]
+wait_time = 0.017
+autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimatedSprite2D")
@@ -5333,8 +5695,6 @@ position = Vector2(0, 15.5)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ilyhk")
 animation = &"Down1"
-frame = 5
-frame_progress = 0.795207
 
 [node name="Wall_collision" type="Area2D" parent="."]
 collision_layer = 128
@@ -5352,6 +5712,11 @@ script = ExtResource("3_ex22d")
 [node name="RedScreenFade" type="Sprite2D" parent="Hud/CanvasModulate"]
 visible = false
 texture = ExtResource("17_y0f3u")
+centered = false
+
+[node name="Screen_Edge" type="Sprite2D" parent="Hud/CanvasModulate"]
+modulate = Color(0, 0, 0, 0.52549)
+texture = ExtResource("11_jnkoc")
 centered = false
 
 [node name="bar" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
@@ -5496,7 +5861,7 @@ position = Vector2(46, 118)
 rotation = -1.5708
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3moos")
-animation = &"2"
+animation = &"4"
 centered = false
 offset = Vector2(-8.08334, 0.0349541)
 
@@ -5524,6 +5889,11 @@ texture = ExtResource("26_103gs")
 position = Vector2(26, 359)
 scale = Vector2(3, 3)
 texture = ExtResource("29_ijb7g")
+
+[node name="Burning" type="Sprite2D" parent="Hud/CanvasModulate"]
+position = Vector2(29, 300)
+scale = Vector2(3, 3)
+texture = ExtResource("30_ecnlo")
 
 [node name="Score" type="Label" parent="Hud/CanvasModulate"]
 anchors_preset = -1
@@ -5613,5 +5983,60 @@ theme_override_fonts/font = ExtResource("26_0axcd")
 theme_override_font_sizes/font_size = 25
 text = "99"
 
+[node name="Level_Title" type="Label" parent="Hud/CanvasModulate"]
+offset_top = 235.0
+offset_right = 160.0
+offset_bottom = 242.0
+scale = Vector2(4, 4)
+text = "Level 1"
+horizontal_alignment = 1
+
+[node name="Burning_timer" type="Label" parent="Hud/CanvasModulate"]
+anchors_preset = -1
+anchor_left = 0.055
+anchor_top = 0.965
+anchor_right = 0.105
+anchor_bottom = 0.994
+offset_left = 33.0
+offset_top = 316.0
+offset_right = 45.0
+offset_bottom = 323.0
+scale = Vector2(2, 2)
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("26_0axcd")
+theme_override_font_sizes/font_size = 25
+text = "99"
+
+[node name="Audio_Players" type="Node2D" parent="."]
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="Audio_Players"]
+stream = ExtResource("33_klkdj")
+volume_db = 5.0
+
+[node name="Gun1" type="AudioStreamPlayer2D" parent="Audio_Players"]
+stream = ExtResource("34_j51qr")
+volume_db = -5.0
+
+[node name="Gun2" type="AudioStreamPlayer2D" parent="Audio_Players"]
+stream = ExtResource("35_poemb")
+volume_db = -10.0
+playback_type = 1
+
+[node name="Step1" type="AudioStreamPlayer2D" parent="Audio_Players"]
+stream = ExtResource("36_ct5tl")
+volume_db = 2.2
+pitch_scale = 1.25
+parameters/looping = false
+
+[node name="Step2" type="AudioStreamPlayer2D" parent="Audio_Players"]
+stream = ExtResource("37_a6hmu")
+volume_db = 2.1
+pitch_scale = 1.15
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.475073, 0.475073)
+texture = ExtResource("3_gwtbm")
+
+[connection signal="timeout" from="Camera_Timer" to="." method="_on_camera_timer_timeout"]
 [connection signal="animation_finished" from="Hud/CanvasModulate/Dash_cooldown" to="Hud" method="_on_dash_cooldown_animation_finished"]
 [connection signal="animation_finished" from="Hud/CanvasModulate/Cooldown" to="Hud" method="_on_cooldown_animation_finished"]

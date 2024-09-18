@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://c6u4u1fjdbeve"]
+[gd_scene load_steps=28 format=4 uid="uid://c6u4u1fjdbeve"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/World/level_1.gd" id="1_ufpf5"]
 [ext_resource type="Texture2D" uid="uid://biexdwpenfxwv" path="res://Sprites/World/Grass_spritesheet.png" id="2_v1nmw"]
@@ -17,12 +17,14 @@
 [ext_resource type="PackedScene" uid="uid://drykstjbemitf" path="res://Scenes/levels/tree_1.tscn" id="9_pr1e2"]
 [ext_resource type="PackedScene" uid="uid://brxqvjo44ft00" path="res://Scenes/levels/gem_key.tscn" id="10_cxagf"]
 [ext_resource type="PackedScene" uid="uid://b1lyax7mlenna" path="res://Scenes/Characters, weapons and collectables/player.tscn" id="11_xcrw0"]
+[ext_resource type="PackedScene" uid="uid://y7l41r86124x" path="res://Scenes/levels/Blueprints.tscn" id="12_e57qj"]
 [ext_resource type="PackedScene" uid="uid://cppt3jx0ayy7d" path="res://Scenes/levels/fade.tscn" id="12_up48r"]
 [ext_resource type="PackedScene" uid="uid://6pwnx50n7l7g" path="res://Scenes/Enemies/roach.tscn" id="13_532io"]
 [ext_resource type="PackedScene" uid="uid://nre8vvqmqqoi" path="res://Scenes/Enemies/shooter.tscn" id="14_61mm4"]
 [ext_resource type="PackedScene" uid="uid://ckxij2marce8w" path="res://Scenes/Enemies/Blind_enemy.tscn" id="16_x4nhc"]
 [ext_resource type="PackedScene" uid="uid://d3omqjrpduuwv" path="res://Scenes/Enemies/Spider.tscn" id="18_63rjv"]
 [ext_resource type="PackedScene" uid="uid://dm8v6ou547gq6" path="res://Scenes/Enemies/Yellow_slime.tscn" id="23_axy1k"]
+[ext_resource type="AudioStream" uid="uid://ow84kikns2ay" path="res://Audio/Music/Level1.mp3" id="25_xslbo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jxr25"]
 texture = ExtResource("2_v1nmw")
@@ -5955,6 +5957,10 @@ position = Vector2(7916.26, -4950.94)
 [node name="Rock12" parent="Level_elements/Props" instance=ExtResource("3_bpy3v")]
 position = Vector2(7217.74, -2569.51)
 
+[node name="Blueprint" parent="Level_elements/Props" instance=ExtResource("12_e57qj")]
+position = Vector2(747.63, -5765.98)
+scale = Vector2(1.00219, 0.995163)
+
 [node name="Enemies" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true
 
@@ -6331,7 +6337,7 @@ y_sort_enabled = true
 [node name="PointLight2D2" type="PointLight2D" parent="Level_elements/Lighting"]
 position = Vector2(2435, 442)
 scale = Vector2(1366.18, 1366.18)
-energy = 2.01
+energy = 2.5
 texture = ExtResource("3_5tou1")
 
 [node name="Gem_key" parent="Level_elements" instance=ExtResource("10_cxagf")]
@@ -6352,5 +6358,12 @@ process_mode = 0
 z_index = 100
 position = Vector2(-156.75, -118.03)
 scale = Vector2(0.5, 0.5)
+
+[node name="Background_Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("25_xslbo")
+volume_db = -8.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,8 +1,9 @@
 extends CharacterBody2D
-#Lots of variables need to be declared.
-@export var SPEED = 500.0
-@export var ACCELERATION = 100.0
-@export var FRICTION = 70.0
+
+#Lots of variables need to be declared. Probably most are unnesscary. Some for the player physics engine while some are for visuals 
+@export var SPEED = 550.0
+@export var ACCELERATION = 150.0
+@export var FRICTION = 85.0
 @onready var Sprite = $AnimatedSprite2D 
 @onready var Animation_player = $AnimationPlayer
 @onready var timer = $Timer
@@ -10,6 +11,8 @@ extends CharacterBody2D
 @onready var wall_collision = $Wall_collision
 @onready var spawner = $Bullet_spawner
 @onready var light = $Bullet_spawner/Light
+@onready var camera_timer = $Camera_Timer
+@onready var burning_light = $Burning_Light
 const Bullet = preload("res://Scenes/Characters, weapons and collectables/bullet.tscn")
 const Bullet2 = preload("res://Scenes/Characters, weapons and collectables/bullet2.tscn")
 const Bullet3 = preload("res://Scenes/Characters, weapons and collectables/bullet3.tscn")
@@ -20,6 +23,8 @@ const gun_particle = preload("res://Scenes/Other/gun_particle.tscn")
 const number = preload("res://Scenes/Other/DamageP_numbers.tscn")
 const heal_num = preload ("res://Scenes/Other/Heal_numbers.tscn")
 const running_particle = preload("res://Scenes/Other/running_particle.tscn")
+const fire_particle = preload("res://Scenes/Other/fire_particle.tscn")
+const shell = preload("res://Scenes/Other/Shell_Particle.tscn")
 @onready var world = get_node('/root/level')
 var direction=Vector2.ZERO
 @onready var Camera = $Camera2D
@@ -33,9 +38,13 @@ var Pointing_to_mouse = null
 var last_facing_direction = Vector2(0,1)
 var animation_can_play = true
 var dead = false
+var shaking = false
+var flashing = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var particle_timer = 4
+var camera_offset = Vector2.ZERO
+var time_in_level = 0
 
 signal cooldown
 signal dash_cooldown
@@ -43,23 +52,28 @@ signal red(val)
 signal died
 
 func _ready():
+	shaking = false
 	light.visible = false 
-
+	time_in_level = 0
+	
 #The function that runs every frame and does all the essential operations like movement, collision check, checking for other actions and running other functions
 func _physics_process(delta):
 	direction = Input.get_vector("left","right","up","down").normalized()
 	if direction:
 		if Playerstats.health > 0:
 			if Playerstats.current_status.Slimed > 0:
-				SPEED = 300.0
+				SPEED = 300.0 - (clampi(Playerstats.current_status.Burning,0,1)*80)
 			else:
-				SPEED = 500.0
+				SPEED = 500.0 - (clampi(Playerstats.current_status.Burning,0,1)*150)
 			velocity = velocity.move_toward(direction * SPEED, ACCELERATION)
 			particle_check()
 		else:
 			pass
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+	
+	if not shaking:
+		Camera.offset = camera_offset
 	
 	Playerstats.player_x = global_position.x
 	Playerstats.player_y = global_position.y
@@ -70,7 +84,7 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("Dash"):
 		if abs(velocity) > Vector2.ZERO and dash_timer.is_stopped() and Playerstats.health > 0 and Playerstats.current_status.Slimed == 0:
-			shake(3.5,0.05,3,1.2)
+			shake(8,0.025,8,1.3)
 			dash()
 		
 	if Input.is_action_just_pressed("selectl"):
@@ -85,6 +99,19 @@ func _physics_process(delta):
 		else:
 			Playerstats.weapon_selected += 1
 	
+	if Input.is_action_just_pressed("Heal_selectl"):
+		Playerstats.healing_item_selected -= 1
+		if Playerstats.healing_item_selected < 1:
+			Playerstats.healing_item_selected = 3
+	
+	if Input.is_action_just_pressed("Heal_selectr"):
+		Playerstats.healing_item_selected += 1
+		if Playerstats.healing_item_selected > 3:
+			Playerstats.healing_item_selected = 1
+			
+	if Input.is_action_just_pressed("heal"):
+		use_healing_item(Playerstats.healing_item_selected)
+		
 	if animation_can_play:
 		Update_state()
 		if abs(velocity.length()) > 5 and not current_state == State.Shooting:
@@ -101,15 +128,43 @@ func _physics_process(delta):
 		death()
 		get_tree().paused = true
 		
+	#Controls the player color during gameplay from status effects.
 	if Playerstats.current_status.Poison != 0:
 		Sprite.modulate = Color(0.688, 0.99, 0.386,1)
-	else:
+	elif Playerstats.current_status.Burning != 0:
+		Sprite.modulate = Color(0.8,0.8,0.8,1)
+	elif not flashing:
 		Sprite.modulate = Color(1,1,1,1)
-	
+	else:
+		clampf(Sprite.modulate.r, 1, 7)
+		clampf(Sprite.modulate.g, 1, 7)
+		clampf(Sprite.modulate.b, 1, 7)
+
 	check_item_select()
 	Update_animation()
 	move_and_slide()
+	set_camera_offset()
 	
+#Uses the healing_items dictionary in the playerstats script to check the player's inventory of healing items
+func use_healing_item(val):
+	match val:
+		1:
+			if Playerstats.healing_items.Jar_of_pickled_hearts > 0 and Playerstats.healing_cooldown < 1:
+				heal(20)
+				Playerstats.healing_items.Jar_of_pickled_hearts -= 1
+				Playerstats.healing_cooldown = 30
+		2:
+			if Playerstats.healing_items.Dried_hearts_in_a_can > 0 and Playerstats.healing_cooldown < 1:
+				heal(50)
+				Playerstats.healing_items.Dried_hearts_in_a_can -= 1
+				Playerstats.healing_cooldown = 45
+		3:
+			if Playerstats.healing_items.Heart_essence > 0 and Playerstats.healing_cooldown < 1:
+				heal(100)
+				Playerstats.healing_items.Heart_essence -= 1
+				Playerstats.healing_cooldown = 60
+	
+#Whenever the player's moving, it causes the particle timer to go down by one each frame. When it reaches zero. It creates a particle 
 func particle_check():
 	if particle_timer <= 0:
 		particle_timer = randi_range(3,4)
@@ -119,7 +174,12 @@ func particle_check():
 		new_particle.set_direction(direction)
 	else:
 		particle_timer -= 1
+
+#Takes the sine / cosine of the time in the level for camera bob effect
+func set_camera_offset() -> void:
+	camera_offset = 15 * Vector2(sin(deg_to_rad(28 * time_in_level)), cos(deg_to_rad(30 * time_in_level)))
 	
+#emits a signal when the player health reaches 0
 func death():
 	emit_signal("died")
 	
@@ -148,6 +208,16 @@ func Update_state():
 	elif not current_state == State.Shooting:
 		current_state = State.Idle
 		
+	if Playerstats.current_status.Burning > 0:
+		burning_light.visible = true
+		if randi_range(1,8) == 1:
+			var new_particle = fire_particle.instantiate()
+			new_particle.global_position = global_position
+			new_particle.global_position += Vector2(randf_range(-25,25),randf_range(-60,60))
+			add_sibling(new_particle)
+	else:
+		burning_light.visible = false
+			
 #function for player animation. matches the current state the player, then the current direction the player is facing
 func Update_animation():
 	match current_state:
@@ -237,9 +307,10 @@ func Shoot():
 			bulle.global_position = spawner.global_position
 			bulle.look_at(get_global_mouse_position())
 			add_sibling(bulle)
-			shake(7.5,0.05,4,1.25)
+			shake(12.5,0.025,12.5,1.2)
 			emit_signal("cooldown")
 			shoot_animation(0.1)
+			make_shell(1,1)
 			make_particles(randi_range(5,6))
 			timer.start(0.75)
 		3:
@@ -252,9 +323,10 @@ func Shoot():
 			bulle5.global_position = spawner.global_position
 			bulle5.look_at(get_global_mouse_position())
 			add_sibling(bulle5)
-			shake(12,0.05,6,1.2)
+			shake(25,0.025,25,1.2)
 			emit_signal("cooldown")
 			shoot_animation(0.2)
+			make_shell(1,1)
 			make_particles(randi_range(8,9))
 			timer.start(2)
 		4:
@@ -268,11 +340,13 @@ func Shoot():
 				bulle2.global_position = spawner.global_position
 				bulle2.look_at(get_global_mouse_position())
 				add_sibling(bulle2)
-			shake(10,0.05,5,1.2)
+			shake(28,0.025,28,1.2)
 			emit_signal("cooldown")
 			shoot_animation(0.15)
 			make_particles(randi_range(7,8))
-			timer.start(1.15)
+			make_shell(2,6)
+			timer.start(1.35)
+			$Audio_Players/Gun2.play()
 		5:
 			if not timer.is_stopped() or Playerstats.health < 2:
 				return
@@ -283,10 +357,12 @@ func Shoot():
 			bulle3.global_position = spawner.global_position
 			bulle3.look_at(get_global_mouse_position())
 			add_sibling(bulle3)
-			shake(4,0.05,3,1.25)
+			shake(9,0.025,9,1.2)
 			emit_signal("cooldown")
 			shoot_animation(0.05)
 			make_particles(randi_range(4,5))
+			make_shell(1,1)
+			$Audio_Players/Gun1.play()
 			timer.start(0.25)
 		6:
 			if not timer.is_stopped() or Playerstats.health < 2:
@@ -300,6 +376,7 @@ func Shoot():
 			shake(2,0.05,3,1.25)
 			timer.start(0.1)
 	
+#Manually matches all the states and animation
 func shoot_animation(time):
 	current_state = State.Shooting
 	match Pointing_to_mouse:
@@ -344,6 +421,7 @@ func shoot_animation(time):
 			await get_tree().create_timer(time).timeout
 			current_state = State.Idle
 			
+#Script for when the player takes damage, emits a signal along with a number to the HUD script for the red damage effect
 func damage_player(val):
 	if val < 1:
 		val = 1
@@ -354,11 +432,13 @@ func damage_player(val):
 	var new_number = number.instantiate()
 	new_number.global_position=global_position
 	add_sibling(new_number)
-	emit_signal("red", clampf(float(val)/10, 0.35 , 0.95))
+	emit_signal("red", clampf(float(val)/5, 0.5 , 1.5))
+	$Audio_Players/Hurt.play()
 	flash()
 	await get_tree().create_timer(0.2).timeout
 	animation_can_play = true
 		
+#Script for healing 
 func heal(val):
 	Playerstats.health += val
 	Playerstats.healnum = val
@@ -366,36 +446,47 @@ func heal(val):
 	new_heal.global_position = global_position
 	add_sibling(new_heal)
 	
+#Flash effect, turns the player's sprite off and on 6 times.
 func flash():
+	flashing = true
+	Sprite.modulate = Color(7,7,7,1)
 	if Playerstats.health > 0:
 		for i in range(6):
 			Sprite.visible=false
 			await get_tree().create_timer(0.05).timeout
 			Sprite.visible=true
 			await get_tree().create_timer(0.05).timeout
-		
+			if Sprite.modulate.r > 2:
+				Sprite.modulate -= Color(1,1,1,0)
+	Sprite.modulate = Color(1,1,1,1)
+	flashing = false
+
 #Just uses the camera offset along with a random value to make a shake effect.
 func shake(amt,time,rep,damp):
+	shaking = true
 	if Playerstats.health > 0:
 		for i in range(rep):
-			Camera.offset.x=(randf_range(-amt,amt))
-			Camera.offset.y=(randf_range(-amt,amt))
-			amt = amt/damp
-			await get_tree().create_timer(time).timeout
-		Camera.offset.x=0
-		Camera.offset.y=0
+			if Playerstats.settings.Allow_Shaking:
+				shaking = true
+				Camera.offset.x=(randf_range(-amt,amt))
+				Camera.offset.y=(randf_range(-amt,amt))
+				Camera.offset += camera_offset
+				amt = amt/damp
+				await get_tree().create_timer(time).timeout
+	shaking = false
 
+#Dash function, temperoailiy sets the player speed to 2100 for 0.3 seconds before setting it back down to 550.
 func dash():
 	if not dash_timer.is_stopped():
 		return
-	SPEED=1800.0
-	velocity = velocity.move_toward(direction * SPEED, ACCELERATION*42)
-	await get_tree().create_timer(0.11).timeout
-	SPEED=500.0
-	emit_signal("dash_cooldown")
 	dash_timer.start(1.75)
-
-#Hotkeys with the numbers
+	emit_signal("dash_cooldown")
+	SPEED= 2100.0
+	velocity = velocity.move_toward(direction * SPEED, ACCELERATION*75)
+	await get_tree().create_timer(0.3).timeout
+	SPEED= 550.0
+	
+#Hotkeys with the numbers, the game manually checks each one
 func check_item_select():
 	if Input.is_action_just_pressed("1"):
 		Playerstats.weapon_selected = 1
@@ -410,6 +501,7 @@ func check_item_select():
 	if Input.is_action_just_pressed("6") and Playerstats.weapons_unlocked > 5:
 		Playerstats.weapon_selected = 6
 	
+#Status Effects Function, They apply when an enemy hits the player and the time variable associated with the enemt is lower than the current status timer
 func poisoned(time):
 	if time > Playerstats.current_status.Poison:
 		Playerstats.current_status.Poison = time
@@ -426,7 +518,7 @@ func burned(time):
 	if time > Playerstats.current_status.Burning:
 		Playerstats.current_status.Burning = time
 
-#Calculates the mouse position relationship with the player position relationship
+#Calculates the mouse position relationship with the player position relationship. Does this manually with if and else statements.
 func get_mouse_direction():
 	var difference_in_y = get_global_mouse_position().y - global_position.y
 	var difference_in_x = get_global_mouse_position().x - global_position.x
@@ -457,6 +549,7 @@ func get_mouse_direction():
 		else:
 			Pointing_to_mouse = Direction_to_mouse.Down
 		
+#Sets the bullet spawner when the player shoots
 func set_spawner(val):
 	match val:
 		Direction_to_mouse.Down:
@@ -524,9 +617,31 @@ func set_spawner(val):
 				light.energy -= 5
 			light.visible = false
 
+#Function which makes the particles when the player shoots their gun
 func make_particles(amt):
 	for i in range(amt):
 		var new_particle = gun_particle.instantiate()
 		new_particle.global_position = spawner.global_position
 		add_sibling(new_particle)
 		
+#Used to find the timer spent in the level.
+func _on_camera_timer_timeout() -> void:
+	time_in_level += 0.017
+	set_camera_offset()
+
+#Generates the step sound from the audiostreamplayer2Ds. 
+func step_sound() -> void:
+	if randi_range(0,1):
+		$Audio_Players/Step1.pitch_scale = randf_range(1.1,1.3)
+		$Audio_Players/Step1.play()
+	else:
+		$Audio_Players/Step2.pitch_scale = randf_range(1.15,1.35)
+		$Audio_Players/Step2.play()
+
+#Generates the shell particle when the player shoots
+func make_shell(type, amt):
+	for i in range(amt):
+		var new_shell = shell.instantiate()
+		new_shell.global_position = spawner.global_position
+		new_shell.set_type(type)
+		add_sibling(new_shell)

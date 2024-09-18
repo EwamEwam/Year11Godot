@@ -1,5 +1,5 @@
 extends CanvasLayer
-
+#Script for the player's hud, all the nodes are declared as variables.
 const gems_number = preload("res://Scenes/Other/Gems_numbers.tscn")
 @onready var bar = $CanvasModulate/bar
 @onready var red = $CanvasModulate/RedScreenFade
@@ -36,8 +36,10 @@ const gems_number = preload("res://Scenes/Other/Gems_numbers.tscn")
 @onready var blocked_timer = $CanvasModulate/Blocked_timer
 @onready var slimed = $CanvasModulate/Slimed
 @onready var slimed_timer = $CanvasModulate/Slimed_timer
+@onready var burning = $CanvasModulate/Burning
+@onready var burning_timer = $CanvasModulate/Burning_timer
 @onready var hud = $CanvasModulate
-
+@onready var level_heading = $CanvasModulate/Level_Title
 
 @onready var key = get_tree().get_first_node_in_group("Key")
 @onready var world = get_node('/root/level')
@@ -50,6 +52,7 @@ func _ready():
 	player.red.connect(damaged)
 	Cooldown_sprite.modulate = Color(1.15,1.15,1.15,1)
 	Dash_cooldown.modulate = Color(1.15,1.15,1.15,1)
+	level_title()
 	
 	if key != null:
 		key.level_complete.connect(fade_level_complete)
@@ -81,6 +84,7 @@ func _ready():
 		hud.modulate.a += 0.05
 		await get_tree().create_timer(0.05).timeout
 		
+#Manually Sets the frame of each heart sprite.
 func _physics_process(delta):
 	bar.set_frame(Playerstats.max_health/10-3)
 	heart1.set_frame(clampf(Playerstats.health,0,10))
@@ -165,6 +169,7 @@ func _physics_process(delta):
 		
 	update_status()
 		
+#These function each control one part of the HUD. For example, the cooldown metres, the red screen damage effect and the status effect timers
 func start_dash_cooldown():
 	Dash_cooldown.play("running")
 	Dash_cooldown.speed_scale = 1
@@ -184,10 +189,10 @@ func _on_dash_cooldown_animation_finished():
 func damaged(val):
 	if Playerstats.health > 0:
 		red.visible = true
-		for i in range(10):
+		for i in range(30):
 			red.modulate.a = val
-			await get_tree().create_timer(0.075).timeout
-			val = val/1.5
+			await get_tree().create_timer(0.025).timeout
+			val = val/1.2
 		red.visible = false
 
 func update_status():
@@ -212,6 +217,13 @@ func update_status():
 	else:
 		slimed.visible = false
 		slimed_timer.visible = false
+	if Playerstats.current_status.Burning > 0:
+		burning.visible = true
+		burning_timer.visible = true
+		burning_timer.text = var_to_str(Playerstats.current_status.Burning)
+	else:
+		burning.visible = false
+		burning_timer.visible = false
 
 func fade():
 	await get_tree().create_timer(3).timeout
@@ -223,3 +235,16 @@ func fade_level_complete():
 	for i in range(5):
 		hud.modulate.a -= 0.2
 		await get_tree().create_timer(0.05).timeout
+
+func level_title() -> void:
+	level_heading.text = "Level " + str(Playerstats.level)
+	level_heading.modulate.a = 0
+	await get_tree().create_timer(0.5).timeout
+	for i in range(20):
+		level_heading.modulate.a += 0.05
+		await get_tree().create_timer(0.05).timeout
+	await get_tree().create_timer(1).timeout
+	for i in range(20):
+		level_heading.modulate.a -= 0.05
+		await get_tree().create_timer(0.05).timeout
+	level_heading.visible = false

@@ -33,7 +33,7 @@ func check_collision():
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(2.5,0.05,2,1.25)
+				collision.shake(2,0.025,2,1.5)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
@@ -44,13 +44,15 @@ func _physics_process(delta):
 		
 		if health > 0:
 			var in_circle = circle.get_overlapping_bodies()
+			var slowed_down = false
 			if in_circle:
 				for collision in in_circle:
 					if collision.is_in_group("Player") and Raycast.is_colliding()==false:
 						var direction_to_player = global_position.direction_to(player.global_position)
 						Sprite.look_at(Vector2(Playerstats.player_x, Playerstats.player_y))
 						velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
-					elif not collision.is_in_group("Enemy") and not collision == self:
+					elif not collision.is_in_group("Enemy") and not collision == self and not slowed_down:
+						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 			else:
 				velocity = velocity.move_toward(Vector2.ZERO, FRICTION)

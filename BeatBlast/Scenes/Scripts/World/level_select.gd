@@ -97,3 +97,10 @@ func _on_level_2_select_pressed() -> void:
 		screen.fade_in(0.1, 10, "res://Scenes/levels/level2.tscn")
 		get_tree().paused = true
 		button_pressed = true
+
+
+func _on_weapon_pressed() -> void:
+	if not button_pressed:
+		screen.fade_in(0.1,10, "res://Scenes/levels/Weapons.tscn")
+		get_tree().paused = true
+		button_pressed = true

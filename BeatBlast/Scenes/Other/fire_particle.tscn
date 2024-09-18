@@ -1,0 +1,123 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2fmhku41c4yq"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/World/fire_particle.gd" id="1_ltgpd"]
+[ext_resource type="Texture2D" uid="uid://u4tr2wvli4g1" path="res://Sprites/Characters and items/Fire_particle.png" id="2_n577o"]
+[ext_resource type="Texture2D" uid="uid://can7kmxf1e788" path="res://Sprites/World/light.png" id="3_8ewfk"]
+
+[sub_resource type="Animation" id="Animation_oqfhd"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.1, 0, 0.1, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_mg505"]
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Sprite"]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.1, 0, 0.1, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.9)
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0, -6.5, -72.5, -0.5, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.9)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ghn04"]
+_data = {
+"RESET": SubResource("Animation_oqfhd"),
+"Sprite": SubResource("Animation_mg505")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rk4ph"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n577o")
+}],
+"loop": true,
+"name": &"Sprite",
+"speed": 5.0
+}]
+
+[node name="Fire_Particle" type="Node2D"]
+script = ExtResource("1_ltgpd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite")
+libraries = {
+"": SubResource("AnimationLibrary_ghn04")
+}
+autoplay = "Sprite"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_rk4ph")
+animation = &"Sprite"
+autoplay = "Sprite"
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite"]
+scale = Vector2(0.0461877, 0.0461877)
+color = Color(1, 0.611765, 0.0784314, 1)
+energy = 3.75
+texture = ExtResource("3_8ewfk")

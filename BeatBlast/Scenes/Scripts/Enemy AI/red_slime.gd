@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-const SPEED = 250.0
-const ACCELLERATION = 22.5
-const FRICTION = 5.5
+const SPEED = 300.0
+const ACCELLERATION = 27.5
+const FRICTION = 6.0
 var score_value = 40
 @onready var Sprite = $Slime_sprite
 @onready var animation = $AnimationPlayer
@@ -11,10 +11,10 @@ var score_value = 40
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const gem = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
-@export var health = 22
+@export var health = 24
 @onready var timer = $hurttimer
 @onready var hitbox = $hitbox
-@export var damage = 7
+@export var damage = 8
 @onready var hurtbox = $hurtbox
 @onready var circle = $Movement_circle
 @onready var Raycast = $RayCast2D
@@ -24,7 +24,7 @@ enum state {Right, Left, Hurt, Death}
 var current_state = state.Right
 var animation_can_play = true
 var dead = false
-@export var max_health = 22
+@export var max_health = 24
 
 func _ready():
 	Sprite.modulate = Color(0.6, 0.6, 0.6, 0.9)
@@ -36,9 +36,9 @@ func check_collision():
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(5,0.05,3,1.2)
+				collision.shake(16,0.025,16,1.2)
 				collision.damage_player(damage-Playerstats.defence)
-				collision.slimed(2)
+				collision.burned(2)
 				timer.start()
 
 func _physics_process(delta):
@@ -48,12 +48,14 @@ func _physics_process(delta):
 	
 		if health > 0:
 			var in_circle = circle.get_overlapping_bodies()
+			var slowed_down = false
 			if in_circle:
 				for collision in in_circle:
 					if collision.is_in_group("Player") and not Raycast.is_colliding():
 						var direction_to_player = global_position.direction_to(player.global_position)
 						velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
-					elif not collision.is_in_group("Enemy") and not collision == self:
+					elif not collision.is_in_group("Enemy") and not collision == self and not slowed_down:
+						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 			else:
 				velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -100,7 +102,7 @@ func check_for_death():
 		hitbox.disabled = true
 		animation_can_play = false
 		current_state = state.Death
-		await get_tree().create_timer(1.05).timeout
+		await get_tree().create_timer(0.9).timeout
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
 		add_sibling(new_heart)

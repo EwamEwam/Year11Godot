@@ -38,7 +38,7 @@ func check_collision():
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(6,0.05,3,1.2)
+				collision.shake(10,0.025,10,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
@@ -48,13 +48,15 @@ func _physics_process(delta):
 		Raycast.target_position.y = Playerstats.player_y - global_position.y
 		
 		if health > 0:
+			var slowed_down = false
 			var in_circle = circle.get_overlapping_bodies()
 			if in_circle:
 				for collision in in_circle:
 					if collision.is_in_group("Player") and Raycast.is_colliding()==false:
 						var direction_to_player = global_position.direction_to(player.global_position)
 						velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
-					elif not collision.is_in_group("Enemy") and not collision == self:
+					elif not collision.is_in_group("Enemy") and not slowed_down and not collision == self:
+						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 			else:
 				velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -117,15 +119,15 @@ func check_for_death():
 			new_slime.global_position.x += randf_range(-5,5)
 			new_slime.global_position.y += randf_range(-5,5)
 			add_sibling(new_slime)
-		for i in range(randi_range(9,11)):
+		for i in range(randi_range(8,11)):
 			var new_gem = gem1 .instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
-		for i in range(randi_range(3,4)):
+		for i in range(randi_range(1,2)):
 			var new_gem = gem5.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
-		
+
 func take_damage(dmg):
 	health -= dmg
 	if health > 0:

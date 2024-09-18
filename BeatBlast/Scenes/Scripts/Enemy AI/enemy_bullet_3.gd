@@ -16,7 +16,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_body_entered(body) -> void:
 	if body.is_in_group("Player") and body.has_method("damage_player"):
 		body.damage_player(damage - Playerstats.defence)
-		body.shake(8.5,0.05,6,1.15)
+		body.shake(10,0.025,10,1.2)
 	elif body.is_in_group("Prop") and body.has_method("damage"):
 		body.damage(damage)
 		queue_free()

@@ -38,11 +38,11 @@ func check_collision():
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(5,0.05,3,1.2)
+				collision.shake(6,0.025,6,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
-#Runs every frame and does all the essential operations and functions, only does functions if on screen
+#Runs every frame and does all the essential operations and functions, only does functions if on screen to optimise
 func _physics_process(delta):
 	if onscreen.is_on_screen():
 		#The raycast that points towards the player and detects if there are any walls in the way
@@ -51,12 +51,14 @@ func _physics_process(delta):
 	
 		if health > 0:
 			var in_circle = circle.get_overlapping_bodies()
+			var slowed_down = false
 			if in_circle:
 				for collision in in_circle:
 					if collision.is_in_group("Player") and not Raycast.is_colliding():
 						var direction_to_player = global_position.direction_to(player.global_position)
 						velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
-					elif not collision.is_in_group("Enemy") and not collision == self:
+					elif not collision.is_in_group("Enemy") and not collision == self and not slowed_down:
+						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 			else:
 				velocity = velocity.move_toward(Vector2.ZERO, FRICTION)

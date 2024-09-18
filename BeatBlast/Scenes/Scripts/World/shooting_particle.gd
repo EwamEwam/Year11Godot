@@ -20,4 +20,4 @@ func _physics_process(delta: float) -> void:
 func set_direction(val):
 	rotation = val
 	rotation += deg_to_rad(180)
-	rotate(deg_to_rad(randf_range(-20,20)))
+	rotate(deg_to_rad(randf_range(-25,25)))

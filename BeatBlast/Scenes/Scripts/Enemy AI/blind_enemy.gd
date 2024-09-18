@@ -39,7 +39,7 @@ func check_collision():
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(10,0.05,5,1.15)
+				collision.shake(12,0.025,12,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				

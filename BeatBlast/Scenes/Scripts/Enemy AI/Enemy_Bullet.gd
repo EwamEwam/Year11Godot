@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var SPEED :float = 700.0
+@export var SPEED :float = 575
 var damage :int = 3
 const particle :PackedScene = preload("res://Scenes/Other/Shooting_Particle.tscn")
 
@@ -16,13 +16,11 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_body_entered(body) -> void:
 	if body.is_in_group("Player") and body.has_method("damage_player"):
 		body.damage_player(damage - Playerstats.defence)
-		body.shake(7.5,0.05,5,1.1)
-		self.get_parent().remove_child(self)
-		body.add_child(self)
+		body.shake(6,0.025,6,1.2)
 	elif body.is_in_group("Prop") and body.has_method("damage"):
 		body.damage(damage)
 		queue_free()
-	if not body.is_in_group("Enemy") and not body.is_in_group("Player"):
+	if not body.is_in_group("Enemy"):
 		queue_free()
 		
 func _on_timer_timeout() -> void:
@@ -31,8 +29,3 @@ func _on_timer_timeout() -> void:
 	new_particle.set_direction(rotation)
 	add_sibling(new_particle)
 	$Timer.start(0.05)
-
-func set_power(speed,dam) -> void:
-	damage = dam
-	SPEED = speed
-	

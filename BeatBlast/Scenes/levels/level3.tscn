@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=4 uid="uid://qynimnrvr5fc"]
 
-[ext_resource type="Script" path="res://Scenes/Scripts/World/level_2.gd" id="1_np3co"]
+[ext_resource type="Script" path="res://Scenes/Scripts/World/level_3.gd" id="1_827s4"]
 [ext_resource type="Texture2D" uid="uid://b1uv32qbh13hb" path="res://Sprites/World/Dungeon_tileset_rev3.png" id="2_nbddc"]
 [ext_resource type="PackedScene" uid="uid://c1xbilv51dpju" path="res://Scenes/Characters, weapons and collectables/heart_capsule.tscn" id="3_ntjv4"]
 [ext_resource type="PackedScene" uid="uid://ll60qr3vjhjn" path="res://Scenes/levels/door.tscn" id="4_f1lib"]
@@ -421,7 +421,7 @@ sources/0 = SubResource("TileSetAtlasSource_kmwat")
 
 [node name="level" type="Node2D" groups=["Level"]]
 process_mode = 3
-script = ExtResource("1_np3co")
+script = ExtResource("1_827s4")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 z_index = -1

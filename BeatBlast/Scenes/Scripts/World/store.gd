@@ -46,19 +46,52 @@ func display():
 		$Buttons/Life_up_upgrade.text = str(Playerstats.health_cost)
 	else:
 		$Buttons/Life_up_upgrade.text = "MAXED"
-	$Max_health_heading.text = "Max Health Bottle (Lv " + str(Playerstats.health_lv) + "/4)"
-	$Max_health_heading2.text = "Max Health Bottle (Lv " + str(Playerstats.health_lv) + "/4)"
+	$Max_health_heading.text = "+10 Max HP Bottle (Lv " + str(Playerstats.health_lv) + "/4)"
+	$Max_health_heading2.text = "+10 Max HP Bottle (Lv " + str(Playerstats.health_lv) + "/4)"
 	
-	if Playerstats.defence_lv < 4:
+	if Playerstats.defence_lv < 5:
 		$Buttons/Defence_up_upgrade.text = str(Playerstats.defence_cost)
 	else:
 		$Buttons/Defence_up_upgrade.text = "MAXED"
-	$Defence_heading.text = "Defence Upgrade (Lv " + str(Playerstats.defence_lv) + "/4)"
-	$Defence_heading2.text = "Defence Upgrade (Lv " + str(Playerstats.defence_lv) + "/4)"
+	$Defence_heading.text = "Defence Upgrade (Lv " + str(Playerstats.defence_lv) + "/5)"
+	$Defence_heading2.text = "Defence Upgrade (Lv " + str(Playerstats.defence_lv) + "/5)"
 	
-	if Playerstats.attack_lv < 4:
+	if Playerstats.attack_lv < 5:
 		$Buttons/Attack_up_upgrade.text = str(Playerstats.attack_cost)
 	else:
 		$Buttons/Attack_up_upgrade.text = "MAXED"
-	$Attack_heading.text = "Attack Upgrade (Lv " + str(Playerstats.attack_lv) + "/4)"
-	$Attack_heading2.text = "Attack Upgrade (Lv " + str(Playerstats.attack_lv) + "/4)"
+	$Attack_heading.text = "Attack Upgrade (Lv " + str(Playerstats.attack_lv) + "/5)"
+	$Attack_heading2.text = "Attack Upgrade (Lv " + str(Playerstats.attack_lv) + "/5)"
+
+	if not Playerstats.grenade_upgrade:
+		$Buttons/Grenade_ability_upgrade.text = "2000"
+		$Grenade_heading.text = "Grenade Ability (Lv 0/1)"
+		$Grenade_heading2.text = "Grenade Ability (Lv 0/1)"
+	else:
+		$Buttons/Grenade_ability_upgrade.text = "MAXED"
+		$Grenade_heading.text = "Grenade Ability (Lv 1/1)"
+		$Grenade_heading2.text = "Grenade Ability (Lv 1/1)"
+
+func _on_grenade_ability_upgrade_pressed() -> void:
+	if Playerstats.gems >= 2000 and not Playerstats.grenade_upgrade:
+		Playerstats.gems -= 2000
+		Playerstats.grenade_upgrade = true
+		display()
+
+func _on_restore_1_pressed() -> void:
+	if Playerstats.gems >= 75:
+		Playerstats.gems -= 75
+		Playerstats.healing_items.Jar_of_pickled_hearts += 1
+		display()
+
+func _on_restore_2_pressed() -> void:
+	if Playerstats.gems >= 180:
+		Playerstats.gems -= 180
+		Playerstats.healing_items.Dried_hearts_in_a_can += 1
+		display()
+
+func _on_restore_3_pressed() -> void:
+	if Playerstats.gems >= 350:
+		Playerstats.gems -= 350
+		Playerstats.healing_items.Heart_essence += 1
+		display()

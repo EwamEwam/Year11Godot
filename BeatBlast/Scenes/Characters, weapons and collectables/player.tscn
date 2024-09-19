@@ -1,4 +1,4 @@
-[gd_scene load_steps=458 format=3 uid="uid://b1lyax7mlenna"]
+[gd_scene load_steps=465 format=3 uid="uid://b1lyax7mlenna"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/PlayerMovement.gd" id="1_gyp3l"]
 [ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_shadow.png" id="2_s50a2"]
@@ -32,11 +32,17 @@
 [ext_resource type="Texture2D" uid="uid://ddtg5df3niiqi" path="res://Sprites/Hud/Blocked.png" id="26_103gs"]
 [ext_resource type="Texture2D" uid="uid://dix10eog3gi3m" path="res://Sprites/Hud/Slimed.png" id="29_ijb7g"]
 [ext_resource type="Texture2D" uid="uid://5usog0bbxep1" path="res://Sprites/Hud/Burning.png" id="30_ecnlo"]
-[ext_resource type="AudioStream" uid="uid://cpi6exchdkdsf" path="res://Audio/Character_Sounds/Hit_Hurt.wav" id="33_klkdj"]
-[ext_resource type="AudioStream" uid="uid://do80dp44lbhhp" path="res://Audio/Character_Sounds/Gun1.mp3" id="34_j51qr"]
-[ext_resource type="AudioStream" uid="uid://bmdv3rnp3n0ry" path="res://Audio/Character_Sounds/Gun2.mp3" id="35_poemb"]
-[ext_resource type="AudioStream" uid="uid://cx4jwv5cc55sn" path="res://Audio/Character_Sounds/Step.mp3" id="36_ct5tl"]
-[ext_resource type="AudioStream" uid="uid://cyojbtk8yobfc" path="res://Audio/Character_Sounds/Step 2.mp3" id="37_a6hmu"]
+[ext_resource type="Texture2D" uid="uid://c5walk12tn338" path="res://Sprites/Hud/Can_of_dried_hearts.png" id="33_cedqh"]
+[ext_resource type="AudioStream" uid="uid://cpi6exchdkdsf" path="res://Audio/Player_sounds/Hit_Hurt.wav" id="33_klkdj"]
+[ext_resource type="AudioStream" uid="uid://do80dp44lbhhp" path="res://Audio/Player_sounds/Gun1.mp3" id="34_j51qr"]
+[ext_resource type="Texture2D" uid="uid://bql2vwupj6b5i" path="res://Sprites/Hud/Jar_of_pickled_hearts.png" id="34_vyrku"]
+[ext_resource type="AudioStream" uid="uid://bmdv3rnp3n0ry" path="res://Audio/Player_sounds/Gun2.mp3" id="35_poemb"]
+[ext_resource type="Texture2D" uid="uid://cg8nsg71m2lls" path="res://Sprites/Hud/Heart_essence.png" id="35_vr1e2"]
+[ext_resource type="AudioStream" uid="uid://cx4jwv5cc55sn" path="res://Audio/Player_sounds/Step.mp3" id="36_ct5tl"]
+[ext_resource type="AudioStream" uid="uid://csnbv3akgls3x" path="res://Audio/Player_sounds/Gun3.mp3" id="36_lyy6w"]
+[ext_resource type="AudioStream" uid="uid://cyojbtk8yobfc" path="res://Audio/Player_sounds/Step 2.mp3" id="37_a6hmu"]
+[ext_resource type="AudioStream" uid="uid://b55b7j3u34n5i" path="res://Audio/Player_sounds/Gun4.mp3" id="37_bywe1"]
+[ext_resource type="Texture2D" uid="uid://c8hkortvqhl3u" path="res://Sprites/Hud/Health_heal.png" id="40_d0mwp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsncw"]
 size = Vector2(6.61341, 15.5172)
@@ -5636,6 +5642,33 @@ animations = [{
 "speed": 40.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_d2dxo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_cedqh")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("34_vyrku")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("35_vr1e2")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 process_mode = 1
 collision_mask = 2
@@ -5895,6 +5928,26 @@ position = Vector2(29, 300)
 scale = Vector2(3, 3)
 texture = ExtResource("30_ecnlo")
 
+[node name="HealthHeal" type="Sprite2D" parent="Hud/CanvasModulate"]
+position = Vector2(39, 160)
+scale = Vector2(2, 2)
+texture = ExtResource("40_d0mwp")
+
+[node name="Healing_icon" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+position = Vector2(39, 161)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_d2dxo")
+animation = &"1"
+
+[node name="Healing_amt" type="Label" parent="Hud/CanvasModulate"]
+offset_left = -4.0
+offset_top = 170.0
+offset_right = 21.0
+offset_bottom = 177.0
+scale = Vector2(1.5, 1.5)
+text = "X9"
+horizontal_alignment = 2
+
 [node name="Score" type="Label" parent="Hud/CanvasModulate"]
 anchors_preset = -1
 anchor_bottom = 0.211
@@ -6007,6 +6060,15 @@ theme_override_fonts/font = ExtResource("26_0axcd")
 theme_override_font_sizes/font_size = 25
 text = "99"
 
+[node name="Healing_cooldown" type="Label" parent="Hud/CanvasModulate"]
+offset_left = 18.0
+offset_top = 152.0
+offset_right = 39.0
+offset_bottom = 159.0
+scale = Vector2(2, 2)
+text = "60"
+horizontal_alignment = 1
+
 [node name="Audio_Players" type="Node2D" parent="."]
 
 [node name="Hurt" type="AudioStreamPlayer2D" parent="Audio_Players"]
@@ -6022,6 +6084,14 @@ stream = ExtResource("35_poemb")
 volume_db = -10.0
 playback_type = 1
 
+[node name="Gun3" type="AudioStreamPlayer2D" parent="Audio_Players"]
+stream = ExtResource("36_lyy6w")
+volume_db = -10.0
+
+[node name="Gun4" type="AudioStreamPlayer2D" parent="Audio_Players"]
+stream = ExtResource("37_bywe1")
+volume_db = -2.0
+
 [node name="Step1" type="AudioStreamPlayer2D" parent="Audio_Players"]
 stream = ExtResource("36_ct5tl")
 volume_db = 2.2
@@ -6034,6 +6104,7 @@ volume_db = 2.1
 pitch_scale = 1.15
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 scale = Vector2(0.475073, 0.475073)
 texture = ExtResource("3_gwtbm")
 

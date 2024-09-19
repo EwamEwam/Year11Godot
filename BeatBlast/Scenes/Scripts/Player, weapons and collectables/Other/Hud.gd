@@ -168,7 +168,7 @@ func _physics_process(delta):
 		Playerstats.gemsval = 0
 		
 	update_status()
-		
+	update_healing_items(Playerstats.healing_item_selected)
 #These function each control one part of the HUD. For example, the cooldown metres, the red screen damage effect and the status effect timers
 func start_dash_cooldown():
 	Dash_cooldown.play("running")
@@ -248,3 +248,9 @@ func level_title() -> void:
 		level_heading.modulate.a -= 0.05
 		await get_tree().create_timer(0.05).timeout
 	level_heading.visible = false
+
+func update_healing_items(selected):
+	$CanvasModulate/Healing_icon.play(str(selected))
+	$CanvasModulate/Healing_amt.text = str(Playerstats.healing_items)
+	
+	

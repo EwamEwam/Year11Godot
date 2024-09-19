@@ -38,7 +38,7 @@ func check_collision():
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(6,0.025,6,1.2)
+				collision.shake(7.5,0.025,7.5,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
@@ -123,6 +123,8 @@ func check_for_death():
 			add_sibling(new_gem)
 		
 func take_damage(dmg):
+	$Hurt.pitch_scale = randf_range(0.75,1.25)
+	$Hurt.play()
 	health -= dmg
 	if health > 0:
 		animation_can_play = false

@@ -69,7 +69,7 @@ offset_right = 170.0
 offset_bottom = 117.0
 scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("2_m5o05")
-text = "Max Health Bottle (Lv 0/4)"
+text = "+10 Max HP Bottle (Lv 0/4)"
 
 [node name="Max_health_heading" type="Label" parent="."]
 offset_left = 30.0
@@ -78,7 +78,7 @@ offset_right = 170.0
 offset_bottom = 114.0
 scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("2_m5o05")
-text = "Max Health Bottle (Lv 0/4)"
+text = "+10 Max HP Bottle (Lv 0/4)"
 
 [node name="Defence_heading2" type="Label" parent="."]
 modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
@@ -88,7 +88,7 @@ offset_right = 171.0
 offset_bottom = 165.0
 scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("2_m5o05")
-text = "Defence Upgrade (Lv 0/4)"
+text = "Defence Upgrade (Lv 0/5)"
 
 [node name="Defence_heading" type="Label" parent="."]
 offset_left = 31.0
@@ -97,7 +97,7 @@ offset_right = 171.0
 offset_bottom = 162.0
 scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("2_m5o05")
-text = "Defence Upgrade (Lv 0/4)"
+text = "Defence Upgrade (Lv 0/5)"
 
 [node name="Attack_heading2" type="Label" parent="."]
 modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
@@ -107,7 +107,7 @@ offset_right = 171.0
 offset_bottom = 215.0
 scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("2_m5o05")
-text = "Attack Upgrade (Lv 0/4)"
+text = "Attack Upgrade (Lv 0/5)"
 
 [node name="Attack_heading" type="Label" parent="."]
 offset_left = 31.0
@@ -116,7 +116,7 @@ offset_right = 171.0
 offset_bottom = 212.0
 scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("2_m5o05")
-text = "Attack Upgrade (Lv 0/4)"
+text = "Attack Upgrade (Lv 0/5)"
 
 [node name="Grenade_heading2" type="Label" parent="."]
 modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
@@ -126,7 +126,7 @@ offset_right = 171.0
 offset_bottom = 264.0
 scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("2_m5o05")
-text = "Grenade Ability (N/A)"
+text = "Grenade Ability (0/1)"
 
 [node name="Grenade_heading" type="Label" parent="."]
 offset_left = 31.0
@@ -135,7 +135,7 @@ offset_right = 171.0
 offset_bottom = 261.0
 scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("2_m5o05")
-text = "Grenade Ability (N/A)"
+text = "Grenade Ability (0/1)"
 
 [node name="Jar2" type="Label" parent="."]
 modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
@@ -250,7 +250,7 @@ offset_right = 522.0
 offset_bottom = 257.0
 scale = Vector2(3, 3)
 focus_mode = 0
-text = "N/A"
+text = "2000"
 icon = ExtResource("3_ucq4h")
 alignment = 2
 expand_icon = true
@@ -262,7 +262,7 @@ offset_right = 540.0
 offset_bottom = 326.0
 scale = Vector2(3, 3)
 focus_mode = 0
-text = "N/A"
+text = "75"
 icon = ExtResource("3_ucq4h")
 alignment = 2
 expand_icon = true
@@ -274,7 +274,7 @@ offset_right = 540.0
 offset_bottom = 374.0
 scale = Vector2(3, 3)
 focus_mode = 0
-text = "N/A"
+text = "180"
 icon = ExtResource("3_ucq4h")
 alignment = 2
 expand_icon = true
@@ -286,7 +286,7 @@ offset_right = 540.0
 offset_bottom = 422.0
 scale = Vector2(3, 3)
 focus_mode = 0
-text = "N/A"
+text = "350"
 icon = ExtResource("3_ucq4h")
 alignment = 2
 expand_icon = true
@@ -303,9 +303,14 @@ text_overrun_behavior = 1
 clip_text = true
 
 [node name="Fade" parent="." instance=ExtResource("6_aprx5")]
+visible = false
 position = Vector2(27, 3)
 
 [connection signal="pressed" from="Buttons/Life_up_upgrade" to="." method="_on_life_up_upgrade_pressed"]
 [connection signal="pressed" from="Buttons/Defence_up_upgrade" to="." method="_on_defence_up_upgrade_pressed"]
 [connection signal="pressed" from="Buttons/Attack_up_upgrade" to="." method="_on_attack_up_upgrade_pressed"]
+[connection signal="pressed" from="Buttons/Grenade_ability_upgrade" to="." method="_on_grenade_ability_upgrade_pressed"]
+[connection signal="pressed" from="Buttons/Restore_1" to="." method="_on_restore_1_pressed"]
+[connection signal="pressed" from="Buttons/Restore_2" to="." method="_on_restore_2_pressed"]
+[connection signal="pressed" from="Buttons/Restore_3" to="." method="_on_restore_3_pressed"]
 [connection signal="pressed" from="Buttons/Back" to="." method="_on_back_pressed"]

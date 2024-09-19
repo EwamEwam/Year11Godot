@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7mq58e3igpsg"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/weapons/heart_grenade.gd" id="1_sbasp"]
+[ext_resource type="Texture2D" uid="uid://clbvy0o137gxd" path="res://Sprites/World/Rock2.png" id="2_vr0gl"]
+
+[node name="Heart_grenade" type="Node2D"]
+z_index = -1
+script = ExtResource("1_sbasp")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(8, 8)
+texture = ExtResource("2_vr0gl")

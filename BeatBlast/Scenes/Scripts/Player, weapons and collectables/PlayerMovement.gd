@@ -19,6 +19,7 @@ const Bullet3 = preload("res://Scenes/Characters, weapons and collectables/bulle
 const Bullet4 = preload("res://Scenes/Characters, weapons and collectables/bullet4.tscn")
 const Bullet5 = preload("res://Scenes/Characters, weapons and collectables/bullet5.tscn")
 const Punch_box = preload("res://Scenes/Characters, weapons and collectables/punch_box.tscn")
+const grenade = preload("res://Scenes/Characters, weapons and collectables/heart_grenade.tscn")
 const gun_particle = preload("res://Scenes/Other/gun_particle.tscn")
 const number = preload("res://Scenes/Other/DamageP_numbers.tscn")
 const heal_num = preload ("res://Scenes/Other/Heal_numbers.tscn")
@@ -111,6 +112,10 @@ func _physics_process(delta):
 			
 	if Input.is_action_just_pressed("heal"):
 		use_healing_item(Playerstats.healing_item_selected)
+		
+	if Input.is_action_just_pressed("grenade"):
+		if Playerstats.health > 8:
+			make_heart_grenade()
 		
 	if animation_can_play:
 		Update_state()
@@ -312,6 +317,7 @@ func Shoot():
 			shoot_animation(0.1)
 			make_shell(1,1)
 			make_particles(randi_range(5,6))
+			$Audio_Players/Gun3.play()
 			timer.start(0.75)
 		3:
 			if not timer.is_stopped() or Playerstats.health < 3:
@@ -328,6 +334,7 @@ func Shoot():
 			shoot_animation(0.2)
 			make_shell(1,1)
 			make_particles(randi_range(8,9))
+			$Audio_Players/Gun4.play()
 			timer.start(2)
 		4:
 			if not timer.is_stopped() or Playerstats.health < 5:
@@ -645,3 +652,11 @@ func make_shell(type, amt):
 		new_shell.global_position = spawner.global_position
 		new_shell.set_type(type)
 		add_sibling(new_shell)
+
+func make_heart_grenade():
+	if Playerstats.grenade_upgrade and Playerstats.grenade_cooldown < 1:
+		Playerstats.health -= 8
+		var new_grenade = grenade.instantiate()
+		new_grenade.global_position = global_position
+		add_sibling(new_grenade)
+		Playerstats.grenade_cooldown = 45

@@ -6337,7 +6337,7 @@ y_sort_enabled = true
 [node name="PointLight2D2" type="PointLight2D" parent="Level_elements/Lighting"]
 position = Vector2(2435, 442)
 scale = Vector2(1366.18, 1366.18)
-energy = 2.5
+energy = 2.25
 texture = ExtResource("3_5tou1")
 
 [node name="Gem_key" parent="Level_elements" instance=ExtResource("10_cxagf")]

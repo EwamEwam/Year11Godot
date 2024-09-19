@@ -251,6 +251,22 @@ func level_title() -> void:
 
 func update_healing_items(selected):
 	$CanvasModulate/Healing_icon.play(str(selected))
-	$CanvasModulate/Healing_amt.text = str(Playerstats.healing_items)
-	
-	
+	match selected:
+		1:
+			$CanvasModulate/Healing_amt.text = "X" + str(Playerstats.healing_items["Jar_of_pickled_hearts"])
+		2:
+			$CanvasModulate/Healing_amt.text = "X" + str(Playerstats.healing_items["Dried_hearts_in_a_can"])
+		3:
+			$CanvasModulate/Healing_amt.text = "X" + str(Playerstats.healing_items["Heart_essence"])
+	$CanvasModulate/Healing_icon.play(str(selected))
+	if Playerstats.healing_cooldown > 0:
+		$CanvasModulate/HealthHeal.modulate = Color(0.5,0.5,0.5,1)
+		$CanvasModulate/Healing_icon.modulate = Color(0.5,0.5,0.5,1)
+		$CanvasModulate/Healing_amt.modulate = Color(0.5,0.5,0.5,1)
+		$CanvasModulate/Healing_cooldown.visible = true
+		$CanvasModulate/Healing_cooldown.text = str(Playerstats.healing_cooldown)
+	else:
+		$CanvasModulate/HealthHeal.modulate = Color(1,1,1,1)
+		$CanvasModulate/Healing_icon.modulate = Color(1,1,1,1)
+		$CanvasModulate/Healing_amt.modulate = Color(1,1,1,1)
+		$CanvasModulate/Healing_cooldown.visible = false

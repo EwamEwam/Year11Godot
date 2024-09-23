@@ -1,9 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://bkryvvuq63l5d"]
+[gd_scene load_steps=29 format=3 uid="uid://bkryvvuq63l5d"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/Slime.gd" id="1_w2g43"]
 [ext_resource type="Texture2D" uid="uid://cpwdnmkwoc0mc" path="res://Sprites/Characters and items/green_slime_shadow.png" id="2_m4hly"]
 [ext_resource type="Texture2D" uid="uid://6py887aesy0a" path="res://Sprites/Characters and items/green_slime.png" id="3_ck8bh"]
-[ext_resource type="AudioStream" uid="uid://do3k6qxj6tisg" path="res://Audio/Enemy_sounds/Enemy_hurt.mp3" id="4_1hbum"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5p6wr"]
 radius = 31.0
@@ -345,7 +344,3 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_v6u01")
 max_value = 8.0
 value = 4.0
 show_percentage = false
-
-[node name="Hurt" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_1hbum")
-playback_type = 1

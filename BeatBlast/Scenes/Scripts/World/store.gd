@@ -63,20 +63,12 @@ func display():
 	$Attack_heading.text = "Attack Upgrade (Lv " + str(Playerstats.attack_lv) + "/5)"
 	$Attack_heading2.text = "Attack Upgrade (Lv " + str(Playerstats.attack_lv) + "/5)"
 
-	if not Playerstats.grenade_upgrade:
-		$Buttons/Grenade_ability_upgrade.text = "2000"
-		$Grenade_heading.text = "Grenade Ability (Lv 0/1)"
-		$Grenade_heading2.text = "Grenade Ability (Lv 0/1)"
-	else:
-		$Buttons/Grenade_ability_upgrade.text = "MAXED"
-		$Grenade_heading.text = "Grenade Ability (Lv 1/1)"
-		$Grenade_heading2.text = "Grenade Ability (Lv 1/1)"
-
-func _on_grenade_ability_upgrade_pressed() -> void:
-	if Playerstats.gems >= 2000 and not Playerstats.grenade_upgrade:
-		Playerstats.gems -= 2000
-		Playerstats.grenade_upgrade = true
-		display()
+	$Jar_counter.text = str(Playerstats.healing_items.Jar_of_pickled_hearts)
+	$Jar_counter2.text = str(Playerstats.healing_items.Jar_of_pickled_hearts)
+	$Can_counter.text = str(Playerstats.healing_items.Dried_hearts_in_a_can)
+	$Can_counter2.text = str(Playerstats.healing_items.Dried_hearts_in_a_can)
+	$Essence_counter.text = str(Playerstats.healing_items.Heart_essence)
+	$Essence_counter2.text = str(Playerstats.healing_items.Heart_essence)
 
 func _on_restore_1_pressed() -> void:
 	if Playerstats.gems >= 75:

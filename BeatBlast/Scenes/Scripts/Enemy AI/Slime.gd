@@ -123,8 +123,6 @@ func check_for_death():
 			add_sibling(new_gem)
 		
 func take_damage(dmg):
-	$Hurt.pitch_scale = randf_range(0.75,1.25)
-	$Hurt.play()
 	health -= dmg
 	if health > 0:
 		animation_can_play = false

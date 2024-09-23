@@ -1,8 +1,8 @@
 extends Node
 
 #All variables that must be accessed in mutilple scenes are put here for ease of access.
-var health = INF
-var max_health = INF
+var health = 30
+var max_health = 30
 var weapon_selected = 1
 var weapons_unlocked = 5
 var healing_item_selected = 1
@@ -17,8 +17,8 @@ var damval = 0
 var dampval = 0
 var scorenum = 0
 var healnum = 0
-var defence = INF
-var attack = INF
+var defence = 0
+var attack = 0
 var bullets_shot = 0
 var bullets_hit = 0
 var cooldown = 0
@@ -65,7 +65,7 @@ var current_status = {
 
 #Another dictionary used to store the current inventory. pickled hearts restore 20 hp, heart_salad restore 50 hp, heart_essence restores 100 hp
 var healing_items = {
-"Jar_of_pickled_hearts" = 0,
+"Jar_of_pickled_hearts" = 1,
 "Dried_hearts_in_a_can" = 0,
 "Heart_essence" = 0
 }
@@ -91,8 +91,11 @@ var defence_cost = 750
 var defence_lv = 0
 var attack_cost = 1000
 var attack_lv = 0
+
+#Ignore, unused/undeveloped feature
 var grenade_upgrade = false
 	
+#Makes the update_status function run every second
 func _process(delta):
 	if not can_do:
 		can_do = true

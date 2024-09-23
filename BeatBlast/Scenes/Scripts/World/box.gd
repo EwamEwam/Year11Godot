@@ -3,6 +3,7 @@ extends StaticBody2D
 @export var health = 10
 @onready var sprite = $Crate
 @export var drop = 0
+var destroyed = false
 const heart5 = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
 const heart1 = preload("res://Scenes/Characters, weapons and collectables/heart1.tscn")
 const heart40 = preload("res://Scenes/Characters, weapons and collectables/heart40.tscn")
@@ -14,7 +15,8 @@ func ready():
 #1 - 5 heart, 2 - 1 heart, 3 - 40 heart, 4 - 10 heart 
 func damage(val):
 	health -= val
-	if health < 1:
+	if health < 1 and not destroyed:
+		destroyed = true
 		queue_free()
 		match drop:
 			0:

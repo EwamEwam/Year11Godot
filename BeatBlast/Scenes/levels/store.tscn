@@ -1,11 +1,47 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqj2njvxunfs5"]
+[gd_scene load_steps=16 format=3 uid="uid://cqj2njvxunfs5"]
 
 [ext_resource type="Texture2D" uid="uid://tqh4060vsd0n" path="res://Sprites/Hud/Store_background.png" id="1_rxoii"]
 [ext_resource type="Script" path="res://Scenes/Scripts/World/store.gd" id="1_u0lrf"]
 [ext_resource type="FontFile" uid="uid://c2wf2bpy718q5" path="res://Sprites/Hud/Bourbon_and_coke_blocks.png" id="2_m5o05"]
 [ext_resource type="Texture2D" uid="uid://misl73u72xsh" path="res://Sprites/Hud/Line.png" id="3_6nojl"]
 [ext_resource type="Texture2D" uid="uid://dy11vsr8q0j3c" path="res://Sprites/Hud/Gem.png" id="3_ucq4h"]
+[ext_resource type="Texture2D" uid="uid://c5walk12tn338" path="res://Sprites/Hud/Can_of_dried_hearts.png" id="6_1i6sh"]
+[ext_resource type="StyleBox" uid="uid://ckp68tw8enud4" path="res://Scenes/levels/Button_stor.tres" id="6_73pre"]
 [ext_resource type="PackedScene" uid="uid://cppt3jx0ayy7d" path="res://Scenes/levels/fade.tscn" id="6_aprx5"]
+[ext_resource type="StyleBox" uid="uid://djfq2twueeree" path="res://Scenes/levels/Button_stor_hover.tres" id="6_v1ui1"]
+[ext_resource type="StyleBox" uid="uid://dkojb1c5j72uf" path="res://Scenes/levels/Button_stor_Press.tres" id="7_0d68m"]
+[ext_resource type="Texture2D" uid="uid://cg8nsg71m2lls" path="res://Sprites/Hud/Heart_essence.png" id="7_cn0ij"]
+[ext_resource type="Texture2D" uid="uid://bql2vwupj6b5i" path="res://Sprites/Hud/Jar_of_pickled_hearts.png" id="7_d40ll"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cmbp"]
+bg_color = Color(0.207114, 0.179397, 0.169317, 0.686275)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.207843, 0.180392, 0.168627, 0.686275)
+border_blend = true
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65bjt"]
+bg_color = Color(0.0280487, 0.0196401, 0.0160268, 0.737255)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.0588235, 0.0431373, 0.0352941, 0.737255)
+border_blend = true
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejpeh"]
+bg_color = Color(0.0830632, 0.0546264, 0.0442852, 0.627451)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.0823529, 0.054902, 0.0431373, 0.627451)
+border_blend = true
+anti_aliasing = false
 
 [node name="Store" type="Node2D"]
 script = ExtResource("1_u0lrf")
@@ -38,6 +74,25 @@ scale = Vector2(5, 5)
 theme_override_fonts/font = ExtResource("2_m5o05")
 text = "STORE"
 horizontal_alignment = 1
+
+[node name="Healing_items2" type="Label" parent="."]
+modulate = Color(0.466181, 0.466181, 0.466181, 0.423529)
+offset_left = 31.0
+offset_top = 271.0
+offset_right = 159.0
+offset_bottom = 281.0
+scale = Vector2(5, 5)
+theme_override_fonts/font = ExtResource("2_m5o05")
+text = "HEALING ITEMS"
+
+[node name="Healing_items" type="Label" parent="."]
+offset_left = 31.0
+offset_top = 266.0
+offset_right = 159.0
+offset_bottom = 276.0
+scale = Vector2(5, 5)
+theme_override_fonts/font = ExtResource("2_m5o05")
+text = "HEALING ITEMS"
 
 [node name="Gem_Value2" type="Label" parent="."]
 modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
@@ -118,25 +173,6 @@ scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("2_m5o05")
 text = "Attack Upgrade (Lv 0/5)"
 
-[node name="Grenade_heading2" type="Label" parent="."]
-modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
-offset_left = 31.0
-offset_top = 257.0
-offset_right = 171.0
-offset_bottom = 264.0
-scale = Vector2(3, 3)
-theme_override_fonts/font = ExtResource("2_m5o05")
-text = "Grenade Ability (0/1)"
-
-[node name="Grenade_heading" type="Label" parent="."]
-offset_left = 31.0
-offset_top = 254.0
-offset_right = 171.0
-offset_bottom = 261.0
-scale = Vector2(3, 3)
-theme_override_fonts/font = ExtResource("2_m5o05")
-text = "Grenade Ability (0/1)"
-
 [node name="Jar2" type="Label" parent="."]
 modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
 offset_left = 31.0
@@ -194,13 +230,91 @@ scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("2_m5o05")
 text = "Dried Hearts in a can (+50HP)"
 
+[node name="HeartEssence" type="Sprite2D" parent="."]
+position = Vector2(594, 283)
+scale = Vector2(3, 3)
+texture = ExtResource("7_cn0ij")
+
+[node name="CanOfDriedHearts" type="Sprite2D" parent="."]
+position = Vector2(533, 283)
+scale = Vector2(3, 3)
+texture = ExtResource("6_1i6sh")
+
+[node name="JarOfPickledHearts" type="Sprite2D" parent="."]
+position = Vector2(472, 283)
+scale = Vector2(3, 3)
+texture = ExtResource("7_d40ll")
+
+[node name="Jar_counter2" type="Label" parent="."]
+modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
+offset_left = 446.0
+offset_top = 288.0
+offset_right = 459.0
+offset_bottom = 295.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_m5o05")
+text = "6"
+horizontal_alignment = 2
+
+[node name="Jar_counter" type="Label" parent="."]
+offset_left = 446.0
+offset_top = 285.0
+offset_right = 459.0
+offset_bottom = 292.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_m5o05")
+text = "6"
+horizontal_alignment = 2
+
+[node name="Can_counter2" type="Label" parent="."]
+modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
+offset_left = 507.0
+offset_top = 288.0
+offset_right = 520.0
+offset_bottom = 295.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_m5o05")
+text = "6"
+horizontal_alignment = 2
+
+[node name="Can_counter" type="Label" parent="."]
+offset_left = 507.0
+offset_top = 285.0
+offset_right = 520.0
+offset_bottom = 292.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_m5o05")
+text = "6"
+horizontal_alignment = 2
+
+[node name="Essence_counter2" type="Label" parent="."]
+modulate = Color(0.466667, 0.466667, 0.466667, 0.423529)
+offset_left = 566.0
+offset_top = 288.0
+offset_right = 579.0
+offset_bottom = 295.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_m5o05")
+text = "6"
+horizontal_alignment = 2
+
+[node name="Essence_counter" type="Label" parent="."]
+offset_left = 566.0
+offset_top = 285.0
+offset_right = 579.0
+offset_bottom = 292.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("2_m5o05")
+text = "6"
+horizontal_alignment = 2
+
 [node name="Line" type="Sprite2D" parent="."]
 position = Vector2(278, 84)
 scale = Vector2(33.0588, 5)
 texture = ExtResource("3_6nojl")
 
 [node name="Line2" type="Sprite2D" parent="."]
-position = Vector2(319.5, 302)
+position = Vector2(319.5, 248)
 scale = Vector2(38.6471, 5)
 texture = ExtResource("3_6nojl")
 
@@ -208,84 +322,90 @@ texture = ExtResource("3_6nojl")
 process_mode = 3
 
 [node name="Life_up_upgrade" type="Button" parent="Buttons"]
-offset_left = 479.0
+offset_left = 461.0
 offset_top = 95.0
-offset_right = 522.0
+offset_right = 510.0
 offset_bottom = 110.0
 scale = Vector2(3, 3)
 focus_mode = 0
+theme_override_styles/hover = ExtResource("6_v1ui1")
+theme_override_styles/pressed = ExtResource("7_0d68m")
+theme_override_styles/normal = ExtResource("6_73pre")
 text = "400"
 icon = ExtResource("3_ucq4h")
 alignment = 2
 expand_icon = true
 
 [node name="Defence_up_upgrade" type="Button" parent="Buttons"]
-offset_left = 479.0
+offset_left = 461.0
 offset_top = 144.0
-offset_right = 522.0
+offset_right = 510.0
 offset_bottom = 159.0
 scale = Vector2(3, 3)
 focus_mode = 0
+theme_override_styles/hover = ExtResource("6_v1ui1")
+theme_override_styles/pressed = ExtResource("7_0d68m")
+theme_override_styles/normal = ExtResource("6_73pre")
 text = "750"
 icon = ExtResource("3_ucq4h")
 alignment = 2
 expand_icon = true
 
 [node name="Attack_up_upgrade" type="Button" parent="Buttons"]
-offset_left = 479.0
+offset_left = 461.0
 offset_top = 193.0
-offset_right = 522.0
+offset_right = 510.0
 offset_bottom = 208.0
 scale = Vector2(3, 3)
 focus_mode = 0
+theme_override_styles/hover = ExtResource("6_v1ui1")
+theme_override_styles/pressed = ExtResource("7_0d68m")
+theme_override_styles/normal = ExtResource("6_73pre")
 text = "1000"
 icon = ExtResource("3_ucq4h")
 alignment = 2
 expand_icon = true
 
-[node name="Grenade_ability_upgrade" type="Button" parent="Buttons"]
-offset_left = 479.0
-offset_top = 242.0
-offset_right = 522.0
-offset_bottom = 257.0
-scale = Vector2(3, 3)
-focus_mode = 0
-text = "2000"
-icon = ExtResource("3_ucq4h")
-alignment = 2
-expand_icon = true
-
 [node name="Restore_1" type="Button" parent="Buttons"]
-offset_left = 506.0
+offset_left = 499.0
 offset_top = 311.0
-offset_right = 540.0
+offset_right = 535.0
 offset_bottom = 326.0
 scale = Vector2(3, 3)
 focus_mode = 0
+theme_override_styles/hover = ExtResource("6_v1ui1")
+theme_override_styles/pressed = ExtResource("7_0d68m")
+theme_override_styles/normal = ExtResource("6_73pre")
 text = "75"
 icon = ExtResource("3_ucq4h")
 alignment = 2
 expand_icon = true
 
 [node name="Restore_2" type="Button" parent="Buttons"]
-offset_left = 506.0
+offset_left = 499.0
 offset_top = 359.0
-offset_right = 540.0
+offset_right = 535.0
 offset_bottom = 374.0
 scale = Vector2(3, 3)
 focus_mode = 0
+theme_override_styles/hover = ExtResource("6_v1ui1")
+theme_override_styles/pressed = ExtResource("7_0d68m")
+theme_override_styles/normal = ExtResource("6_73pre")
 text = "180"
 icon = ExtResource("3_ucq4h")
 alignment = 2
 expand_icon = true
 
 [node name="Restore_3" type="Button" parent="Buttons"]
-offset_left = 506.0
+offset_left = 499.0
 offset_top = 407.0
-offset_right = 540.0
+offset_right = 535.0
 offset_bottom = 422.0
 scale = Vector2(3, 3)
 focus_mode = 0
+theme_override_styles/hover = ExtResource("6_v1ui1")
+theme_override_styles/pressed = ExtResource("7_0d68m")
+theme_override_styles/normal = ExtResource("6_73pre")
 text = "350"
 icon = ExtResource("3_ucq4h")
 alignment = 2
@@ -298,6 +418,9 @@ offset_right = 65.0
 offset_bottom = 45.0
 scale = Vector2(3, 3)
 focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_2cmbp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_65bjt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ejpeh")
 text = "BACK"
 text_overrun_behavior = 1
 clip_text = true
@@ -309,7 +432,6 @@ position = Vector2(27, 3)
 [connection signal="pressed" from="Buttons/Life_up_upgrade" to="." method="_on_life_up_upgrade_pressed"]
 [connection signal="pressed" from="Buttons/Defence_up_upgrade" to="." method="_on_defence_up_upgrade_pressed"]
 [connection signal="pressed" from="Buttons/Attack_up_upgrade" to="." method="_on_attack_up_upgrade_pressed"]
-[connection signal="pressed" from="Buttons/Grenade_ability_upgrade" to="." method="_on_grenade_ability_upgrade_pressed"]
 [connection signal="pressed" from="Buttons/Restore_1" to="." method="_on_restore_1_pressed"]
 [connection signal="pressed" from="Buttons/Restore_2" to="." method="_on_restore_2_pressed"]
 [connection signal="pressed" from="Buttons/Restore_3" to="." method="_on_restore_3_pressed"]

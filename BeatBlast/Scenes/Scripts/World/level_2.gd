@@ -19,7 +19,7 @@ func _ready() -> void:
 	get_tree().paused = false
 	player.died.connect(death)
 	key.level_complete.connect(lights_out)
-	if Playerstats.items_collected.Level2Heart == 1:
+	if Playerstats.items_collected.Level5Heart == 1:
 		capsule.queue_free()
 	
 func _on_timer_timeout():

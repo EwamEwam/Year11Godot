@@ -1,12 +1,11 @@
 extends Node2D
 
-var timer = 400
+var timer = 300
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var screen = $Level_elements/Player/Fade
 @onready var key = get_tree().get_first_node_in_group("Key")
 @onready var lighting = $Level_elements/Lighting
 @onready var capsule = $Level_elements/Props/Heart_capsule
-@onready var blueprint = $Level_elements/Props/Blueprint
 
 @onready var music = $Background_Music
 
@@ -15,16 +14,14 @@ func _ready() -> void:
 	Playerstats.bullets_shot = 0
 	Playerstats.bullets_hit = 0
 	lighting.modulate.a = 1
-	timer = 400
+	timer = 300
 	screen.fade_out(0.1,10,2.5)
 	get_tree().paused = false
 	player.died.connect(death)
 	key.level_complete.connect(lights_out)
-	if Playerstats.items_collected.Level2Heart == 1:
+	if Playerstats.items_collected.Level4Heart == 1:
 		capsule.queue_free()
-	if Playerstats.items_collected.Level2Blueprint == 1:
-		blueprint.queue_free()
-		
+	
 func _on_timer_timeout():
 	if timer > 0 and Playerstats.health > 0 and not get_tree().paused: 
 		timer -= 1
@@ -45,3 +42,4 @@ func lights_out():
 	for i in range(5):
 		lighting.modulate.a -= 0.2
 	lighting.visible = false
+	

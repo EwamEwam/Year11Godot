@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=4 uid="uid://rqlvdkbur7as"]
 
-[ext_resource type="Script" path="res://Scenes/Scripts/World/level_2.gd" id="1_6vxne"]
+[ext_resource type="Script" path="res://Scenes/Scripts/World/level_5.gd" id="1_njtfl"]
 [ext_resource type="Texture2D" uid="uid://b1uv32qbh13hb" path="res://Sprites/World/Dungeon_tileset_rev3.png" id="2_g22af"]
 [ext_resource type="PackedScene" uid="uid://kjvj32fa65b3" path="res://Scenes/Enemies/shooter_3.tscn" id="3_8xvv6"]
 [ext_resource type="PackedScene" uid="uid://bbahnktvnkse3" path="res://Scenes/Enemies/Burning_Ember.tscn" id="4_8ov14"]
@@ -423,7 +423,7 @@ sources/0 = SubResource("TileSetAtlasSource_kmwat")
 
 [node name="level" type="Node2D" groups=["Level"]]
 process_mode = 3
-script = ExtResource("1_6vxne")
+script = ExtResource("1_njtfl")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 z_index = -1

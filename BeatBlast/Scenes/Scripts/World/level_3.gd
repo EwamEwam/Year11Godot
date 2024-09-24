@@ -1,6 +1,5 @@
 extends Node2D
 
-#Declaring variables for various objects in the level like the player and the key.
 var timer = 300
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var screen = $Level_elements/Player/Fade
@@ -9,16 +8,9 @@ var timer = 300
 @onready var lighting = $Level_elements/Lighting
 @onready var capsule = $Level_elements/Props/Heart_capsule
 
-@onready var hints = $Level_elements/Player/CanvasLayer/Tutorial_Animation
 @onready var music = $Background_Music
 
-var hint_val = 0
-var animation_started = false
-var last_hint_played = 0
-
-#Sets all the variables when a level starts, this includes timers and playerstats. Also deletes upgrades if they have already been collected
 func _ready() -> void:
-	hints.visible = false
 	Playerstats.enemies_defeated = 0
 	Playerstats.bullets_shot = 0
 	Playerstats.bullets_hit = 0
@@ -28,19 +20,10 @@ func _ready() -> void:
 	get_tree().paused = false
 	player.died.connect(death)
 	key.level_complete.connect(lights_out)
-	if Playerstats.items_collected.Level1Heart == 1:
+	if Playerstats.items_collected.Level3Heart == 1:
 		capsule.queue_free()
-	if Playerstats.items_collected.Level1Blueprint == 1:
+	if Playerstats.items_collected.Level3Blueprint == 1:
 		blueprint.queue_free()
-	await get_tree().create_timer(2).timeout
-	hint_val += 1
-	
-func _process(delta: float) -> void:
-	print(last_hint_played)
-	print(hint_val)
-	if last_hint_played < hint_val and not animation_started:
-		tutorial_animation(last_hint_played + 1)
-		animation_started = true
 	
 func _on_timer_timeout():
 	if timer > 0 and Playerstats.health > 0 and not get_tree().paused: 
@@ -63,38 +46,3 @@ func lights_out():
 		lighting.modulate.a -= 0.2
 	lighting.visible = false
 	
-func tutorial_animation(type):
-	hints.visible = true
-	$Level_elements/Player/CanvasLayer/AnimationPlayer.play(str(type))
-	await $Level_elements/Player/CanvasLayer/AnimationPlayer.animation_finished
-	last_hint_played += 1
-	animation_started = false
-
-#Very Rudimentary way to get the trigger system to work. Makes signals for each triggers 
-func _on_trigger_1_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") and hint_val < 2:
-		hint_val += 1
-
-func _on_trigger_2_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") and hint_val < 3:
-		hint_val += 1
-
-func _on_trigger_3_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") and hint_val < 4:
-		hint_val += 1
-
-func _on_trigger_4_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") and hint_val < 5:
-		hint_val += 1
-
-func _on_trigger_5_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") and hint_val < 6:
-		hint_val += 1
-
-func _on_trigger_6_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") and hint_val < 7:
-		hint_val += 1
-
-func _on_trigger_7_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") and hint_val < 8:
-		hint_val += 1

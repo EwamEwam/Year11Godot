@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxljylm4j4evh"]
+[gd_scene load_steps=12 format=3 uid="uid://bxljylm4j4evh"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/World/level_select.gd" id="1_2wxdh"]
 [ext_resource type="Texture2D" uid="uid://qg6vl67wucn0" path="res://Sprites/Hud/level_select_background.png" id="2_lnscf"]
 [ext_resource type="FontFile" uid="uid://c2wf2bpy718q5" path="res://Sprites/Hud/Bourbon_and_coke_blocks.png" id="2_lylxr"]
 [ext_resource type="PackedScene" uid="uid://cppt3jx0ayy7d" path="res://Scenes/levels/fade.tscn" id="3_bxy3v"]
 [ext_resource type="Texture2D" uid="uid://misl73u72xsh" path="res://Sprites/Hud/Line.png" id="4_7mcjw"]
+[ext_resource type="StyleBox" uid="uid://cu8qu84atenlt" path="res://Scenes/levels/Button_disabled.tres" id="4_n5rkv"]
 [ext_resource type="Texture2D" uid="uid://cfdwvs6r4lj3d" path="res://Sprites/Characters and items/NC-0008_Ketamine_HCl_150_mg_mL_Medetomidine_HCl_5_mg_mL_30_mL_Sterile__49981.png" id="5_ocmrx"]
+[ext_resource type="StyleBox" uid="uid://djfq2twueeree" path="res://Scenes/levels/Button_stor_hover.tres" id="5_tr40e"]
+[ext_resource type="StyleBox" uid="uid://dkojb1c5j72uf" path="res://Scenes/levels/Button_stor_Press.tres" id="6_rq3ga"]
+[ext_resource type="StyleBox" uid="uid://ckp68tw8enud4" path="res://Scenes/levels/Button_stor.tres" id="7_lxeml"]
+[ext_resource type="Texture2D" uid="uid://cultr1kty61yi" path="res://Sprites/Hud/Blueprint_icon.Png" id="10_ktjau"]
 
 [node name="level_select" type="Node2D"]
 position = Vector2(0, 3)
@@ -18,24 +23,71 @@ texture = ExtResource("2_lnscf")
 centered = false
 
 [node name="level_1_select" type="Button" parent="."]
-offset_left = 244.0
-offset_top = 327.0
-offset_right = 364.0
-offset_bottom = 358.0
+offset_left = 243.0
+offset_top = 394.0
+offset_right = 363.0
+offset_bottom = 409.0
 scale = Vector2(3, 3)
 focus_mode = 0
 theme_override_fonts/font = ExtResource("2_lylxr")
+theme_override_styles/disabled = ExtResource("4_n5rkv")
+theme_override_styles/hover = ExtResource("5_tr40e")
+theme_override_styles/pressed = ExtResource("6_rq3ga")
+theme_override_styles/normal = ExtResource("7_lxeml")
 text = "Level 1 Select"
 
 [node name="level_2_select" type="Button" parent="."]
-offset_left = 245.0
-offset_top = 203.0
+offset_left = 243.0
+offset_top = 342.0
 offset_right = 363.0
-offset_bottom = 234.0
+offset_bottom = 357.0
 scale = Vector2(3, 3)
 focus_mode = 0
 theme_override_fonts/font = ExtResource("2_lylxr")
+theme_override_styles/disabled = ExtResource("4_n5rkv")
+theme_override_styles/hover = ExtResource("5_tr40e")
+theme_override_styles/pressed = ExtResource("6_rq3ga")
+theme_override_styles/normal = ExtResource("7_lxeml")
 text = "Level 2 Select"
+
+[node name="level_3_select" type="Button" parent="."]
+offset_left = 243.0
+offset_top = 291.0
+offset_right = 363.0
+offset_bottom = 306.0
+scale = Vector2(3, 3)
+focus_mode = 0
+theme_override_styles/disabled = ExtResource("4_n5rkv")
+theme_override_styles/hover = ExtResource("5_tr40e")
+theme_override_styles/pressed = ExtResource("6_rq3ga")
+theme_override_styles/normal = ExtResource("7_lxeml")
+text = "Level 3 Select"
+
+[node name="level_4_select" type="Button" parent="."]
+offset_left = 243.0
+offset_top = 240.0
+offset_right = 363.0
+offset_bottom = 255.0
+scale = Vector2(3, 3)
+focus_mode = 0
+theme_override_styles/disabled = ExtResource("4_n5rkv")
+theme_override_styles/hover = ExtResource("5_tr40e")
+theme_override_styles/pressed = ExtResource("6_rq3ga")
+theme_override_styles/normal = ExtResource("7_lxeml")
+text = "Level 4 Select"
+
+[node name="level_5_select" type="Button" parent="."]
+offset_left = 243.0
+offset_top = 189.0
+offset_right = 363.0
+offset_bottom = 204.0
+scale = Vector2(3, 3)
+focus_mode = 0
+theme_override_styles/disabled = ExtResource("4_n5rkv")
+theme_override_styles/hover = ExtResource("5_tr40e")
+theme_override_styles/pressed = ExtResource("6_rq3ga")
+theme_override_styles/normal = ExtResource("7_lxeml")
+text = "Level 5 Select"
 
 [node name="Store" type="Button" parent="."]
 offset_left = 29.0
@@ -44,6 +96,9 @@ offset_right = 73.0
 offset_bottom = 42.0
 scale = Vector2(4, 4)
 focus_mode = 0
+theme_override_styles/hover = ExtResource("5_tr40e")
+theme_override_styles/pressed = ExtResource("6_rq3ga")
+theme_override_styles/normal = ExtResource("7_lxeml")
 text = "Store
 "
 
@@ -54,6 +109,9 @@ offset_right = 73.0
 offset_bottom = 114.0
 scale = Vector2(4, 4)
 focus_mode = 0
+theme_override_styles/hover = ExtResource("5_tr40e")
+theme_override_styles/pressed = ExtResource("6_rq3ga")
+theme_override_styles/normal = ExtResource("7_lxeml")
 text = "Weapons
 "
 
@@ -61,56 +119,132 @@ text = "Weapons
 
 [node name="High Scores" type="Label" parent="Text"]
 offset_left = 237.0
-offset_top = 33.0
+offset_top = 36.0
 offset_right = 320.0
-offset_bottom = 40.0
-scale = Vector2(3, 3)
+offset_bottom = 43.0
+scale = Vector2(2.5, 2.5)
 text = "Lv 1 High Score"
 
 [node name="High_score_value" type="Label" parent="Text"]
-offset_left = 462.0
-offset_top = 37.0
-offset_right = 521.0
-offset_bottom = 44.0
-scale = Vector2(2.5, 2.5)
+offset_left = 474.0
+offset_top = 38.0
+offset_right = 533.0
+offset_bottom = 45.0
+scale = Vector2(2.25, 2.25)
 text = "0"
 horizontal_alignment = 2
 
 [node name="Line" type="Sprite2D" parent="Text"]
-position = Vector2(424.5, 58)
-scale = Vector2(25, 3)
+position = Vector2(424.5, 57)
+scale = Vector2(25, 2.5)
 texture = ExtResource("4_7mcjw")
 
 [node name="Heart_capsule" type="Sprite2D" parent="Text"]
-position = Vector2(486, 43)
-scale = Vector2(0.013924, 0.013924)
+position = Vector2(442, 45)
+scale = Vector2(0.012, 0.012)
 texture = ExtResource("5_ocmrx")
 
 [node name="High Scores2" type="Label" parent="Text"]
 offset_left = 237.0
-offset_top = 62.0
+offset_top = 61.0
 offset_right = 320.0
-offset_bottom = 69.0
-scale = Vector2(3, 3)
+offset_bottom = 68.0
+scale = Vector2(2.25, 2.25)
 text = "Lv 2 High Score"
 
 [node name="High_score_value2" type="Label" parent="Text"]
-offset_left = 462.0
-offset_top = 66.0
-offset_right = 521.0
-offset_bottom = 73.0
-scale = Vector2(2.5, 2.5)
+offset_left = 474.0
+offset_top = 62.0
+offset_right = 533.0
+offset_bottom = 69.0
+scale = Vector2(2.25, 2.25)
 text = "0"
 horizontal_alignment = 2
 
 [node name="Line2" type="Sprite2D" parent="Text"]
-position = Vector2(424.5, 87)
-scale = Vector2(25, 3)
+position = Vector2(424.5, 81)
+scale = Vector2(25, 2.5)
 texture = ExtResource("4_7mcjw")
 
 [node name="Heart_capsule2" type="Sprite2D" parent="Text"]
-position = Vector2(495, 73)
-scale = Vector2(0.013924, 0.013924)
+position = Vector2(429, 69)
+scale = Vector2(0.012, 0.012)
+texture = ExtResource("5_ocmrx")
+
+[node name="High Scores3" type="Label" parent="Text"]
+offset_left = 237.0
+offset_top = 85.0
+offset_right = 320.0
+offset_bottom = 92.0
+scale = Vector2(2.25, 2.25)
+text = "Lv 3 High Score"
+
+[node name="High_score_value3" type="Label" parent="Text"]
+offset_left = 474.0
+offset_top = 86.0
+offset_right = 533.0
+offset_bottom = 93.0
+scale = Vector2(2.25, 2.25)
+text = "0"
+horizontal_alignment = 2
+
+[node name="Line6" type="Sprite2D" parent="Text"]
+position = Vector2(424.5, 105)
+scale = Vector2(25, 2.5)
+texture = ExtResource("4_7mcjw")
+
+[node name="Heart_capsule3" type="Sprite2D" parent="Text"]
+position = Vector2(429, 93)
+scale = Vector2(0.012, 0.012)
+texture = ExtResource("5_ocmrx")
+
+[node name="High Scores4" type="Label" parent="Text"]
+offset_left = 237.0
+offset_top = 109.0
+offset_right = 320.0
+offset_bottom = 116.0
+scale = Vector2(2.25, 2.25)
+text = "Lv 4 High Score"
+
+[node name="High_score_value4" type="Label" parent="Text"]
+offset_left = 474.0
+offset_top = 110.0
+offset_right = 533.0
+offset_bottom = 117.0
+scale = Vector2(2.25, 2.25)
+text = "0"
+horizontal_alignment = 2
+
+[node name="Line7" type="Sprite2D" parent="Text"]
+position = Vector2(424.5, 129)
+scale = Vector2(25, 2.5)
+texture = ExtResource("4_7mcjw")
+
+[node name="Heart_capsule4" type="Sprite2D" parent="Text"]
+position = Vector2(429, 117)
+scale = Vector2(0.012, 0.012)
+texture = ExtResource("5_ocmrx")
+
+[node name="High Scores5" type="Label" parent="Text"]
+offset_left = 237.0
+offset_top = 133.0
+offset_right = 320.0
+offset_bottom = 140.0
+scale = Vector2(2.25, 2.25)
+text = "Lv 5 High Score"
+
+[node name="High_score_value5" type="Label" parent="Text"]
+offset_left = 474.0
+offset_top = 133.0
+offset_right = 533.0
+offset_bottom = 140.0
+scale = Vector2(2.25, 2.25)
+text = "0"
+horizontal_alignment = 2
+
+[node name="Heart_capsule5" type="Sprite2D" parent="Text"]
+position = Vector2(429, 142)
+scale = Vector2(0.012, 0.012)
 texture = ExtResource("5_ocmrx")
 
 [node name="Line3" type="Sprite2D" parent="Text"]
@@ -304,10 +438,28 @@ scale = Vector2(2, 2)
 text = "59"
 horizontal_alignment = 2
 
+[node name="BlueprintIcon" type="Sprite2D" parent="Text"]
+position = Vector2(460, 45)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_ktjau")
+
+[node name="BlueprintIcon2" type="Sprite2D" parent="Text"]
+position = Vector2(447, 69)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_ktjau")
+
+[node name="BlueprintIcon3" type="Sprite2D" parent="Text"]
+position = Vector2(447, 93)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("10_ktjau")
+
 [node name="Fade" parent="." instance=ExtResource("3_bxy3v")]
 position = Vector2(-3, 5)
 
 [connection signal="pressed" from="level_1_select" to="." method="_on_level_1_select_pressed"]
 [connection signal="pressed" from="level_2_select" to="." method="_on_level_2_select_pressed"]
+[connection signal="pressed" from="level_3_select" to="." method="_on_level_3_select_pressed"]
+[connection signal="pressed" from="level_4_select" to="." method="_on_level_4_select_pressed"]
+[connection signal="pressed" from="level_5_select" to="." method="_on_level_5_select_pressed"]
 [connection signal="pressed" from="Store" to="." method="_on_store_pressed"]
 [connection signal="pressed" from="Weapon" to="." method="_on_weapon_pressed"]

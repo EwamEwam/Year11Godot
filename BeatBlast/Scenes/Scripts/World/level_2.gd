@@ -1,6 +1,6 @@
 extends Node2D
 
-var timer = 400
+var timer = 500
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var screen = $Level_elements/Player/Fade
 @onready var key = get_tree().get_first_node_in_group("Key")
@@ -15,7 +15,7 @@ func _ready() -> void:
 	Playerstats.bullets_shot = 0
 	Playerstats.bullets_hit = 0
 	lighting.modulate.a = 1
-	timer = 400
+	timer = 500
 	screen.fade_out(0.1,10,2.5)
 	get_tree().paused = false
 	player.died.connect(death)

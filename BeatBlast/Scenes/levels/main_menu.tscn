@@ -6,21 +6,16 @@
 script = ExtResource("1_03pfw")
 
 [node name="Play" type="Button" parent="."]
-offset_left = 15.0
-offset_top = 164.0
-offset_right = 42.0
-offset_bottom = 179.0
+offset_left = 20.0
+offset_top = 150.0
+offset_right = 47.0
+offset_bottom = 165.0
 scale = Vector2(5, 5)
 text = "Play
 "
-
-[node name="Options" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
 
 [node name="Quit" type="Button" parent="."]
 offset_right = 8.0
 offset_bottom = 8.0
 
-[connection signal="pressed" from="Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

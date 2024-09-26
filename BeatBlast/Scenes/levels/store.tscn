@@ -426,7 +426,6 @@ text_overrun_behavior = 1
 clip_text = true
 
 [node name="Fade" parent="." instance=ExtResource("6_aprx5")]
-visible = false
 position = Vector2(27, 3)
 
 [connection signal="pressed" from="Buttons/Life_up_upgrade" to="." method="_on_life_up_upgrade_pressed"]

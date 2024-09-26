@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://deo8io5nkfsum"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/World/snow.gd" id="1_sgoi0"]
+[ext_resource type="Texture2D" uid="uid://dlhm2x8f2lcnj" path="res://Sprites/Characters and items/Big_particle.png" id="2_rjekw"]
+
+[node name="Particle" type="Node2D"]
+modulate = Color(0.892034, 0.892034, 0.892034, 1)
+z_index = -1
+scale = Vector2(8, 8)
+script = ExtResource("1_sgoi0")
+
+[node name="Particle_sprite" type="Sprite2D" parent="."]
+modulate = Color(0.98, 0.98, 0.98, 1)
+z_index = 1
+texture = ExtResource("2_rjekw")

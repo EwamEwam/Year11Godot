@@ -1,7 +1,7 @@
 [gd_scene load_steps=465 format=3 uid="uid://b1lyax7mlenna"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/PlayerMovement.gd" id="1_gyp3l"]
-[ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_Shadow.png" id="2_s50a2"]
+[ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_shadow.png" id="2_s50a2"]
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Other/Hud.gd" id="3_ex22d"]
 [ext_resource type="Texture2D" uid="uid://can7kmxf1e788" path="res://Sprites/World/light.png" id="3_gwtbm"]
 [ext_resource type="Texture2D" uid="uid://b51xnl5cbro81" path="res://Sprites/Characters and items/Player_Spritesheet_Rev2.png" id="3_l5yne"]
@@ -3459,9 +3459,9 @@ region = Rect2(108, 38, 18, 38)
 atlas = ExtResource("8_ebq4x")
 region = Rect2(126, 38, 18, 38)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i1hn0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gilm3"]
 atlas = ExtResource("3_l5yne")
-region = Rect2(0, 0, 18, 38)
+region = Rect2(0, 190, 18, 38)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mhlky"]
 atlas = ExtResource("5_hlbje")
@@ -3479,9 +3479,9 @@ region = Rect2(0, 190, 18, 38)
 atlas = ExtResource("8_ebq4x")
 region = Rect2(0, 190, 18, 38)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ugc8c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wk30n"]
 atlas = ExtResource("3_l5yne")
-region = Rect2(0, 114, 18, 38)
+region = Rect2(72, 190, 18, 38)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gsolx"]
 atlas = ExtResource("5_hlbje")
@@ -3499,9 +3499,9 @@ region = Rect2(72, 190, 18, 38)
 atlas = ExtResource("8_ebq4x")
 region = Rect2(72, 190, 18, 38)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_loy6m"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lykag"]
 atlas = ExtResource("3_l5yne")
-region = Rect2(0, 38, 18, 38)
+region = Rect2(90, 190, 18, 38)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5qer2"]
 atlas = ExtResource("5_hlbje")
@@ -3519,9 +3519,9 @@ region = Rect2(90, 190, 18, 38)
 atlas = ExtResource("8_ebq4x")
 region = Rect2(90, 190, 18, 38)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yh3xx"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_deeog"]
 atlas = ExtResource("3_l5yne")
-region = Rect2(0, 114, 18, 38)
+region = Rect2(36, 190, 18, 38)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3mei3"]
 atlas = ExtResource("5_hlbje")
@@ -3539,9 +3539,9 @@ region = Rect2(36, 190, 18, 38)
 atlas = ExtResource("8_ebq4x")
 region = Rect2(36, 190, 18, 38)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ob4yf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_d117u"]
 atlas = ExtResource("3_l5yne")
-region = Rect2(0, 38, 18, 38)
+region = Rect2(18, 190, 18, 38)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yms0r"]
 atlas = ExtResource("5_hlbje")
@@ -3559,9 +3559,9 @@ region = Rect2(18, 190, 18, 38)
 atlas = ExtResource("8_ebq4x")
 region = Rect2(18, 190, 18, 38)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s68nj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfchj"]
 atlas = ExtResource("3_l5yne")
-region = Rect2(0, 76, 18, 38)
+region = Rect2(54, 190, 18, 38)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5nmer"]
 atlas = ExtResource("5_hlbje")
@@ -3579,9 +3579,9 @@ region = Rect2(54, 190, 18, 38)
 atlas = ExtResource("8_ebq4x")
 region = Rect2(54, 190, 18, 38)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rhtmi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmbk2"]
 atlas = ExtResource("3_l5yne")
-region = Rect2(0, 114, 18, 38)
+region = Rect2(108, 190, 18, 38)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_342rj"]
 atlas = ExtResource("5_hlbje")
@@ -3599,9 +3599,9 @@ region = Rect2(108, 190, 18, 38)
 atlas = ExtResource("8_ebq4x")
 region = Rect2(108, 190, 18, 38)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y0ah2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wc6ph"]
 atlas = ExtResource("3_l5yne")
-region = Rect2(0, 38, 18, 38)
+region = Rect2(126, 190, 18, 38)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b2chm"]
 atlas = ExtResource("5_hlbje")
@@ -4455,7 +4455,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i1hn0")
+"texture": SubResource("AtlasTexture_gilm3")
 }],
 "loop": true,
 "name": &"Shoot_down1",
@@ -4495,7 +4495,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ugc8c")
+"texture": SubResource("AtlasTexture_wk30n")
 }],
 "loop": true,
 "name": &"Shoot_down_left1",
@@ -4535,7 +4535,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_loy6m")
+"texture": SubResource("AtlasTexture_lykag")
 }],
 "loop": true,
 "name": &"Shoot_down_right1",
@@ -4575,7 +4575,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yh3xx")
+"texture": SubResource("AtlasTexture_deeog")
 }],
 "loop": true,
 "name": &"Shoot_left1",
@@ -4615,7 +4615,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ob4yf")
+"texture": SubResource("AtlasTexture_d117u")
 }],
 "loop": true,
 "name": &"Shoot_right1",
@@ -4655,7 +4655,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s68nj")
+"texture": SubResource("AtlasTexture_hfchj")
 }],
 "loop": true,
 "name": &"Shoot_up1",
@@ -4695,7 +4695,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rhtmi")
+"texture": SubResource("AtlasTexture_fmbk2")
 }],
 "loop": true,
 "name": &"Shoot_up_left1",
@@ -4735,7 +4735,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y0ah2")
+"texture": SubResource("AtlasTexture_wc6ph")
 }],
 "loop": true,
 "name": &"Shoot_up_right1",
@@ -6068,6 +6068,19 @@ mouse_filter = 1
 theme_override_fonts/font = ExtResource("26_0axcd")
 theme_override_font_sizes/font_size = 25
 text = "99"
+
+[node name="Sign_texts" type="Node2D" parent="Hud/CanvasModulate"]
+
+[node name="text" type="Label" parent="Hud/CanvasModulate/Sign_texts"]
+z_index = 5
+offset_left = 62.0
+offset_top = 261.0
+offset_right = 235.0
+offset_bottom = 330.0
+scale = Vector2(3, 3)
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
 
 [node name="Audio_Players" type="Node2D" parent="."]
 

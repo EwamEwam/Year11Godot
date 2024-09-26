@@ -50,6 +50,7 @@ var time_in_level = 0
 signal cooldown
 signal dash_cooldown
 signal red(val)
+signal send_text(text)
 signal died
 
 func _ready():
@@ -295,11 +296,13 @@ func Shoot():
 		1:
 			if not timer.is_stopped() and Playerstats.health > 0:
 				return
+			get_mouse_direction()
 			var new_punch = Punch_box.instantiate()
 			new_punch.global_position=global_position
 			new_punch.global_position.y += 50
 			new_punch.look_at(get_global_mouse_position())
 			add_sibling(new_punch)
+			shoot_animation(0.125)
 			emit_signal("cooldown")
 			timer.start(0.65)
 		2:
@@ -660,3 +663,21 @@ func make_heart_grenade():
 		new_grenade.global_position = global_position
 		add_sibling(new_grenade)
 		Playerstats.grenade_cooldown = 45
+
+#Functions for the sign text system, one is for showing it while the other is for hiding it.
+func show_sign_text():
+	var length = Playerstats.sign_text.length()
+	var text_buffer = ""
+	var current_letter = 0
+	for i in range(length):
+		text_buffer += Playerstats.sign_text[current_letter]
+		current_letter += 1
+		await get_tree().create_timer(0.025).timeout
+		emit_signal("send_text", text_buffer)
+		if Playerstats.sign_text.length() != length:
+			$Hud/CanvasModulate/Sign_texts/text.text = ""
+			break
+		
+func hide_text():
+	$Hud/CanvasModulate/Sign_texts/text.text = ""
+	Playerstats.sign_text = ""

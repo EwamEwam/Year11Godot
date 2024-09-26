@@ -50,6 +50,7 @@ func _ready():
 	player.cooldown.connect(start_cooldown)
 	player.dash_cooldown.connect(start_dash_cooldown)
 	player.red.connect(damaged)
+	player.send_text.connect(update_sign)
 	Cooldown_sprite.modulate = Color(1.15,1.15,1.15,1)
 	Dash_cooldown.modulate = Color(1.15,1.15,1.15,1)
 	level_title()
@@ -270,3 +271,6 @@ func update_healing_items(selected):
 		$CanvasModulate/Healing_icon.modulate = Color(1,1,1,1)
 		$CanvasModulate/Healing_amt.modulate = Color(1,1,1,1)
 		$CanvasModulate/Healing_cooldown.visible = false
+
+func update_sign(text):
+	$CanvasModulate/Sign_texts/text.text = text

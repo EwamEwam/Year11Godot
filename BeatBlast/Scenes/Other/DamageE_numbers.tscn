@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c4sseskblvn7u" path="res://Sprites/Hud/Numbers/7DamageE.png" id="7_gldb0"]
 [ext_resource type="Texture2D" uid="uid://dmaed70yfvsjv" path="res://Sprites/Hud/Numbers/9DamageE.png" id="7_gvso3"]
 [ext_resource type="Texture2D" uid="uid://cexipqvcc5hn6" path="res://Sprites/Hud/Numbers/5DamageE.png" id="9_hhjtj"]
-[ext_resource type="AudioStream" uid="uid://do3k6qxj6tisg" path="res://Audio/Enemy_sounds/Enemy_hurt.mp3" id="15_66imh"]
+[ext_resource type="AudioStream" uid="uid://do3k6qxj6tisg" path="res://Audio/Other_Sounds/Enemy_hurt.mp3" id="15_66imh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p3vex"]
 animations = [{

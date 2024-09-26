@@ -63,12 +63,14 @@ collision_layer = 0
 shape = SubResource("CapsuleShape2D_nfhye")
 
 [node name="Player_Detection_Range" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="Collision_Shape" type="CollisionShape2D" parent="Player_Detection_Range"]
 shape = SubResource("CircleShape2D_iiktk")
 
 [node name="PLayer_Too_Close_Range" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="Collision_Shape_2" type="CollisionShape2D" parent="PLayer_Too_Close_Range"]

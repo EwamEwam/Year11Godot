@@ -1,12 +1,13 @@
-[gd_scene load_steps=18 format=4 uid="uid://rqlvdkbur7as"]
+[gd_scene load_steps=19 format=4 uid="uid://rqlvdkbur7as"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/World/level_5.gd" id="1_njtfl"]
 [ext_resource type="Texture2D" uid="uid://b1uv32qbh13hb" path="res://Sprites/World/Dungeon_tileset_rev3.png" id="2_g22af"]
 [ext_resource type="PackedScene" uid="uid://kjvj32fa65b3" path="res://Scenes/Enemies/shooter_3.tscn" id="3_8xvv6"]
 [ext_resource type="PackedScene" uid="uid://bbahnktvnkse3" path="res://Scenes/Enemies/Burning_Ember.tscn" id="4_8ov14"]
+[ext_resource type="PackedScene" uid="uid://ckxij2marce8w" path="res://Scenes/Enemies/Blind_enemy.tscn" id="5_4qt0c"]
 [ext_resource type="PackedScene" uid="uid://c1xbilv51dpju" path="res://Scenes/Characters, weapons and collectables/heart_capsule.tscn" id="5_tk0x4"]
 [ext_resource type="PackedScene" uid="uid://ll60qr3vjhjn" path="res://Scenes/levels/door.tscn" id="6_dx4bi"]
-[ext_resource type="PackedScene" uid="uid://byb3bgxsvmojy" path="res://Scenes/levels/button.tscn" id="7_c6o8k"]
+[ext_resource type="PackedScene" uid="uid://fc4kpiij1b6b" path="res://Scenes/levels/button.tscn" id="7_c6o8k"]
 [ext_resource type="PackedScene" uid="uid://m2tgp4b64peh" path="res://Scenes/levels/box.tscn" id="8_ukcig"]
 [ext_resource type="PackedScene" uid="uid://xj5r58g4saqh" path="res://Scenes/levels/Side_Torch.tscn" id="9_g32no"]
 [ext_resource type="PackedScene" uid="uid://ddbvwpephgd52" path="res://Scenes/levels/Side_Torch_L.tscn" id="10_nmbt8"]
@@ -459,6 +460,9 @@ position = Vector2(707, -961)
 
 [node name="Burning_Ember2" parent="Level_elements/Enemies" instance=ExtResource("4_8ov14")]
 position = Vector2(782, -2349)
+
+[node name="blind_enemy" parent="Level_elements/Enemies" instance=ExtResource("5_4qt0c")]
+position = Vector2(1162, -246)
 
 [node name="Props" type="Node2D" parent="Level_elements"]
 y_sort_enabled = true

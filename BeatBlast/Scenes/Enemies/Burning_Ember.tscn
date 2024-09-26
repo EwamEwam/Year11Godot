@@ -665,7 +665,7 @@ libraries = {
 }
 
 [node name="Dashtimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 3.75
 one_shot = true
 
 [node name="hurttimer" type="Timer" parent="."]
@@ -696,6 +696,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_5srph")
 
 [node name="Movement_circle" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
 shape = SubResource("CircleShape2D_hqm7n")

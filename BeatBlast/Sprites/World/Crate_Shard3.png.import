@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eeusfupa48of"
-path="res://.godot/imported/Button.webp-372cdb4b819f9ac48b61c78f87319d51.ctex"
+uid="uid://bqpdivetltrau"
+path="res://.godot/imported/Crate_Shard3.png-47de8ce90f6a03a0113b88c789fadd9d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/World/Button.webp"
-dest_files=["res://.godot/imported/Button.webp-372cdb4b819f9ac48b61c78f87319d51.ctex"]
+source_file="res://Sprites/World/Crate_Shard3.png"
+dest_files=["res://.godot/imported/Crate_Shard3.png-47de8ce90f6a03a0113b88c789fadd9d.ctex"]
 
 [params]
 

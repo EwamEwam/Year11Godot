@@ -318,6 +318,7 @@ wait_time = 1.5
 one_shot = true
 
 [node name="hurtbox" type="Area2D" parent="."]
+visible = false
 
 [node name="Hurtbox_collision" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2(0, 42)
@@ -325,6 +326,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_u42tx")
 
 [node name="Movement_circle" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
 shape = SubResource("CircleShape2D_wd1rf")

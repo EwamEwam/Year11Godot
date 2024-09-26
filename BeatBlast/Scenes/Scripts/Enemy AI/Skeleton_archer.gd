@@ -97,6 +97,10 @@ func check_for_death():
 			var new_gem = gem1.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
+		for i in range(randi_range(1,2)):
+			var new_gem = gem5.instantiate()
+			new_gem.global_position = global_position
+			add_sibling(new_gem)
 
 func take_damage(dmg):
 	health -= dmg

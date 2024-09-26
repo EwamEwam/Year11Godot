@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-const SPEED = 10000.0
+const SPEED = 12500.0
 const ACCELLERATION = 20.0
-const FRICTION = 3.5
+const FRICTION = 9.0
 var score_value = 35
 @onready var Sprite = $Ember_Sprite
 @onready var animation = $AnimationPlayer
@@ -57,13 +57,15 @@ func _physics_process(delta):
 		
 		if health > 0:
 			var in_circle = circle.get_overlapping_bodies()
+			var slowed_down = false
 			if in_circle:
 				for collision in in_circle:
 					if collision.is_in_group("Player") and not Raycast.is_colliding() and dashtimer.is_stopped():
 						dash()
 						dashtimer.start()
-					elif not collision.is_in_group("Enemy"):
+					elif not collision.is_in_group("Enemy") and not slowed_down:
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+						slowed_down = true
 			else:
 				velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		else:
@@ -86,6 +88,9 @@ func _physics_process(delta):
 	if not dead:
 		check_for_death()
 		
+	else:
+		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
+		
 	update_health_bar()
 	move_and_slide()
 	
@@ -95,7 +100,7 @@ func dash():
 	await get_tree().create_timer(0.75).timeout
 	damage = 7
 	var direction_to_player = global_position.direction_to(player.global_position)
-	velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION*55)
+	velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION*65)
 	dashing = false
 	
 func change_state():

@@ -9,6 +9,8 @@ const heart1 = preload("res://Scenes/Characters, weapons and collectables/heart1
 const heart40 = preload("res://Scenes/Characters, weapons and collectables/heart40.tscn")
 const heart10 = preload("res://Scenes/Characters, weapons and collectables/heart10.tscn")
 
+const particle = preload("res://Scenes/Other/Crate_particle.tscn")
+
 func ready():
 	sprite.modulate = Color(0.9,0.9,0.9,1)
 
@@ -37,6 +39,10 @@ func damage(val):
 				var new_heart = heart10.instantiate()
 				new_heart.global_position = global_position
 				add_sibling(new_heart)
+		for i in range(5):
+			var new_particle = particle.instantiate()
+			new_particle.global_position = global_position
+			add_sibling(new_particle)
 	else:
 		sprite.modulate = Color(1,1,1,1)
 		shake()

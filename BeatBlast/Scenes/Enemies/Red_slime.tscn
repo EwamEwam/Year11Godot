@@ -303,6 +303,7 @@ one_shot = true
 autostart = true
 
 [node name="hurtbox" type="Area2D" parent="."]
+visible = false
 
 [node name="collision_shape" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2(0, 23)
@@ -310,6 +311,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rfs76")
 
 [node name="Movement_circle" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
 shape = SubResource("CircleShape2D_3gl2h")

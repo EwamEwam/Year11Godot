@@ -90,7 +90,7 @@ func check_for_death():
 		Playerstats.score += score_value
 		Playerstats.enemies_defeated += 1
 		queue_free()
-		for i in range(randi_range(10,11)):
+		for i in range(randi_range(8,9)):
 			var new_gem = gem1.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)

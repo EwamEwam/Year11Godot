@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfdpbjms23b2w"]
+[gd_scene load_steps=9 format=3 uid="uid://b0gjlmd03kb5m"]
 
-[ext_resource type="Script" path="res://Scenes/Scripts/World/shell_particle.gd" id="1_1b15c"]
-[ext_resource type="Texture2D" uid="uid://du8kk2whkj8jc" path="res://Sprites/Characters and items/Bullet_Shell.png" id="2_p6u8o"]
-[ext_resource type="Texture2D" uid="uid://b4s4u4kx3g04k" path="res://Sprites/Characters and items/Shotgun_bullet.png" id="3_512vk"]
+[ext_resource type="Script" path="res://Scenes/Scripts/World/shell_particle.gd" id="1_2hfl3"]
+[ext_resource type="Texture2D" uid="uid://du8kk2whkj8jc" path="res://Sprites/Characters and items/Bullet_Shell.png" id="2_1r3hy"]
+[ext_resource type="Texture2D" uid="uid://b4s4u4kx3g04k" path="res://Sprites/Characters and items/Shotgun_bullet.png" id="3_jmwrm"]
 
 [sub_resource type="Animation" id="Animation_70xd4"]
 length = 0.001
@@ -156,7 +156,7 @@ _data = {
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_p6u8o")
+"texture": ExtResource("2_1r3hy")
 }],
 "loop": true,
 "name": &"Shell",
@@ -164,7 +164,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_512vk")
+"texture": ExtResource("3_jmwrm")
 }],
 "loop": true,
 "name": &"Shotgun_shell",
@@ -174,7 +174,7 @@ animations = [{
 [node name="Particle" type="Node2D"]
 modulate = Color(0.892034, 0.892034, 0.892034, 1)
 position = Vector2(0, -4.65745)
-script = ExtResource("1_1b15c")
+script = ExtResource("1_2hfl3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite")

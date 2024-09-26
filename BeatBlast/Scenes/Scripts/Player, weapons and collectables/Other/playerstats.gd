@@ -1,13 +1,13 @@
 extends Node
 
 #All variables that must be accessed in mutilple scenes are put here for ease of access.
-var health = 30
-var max_health = 30
+var health = 60
+var max_health = 60
 var weapon_selected = 1
-var weapons_unlocked = 5
+var weapons_unlocked = 4
 var healing_item_selected = 1
 var level = 1
-var levels_unlocked = 1
+var levels_unlocked = 3
 var gems = 0
 var player_x = 0
 var player_y = 0
@@ -27,6 +27,7 @@ var healing_cooldown = 0
 var grenade_cooldown = 0
 
 var blueprints = 0
+var sign_text = ""
 
 #Settings for the player. Changes the games visuals, audio and other aspects of gameplay:
 var settings = {

@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const ACCELLERATION = 20.0
-const FRICTION = 2.5
+const SPEED = 350.0
+const ACCELLERATION = 25.0
+const FRICTION = 3.5
 var score_value = 25
 @onready var Sprite = $Slime_sprite
 @onready var animation = $AnimationPlayer
@@ -16,15 +16,15 @@ const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.ts
 @onready var timer = $hurttimer
 @onready var movement_timer = $Movement_timer
 @onready var hitbox = $hitbox
-@export var damage = 6
+@export var damage = 12
 @onready var hurtbox = $hurtbox
 @onready var circle = $Movement_circle
 @onready var health_bar = $Health_Metre
 
 var direction = Vector2.ZERO
 var setting = false
-enum state {Right, Left, Hurt, Death}
-var current_state = state.Right
+enum state {Move, Hurt, Death}
+var current_state = state.Move
 var animation_can_play = true
 var dead = false
 @export var max_health = 20
@@ -54,7 +54,7 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO
 		
 		if animation_can_play:
-			animation.speed_scale = clampf(velocity.length()/50, 0.8, 10)
+			animation.speed_scale = clampf(velocity.length()/75, 0.75, 9)
 		else:
 			animation.speed_scale = 1
 		
@@ -73,15 +73,18 @@ func _physics_process(delta):
 	
 func change_state():
 	if animation_can_play:
-		if velocity.x > 0:
-			current_state = state.Right
-		elif velocity.x < 0:
-			current_state = state.Left
+		if abs(velocity) > Vector2.ZERO:
+			current_state = state.Move
 	
 func animation_play():
 	match current_state:
-		pass
-		
+		state.Move:
+			animation.play("Move")
+		state.Hurt:
+			animation.play("Hurt")
+		state.Death:
+			animation.play("Death")
+
 func check_for_death():
 	if health <= 0:
 		dead = true
@@ -89,7 +92,7 @@ func check_for_death():
 		hitbox.disabled = true
 		animation_can_play = false
 		current_state = state.Death
-		await get_tree().create_timer(0.75).timeout
+		await get_tree().create_timer(0.5).timeout
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
 		add_sibling(new_heart)
@@ -98,11 +101,11 @@ func check_for_death():
 		new_score.global_position = global_position
 		add_sibling(new_score)
 		Playerstats.score += score_value
-		for i in range(randi_range(12,13)):
+		for i in range(randi_range(11,12)):
 			var new_gem = gem.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
-		for i in range(randi_range(3,4)):
+		for i in range(randi_range(8,9)):
 			var new_gem = gem5.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)

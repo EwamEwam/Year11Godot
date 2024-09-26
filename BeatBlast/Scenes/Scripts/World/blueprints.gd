@@ -13,3 +13,5 @@ func _on_body_entered(body):
 				Playerstats.items_collected.Level1Blueprint = 1
 			2:
 				Playerstats.items_collected.Level2Blueprint = 1
+			3:
+				Playerstats.items_collected.Level3Blueprint = 1

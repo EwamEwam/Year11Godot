@@ -1,23 +1,55 @@
-[gd_scene load_steps=4 format=3 uid="uid://ll60qr3vjhjn"]
+[gd_scene load_steps=7 format=3 uid="uid://ll60qr3vjhjn"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/World/Door.gd" id="1_altr2"]
-[ext_resource type="Texture2D" uid="uid://28enctkqdfyj" path="res://Sprites/World/Door.webp" id="2_dhhww"]
+[ext_resource type="Texture2D" uid="uid://bvjjn0cm8ic4y" path="res://Sprites/World/Door_Down.png" id="2_miswn"]
+[ext_resource type="Texture2D" uid="uid://dxk3anhefcp84" path="res://Sprites/World/Door_Down_Open.png" id="3_y2v5j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l0klm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_miswn")
+}],
+"loop": false,
+"name": &"Closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_y2v5j")
+}],
+"loop": false,
+"name": &"Open",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mecn3"]
-size = Vector2(300, 147)
+size = Vector2(255, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldc4b"]
+size = Vector2(32, 74)
 
 [node name="Door" type="Node2D"]
 script = ExtResource("1_altr2")
+
+[node name="Door_Sprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.74, 0.74, 0.74, 1)
+position = Vector2(1, 0)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_l0klm")
+animation = &"Closed"
+autoplay = "Closed"
 
 [node name="Hitbox" type="StaticBody2D" parent="."]
 collision_layer = 131
 collision_mask = 131
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, 1.5)
+position = Vector2(0.5, 64.5)
 shape = SubResource("RectangleShape2D_mecn3")
 
-[node name="Door" type="Sprite2D" parent="."]
-position = Vector2(1, 0)
-scale = Vector2(1, 0.217647)
-texture = ExtResource("2_dhhww")
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(111, 65)
+shape = SubResource("RectangleShape2D_ldc4b")

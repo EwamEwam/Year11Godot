@@ -1,14 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://byb3bgxsvmojy"]
+[gd_scene load_steps=7 format=3 uid="uid://fc4kpiij1b6b"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/World/Button.gd" id="1_pmvyt"]
-[ext_resource type="Texture2D" uid="uid://eeusfupa48of" path="res://Sprites/World/Button.webp" id="2_kk14u"]
+[ext_resource type="Texture2D" uid="uid://cwkjhoqx4uef8" path="res://Sprites/World/Button_Down_Pressed.png" id="2_ooo4x"]
+[ext_resource type="Texture2D" uid="uid://dhu5ja0fdj35v" path="res://Sprites/World/Button_Down.png" id="3_o5byp"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pko5c"]
-radius = 13.0
-height = 54.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ew835"]
+radius = 58.5
+height = 153.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_oysnu"]
-radius = 21.0238
+[sub_resource type="SpriteFrames" id="SpriteFrames_rxwqi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ooo4x")
+}],
+"loop": true,
+"name": &"Pressed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_o5byp")
+}],
+"loop": true,
+"name": &"Unpressed",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lq1up"]
+radius = 67.0298
 
 [node name="Button" type="StaticBody2D" groups=["Button"]]
 collision_layer = 131
@@ -16,18 +36,20 @@ collision_mask = 129
 script = ExtResource("1_pmvyt")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 0)
-shape = SubResource("CapsuleShape2D_pko5c")
-
-[node name="Button" type="Sprite2D" parent="."]
+position = Vector2(0.5, -17.5)
 rotation = 1.5708
-scale = Vector2(0.0956503, 0.0956502)
-texture = ExtResource("2_kk14u")
+shape = SubResource("CapsuleShape2D_ew835")
+
+[node name="Button" type="AnimatedSprite2D" parent="."]
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_rxwqi")
+animation = &"Unpressed"
+autoplay = "Unpressed"
 
 [node name="Input" type="Area2D" parent="." groups=["Button"]]
 
 [node name="CollisionShape" type="CollisionShape2D" parent="Input" groups=["Button"]]
-position = Vector2(13, 1)
-shape = SubResource("CircleShape2D_oysnu")
+position = Vector2(1, 27)
+shape = SubResource("CircleShape2D_lq1up")
 
 [connection signal="body_entered" from="Input" to="." method="_on_input_body_entered"]

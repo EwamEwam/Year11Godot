@@ -5,12 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://cbtsy3d1uwaoq" path="res://Sprites/Characters and items/Small_Slime.png" id="3_aog11"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5p6wr"]
-radius = 14.0
-height = 52.0
+radius = 22.0
+height = 64.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rfs76"]
-radius = 16.0
-height = 58.0
+radius = 25.0
+height = 70.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3gl2h"]
 radius = 897.295
@@ -228,7 +228,7 @@ _data = {
 
 [node name="Small_Slime" type="CharacterBody2D" groups=["Enemy"]]
 process_mode = 1
-position = Vector2(0, 1)
+position = Vector2(0, 13)
 collision_layer = 5
 collision_mask = 3
 collision_priority = 5.0
@@ -257,7 +257,7 @@ autostart = true
 position = Vector2(0, -25)
 
 [node name="collision_shape" type="CollisionShape2D" parent="hurtbox"]
-position = Vector2(0, 13)
+position = Vector2(0, 12)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rfs76")
 

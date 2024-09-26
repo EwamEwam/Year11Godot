@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dham5ulds3rb8"]
+[gd_scene load_steps=16 format=3 uid="uid://dham5ulds3rb8"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/World/weapons.gd" id="1_8sob8"]
 [ext_resource type="Texture2D" uid="uid://tqh4060vsd0n" path="res://Sprites/Hud/Store_background.png" id="2_81nuh"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://4hm40kkkp682" path="res://Sprites/Hud/shotgun.png" id="8_mwiac"]
 [ext_resource type="Texture2D" uid="uid://dvnu6xjxa5w41" path="res://Sprites/Hud/smg.png" id="9_46wf2"]
 [ext_resource type="Texture2D" uid="uid://7x6gx4pbe442" path="res://Sprites/Hud/Smile.png" id="9_xbgmb"]
+[ext_resource type="StyleBox" uid="uid://djfq2twueeree" path="res://Scenes/levels/Button_stor_hover.tres" id="11_5fjq7"]
+[ext_resource type="StyleBox" uid="uid://dkojb1c5j72uf" path="res://Scenes/levels/Button_stor_Press.tres" id="12_jb0wu"]
+[ext_resource type="StyleBox" uid="uid://ckp68tw8enud4" path="res://Scenes/levels/Button_stor.tres" id="13_3orm7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pfhkn"]
 animations = [{
@@ -353,6 +356,9 @@ offset_right = 355.0
 offset_bottom = 387.0
 scale = Vector2(3, 3)
 focus_mode = 0
+theme_override_styles/hover = ExtResource("11_5fjq7")
+theme_override_styles/pressed = ExtResource("12_jb0wu")
+theme_override_styles/normal = ExtResource("13_3orm7")
 text = "Craft (Costs 9999)"
 icon = ExtResource("3_68moc")
 
@@ -363,11 +369,15 @@ offset_right = 65.0
 offset_bottom = 45.0
 scale = Vector2(3, 3)
 focus_mode = 0
+theme_override_styles/hover = ExtResource("11_5fjq7")
+theme_override_styles/pressed = ExtResource("12_jb0wu")
+theme_override_styles/normal = ExtResource("13_3orm7")
 text = "BACK"
 text_overrun_behavior = 1
 clip_text = true
 
 [node name="Fade" parent="." instance=ExtResource("6_4jdhu")]
+visible = false
 position = Vector2(27, 3)
 
 [connection signal="pressed" from="Buttons/Craft" to="." method="_on_button_pressed"]

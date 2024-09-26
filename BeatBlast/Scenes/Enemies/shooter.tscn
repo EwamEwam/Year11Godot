@@ -44,7 +44,6 @@ target_position = Vector2(25, 25)
 collision_mask = 128
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape2D_5xtno")
 
 [node name="Hurt_Timer" type="Timer" parent="."]
@@ -60,10 +59,10 @@ autostart = true
 collision_layer = 0
 
 [node name="Hurtbox_collision" type="CollisionShape2D" parent="Hurtbox"]
-visible = false
 shape = SubResource("CapsuleShape2D_nfhye")
 
 [node name="Player_Detection_Range" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="Collision_Shape" type="CollisionShape2D" parent="Player_Detection_Range"]

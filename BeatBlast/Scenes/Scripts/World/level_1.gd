@@ -12,6 +12,8 @@ var timer = 300
 @onready var hints = $Level_elements/Player/CanvasLayer/Tutorial_Animation
 @onready var music = $Background_Music
 
+const snow_particle = preload("res://Scenes/Other/Snow.tscn")
+
 var hint_val = 0
 var animation_started = false
 var last_hint_played = 0
@@ -32,15 +34,20 @@ func _ready() -> void:
 		capsule.queue_free()
 	if Playerstats.items_collected.Level1Blueprint == 1:
 		blueprint.queue_free()
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(4).timeout
 	hint_val += 1
 	
 func _process(delta: float) -> void:
-	print(last_hint_played)
-	print(hint_val)
 	if last_hint_played < hint_val and not animation_started:
 		tutorial_animation(last_hint_played + 1)
 		animation_started = true
+	if randi_range(0,4) == 0:
+		create_particle()
+	
+	if Playerstats.sign_text.length() != 0:
+		hide_text()
+	else:
+		show_text()
 	
 func _on_timer_timeout():
 	if timer > 0 and Playerstats.health > 0 and not get_tree().paused: 
@@ -98,3 +105,15 @@ func _on_trigger_6_body_entered(body: Node2D) -> void:
 func _on_trigger_7_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") and hint_val < 8:
 		hint_val += 1
+
+func create_particle():
+	var new_particle = snow_particle.instantiate()
+	new_particle.global_position.x = Playerstats.player_x - randi_range(-4000,4000)
+	new_particle.global_position.y = Playerstats.player_y - 1250
+	add_sibling(new_particle)
+
+func hide_text():
+	hints.visible = false
+	
+func show_text():
+	hints.visible = true

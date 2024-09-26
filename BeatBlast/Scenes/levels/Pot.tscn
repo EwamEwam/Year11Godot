@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bojtbs1tks5ji"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/World/Pot.gd" id="1_84ybm"]
+[ext_resource type="Texture2D" uid="uid://cpwdnmkwoc0mc" path="res://Sprites/Characters and items/green_slime_shadow.png" id="2_4hfyv"]
+[ext_resource type="Texture2D" uid="uid://wihjhd7ojqhx" path="res://Sprites/World/Pot.Png" id="3_rlgne"]
+[ext_resource type="AudioStream" uid="uid://6qt1nraa334r" path="res://Audio/Other_Sounds/Pot_Smash.mp3" id="4_a3kii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abt74"]
+size = Vector2(105.6, 96)
+
+[node name="Pot" type="StaticBody2D" groups=["Collision", "Prop"]]
+scale = Vector2(1.25, 1.25)
+collision_layer = 130
+collision_mask = 130
+script = ExtResource("1_84ybm")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.28, 0.2576, 0.28, 1)
+position = Vector2(3.05176e-06, 61.6)
+scale = Vector2(8, 8)
+texture = ExtResource("2_4hfyv")
+
+[node name="Pot" type="Sprite2D" parent="."]
+modulate = Color(0.866111, 0.866111, 0.866111, 1)
+scale = Vector2(8, 8)
+texture = ExtResource("3_rlgne")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 38.4)
+scale = Vector2(1, 0.75)
+shape = SubResource("RectangleShape2D_abt74")
+
+[node name="Smash" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(0.8, 0.8)
+stream = ExtResource("4_a3kii")

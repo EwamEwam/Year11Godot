@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 30000.0
 const ACCELLERATION = 20.0
-const FRICTION = 3.0
+const FRICTION = 12.5
 var score_value = 100
 @onready var Sprite = $Ember_Sprite
 @onready var animation = $AnimationPlayer
@@ -13,11 +13,11 @@ const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const particle = preload("res://Scenes/Other/fire_particle.tscn")
 const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
 const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
-@export var health = 42
+@export var health = 40
 @onready var timer = $hurttimer
 @onready var dashtimer = $Dashtimer
 @onready var hitbox = $Hitbox
-@export var damage = 8
+@export var damage = 7
 @onready var hurtbox = $Hurtbox
 @onready var circle = $Movement_circle
 @onready var Raycast = $RayCast2D
@@ -27,7 +27,7 @@ enum state {Right, Left, Hurt, Death, Charge, Dash_Right, Dash_Left}
 var current_state = state.Right
 var animation_can_play = true
 var dead = false
-@export var max_health = 42
+@export var max_health = 40
 
 var sprite_offset = 0
 var dashing = false
@@ -57,12 +57,14 @@ func _physics_process(delta):
 		
 		if health > 0:
 			var in_circle = circle.get_overlapping_bodies()
+			var slowed_down = false
 			if in_circle:
 				for collision in in_circle:
 					if collision.is_in_group("Player") and not Raycast.is_colliding() and dashtimer.is_stopped():
 						dash()
 						dashtimer.start()
-					elif not collision.is_in_group("Enemy"):
+					elif not collision.is_in_group("Enemy") and not slowed_down:
+						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 			else:
 				velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -75,7 +77,7 @@ func _physics_process(delta):
 			animation.speed_scale = 1
 		
 		if velocity == Vector2.ZERO:
-			damage = 8
+			damage = 7
 			
 		Sprite.position.y = -53 + sprite_offset
 			
@@ -93,7 +95,7 @@ func dash():
 	dashing = true
 	current_state = state.Charge
 	await get_tree().create_timer(0.75).timeout
-	damage = 16
+	damage = 14
 	var direction_to_player = global_position.direction_to(player.global_position)
 	velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION*80)
 	dashing = false

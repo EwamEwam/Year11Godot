@@ -66,15 +66,14 @@ func _physics_process(delta):
 		
 		check_for_death()
 		check_collision()
+		update_health_bar()
+		move_and_slide()
 		
 		if velocity .x > 0:
 			Sprite.flip_h = true
 		elif velocity.x < 0:
 			Sprite.flip_h = false
-	
-	update_health_bar()
-	move_and_slide()
-	
+
 func check_for_death():
 	if health <= 0:
 		hitbox.disabled = true

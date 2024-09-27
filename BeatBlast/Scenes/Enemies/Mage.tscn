@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dp3qj3setksmo"]
 
-[ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/skeleton_mage.gd" id="1_hkm8p"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/Mage.gd" id="1_hkm8p"]
 [ext_resource type="Texture2D" uid="uid://chiswos0gntdd" path="res://Sprites/Characters and items/Gun.png" id="2_hggkn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5xtno"]

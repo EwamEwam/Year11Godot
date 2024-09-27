@@ -68,11 +68,12 @@ func _physics_process(delta) -> void:
 		change_state()
 		check_collision()
 		animation_play()
+		move_and_slide()
 		
 	if not dead:
 		check_for_death()
 	
-	move_and_slide()
+
 	
 func change_state():
 	if animation_can_play:

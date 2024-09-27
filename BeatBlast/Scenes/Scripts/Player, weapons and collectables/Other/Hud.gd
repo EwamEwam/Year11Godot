@@ -44,13 +44,14 @@ const gems_number = preload("res://Scenes/Other/Gems_numbers.tscn")
 @onready var key = get_tree().get_first_node_in_group("Key")
 @onready var world = get_node('/root/level')
 
-#now thats a lot of if statements ;)
+#now thats a lot of if statements ;), Start of by connecting a bunch of signals from the player's sprite.
 func _ready():
 	player.died.connect(fade)
 	player.cooldown.connect(start_cooldown)
 	player.dash_cooldown.connect(start_dash_cooldown)
 	player.red.connect(damaged)
 	player.send_text.connect(update_sign)
+	player.pause.connect(Paused)
 	Cooldown_sprite.modulate = Color(1.15,1.15,1.15,1)
 	Dash_cooldown.modulate = Color(1.15,1.15,1.15,1)
 	level_title()
@@ -65,6 +66,10 @@ func _ready():
 	smg.visible = false
 	ak47.visible = false
 	rocket.visible = false
+	
+	$VBoxContainer.visible = false
+	$VBoxContainer/Resume.disabled = true
+	$VBoxContainer/Exit.disabled = true
 	
 	if Playerstats.weapons_unlocked > 1:
 		pistol.visible = true
@@ -146,6 +151,7 @@ func _physics_process(delta):
 	else:
 		heart12.visible=true
 		
+	#The rest of this function is setting other aspects of the hud and other numbers.
 	score.text = var_to_str(Playerstats.score)
 	timer.text = var_to_str(world.timer)
 	gems.text = var_to_str(Playerstats.gems)
@@ -170,6 +176,7 @@ func _physics_process(delta):
 		
 	update_status()
 	update_healing_items(Playerstats.healing_item_selected)
+	
 #These function each control one part of the HUD. For example, the cooldown metres, the red screen damage effect and the status effect timers
 func start_dash_cooldown():
 	Dash_cooldown.play("running")
@@ -272,5 +279,32 @@ func update_healing_items(selected):
 		$CanvasModulate/Healing_amt.modulate = Color(1,1,1,1)
 		$CanvasModulate/Healing_cooldown.visible = false
 
+#Self explanatory
 func update_sign(text):
 	$CanvasModulate/Sign_texts/text.text = text
+
+#The functions that makes the pause menu pop up. Uses a VBoxContainer to set the buttons and label in order. Then enables the buttons
+func Paused():
+	get_tree().paused = true
+	Playerstats.is_paused = true
+	$VBoxContainer.visible = true
+	$VBoxContainer/Resume.disabled = false
+	$VBoxContainer/Exit.disabled = false
+	
+#Resumes the game by hiding the VBoxContainer and setting get_tree().paused to false
+func _on_resume_pressed() -> void:
+	get_tree().paused = false
+	Playerstats.is_paused = false
+	$VBoxContainer.visible = false
+	$VBoxContainer/Resume.disabled = true
+	$VBoxContainer/Exit.disabled = true
+	
+#Exits the level by setting the player's health to zero, then the death functions happens, this saves me time having to program a leave level function.
+func _on_exit_pressed() -> void:
+	Playerstats.health = 0
+	Playerstats.is_paused = false
+	get_tree().paused = false
+	$VBoxContainer.visible = false
+	$VBoxContainer/Resume.disabled = true
+	$VBoxContainer/Exit.disabled = true
+	

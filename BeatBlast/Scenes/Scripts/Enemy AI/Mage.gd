@@ -3,7 +3,7 @@ extends CharacterBody2D
 const SPEED = 180.0
 const ACCELLERATION = 25.5
 const FRICTION = 6.0
-var score_value = 40
+var score_value = 50
 @onready var Sprite = $Gun
 @onready var onscreen = $VisibleOnScreenNotifier2D
 @onready var player = get_tree().get_first_node_in_group("Player")
@@ -14,12 +14,12 @@ const fire = preload("res://Scenes/Enemies/Fire_spell_1.tscn")
 const poison = preload("res://Scenes/Enemies/Poison_spell_1.tscn")
 const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
 const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
-@export var health = 18
-@export var max_health = 18
+@export var health = 25
+@export var max_health = 25
 @onready var timer = $Hurt_Timer
 @onready var hitbox = $hitbox
 @onready var shoot_timer = $Shoot_Timer
-@export var damage = 4
+@export var damage = 6
 @onready var hurtbox = $Hurtbox
 @onready var circle = $Player_Detection_Range
 @onready var Too_Close_Circle = $PLayer_Too_Close_Range
@@ -68,14 +68,13 @@ func _physics_process(delta):
 			
 		check_collision()
 		check_for_death()
+		update_health_bar()
+		move_and_slide()
 		
 		if velocity .x > 0:
 			Sprite.flip_h = true
 		elif velocity.x < 0:
 			Sprite.flip_h = false
-	
-	update_health_bar()
-	move_and_slide()
 	
 func check_for_death():
 	if health <= 0:

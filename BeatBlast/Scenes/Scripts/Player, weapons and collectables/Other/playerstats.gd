@@ -28,6 +28,7 @@ var grenade_cooldown = 0
 
 var blueprints = 0
 var sign_text = ""
+var is_paused = false
 
 #Settings for the player. Changes the games visuals, audio and other aspects of gameplay:
 var settings = {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=465 format=3 uid="uid://b1lyax7mlenna"]
+[gd_scene load_steps=470 format=3 uid="uid://b1lyax7mlenna"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/PlayerMovement.gd" id="1_gyp3l"]
 [ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_shadow.png" id="2_s50a2"]
@@ -43,6 +43,9 @@
 [ext_resource type="AudioStream" uid="uid://cyojbtk8yobfc" path="res://Audio/Player_sounds/Step 2.mp3" id="37_a6hmu"]
 [ext_resource type="AudioStream" uid="uid://b55b7j3u34n5i" path="res://Audio/Player_sounds/Gun4.mp3" id="37_bywe1"]
 [ext_resource type="Texture2D" uid="uid://c8hkortvqhl3u" path="res://Sprites/Hud/Health_heal.png" id="40_d0mwp"]
+[ext_resource type="StyleBox" uid="uid://cu8qu84atenlt" path="res://Scenes/levels/Button_disabled.tres" id="44_37um2"]
+[ext_resource type="StyleBox" uid="uid://djfq2twueeree" path="res://Scenes/levels/Button_stor_hover.tres" id="45_6i6uo"]
+[ext_resource type="StyleBox" uid="uid://dkojb1c5j72uf" path="res://Scenes/levels/Button_stor_Press.tres" id="46_ux02c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsncw"]
 size = Vector2(6.61341, 15.5172)
@@ -5669,6 +5672,26 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8edpo"]
+bg_color = Color(0.08, 0.05536, 0.0464, 0.627451)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.0784314, 0.054902, 0.0470588, 0.627451)
+border_blend = true
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bdsxx"]
+bg_color = Color(0.0784314, 0.054902, 0.0470588, 0.627451)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.0784314, 0.054902, 0.0470588, 0.627451)
+border_blend = true
+anti_aliasing = false
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 process_mode = 1
 collision_mask = 2
@@ -6082,6 +6105,38 @@ horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 2
 
+[node name="VBoxContainer" type="VBoxContainer" parent="Hud"]
+offset_left = 215.0
+offset_top = 182.0
+offset_right = 282.0
+offset_bottom = 227.0
+scale = Vector2(3, 3)
+alignment = 1
+
+[node name="Label" type="Label" parent="Hud/VBoxContainer"]
+layout_mode = 2
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Hud/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/disabled = ExtResource("44_37um2")
+theme_override_styles/hover = ExtResource("45_6i6uo")
+theme_override_styles/pressed = ExtResource("46_ux02c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8edpo")
+text = "Resume
+"
+
+[node name="Exit" type="Button" parent="Hud/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/disabled = ExtResource("44_37um2")
+theme_override_styles/hover = ExtResource("45_6i6uo")
+theme_override_styles/pressed = ExtResource("46_ux02c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bdsxx")
+text = "Leave Stage"
+
 [node name="Audio_Players" type="Node2D" parent="."]
 
 [node name="Hurt" type="AudioStreamPlayer2D" parent="Audio_Players"]
@@ -6124,3 +6179,5 @@ texture = ExtResource("3_gwtbm")
 [connection signal="timeout" from="Camera_Timer" to="." method="_on_camera_timer_timeout"]
 [connection signal="animation_finished" from="Hud/CanvasModulate/Dash_cooldown" to="Hud" method="_on_dash_cooldown_animation_finished"]
 [connection signal="animation_finished" from="Hud/CanvasModulate/Cooldown" to="Hud" method="_on_cooldown_animation_finished"]
+[connection signal="pressed" from="Hud/VBoxContainer/Resume" to="Hud" method="_on_resume_pressed"]
+[connection signal="pressed" from="Hud/VBoxContainer/Exit" to="Hud" method="_on_exit_pressed"]

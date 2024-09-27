@@ -71,12 +71,14 @@ func _physics_process(delta):
 		change_state()
 		animation_play()
 		check_collision()
-		
+		move_and_slide()
+		update_health_bar()
+	
 	if not dead:
 		check_for_death()
 		
-	update_health_bar()
-	move_and_slide()
+
+
 	
 func change_state():
 	if animation_can_play:

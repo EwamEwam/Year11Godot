@@ -62,6 +62,7 @@ func _physics_process(delta):
 		
 		animation_play()
 		check_collision()
+		move_and_slide()
 	
 	if not dead:
 		current_state = state.Running
@@ -71,7 +72,7 @@ func _physics_process(delta):
 		current_state = state.Death
 		animation.speed_scale = 1
 	
-	move_and_slide()
+
 	
 func animation_play():
 	match current_state:

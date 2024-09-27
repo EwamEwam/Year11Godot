@@ -52,6 +52,7 @@ signal dash_cooldown
 signal red(val)
 signal send_text(text)
 signal died
+signal pause
 
 func _ready():
 	shaking = false
@@ -117,6 +118,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("grenade"):
 		if Playerstats.health > 8:
 			make_heart_grenade()
+		
+	if Input.is_action_just_pressed("Pause"):
+		emit_signal("pause")
 		
 	if animation_can_play:
 		Update_state()
@@ -681,3 +685,4 @@ func show_sign_text():
 func hide_text():
 	$Hud/CanvasModulate/Sign_texts/text.text = ""
 	Playerstats.sign_text = ""
+	

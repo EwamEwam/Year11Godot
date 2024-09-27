@@ -61,15 +61,14 @@ func _physics_process(delta):
 		check_collision()
 		change_state()
 		animation_play()
+		move_and_slide()
+		update_health_bar()
 		
 		if not setting and movement_timer.is_stopped():
 			set_direction()
 			
 	if not dead:
 		check_for_death()
-	
-	update_health_bar()
-	move_and_slide()
 	
 func change_state():
 	if animation_can_play:

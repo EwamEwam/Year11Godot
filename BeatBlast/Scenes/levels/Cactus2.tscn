@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2ksqiymr51cg"]
+
+[ext_resource type="Texture2D" uid="uid://m8n4ocvorgsu" path="res://Sprites/World/Cactus2.png" id="1_mucyt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0t6g8"]
+size = Vector2(15.5, 9.75)
+
+[node name="Cactus2" type="Sprite2D"]
+modulate = Color(0.76, 0.76, 0.76, 1)
+scale = Vector2(8, 8)
+texture = ExtResource("1_mucyt")
+
+[node name="Collision" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 130
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+position = Vector2(-2.5, 4.625)
+shape = SubResource("RectangleShape2D_0t6g8")

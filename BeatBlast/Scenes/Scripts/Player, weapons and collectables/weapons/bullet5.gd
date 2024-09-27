@@ -40,6 +40,18 @@ func _on_body_entered(body):
 		body.pressed()
 	elif body.is_in_group("Prop") and body.has_method("damage"):
 		body.damage(damage+Playerstats.attack)
+		if times_hit == 1:
+			Playerstats.bullets_hit += 1
+		if times_hit != 2:
+			damage -= 2
+			times_hit += 1
+			SPEED -= 300
+		else:
+			queue_free()
+			var new_collide = collide.instantiate()
+			new_collide.global_position=global_position
+			new_collide.global_rotation=global_rotation+90
+			add_sibling(new_collide)
 	elif not body.is_in_group("Enemy"):
 		queue_free()
 		var new_collide = collide.instantiate()

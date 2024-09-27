@@ -32,7 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://can7kmxf1e788" path="res://Sprites/World/light.png" id="21_a5d4w"]
 [ext_resource type="PackedScene" uid="uid://dp3qj3setksmo" path="res://Scenes/Enemies/Mage.tscn" id="22_8w1a8"]
 [ext_resource type="PackedScene" uid="uid://ckxij2marce8w" path="res://Scenes/Enemies/Blind_enemy.tscn" id="23_ocheb"]
-[ext_resource type="AudioStream" uid="uid://ow84kikns2ay" path="res://Audio/Music/Level1.mp3" id="25_suafj"]
+[ext_resource type="AudioStream" uid="uid://ow84kikns2ay" path="res://Audio/Music/Level2.mp3" id="25_suafj"]
 [ext_resource type="PackedScene" uid="uid://dm8v6ou547gq6" path="res://Scenes/Enemies/Yellow_slime.tscn" id="26_6v3rx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jxr25"]
@@ -4585,27 +4585,21 @@ position = Vector2(5185.31, -1615.15)
 
 [node name="Tree1346" parent="Level_elements/Props/Trees" instance=ExtResource("3_qoik6")]
 position = Vector2(1150.51, 522.461)
-scale = Vector2(8, 8)
 
 [node name="Tree1347" parent="Level_elements/Props/Trees" instance=ExtResource("4_wkxcf")]
 position = Vector2(907.98, -4389.67)
-scale = Vector2(8, 8)
 
 [node name="Tree1348" parent="Level_elements/Props/Trees" instance=ExtResource("4_wkxcf")]
 position = Vector2(4725.31, -5888.38)
-scale = Vector2(8, 8)
 
 [node name="Tree1349" parent="Level_elements/Props/Trees" instance=ExtResource("4_wkxcf")]
 position = Vector2(6559.31, -4527.99)
-scale = Vector2(8, 8)
 
 [node name="Tree1350" parent="Level_elements/Props/Trees" instance=ExtResource("3_qoik6")]
 position = Vector2(6747.72, -1829.11)
-scale = Vector2(8, 8)
 
 [node name="Tree1351" parent="Level_elements/Props/Trees" instance=ExtResource("4_wkxcf")]
 position = Vector2(1784.89, -5944.11)
-scale = Vector2(8, 8)
 
 [node name="Heart_capsule" parent="Level_elements/Props" instance=ExtResource("3_vt7u5")]
 position = Vector2(4713.28, -114.444)
@@ -5504,7 +5498,6 @@ position = Vector2(5362, 507)
 y_sort_enabled = true
 
 [node name="PointLight2D2" type="PointLight2D" parent="Level_elements/Lighting"]
-visible = false
 position = Vector2(2590, 617)
 scale = Vector2(1366.18, 1366.18)
 energy = 2.15

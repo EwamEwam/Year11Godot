@@ -84,13 +84,12 @@ func _physics_process(delta):
 		check_collision()
 		animation_play()
 		change_state()
-			
+		move_and_slide()
+		update_health_bar()
+	
 	if not dead:
 		check_for_death()
 		
-	update_health_bar()
-	move_and_slide()
-	
 func dash():
 	dashing = true
 	current_state = state.Charge
@@ -187,7 +186,7 @@ func _on_stopwatch_timeout() -> void:
 
 func _on_particle_timer_timeout() -> void:
 	particle_timer -= clampf(velocity.length()/50,1,6)
-	if particle_timer <= 0:
+	if particle_timer <= 0 and onscreen.is_on_screen():
 		var new_particle = particle.instantiate()
 		new_particle.global_position = global_position
 		add_sibling(new_particle)

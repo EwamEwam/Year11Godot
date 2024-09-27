@@ -68,6 +68,8 @@ func _physics_process(delta):
 		check_collision()
 		animation_play()
 		change_state()
+		update_health_bar()
+		move_and_slide()
 		
 		if animation_can_play:
 			animation.speed_scale = clampf(velocity.length()/50, 0.8, 10)
@@ -77,8 +79,7 @@ func _physics_process(delta):
 	if not dead:
 		check_for_death()
 		
-	update_health_bar()
-	move_and_slide()
+	
 	
 func change_state():
 	if animation_can_play:

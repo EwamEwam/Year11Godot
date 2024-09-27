@@ -4,7 +4,8 @@ const SPEED = 225.0
 const ACCELLERATION = 25.0
 const FRICTION = 5.5
 var score_value = 50
-@onready var Sprite = $Gun
+@onready var Sprite = $Skeleton_Sprite
+@onready var animation = $AnimationPlayer
 @onready var onscreen = $VisibleOnScreenNotifier2D
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart10.tscn")
@@ -24,8 +25,18 @@ const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.ts
 @onready var Raycast = $RayCast2D
 @onready var health_bar = $Health_metre
 
+enum state {Idle, Walking, Pull_back_, Shoot, Hurt, Death}
+enum direction {Left, Right}
+var current_state = state.Idle
+var current_direction = direction.Left
 var power = 0
 var can_move = true
+
+var animation_can_play = true
+var shooting = false
+
+func _ready() -> void:
+	Sprite.modulate = Color(1.1,1.1,1.1,1)
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -69,18 +80,28 @@ func _physics_process(delta):
 		
 		check_for_death()
 		check_collision()
+		update_state()
+		play_animations()
+		update_health_bar()
+		move_and_slide()
+	
 		
 		if velocity .x > 0:
 			Sprite.flip_h = true
 		elif velocity.x < 0:
 			Sprite.flip_h = false
 	
-	update_health_bar()
-	move_and_slide()
+	if current_state == state.Walking:
+		animation.speed_scale = clampf(velocity.length()/200, 0.25, 3)
+	else:
+		animation.speed_scale = 1
 	
+
 func check_for_death():
 	if health <= 0:
+		animation_can_play = false
 		hitbox.disabled = true
+		current_state = state.Death
 		z_index = -1
 		await get_tree().create_timer(1).timeout
 		var new_heart = heart.instantiate()
@@ -104,6 +125,14 @@ func check_for_death():
 
 func take_damage(dmg):
 	health -= dmg
+	if health > 0 and not shooting:
+		animation_can_play = false
+		current_state = state.Hurt
+	Sprite.modulate = Color(1.1,1.1,1.1,1)
+	await get_tree().create_timer(0.15).timeout
+	Sprite.modulate = Color(0.9,0.9,0.9,1)
+	if not shooting:
+		animation_can_play = true
 
 func _on_shoot_timer_timeout():
 	var too_close = Too_Close_Circle.get_overlapping_bodies()
@@ -111,7 +140,10 @@ func _on_shoot_timer_timeout():
 	if too_close:
 		for collision in too_close:
 			if collision.is_in_group("Player") and not Raycast.is_colliding() and health > 0:
+				shooting = true
 				player_detected = true
+				animation_can_play = false
+				current_state = state.Pull_back_
 				if power < 4:
 					power += 1
 				elif power == 4:
@@ -130,6 +162,8 @@ func update_health_bar():
 
 func shoot_arrow(val):
 	if health > 0:
+		animation_can_play = false
+		current_state = state.Shoot
 		power = 0
 		var new_arrow = arrow.instantiate()
 		new_arrow.global_position = global_position
@@ -144,3 +178,35 @@ func shoot_arrow(val):
 			4:
 				new_arrow.set_power(1000,14,0.5)
 		add_sibling(new_arrow)
+		await get_tree().create_timer(0.25).timeout
+		animation_can_play = true
+		shooting = false
+		
+func update_state():
+	if animation_can_play:
+		if abs(velocity) > Vector2.ZERO:
+			current_state = state.Walking
+		else:
+			current_state = state.Idle
+		
+	if Playerstats.player_x > global_position.x:
+		Sprite.flip_h = true
+		Sprite.offset.x = -5
+	else:
+		Sprite.flip_h = false
+		Sprite.offset.x = 5
+		
+func play_animations():
+	match current_state:
+		state.Idle:
+			animation.play("Idle")
+		state.Walking:
+			animation.play("Walk")
+		state.Pull_back_:
+			animation.play("Pull_back_" + str(power))
+		state.Hurt:
+			animation.play("Hurt")
+		state.Death:
+			animation.play("Death")
+		state.Shoot:
+			animation.play("Shoot")

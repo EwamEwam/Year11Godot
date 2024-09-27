@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	$Gem_Value2.text = str(Playerstats.gems)
 
 func _on_life_up_upgrade_pressed() -> void:
-	if Playerstats.gems >= Playerstats.health_cost and Playerstats.health_lv < 4:
+	if Playerstats.gems >= Playerstats.health_cost and Playerstats.health_lv < 5:
 		Playerstats.max_health += 10
 		Playerstats.health_lv += 1
 		Playerstats.gems -= Playerstats.health_cost
@@ -26,7 +26,7 @@ func _on_life_up_upgrade_pressed() -> void:
 		display()
 
 func _on_defence_up_upgrade_pressed() -> void:
-	if Playerstats.gems >= Playerstats.defence_cost and Playerstats.defence_lv < 4:
+	if Playerstats.gems >= Playerstats.defence_cost and Playerstats.defence_lv < 5:
 		Playerstats.defence += 1
 		Playerstats.defence_lv += 1
 		Playerstats.gems -= Playerstats.defence_cost
@@ -34,7 +34,7 @@ func _on_defence_up_upgrade_pressed() -> void:
 		display()
 
 func _on_attack_up_upgrade_pressed() -> void:
-	if Playerstats.gems >= Playerstats.attack_cost and Playerstats.attack_lv < 4:
+	if Playerstats.gems >= Playerstats.attack_cost and Playerstats.attack_lv < 5:
 		Playerstats.attack += 1
 		Playerstats.attack_lv += 1
 		Playerstats.gems -= Playerstats.attack_cost
@@ -42,12 +42,12 @@ func _on_attack_up_upgrade_pressed() -> void:
 		display()
 
 func display():
-	if Playerstats.health_lv < 4:
+	if Playerstats.health_lv < 5:
 		$Buttons/Life_up_upgrade.text = str(Playerstats.health_cost)
 	else:
 		$Buttons/Life_up_upgrade.text = "MAXED"
-	$Max_health_heading.text = "+10 Max HP Bottle (Lv " + str(Playerstats.health_lv) + "/4)"
-	$Max_health_heading2.text = "+10 Max HP Bottle (Lv " + str(Playerstats.health_lv) + "/4)"
+	$Max_health_heading.text = "+10 Max HP Bottle (Lv " + str(Playerstats.health_lv) + "/5)"
+	$Max_health_heading2.text = "+10 Max HP Bottle (Lv " + str(Playerstats.health_lv) + "/5)"
 	
 	if Playerstats.defence_lv < 5:
 		$Buttons/Defence_up_upgrade.text = str(Playerstats.defence_cost)

@@ -1,6 +1,6 @@
 extends Node2D
 
-const Speed = 425.0
+const Speed = 750.0
 var Damage = 6
 @onready var light = $PointLight2D
 

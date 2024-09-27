@@ -457,6 +457,7 @@ autoplay = "1_Idle"
 
 [node name="Z" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
+z_index = 10
 scale = Vector2(8, 8)
 texture = ExtResource("3_x2xx0")
 

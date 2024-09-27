@@ -24,9 +24,9 @@ centered = false
 
 [node name="level_1_select" type="Button" parent="."]
 offset_left = 243.0
-offset_top = 394.0
+offset_top = 380.0
 offset_right = 363.0
-offset_bottom = 409.0
+offset_bottom = 399.0
 scale = Vector2(3, 3)
 focus_mode = 0
 theme_override_fonts/font = ExtResource("2_lylxr")
@@ -38,9 +38,9 @@ text = "Level 1 Select"
 
 [node name="level_2_select" type="Button" parent="."]
 offset_left = 243.0
-offset_top = 342.0
+offset_top = 316.0
 offset_right = 363.0
-offset_bottom = 357.0
+offset_bottom = 335.0
 scale = Vector2(3, 3)
 focus_mode = 0
 theme_override_fonts/font = ExtResource("2_lylxr")
@@ -52,9 +52,9 @@ text = "Level 2 Select"
 
 [node name="level_3_select" type="Button" parent="."]
 offset_left = 243.0
-offset_top = 291.0
+offset_top = 253.0
 offset_right = 363.0
-offset_bottom = 306.0
+offset_bottom = 272.0
 scale = Vector2(3, 3)
 focus_mode = 0
 theme_override_styles/disabled = ExtResource("4_n5rkv")
@@ -65,9 +65,9 @@ text = "Level 3 Select"
 
 [node name="level_4_select" type="Button" parent="."]
 offset_left = 243.0
-offset_top = 240.0
+offset_top = 190.0
 offset_right = 363.0
-offset_bottom = 255.0
+offset_bottom = 209.0
 scale = Vector2(3, 3)
 focus_mode = 0
 theme_override_styles/disabled = ExtResource("4_n5rkv")
@@ -75,19 +75,6 @@ theme_override_styles/hover = ExtResource("5_tr40e")
 theme_override_styles/pressed = ExtResource("6_rq3ga")
 theme_override_styles/normal = ExtResource("7_lxeml")
 text = "Level 4 Select"
-
-[node name="level_5_select" type="Button" parent="."]
-offset_left = 243.0
-offset_top = 189.0
-offset_right = 363.0
-offset_bottom = 204.0
-scale = Vector2(3, 3)
-focus_mode = 0
-theme_override_styles/disabled = ExtResource("4_n5rkv")
-theme_override_styles/hover = ExtResource("5_tr40e")
-theme_override_styles/pressed = ExtResource("6_rq3ga")
-theme_override_styles/normal = ExtResource("7_lxeml")
-text = "Level 5 Select"
 
 [node name="Store" type="Button" parent="."]
 offset_left = 29.0
@@ -122,128 +109,101 @@ offset_left = 237.0
 offset_top = 36.0
 offset_right = 320.0
 offset_bottom = 43.0
-scale = Vector2(2.5, 2.5)
+scale = Vector2(3, 3)
 text = "Lv 1 High Score"
 
 [node name="High_score_value" type="Label" parent="Text"]
 offset_left = 474.0
-offset_top = 38.0
+offset_top = 41.0
 offset_right = 533.0
-offset_bottom = 45.0
+offset_bottom = 48.0
 scale = Vector2(2.25, 2.25)
 text = "0"
 horizontal_alignment = 2
 
 [node name="Line" type="Sprite2D" parent="Text"]
-position = Vector2(424.5, 57)
-scale = Vector2(25, 2.5)
+position = Vector2(424.5, 62)
+scale = Vector2(25, 3)
 texture = ExtResource("4_7mcjw")
 
 [node name="Heart_capsule" type="Sprite2D" parent="Text"]
-position = Vector2(442, 45)
+position = Vector2(480, 48)
 scale = Vector2(0.012, 0.012)
 texture = ExtResource("5_ocmrx")
 
 [node name="High Scores2" type="Label" parent="Text"]
 offset_left = 237.0
-offset_top = 61.0
+offset_top = 67.0
 offset_right = 320.0
-offset_bottom = 68.0
-scale = Vector2(2.25, 2.25)
+offset_bottom = 74.0
+scale = Vector2(3, 3)
 text = "Lv 2 High Score"
 
 [node name="High_score_value2" type="Label" parent="Text"]
 offset_left = 474.0
-offset_top = 62.0
+offset_top = 72.0
 offset_right = 533.0
-offset_bottom = 69.0
+offset_bottom = 79.0
 scale = Vector2(2.25, 2.25)
 text = "0"
 horizontal_alignment = 2
 
 [node name="Line2" type="Sprite2D" parent="Text"]
-position = Vector2(424.5, 81)
-scale = Vector2(25, 2.5)
+position = Vector2(424.5, 93)
+scale = Vector2(25, 3)
 texture = ExtResource("4_7mcjw")
 
 [node name="Heart_capsule2" type="Sprite2D" parent="Text"]
-position = Vector2(429, 69)
+position = Vector2(489, 79)
 scale = Vector2(0.012, 0.012)
 texture = ExtResource("5_ocmrx")
 
 [node name="High Scores3" type="Label" parent="Text"]
 offset_left = 237.0
-offset_top = 85.0
+offset_top = 98.0
 offset_right = 320.0
-offset_bottom = 92.0
-scale = Vector2(2.25, 2.25)
+offset_bottom = 105.0
+scale = Vector2(3, 3)
 text = "Lv 3 High Score"
 
 [node name="High_score_value3" type="Label" parent="Text"]
 offset_left = 474.0
-offset_top = 86.0
+offset_top = 103.0
 offset_right = 533.0
-offset_bottom = 93.0
+offset_bottom = 110.0
 scale = Vector2(2.25, 2.25)
 text = "0"
 horizontal_alignment = 2
 
 [node name="Line6" type="Sprite2D" parent="Text"]
-position = Vector2(424.5, 105)
-scale = Vector2(25, 2.5)
+position = Vector2(424.5, 124)
+scale = Vector2(25, 3)
 texture = ExtResource("4_7mcjw")
 
 [node name="Heart_capsule3" type="Sprite2D" parent="Text"]
-position = Vector2(429, 93)
+position = Vector2(489, 110)
 scale = Vector2(0.012, 0.012)
 texture = ExtResource("5_ocmrx")
 
 [node name="High Scores4" type="Label" parent="Text"]
 offset_left = 237.0
-offset_top = 109.0
+offset_top = 129.0
 offset_right = 320.0
-offset_bottom = 116.0
-scale = Vector2(2.25, 2.25)
+offset_bottom = 136.0
+scale = Vector2(3, 3)
 text = "Lv 4 High Score"
 
 [node name="High_score_value4" type="Label" parent="Text"]
 offset_left = 474.0
-offset_top = 110.0
+offset_top = 134.0
 offset_right = 533.0
-offset_bottom = 117.0
+offset_bottom = 141.0
 scale = Vector2(2.25, 2.25)
 text = "0"
 horizontal_alignment = 2
-
-[node name="Line7" type="Sprite2D" parent="Text"]
-position = Vector2(424.5, 129)
-scale = Vector2(25, 2.5)
-texture = ExtResource("4_7mcjw")
 
 [node name="Heart_capsule4" type="Sprite2D" parent="Text"]
-position = Vector2(429, 117)
-scale = Vector2(0.012, 0.012)
-texture = ExtResource("5_ocmrx")
-
-[node name="High Scores5" type="Label" parent="Text"]
-offset_left = 237.0
-offset_top = 133.0
-offset_right = 320.0
-offset_bottom = 140.0
-scale = Vector2(2.25, 2.25)
-text = "Lv 5 High Score"
-
-[node name="High_score_value5" type="Label" parent="Text"]
-offset_left = 474.0
-offset_top = 133.0
-offset_right = 533.0
-offset_bottom = 140.0
-scale = Vector2(2.25, 2.25)
-text = "0"
-horizontal_alignment = 2
-
-[node name="Heart_capsule5" type="Sprite2D" parent="Text"]
-position = Vector2(429, 142)
+position = Vector2(489, 141)
 scale = Vector2(0.012, 0.012)
 texture = ExtResource("5_ocmrx")
 
@@ -439,17 +399,17 @@ text = "59"
 horizontal_alignment = 2
 
 [node name="BlueprintIcon" type="Sprite2D" parent="Text"]
-position = Vector2(460, 45)
+position = Vector2(499, 48)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("10_ktjau")
 
 [node name="BlueprintIcon2" type="Sprite2D" parent="Text"]
-position = Vector2(447, 69)
+position = Vector2(510, 79)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("10_ktjau")
 
 [node name="BlueprintIcon3" type="Sprite2D" parent="Text"]
-position = Vector2(447, 93)
+position = Vector2(510, 110)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("10_ktjau")
 
@@ -460,6 +420,5 @@ position = Vector2(-3, 5)
 [connection signal="pressed" from="level_2_select" to="." method="_on_level_2_select_pressed"]
 [connection signal="pressed" from="level_3_select" to="." method="_on_level_3_select_pressed"]
 [connection signal="pressed" from="level_4_select" to="." method="_on_level_4_select_pressed"]
-[connection signal="pressed" from="level_5_select" to="." method="_on_level_5_select_pressed"]
 [connection signal="pressed" from="Store" to="." method="_on_store_pressed"]
 [connection signal="pressed" from="Weapon" to="." method="_on_weapon_pressed"]

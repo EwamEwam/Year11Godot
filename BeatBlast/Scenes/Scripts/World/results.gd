@@ -86,26 +86,37 @@ func calculate_values():
 func animation():
 	await get_tree().create_timer(2.5).timeout
 	score.visible = true
+	$Blip.play()
 	await get_tree().create_timer(0.5).timeout
 	time.visible = true
+	$Blip.play()
 	await get_tree().create_timer(0.5).timeout
 	enemies.visible = true
+	$Blip.play()
 	await get_tree().create_timer(0.5).timeout
 	shot.visible = true
+	$Blip.play()
 	await get_tree().create_timer(0.5).timeout
 	hit.visible = true
+	$Blip.play()
 	await get_tree().create_timer(0.5).timeout
 	accuracy.visible = true
+	$Blip.play()
 	await get_tree().create_timer(0.5).timeout
 	time_bonus.visible = true
+	$Blip.play()
 	await get_tree().create_timer(0.5).timeout
 	accuracy_bonus.visible = true
+	$Blip.play()
 	await get_tree().create_timer(0.5).timeout
 	life_bonus.visible = true
+	$Blip.play()
 	await get_tree().create_timer(0.5).timeout
 	gems.visible = true
+	$Blip.play()
 	await get_tree().create_timer(0.5).timeout
 	total_score.visible = true
+	$Blip.play()
 	await get_tree().create_timer(2.5).timeout
 	Playerstats.gems += bonus_gems
 	screen.fade_in(0.05,20,"res://Scenes/levels/level_select.tscn")

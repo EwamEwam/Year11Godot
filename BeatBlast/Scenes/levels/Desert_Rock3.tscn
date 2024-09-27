@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://0qyh5aoyi02a"]
+
+[ext_resource type="Texture2D" uid="uid://c6veshjry1rvr" path="res://Sprites/World/Desert_rock3.png" id="1_kyqj5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7upn3"]
+radius = 3.0
+height = 11.7143
+
+[node name="Desert_Rock3" type="Sprite2D" groups=["Collision"]]
+modulate = Color(0.601223, 0.601223, 0.601223, 1)
+scale = Vector2(7, 7)
+texture = ExtResource("1_kyqj5")
+
+[node name="Collision" type="StaticBody2D" parent="."]
+collision_layer = 130
+collision_mask = 130
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" groups=["Collision"]]
+position = Vector2(-1.14286, 2.57143)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7upn3")

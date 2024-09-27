@@ -1,6 +1,6 @@
 extends Node2D
 
-const Speed = 400.0
+const Speed = 650.0
 var Damage = 5
 
 func _ready() -> void:

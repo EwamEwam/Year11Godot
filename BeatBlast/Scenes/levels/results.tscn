@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cen7cowhh073f"]
+[gd_scene load_steps=6 format=3 uid="uid://cen7cowhh073f"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/World/results.gd" id="1_sp4wg"]
 [ext_resource type="Texture2D" uid="uid://misl73u72xsh" path="res://Sprites/Hud/Line.png" id="1_wvdig"]
 [ext_resource type="FontFile" uid="uid://c2wf2bpy718q5" path="res://Sprites/Hud/Bourbon_and_coke_blocks.png" id="2_3fiej"]
 [ext_resource type="PackedScene" uid="uid://cppt3jx0ayy7d" path="res://Scenes/levels/fade.tscn" id="4_t26wo"]
+[ext_resource type="AudioStream" uid="uid://0dvafa0owq3l" path="res://Audio/Other_Sounds/Blip_Sound.Wav" id="5_sd2yl"]
 
 [node name="Results" type="Node2D"]
 script = ExtResource("1_sp4wg")
@@ -269,3 +270,7 @@ horizontal_alignment = 2
 
 [node name="Fade" parent="." instance=ExtResource("4_t26wo")]
 position = Vector2(3, 2)
+
+[node name="Blip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_sd2yl")
+volume_db = 2.0

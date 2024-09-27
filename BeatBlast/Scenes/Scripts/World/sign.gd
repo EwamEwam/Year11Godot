@@ -18,11 +18,11 @@ func _process(delta: float) -> void:
 	var collisions = player_detection.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and Input.is_action_just_pressed("Interact") and not reading:
+			if collision.is_in_group("Player") and Input.is_action_just_pressed("Interact") and not reading and not Playerstats.is_paused:
 				read_sign(id)
 				reading = true
 				get_tree().paused = true
-			elif collision.is_in_group("Player") and Input.is_action_just_pressed("Interact") and reading:
+			elif collision.is_in_group("Player") and Input.is_action_just_pressed("Interact") and reading and not Playerstats.is_paused:
 				get_tree().paused = false
 				player.hide_text()
 				reading = false

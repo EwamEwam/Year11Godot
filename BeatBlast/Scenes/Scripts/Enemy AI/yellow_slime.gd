@@ -11,7 +11,7 @@ var score_value = 25
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const gem = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
-@export var health = 18
+@export var health = 16
 @onready var timer = $hurttimer
 @onready var hitbox = $hitbox
 @export var damage = 6
@@ -24,7 +24,7 @@ enum state {Right, Left, Hurt, Death}
 var current_state = state.Right
 var animation_can_play = true
 var dead = false
-@export var max_health = 18
+@export var max_health = 16
 
 func _ready():
 	Sprite.modulate = Color(0.6, 0.6, 0.6, 0.9)
@@ -70,12 +70,11 @@ func _physics_process(delta):
 		change_state()
 		check_collision()
 		animation_play()
+		move_and_slide()
+		update_health_bar()
 		
 	if not dead:
 		check_for_death()
-		
-	update_health_bar()
-	move_and_slide()
 	
 func change_state():
 	if animation_can_play:

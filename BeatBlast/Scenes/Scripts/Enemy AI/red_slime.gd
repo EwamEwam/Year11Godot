@@ -8,13 +8,13 @@ var score_value = 40
 @onready var animation = $AnimationPlayer
 @onready var onscreen = $VisibleOnScreenNotifier2D
 @onready var player = get_tree().get_first_node_in_group("Player")
-const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
+const heart = preload("res://Scenes/Characters, weapons and collectables/heart10.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const gem = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
 @export var health = 24
 @onready var timer = $hurttimer
 @onready var hitbox = $hitbox
-@export var damage = 8
+@export var damage = 6
 @onready var hurtbox = $hurtbox
 @onready var circle = $Movement_circle
 @onready var Raycast = $RayCast2D
@@ -70,13 +70,14 @@ func _physics_process(delta):
 		change_state()
 		check_collision()
 		animation_play()
+		update_health_bar()
+		move_and_slide()
+	
 		
 	if not dead:
 		check_for_death()
 		
-	update_health_bar()
-	move_and_slide()
-	
+
 func change_state():
 	if animation_can_play:
 		if velocity.x > 0:

@@ -8,7 +8,7 @@ var score_value = 100
 @onready var animation = $AnimationPlayer
 @onready var onscreen = $VisibleOnScreenNotifier2D
 @onready var player = get_tree().get_first_node_in_group("Player")
-const heart = preload("res://Scenes/Characters, weapons and collectables/heart10.tscn")
+const heart = preload("res://Scenes/Characters, weapons and collectables/heart15.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const particle = preload("res://Scenes/Other/fire_particle.tscn")
 const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
@@ -37,6 +37,7 @@ var particle_timer = 10
 func _ready():
 	time_in_level = 0
 	Sprite.modulate = Color(0.6, 0.6, 0.6, 0.9)
+	update_health_bar()
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -155,7 +156,7 @@ func check_for_death():
 			var new_gem = gem1.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
-		for i in range(randi_range(3,4)):
+		for i in range(randi_range(4,5)):
 			var new_gem = gem5.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)

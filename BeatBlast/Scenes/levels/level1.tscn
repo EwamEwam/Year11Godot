@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://cfyf6mwvn5sdy"]
+[gd_scene load_steps=57 format=4 uid="uid://cfyf6mwvn5sdy"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/World/level_1.gd" id="1_msbxi"]
 [ext_resource type="Texture2D" uid="uid://6vrotoguko04" path="res://Sprites/World/Snow_tileset.png" id="2_r20r0"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://ri5u3m58aexy" path="res://Scenes/levels/Snow_Rock2.tscn" id="14_jcfxo"]
 [ext_resource type="PackedScene" uid="uid://bojtbs1tks5ji" path="res://Scenes/levels/Pot.tscn" id="17_wdowm"]
 [ext_resource type="PackedScene" uid="uid://cfkryk1inuc80" path="res://Scenes/levels/sign.tscn" id="25_8j2lq"]
+[ext_resource type="AudioStream" uid="uid://bm521x6w1hrf8" path="res://Audio/Music/Level1.mp3" id="30_kyx3t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4fysf"]
 texture = ExtResource("2_r20r0")
@@ -1532,8 +1533,10 @@ position = Vector2(-156.75, -118.03)
 scale = Vector2(0.5, 0.5)
 
 [node name="Background_Music" type="AudioStreamPlayer" parent="."]
-volume_db = -8.0
+stream = ExtResource("30_kyx3t")
+volume_db = -16.0
 autoplay = true
+parameters/looping = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Level_elements/Triggers/Trigger1" to="." method="_on_trigger_1_body_entered"]

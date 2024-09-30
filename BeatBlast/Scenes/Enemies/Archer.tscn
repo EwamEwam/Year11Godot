@@ -190,8 +190,8 @@ animations = [{
 }]
 
 [sub_resource type="Animation" id="Animation_ddyns"]
-length = 0.2
-loop_mode = 1
+length = 0.7
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -215,6 +215,31 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Death"]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_08y3y"]
@@ -461,7 +486,7 @@ collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_7sf56")
 
-[node name="PlayerShadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 0.65098)
 position = Vector2(7, 105)
 scale = Vector2(8, 8)
@@ -524,7 +549,7 @@ show_percentage = false
 position = Vector2(-14, -8)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_y2xqk")
-animation = &"Shoot"
+animation = &"Death"
 autoplay = "Idle"
 offset = Vector2(5, 0)
 
@@ -533,5 +558,6 @@ root_node = NodePath("../Skeleton_Sprite")
 libraries = {
 "": SubResource("AnimationLibrary_klujm")
 }
+autoplay = "Idle"
 
 [connection signal="timeout" from="Shoot_Timer" to="." method="_on_shoot_timer_timeout"]

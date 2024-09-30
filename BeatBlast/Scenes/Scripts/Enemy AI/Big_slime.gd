@@ -30,6 +30,7 @@ var dead = false
 
 func _ready():
 	Sprite.modulate = Color(0.7,0.7,0.7,0.9)
+	update_health_bar()
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -38,7 +39,7 @@ func check_collision():
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(10,0.025,10,1.2)
+				collision.shake(12,0.025,12,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
@@ -74,12 +75,12 @@ func _physics_process(delta):
 		move_and_slide()
 		update_health_bar()
 	
+	else:
+		set_process(false)
+	
 	if not dead:
 		check_for_death()
-		
 
-
-	
 func change_state():
 	if animation_can_play:
 		if velocity.x > 0:
@@ -121,14 +122,13 @@ func check_for_death():
 			new_slime.global_position.x += randf_range(-5,5)
 			new_slime.global_position.y += randf_range(-5,5)
 			add_sibling(new_slime)
-		for i in range(randi_range(8,11)):
+		for i in range(randi_range(4,5)):
 			var new_gem = gem1 .instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
-		for i in range(randi_range(1,2)):
-			var new_gem = gem5.instantiate()
-			new_gem.global_position = global_position
-			add_sibling(new_gem)
+		var new_gem = gem5.instantiate()
+		new_gem.global_position = global_position
+		add_sibling(new_gem)
 
 func take_damage(dmg):
 	health -= dmg

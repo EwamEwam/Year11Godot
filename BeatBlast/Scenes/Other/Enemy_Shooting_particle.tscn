@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ilq32dmc2rsb"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/World/enemy_shooting_particle.gd" id="1_n621i"]
+[ext_resource type="Texture2D" uid="uid://dlhm2x8f2lcnj" path="res://Sprites/Characters and items/Big_particle.png" id="2_r82ol"]
+
+[node name="Particle" type="Node2D"]
+modulate = Color(0.892034, 0.892034, 0.892034, 1)
+z_index = -1
+script = ExtResource("1_n621i")
+
+[node name="Particle_sprite" type="Sprite2D" parent="."]
+modulate = Color(0.22, 0.22, 0.22, 1)
+z_index = 2
+scale = Vector2(6, 6)
+texture = ExtResource("2_r82ol")

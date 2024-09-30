@@ -31,6 +31,7 @@ var dead = false
 
 func _ready():
 	Sprite.modulate = Color(0.7, 0.7, 0.7, 0.9)
+	update_health_bar()
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -66,6 +67,9 @@ func _physics_process(delta):
 		
 		if not setting and movement_timer.is_stopped():
 			set_direction()
+		
+	else:
+		set_process(false)
 			
 	if not dead:
 		check_for_death()
@@ -100,11 +104,11 @@ func check_for_death():
 		new_score.global_position = global_position
 		add_sibling(new_score)
 		Playerstats.score += score_value
-		for i in range(randi_range(11,12)):
+		for i in range(randi_range(10,12)):
 			var new_gem = gem.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
-		for i in range(randi_range(8,9)):
+		for i in range(randi_range(11,12)):
 			var new_gem = gem5.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)

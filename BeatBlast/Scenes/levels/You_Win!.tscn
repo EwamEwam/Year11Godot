@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=3 uid="uid://do1ittuquxv2k"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Collectables/you_win!.gd" id="1_efaeq"]
+[ext_resource type="Texture2D" uid="uid://cpwdnmkwoc0mc" path="res://Sprites/Characters and items/green_slime_shadow.png" id="2_avino"]
+[ext_resource type="Texture2D" uid="uid://blew54fsdnpxm" path="res://Sprites/Characters and items/You_Win!.Png" id="3_kcssj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f8eyh"]
+radius = 59.0
+height = 128.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lvdxg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kcssj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="Animation" id="Animation_frtqn"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_h3530"]
+length = 2.4
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["default"]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 1),
+"points": PackedFloat32Array(0, 0, 0, 0, 0, -9, -0.25, 0, 0.25, 0, 9, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0),
+"times": PackedFloat32Array(-0.00937498, 0.590625, 1.79062, 2.4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ipxq8"]
+_data = {
+"RESET": SubResource("Animation_frtqn"),
+"default": SubResource("Animation_h3530")
+}
+
+[node name="Good_Job!" type="Area2D" groups=["Key"]]
+position = Vector2(0, 2.81953)
+script = ExtResource("1_efaeq")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.65, 0.411667, 0, 0.443137)
+position = Vector2(0, 67.1805)
+scale = Vector2(8, 8)
+texture = ExtResource("2_avino")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_f8eyh")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 0.627052)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_lvdxg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ipxq8")
+}
+autoplay = "default"
+speed_scale = 0.8
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

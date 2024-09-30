@@ -37,6 +37,7 @@ var particle_timer = 10
 func _ready():
 	time_in_level = 0
 	Sprite.modulate = Color(0.6, 0.6, 0.6, 0.9)
+	update_health_bar()
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -86,15 +87,14 @@ func _physics_process(delta):
 		change_state()
 		update_health_bar()
 		move_and_slide()
-	
-	if not dead:
-		check_for_death()
 		
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
-		
+		set_process(false)
 	
-	
+	if not dead:
+		check_for_death()
+
 func dash():
 	dashing = true
 	current_state = state.Charge
@@ -156,11 +156,11 @@ func check_for_death():
 		add_sibling(new_score)
 		Playerstats.score += score_value
 		Playerstats.enemies_defeated += 1
-		for i in range(randi_range(10,11)):
+		for i in range(randi_range(2,3)):
 			var new_gem = gem1.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
-		for i in range(randi_range(3,4)):
+		for i in range(randi_range(1,2)):
 			var new_gem = gem5.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)

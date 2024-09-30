@@ -4,25 +4,41 @@ const SPEED = 200.0
 const ACCELLERATION = 25.0
 const FRICTION = 5.5
 var score_value = 25
-@onready var Sprite = $Gun
+@onready var Sprite = $Sprite_node/Sprite
 @onready var onscreen = $VisibleOnScreenNotifier2D
+@onready var animation = $AnimationPlayer
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const bullet = preload("res://Scenes/Enemies/enemy_bullet.tscn")
 const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
 const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
+const particle = preload("res://Scenes/Other/Shooter_1_Particle.tscn")
+const shoot_particle = preload("res://Scenes/Other/Enemy_Shooting_particle.tscn")
 @export var health = 12
 @export var max_health = 12
 @onready var timer = $Hurt_Timer
 @onready var hitbox = $hitbox
 @onready var shoot_timer = $Shoot_Timer
-@export var damage = 2
+@export var damage = 3
 @onready var hurtbox = $Hurtbox
 @onready var circle = $Player_Detection_Range
 @onready var Too_Close_Circle = $PLayer_Too_Close_Range
 @onready var Raycast = $RayCast2D
 @onready var health_bar = $Health_metre
+
+@onready var world = get_node('/root/level')
+
+enum state {Idle, Shoot, Death}
+var animation_can_play = true
+var current_state = state.Idle
+var time_in_level = 0
+var sprite_offset = 0
+var dead = false
+
+func _ready() -> void:
+	Sprite.modulate = Color(0.7,0.7,0.7,1)
+	update_health_bar()
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -31,7 +47,7 @@ func check_collision():
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(4,0.025,4,1.2)
+				collision.shake(7,0.025,7,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
@@ -64,21 +80,36 @@ func _physics_process(delta):
 		else:
 			velocity = Vector2.ZERO
 		
+		$Sprite_node.position.y = -107 + sprite_offset
+		
+		if animation_can_play:
+			current_state = state.Idle
+		
+		play_animation()
 		check_for_death()
 		check_collision()
 		update_health_bar()
 		move_and_slide()
 		
-		if velocity .x > 0:
+		if Playerstats.player_x > global_position.x and health > 0:
 			Sprite.flip_h = true
-		elif velocity.x < 0:
+			$Sprite_node/Bullet_spawner.position.x = 56
+		elif health > 0:
 			Sprite.flip_h = false
-
+			$Sprite_node/Bullet_spawner.position.x = -56
+		
+	else:
+		set_process(false)
+		
 func check_for_death():
-	if health <= 0:
+	if health <= 0 and not dead:
+		dead = true
+		animation.speed_scale = 2
+		current_state = state.Death
+		animation_can_play = false
 		hitbox.disabled = true
 		z_index = -1
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(0.5).timeout
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
 		add_sibling(new_heart)
@@ -88,7 +119,10 @@ func check_for_death():
 		add_sibling(new_score)
 		Playerstats.score += score_value
 		Playerstats.enemies_defeated += 1
-		queue_free()
+		for i in range(6):
+			var new_particle = particle.instantiate()
+			new_particle.global_position = Sprite.global_position
+			add_sibling(new_particle)
 		for i in range(randi_range(8,9)):
 			var new_gem = gem1.instantiate()
 			new_gem.global_position = global_position
@@ -96,17 +130,34 @@ func check_for_death():
 
 func take_damage(dmg):
 	health -= dmg
+	animation_can_play = false
+	Sprite.modulate = Color(0.9,0.9,0.9,1)
+	await get_tree().create_timer(0.15).timeout
+	Sprite.modulate = Color(0.7,0.7,0.7,1)
+	if health > 0:
+		animation_can_play = true
 
 func _on_shoot_timer_timeout():
-	var in_circle = circle.get_overlapping_bodies()
-	if in_circle:
-		for collision in in_circle:
-			if collision.is_in_group("Player") and not Raycast.is_colliding() and health > 0:
-				var new_bullet = bullet.instantiate()
-				new_bullet.global_position = global_position
-				new_bullet.look_at(Vector2(Playerstats.player_x, Playerstats.player_y))
-				add_sibling(new_bullet)
-	shoot_timer.start(1.5)
+	if health > 0:
+		animation_can_play = false
+		current_state = state.Idle
+		var in_circle = circle.get_overlapping_bodies()
+		if in_circle:
+			for collision in in_circle:
+				if collision.is_in_group("Player") and not Raycast.is_colliding():
+					current_state = state.Shoot
+					var new_bullet = bullet.instantiate()
+					new_bullet.global_position = $Sprite_node/Bullet_spawner.global_position
+					new_bullet.look_at(Vector2(Playerstats.player_x, Playerstats.player_y))
+					add_sibling(new_bullet)
+					for i in range(6):
+						var new_particle = shoot_particle.instantiate()
+						new_particle.global_position = $Sprite_node/Bullet_spawner.global_position
+						world.add_child(new_particle)
+		shoot_timer.start(1.5)
+		await get_tree().create_timer(0.25).timeout
+		if health > 0:
+			animation_can_play = true
 
 func update_health_bar():
 	health_bar.max_value = max_health
@@ -115,3 +166,18 @@ func update_health_bar():
 		health_bar.visible = true
 	else:
 		health_bar.visible = false
+	
+func _on_stopwatch_timeout() -> void:
+	if health > 0:
+		time_in_level += 0.017
+		sprite_offset = 25 * sin(deg_to_rad(70 * time_in_level))
+		
+func play_animation():
+	match current_state:
+		state.Idle:
+			animation.play("Idle")
+		state.Shoot:
+			animation.play("Shoot")
+		state.Death:
+			animation.speed_scale = 2
+			animation.play("Death")

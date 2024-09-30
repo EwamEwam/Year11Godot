@@ -377,7 +377,6 @@ text_overrun_behavior = 1
 clip_text = true
 
 [node name="Fade" parent="." instance=ExtResource("6_4jdhu")]
-visible = false
 position = Vector2(27, 3)
 
 [connection signal="pressed" from="Buttons/Craft" to="." method="_on_button_pressed"]

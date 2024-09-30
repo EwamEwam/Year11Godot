@@ -96,6 +96,9 @@ func _process(delta: float) -> void:
 		blueprint3.modulate.a = 0.25
 	else:
 		blueprint3.modulate.a = 1
+	if Input.is_action_just_pressed("Pause") and not button_pressed:
+		screen.fade_in(0.05,20,"res://Scenes/levels/main_menu.tscn")
+		button_pressed = true
 	display()
 
 func _on_store_pressed():

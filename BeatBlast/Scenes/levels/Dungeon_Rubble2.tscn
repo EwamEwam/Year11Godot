@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfgmoplspnbry"]
+
+[ext_resource type="Texture2D" uid="uid://dwgy3gdebc4iy" path="res://Sprites/World/Dungeon_Rubble2.Png" id="1_28par"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7upn3"]
+radius = 3.28571
+height = 16.8571
+
+[node name="Dungeon_Rubble" type="Sprite2D" groups=["Collision"]]
+modulate = Color(0.601223, 0.601223, 0.601223, 1)
+scale = Vector2(7, 7)
+texture = ExtResource("1_28par")
+
+[node name="Collision" type="StaticBody2D" parent="."]
+collision_layer = 130
+collision_mask = 130
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" groups=["Collision"]]
+position = Vector2(-1.71429, 2.85714)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7upn3")

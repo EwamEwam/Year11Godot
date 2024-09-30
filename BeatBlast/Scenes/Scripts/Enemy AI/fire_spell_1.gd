@@ -1,7 +1,7 @@
 extends Node2D
 
-const Speed = 650.0
-var Damage = 5
+const Speed = 700.0
+var Damage = 6
 
 func _ready() -> void:
 	pass
@@ -12,8 +12,8 @@ func _process(delta: float) -> void:
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") and body.has_method("damage_player"):
 		body.damage_player(Damage-Playerstats.defence)
-		body.shake(10,0.025,10,1.2)
-		body.burned(2)
+		body.shake(13,0.025,13,1.2)
+		body.burned(3)
 	if not body.is_in_group("Enemy"):
 		queue_free()
 

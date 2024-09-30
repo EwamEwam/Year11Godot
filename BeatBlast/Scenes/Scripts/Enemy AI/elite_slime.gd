@@ -16,7 +16,7 @@ const gem = preload("res://Scenes/Characters, weapons and collectables/gem_1.tsc
 @export var health = 85
 @export var max_health = 85
 @onready var timer = $hurttimer
-@export var damage = 16
+@export var damage = 25
 @onready var hurtbox = $hurtbox
 @onready var circle = $Movement_circle
 @onready var Raycast = $RayCast2D
@@ -29,6 +29,7 @@ var dead = false
 
 func _ready() -> void:
 	Sprite.modulate = Color(0.8,0.8,0.8,0.9)
+	update_health_bar()
 
 func check_collision() -> void:
 	if not timer.is_stopped() or health < 1:
@@ -75,12 +76,14 @@ func _physics_process(delta):
 		
 		check_collision()
 		animation_play()
+		update_health_bar()
+		move_and_slide()
+		
+	else:
+		set_process(false)
 		
 	if not dead:
 		check_for_death()
-	
-	update_health_bar()
-	move_and_slide()
 	
 func animation_play():
 	match current_state:
@@ -110,11 +113,11 @@ func check_for_death():
 		add_sibling(new_score)
 		Playerstats.score += score_value
 		Playerstats.enemies_defeated += 1
-		for i in range(randi_range(10,13)):
+		for i in range(randi_range(8,10)):
 			var new_gem = gem.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
-		for i in range(randi_range(9,10)):
+		for i in range(randi_range(8,9)):
 			var new_gem = gem5.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)

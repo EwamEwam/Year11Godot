@@ -58,8 +58,13 @@ func _physics_process(delta):
 				velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		else:
 			velocity = Vector2.ZERO
-		
+	
 		check_collision()
+		animation_play()
+		move_and_slide()
+		
+	else:
+		set_process(false)
 		
 	if not dead:
 		current_state = state.Running
@@ -68,9 +73,6 @@ func _physics_process(delta):
 	else:
 		current_state = state.Death
 		animation.speed_scale = true
-	
-	animation_play()
-	move_and_slide()
 	
 func animation_play():
 	match current_state:

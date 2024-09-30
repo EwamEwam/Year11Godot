@@ -8,13 +8,14 @@ var score_value = 40
 @onready var animation = $AnimationPlayer
 @onready var onscreen = $VisibleOnScreenNotifier2D
 @onready var player = get_tree().get_first_node_in_group("Player")
-const heart = preload("res://Scenes/Characters, weapons and collectables/heart10.tscn")
+const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
-const gem = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
+const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
+const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
 @export var health = 24
 @onready var timer = $hurttimer
 @onready var hitbox = $hitbox
-@export var damage = 6
+@export var damage = 8
 @onready var hurtbox = $hurtbox
 @onready var circle = $Movement_circle
 @onready var Raycast = $RayCast2D
@@ -28,6 +29,7 @@ var dead = false
 
 func _ready():
 	Sprite.modulate = Color(0.6, 0.6, 0.6, 0.9)
+	update_health_bar()
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -73,11 +75,12 @@ func _physics_process(delta):
 		update_health_bar()
 		move_and_slide()
 	
+	else:
+		set_process(false)
 		
 	if not dead:
 		check_for_death()
-		
-
+	
 func change_state():
 	if animation_can_play:
 		if velocity.x > 0:
@@ -113,8 +116,12 @@ func check_for_death():
 		add_sibling(new_score)
 		Playerstats.score += score_value
 		Playerstats.enemies_defeated += 1
-		for i in range(randi_range(6,8)):
-			var new_gem = gem.instantiate()
+		for i in range(randi_range(7,5)):
+			var new_gem = gem1.instantiate()
+			new_gem.global_position = global_position
+			add_sibling(new_gem)
+		for i in range(randi_range(2,1)):
+			var new_gem = gem5.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
 		

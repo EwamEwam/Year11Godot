@@ -52,8 +52,8 @@ signal dash_cooldown
 signal red(val)
 signal send_text(text)
 signal died
-signal pause
 
+#Runs when the player is loaded into the scene.
 func _ready():
 	shaking = false
 	light.visible = false 
@@ -80,6 +80,7 @@ func _physics_process(delta):
 	
 	Playerstats.player_x = global_position.x
 	Playerstats.player_y = global_position.y
+	Playerstats.camera_drag = $Camera2D.get_target_position() - global_position
 	
 	if Input.is_action_pressed("shoot"):
 		if Playerstats.current_status.Blocked == 0:
@@ -118,9 +119,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("grenade"):
 		if Playerstats.health > 8:
 			make_heart_grenade()
-		
-	if Input.is_action_just_pressed("Pause"):
-		emit_signal("pause")
 		
 	if animation_can_play:
 		Update_state()
@@ -162,17 +160,20 @@ func use_healing_item(val):
 			if Playerstats.healing_items.Jar_of_pickled_hearts > 0 and Playerstats.healing_cooldown < 1:
 				heal(20)
 				Playerstats.healing_items.Jar_of_pickled_hearts -= 1
-				Playerstats.healing_cooldown = 30
+				Playerstats.healing_cooldown = 45
+				$Audio_Players/Heal.play()
 		2:
 			if Playerstats.healing_items.Dried_hearts_in_a_can > 0 and Playerstats.healing_cooldown < 1:
 				heal(50)
 				Playerstats.healing_items.Dried_hearts_in_a_can -= 1
-				Playerstats.healing_cooldown = 45
+				Playerstats.healing_cooldown = 60
+				$Audio_Players/Heal.play()
 		3:
 			if Playerstats.healing_items.Heart_essence > 0 and Playerstats.healing_cooldown < 1:
 				heal(100)
 				Playerstats.healing_items.Heart_essence -= 1
-				Playerstats.healing_cooldown = 60
+				Playerstats.healing_cooldown = 75
+				$Audio_Players/Heal.play()
 	
 #Whenever the player's moving, it causes the particle timer to go down by one each frame. When it reaches zero. It creates a particle 
 func particle_check():
@@ -308,6 +309,7 @@ func Shoot():
 			add_sibling(new_punch)
 			shoot_animation(0.125)
 			emit_signal("cooldown")
+			$Audio_Players/Punch.play()
 			timer.start(0.65)
 		2:
 			if not timer.is_stopped() or Playerstats.health < 2:

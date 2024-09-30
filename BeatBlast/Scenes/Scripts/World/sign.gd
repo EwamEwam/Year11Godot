@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var collisions = player_detection.get_overlapping_bodies()
-	if collisions:
+	if collisions and Playerstats.health > 0:
 		for collision in collisions:
 			if collision.is_in_group("Player") and Input.is_action_just_pressed("Interact") and not reading and not Playerstats.is_paused:
 				read_sign(id)

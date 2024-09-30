@@ -11,6 +11,7 @@ var timer = 500
 @onready var music = $Background_Music
 
 func _ready() -> void:
+	Playerstats.healing_cooldown = 0
 	Playerstats.enemies_defeated = 0
 	Playerstats.bullets_shot = 0
 	Playerstats.bullets_hit = 0
@@ -41,6 +42,9 @@ func death():
 	screen.fade_in(0.04,25,"res://Scenes/levels/results.tscn")
 	
 func lights_out():
+	for i in range(20):
+		music.volume_db -= linear_to_db(1.5) 
+		await get_tree().create_timer(0.05).timeout
 	Playerstats.time_left = timer
 	for i in range(5):
 		lighting.modulate.a -= 0.2

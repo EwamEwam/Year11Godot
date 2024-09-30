@@ -23,7 +23,7 @@ func _on_body_entered(body) -> void:
 	if body.is_in_group("Player") and body.has_method("damage_player") and not entered_player:
 		entered_player = true
 		body.damage_player(damage - Playerstats.defence)
-		body.shake(7.5,0.05,5,1.1)
+		body.shake(damage * 2,0.025,damage * 2,1.2)
 		await get_tree().create_timer(0.025).timeout
 		in_player = true
 		var offset :Vector2 = Vector2(global_position.x - Playerstats.player_x,global_position.y - Playerstats.player_y) 

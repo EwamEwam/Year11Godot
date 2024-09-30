@@ -17,9 +17,12 @@ func ready():
 #1 - 5 heart, 2 - 1 heart, 3 - 40 heart, 4 - 10 heart 
 func damage(val):
 	health -= val
+	$Hit.pitch_scale = randf_range(0.8,1.2)
+	$Hit.play()
 	if health < 1 and not destroyed:
+		visible = false
+		$Hitbox.queue_free()
 		destroyed = true
-		queue_free()
 		match drop:
 			0:
 				pass
@@ -43,6 +46,8 @@ func damage(val):
 			var new_particle = particle.instantiate()
 			new_particle.global_position = global_position
 			add_sibling(new_particle)
+		await get_tree().create_timer(1.5).timeout
+		queue_free()
 	else:
 		sprite.modulate = Color(1,1,1,1)
 		shake()

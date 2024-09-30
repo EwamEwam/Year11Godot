@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfwma2maivnyg"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/World/title_particles.gd" id="1_au850"]
+[ext_resource type="Texture2D" uid="uid://dlhm2x8f2lcnj" path="res://Sprites/Characters and items/Big_particle.png" id="2_m2m3s"]
+
+[node name="Particle" type="Node2D"]
+modulate = Color(0.892034, 0.892034, 0.892034, 1)
+z_index = -1
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_au850")
+
+[node name="Particle_sprite" type="Sprite2D" parent="."]
+modulate = Color(0.31, 0.0713, 0.150867, 0.72549)
+z_index = 1
+texture = ExtResource("2_m2m3s")

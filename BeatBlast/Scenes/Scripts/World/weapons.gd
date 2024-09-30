@@ -17,7 +17,7 @@ func _on_back_pressed() -> void:
 	get_tree().paused = true
 	
 func _process(delta: float) -> void:
-	cost = (weapons_unlocked * 500) - 500
+	cost = (weapons_unlocked * 300) - 300
 	update_text()
 
 func update_text() -> void:

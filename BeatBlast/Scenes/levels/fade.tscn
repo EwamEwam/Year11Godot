@@ -12,3 +12,19 @@ modulate = Color(0.00385874, 9.49943e-05, 0.041093, 1)
 position = Vector2(320, 244)
 scale = Vector2(34.0455, 55.2727)
 texture = ExtResource("2_77ttj")
+
+[node name="Text" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 16.0
+offset_top = 5.0
+offset_right = 166.0
+offset_bottom = 124.0
+grow_horizontal = 2
+scale = Vector2(4, 4)
+text = "NOTE!
+Press ESCAPE during gameplay to pause or in level select to go back to menu."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://cppt3jx0ayy7d" path="res://Scenes/levels/fade.tscn" id="3_bxy3v"]
 [ext_resource type="Texture2D" uid="uid://misl73u72xsh" path="res://Sprites/Hud/Line.png" id="4_7mcjw"]
 [ext_resource type="StyleBox" uid="uid://cu8qu84atenlt" path="res://Scenes/levels/Button_disabled.tres" id="4_n5rkv"]
-[ext_resource type="Texture2D" uid="uid://cfdwvs6r4lj3d" path="res://Sprites/Characters and items/NC-0008_Ketamine_HCl_150_mg_mL_Medetomidine_HCl_5_mg_mL_30_mL_Sterile__49981.png" id="5_ocmrx"]
 [ext_resource type="StyleBox" uid="uid://djfq2twueeree" path="res://Scenes/levels/Button_stor_hover.tres" id="5_tr40e"]
 [ext_resource type="StyleBox" uid="uid://dkojb1c5j72uf" path="res://Scenes/levels/Button_stor_Press.tres" id="6_rq3ga"]
 [ext_resource type="StyleBox" uid="uid://ckp68tw8enud4" path="res://Scenes/levels/Button_stor.tres" id="7_lxeml"]
+[ext_resource type="Texture2D" uid="uid://q3fji3qawki" path="res://Sprites/Characters and items/Heart_Capsule_icon.Png" id="9_gloir"]
 [ext_resource type="Texture2D" uid="uid://cultr1kty61yi" path="res://Sprites/Hud/Blueprint_icon.Png" id="10_ktjau"]
 
 [node name="level_select" type="Node2D"]
@@ -128,8 +128,8 @@ texture = ExtResource("4_7mcjw")
 
 [node name="Heart_capsule" type="Sprite2D" parent="Text"]
 position = Vector2(480, 48)
-scale = Vector2(0.012, 0.012)
-texture = ExtResource("5_ocmrx")
+scale = Vector2(3, 3)
+texture = ExtResource("9_gloir")
 
 [node name="High Scores2" type="Label" parent="Text"]
 offset_left = 237.0
@@ -155,8 +155,8 @@ texture = ExtResource("4_7mcjw")
 
 [node name="Heart_capsule2" type="Sprite2D" parent="Text"]
 position = Vector2(489, 79)
-scale = Vector2(0.012, 0.012)
-texture = ExtResource("5_ocmrx")
+scale = Vector2(3, 3)
+texture = ExtResource("9_gloir")
 
 [node name="High Scores3" type="Label" parent="Text"]
 offset_left = 237.0
@@ -182,8 +182,8 @@ texture = ExtResource("4_7mcjw")
 
 [node name="Heart_capsule3" type="Sprite2D" parent="Text"]
 position = Vector2(489, 110)
-scale = Vector2(0.012, 0.012)
-texture = ExtResource("5_ocmrx")
+scale = Vector2(3, 3)
+texture = ExtResource("9_gloir")
 
 [node name="High Scores4" type="Label" parent="Text"]
 offset_left = 237.0
@@ -204,8 +204,8 @@ horizontal_alignment = 2
 
 [node name="Heart_capsule4" type="Sprite2D" parent="Text"]
 position = Vector2(489, 141)
-scale = Vector2(0.012, 0.012)
-texture = ExtResource("5_ocmrx")
+scale = Vector2(3, 3)
+texture = ExtResource("9_gloir")
 
 [node name="Line3" type="Sprite2D" parent="Text"]
 position = Vector2(120.408, 223.469)
@@ -399,17 +399,17 @@ text = "59"
 horizontal_alignment = 2
 
 [node name="BlueprintIcon" type="Sprite2D" parent="Text"]
-position = Vector2(499, 48)
+position = Vector2(497, 48)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("10_ktjau")
 
 [node name="BlueprintIcon2" type="Sprite2D" parent="Text"]
-position = Vector2(510, 79)
+position = Vector2(506, 79)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("10_ktjau")
 
 [node name="BlueprintIcon3" type="Sprite2D" parent="Text"]
-position = Vector2(510, 110)
+position = Vector2(506, 110)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("10_ktjau")
 

@@ -70,11 +70,12 @@ func _physics_process(delta) -> void:
 		animation_play()
 		move_and_slide()
 		
+	else:
+		set_process(false)
+		
 	if not dead:
 		check_for_death()
-	
 
-	
 func change_state():
 	if animation_can_play:
 		if velocity.x > 0:

@@ -22,7 +22,7 @@ func _on_life_up_upgrade_pressed() -> void:
 		Playerstats.max_health += 10
 		Playerstats.health_lv += 1
 		Playerstats.gems -= Playerstats.health_cost
-		Playerstats.health_cost += 400
+		Playerstats.health_cost += 250
 		display()
 
 func _on_defence_up_upgrade_pressed() -> void:
@@ -30,7 +30,7 @@ func _on_defence_up_upgrade_pressed() -> void:
 		Playerstats.defence += 1
 		Playerstats.defence_lv += 1
 		Playerstats.gems -= Playerstats.defence_cost
-		Playerstats.defence_cost += 350
+		Playerstats.defence_cost += 300
 		display()
 
 func _on_attack_up_upgrade_pressed() -> void:
@@ -38,7 +38,7 @@ func _on_attack_up_upgrade_pressed() -> void:
 		Playerstats.attack += 1
 		Playerstats.attack_lv += 1
 		Playerstats.gems -= Playerstats.attack_cost
-		Playerstats.attack_cost += 400
+		Playerstats.attack_cost += 350
 		display()
 
 func display():

@@ -64,6 +64,9 @@ func _physics_process(delta):
 		check_collision()
 		move_and_slide()
 	
+	else:
+		set_process(false)
+	
 	if not dead:
 		current_state = state.Running
 		animation.speed_scale = velocity.length()/100
@@ -71,8 +74,6 @@ func _physics_process(delta):
 	else:
 		current_state = state.Death
 		animation.speed_scale = 1
-	
-
 	
 func animation_play():
 	match current_state:
@@ -95,7 +96,7 @@ func check_for_death():
 		add_sibling(new_score)
 		Playerstats.score += score_value
 		Playerstats.enemies_defeated += 1
-		for i in range(randi_range(3,4)):
+		for i in range(randi_range(2,3)):
 			var new_gem = gem1.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)

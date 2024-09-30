@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://dywe4fpqh4675"]
+[gd_scene load_steps=16 format=3 uid="uid://dywe4fpqh4675"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Collectables/gem_1.gd" id="1_8aygp"]
 [ext_resource type="Texture2D" uid="uid://mqgyk4v485ms" path="res://Sprites/Characters and items/gem_1_Spritesheet.png" id="2_16alf"]
 [ext_resource type="Texture2D" uid="uid://cnwlaeh1j83ds" path="res://Sprites/Characters and items/heart5_shadow.png" id="2_epuq7"]
+[ext_resource type="AudioStream" uid="uid://c825ny0xak3e7" path="res://Audio/Player_sounds/Gem_Pickup.mp3" id="4_qf2ot"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2tkqw"]
 radius = 26.1725
@@ -198,5 +199,9 @@ libraries = {
 "": SubResource("AnimationLibrary_sc0v1")
 }
 autoplay = "default"
+
+[node name="Pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qf2ot")
+volume_db = 5.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

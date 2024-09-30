@@ -78,4 +78,7 @@ texture = ExtResource("2_8abd4")
 scale = Vector2(0.61, 0.61)
 color = Color(0.960503, 0.597031, 0.459931, 1)
 energy = 4.81
+shadow_color = Color(0, 0, 0, 0.537255)
+shadow_filter = 2
+shadow_filter_smooth = 64.0
 texture = ExtResource("2_8abd4")

@@ -18,6 +18,8 @@ func _physics_process(delta):
 	
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
+		$Pickup.pitch_scale = randf_range(0.8,1.2)
+		$Pickup.play()
 		$Animation_Player.speed_scale = 2
 		shadow()
 		rotation = 0

@@ -127,3 +127,9 @@ func animation():
 		2:
 			if total_score_value > Playerstats.high_scores.Level2HighScore:
 				Playerstats.high_scores.Level2HighScore = total_score_value
+		3:
+			if total_score_value > Playerstats.high_scores.Level3HighScore:
+				Playerstats.high_scores.Level3HighScore = total_score_value
+		4:
+			if total_score_value > Playerstats.high_scores.Level4HighScore:
+				Playerstats.high_scores.Level4HighScore = total_score_value

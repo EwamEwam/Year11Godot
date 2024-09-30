@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://000syhnyjden"]
+
+[ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Collectables/heart_15.gd" id="1_qgkqq"]
+[ext_resource type="Texture2D" uid="uid://cnwlaeh1j83ds" path="res://Sprites/Characters and items/heart5_shadow.png" id="2_giaxp"]
+[ext_resource type="Texture2D" uid="uid://cjx3q5ki6qwxh" path="res://Sprites/Characters and items/Heart15.Png" id="3_48cgi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uy5oe"]
+radius = 46.0435
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0hfm"]
+atlas = ExtResource("3_48cgi")
+region = Rect2(0, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqd8u"]
+atlas = ExtResource("3_48cgi")
+region = Rect2(0, 13, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w06ri"]
+atlas = ExtResource("3_48cgi")
+region = Rect2(0, 26, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o11ny"]
+atlas = ExtResource("3_48cgi")
+region = Rect2(0, 39, 15, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrv8v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0hfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqd8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w06ri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o11ny")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="heart(15)" type="Area2D"]
+script = ExtResource("1_qgkqq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uy5oe")
+
+[node name="Heart5Shadow" type="Sprite2D" parent="."]
+position = Vector2(-2, 40)
+scale = Vector2(8, 8)
+texture = ExtResource("2_giaxp")
+
+[node name="Heart" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -8)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_xrv8v")
+autoplay = "default"
+frame_progress = 0.810848
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

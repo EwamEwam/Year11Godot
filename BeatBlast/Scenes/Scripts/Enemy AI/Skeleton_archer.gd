@@ -13,6 +13,7 @@ const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const arrow = preload("res://Scenes/Enemies/Arrow.tscn")
 const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
 const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
+const particle = preload("res://Scenes/Other/Bone_Particle.tscn")
 @export var health = 28
 @export var max_health = 28
 @onready var timer = $Hurt_Timer
@@ -31,12 +32,14 @@ var current_state = state.Idle
 var current_direction = direction.Left
 var power = 0
 var can_move = true
+var dead = false
 
 var animation_can_play = true
 var shooting = false
 
 func _ready() -> void:
-	Sprite.modulate = Color(1.1,1.1,1.1,1)
+	Sprite.modulate = Color(0.9,0.9,0.9,1)
+	update_health_bar()
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -45,7 +48,7 @@ func check_collision():
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(12,0.025,12,1.2)
+				collision.shake(16,0.025,16,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
@@ -78,19 +81,17 @@ func _physics_process(delta):
 		else:
 			velocity = Vector2.ZERO
 		
-		check_for_death()
+		if not dead:
+			check_for_death()
 		check_collision()
 		update_state()
 		play_animations()
 		update_health_bar()
 		move_and_slide()
-	
 		
-		if velocity .x > 0:
-			Sprite.flip_h = true
-		elif velocity.x < 0:
-			Sprite.flip_h = false
-	
+	else:
+		set_process(false)
+		
 	if current_state == state.Walking:
 		animation.speed_scale = clampf(velocity.length()/200, 0.25, 3)
 	else:
@@ -100,10 +101,14 @@ func _physics_process(delta):
 func check_for_death():
 	if health <= 0:
 		animation_can_play = false
+		dead = true
 		hitbox.disabled = true
 		current_state = state.Death
 		z_index = -1
-		await get_tree().create_timer(1).timeout
+		for i in range(12):
+			var new_particle = particle.instantiate()
+			new_particle.global_position = global_position
+			add_sibling(new_particle)
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
 		add_sibling(new_heart)
@@ -113,12 +118,11 @@ func check_for_death():
 		add_sibling(new_score)
 		Playerstats.score += score_value
 		Playerstats.enemies_defeated += 1
-		queue_free()
-		for i in range(randi_range(10,11)):
+		for i in range(randi_range(4,6)):
 			var new_gem = gem1.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
-		for i in range(randi_range(1,2)):
+		for i in range(randi_range(3,4)):
 			var new_gem = gem5.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
@@ -150,7 +154,7 @@ func _on_shoot_timer_timeout():
 					shoot_arrow(power)
 	if not player_detected and power > 0:
 		shoot_arrow(power)
-	shoot_timer.start(0.8)
+	shoot_timer.start(0.7)
 
 func update_health_bar():
 	health_bar.max_value = max_health
@@ -172,11 +176,11 @@ func shoot_arrow(val):
 			1:
 				new_arrow.set_power(600,3,1)
 			2:
-				new_arrow.set_power(750,7,0.85)
+				new_arrow.set_power(750,7,0.8)
 			3: 
-				new_arrow.set_power(875,10,0.7)
+				new_arrow.set_power(875,11,0.6)
 			4:
-				new_arrow.set_power(1000,14,0.5)
+				new_arrow.set_power(1000,15,0.4)
 		add_sibling(new_arrow)
 		await get_tree().create_timer(0.25).timeout
 		animation_can_play = true
@@ -189,12 +193,14 @@ func update_state():
 		else:
 			current_state = state.Idle
 		
-	if Playerstats.player_x > global_position.x:
+	if Playerstats.player_x > global_position.x and health > 0:
 		Sprite.flip_h = true
 		Sprite.offset.x = -5
-	else:
+		$Shadow.position.x = -25
+	elif health > 0:
 		Sprite.flip_h = false
 		Sprite.offset.x = 5
+		$Shadow.position.x = 0
 		
 func play_animations():
 	match current_state:

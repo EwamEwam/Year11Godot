@@ -1,15 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://dn8fhsgela1vs"]
+[gd_scene load_steps=28 format=3 uid="uid://dn8fhsgela1vs"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/shooter_2.gd" id="1_2akxi"]
-[ext_resource type="Texture2D" uid="uid://chiswos0gntdd" path="res://Sprites/Characters and items/Gun.png" id="2_06qf0"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5xtno"]
-radius = 61.0
-height = 192.0
+[ext_resource type="Texture2D" uid="uid://cpwdnmkwoc0mc" path="res://Sprites/Characters and items/green_slime_shadow.png" id="2_1lcqm"]
+[ext_resource type="Texture2D" uid="uid://57yxcipmrwsc" path="res://Sprites/Characters and items/Shooter_2.png" id="3_q5v2n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nfhye"]
-radius = 70.0
-height = 214.0
+radius = 37.0
+height = 118.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5xtno"]
+radius = 39.0
+height = 134.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iiktk"]
 radius = 1016.08
@@ -17,36 +18,283 @@ radius = 1016.08
 [sub_resource type="CircleShape2D" id="CircleShape2D_13upx"]
 radius = 447.881
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8f44"]
+atlas = ExtResource("3_q5v2n")
+region = Rect2(0, 0, 27, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttok0"]
+atlas = ExtResource("3_q5v2n")
+region = Rect2(0, 0, 27, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43dqf"]
+atlas = ExtResource("3_q5v2n")
+region = Rect2(27, 0, 27, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tqdy"]
+atlas = ExtResource("3_q5v2n")
+region = Rect2(54, 0, 27, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgbms"]
+atlas = ExtResource("3_q5v2n")
+region = Rect2(81, 0, 27, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nucff"]
+atlas = ExtResource("3_q5v2n")
+region = Rect2(0, 22, 27, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iakbk"]
+atlas = ExtResource("3_q5v2n")
+region = Rect2(27, 22, 27, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol4l3"]
+atlas = ExtResource("3_q5v2n")
+region = Rect2(54, 22, 27, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awscm"]
+atlas = ExtResource("3_q5v2n")
+region = Rect2(81, 22, 27, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwkdx"]
+atlas = ExtResource("3_q5v2n")
+region = Rect2(0, 44, 27, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tur6h"]
+atlas = ExtResource("3_q5v2n")
+region = Rect2(27, 44, 27, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pd3sa"]
+atlas = ExtResource("3_q5v2n")
+region = Rect2(54, 44, 27, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0q8d"]
+atlas = ExtResource("3_q5v2n")
+region = Rect2(81, 44, 27, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m6845"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8f44")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttok0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43dqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tqdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgbms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nucff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iakbk")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ol4l3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awscm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwkdx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tur6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pd3sa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0q8d")
+}],
+"loop": true,
+"name": &"Shoot",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_udkfu"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite_node/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite_node/Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Death"]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite_node/Sprite:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.5, 4.39371, 107, 0, -6.46135, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite_node/Sprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.75, 0, -0.234023, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_drrxn"]
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite_node/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite_node/Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Idle"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite_node/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_o5tqq"]
+length = 1.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite_node/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite_node/Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Shoot"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6w2t2"]
+_data = {
+"Death": SubResource("Animation_udkfu"),
+"Idle": SubResource("Animation_drrxn"),
+"Shoot": SubResource("Animation_o5tqq")
+}
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8syyl"]
 bg_color = Color(0.0509804, 0.129412, 0.0470588, 0.392157)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hku1"]
 bg_color = Color(0.360784, 0.556863, 0.168627, 1)
 
-[node name="Shooter_2" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Shooter" type="CharacterBody2D" groups=["Enemy"]]
 process_mode = 1
 collision_layer = 5
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_2akxi")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(2.86102e-06, 4.00001)
-scale = Vector2(6.2, 7.1)
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.52549)
+position = Vector2(0, 38)
+scale = Vector2(9, 9)
+texture = ExtResource("2_1lcqm")
 
-[node name="Gun" type="Sprite2D" parent="."]
-modulate = Color(0.608, 1, 0.52, 1)
-position = Vector2(0, 7.10543e-15)
-scale = Vector2(0.0232092, 0.0868644)
-texture = ExtResource("2_06qf0")
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-2, -71)
+scale = Vector2(9.5, 12.4)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(25, 25)
 collision_mask = 128
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CapsuleShape2D_5xtno")
+position = Vector2(-1, -61)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_nfhye")
 
 [node name="Hurt_Timer" type="Timer" parent="."]
 wait_time = 1.5
@@ -57,14 +305,20 @@ wait_time = 1.5
 one_shot = true
 autostart = true
 
+[node name="Stopwatch" type="Timer" parent="."]
+wait_time = 0.017
+autostart = true
+
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 0
 
 [node name="Hurtbox_collision" type="CollisionShape2D" parent="Hurtbox"]
-visible = false
-shape = SubResource("CapsuleShape2D_nfhye")
+position = Vector2(0, -58)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5xtno")
 
 [node name="Player_Detection_Range" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="Collision_Shape" type="CollisionShape2D" parent="Player_Detection_Range"]
@@ -78,15 +332,35 @@ collision_layer = 0
 [node name="Collision_Shape_2" type="CollisionShape2D" parent="PLayer_Too_Close_Range"]
 shape = SubResource("CircleShape2D_13upx")
 
+[node name="Sprite_node" type="Node2D" parent="."]
+position = Vector2(0, -107)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Sprite_node"]
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_m6845")
+animation = &"Death"
+
+[node name="Bullet_spawner" type="Marker2D" parent="Sprite_node"]
+position = Vector2(-52, 20)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6w2t2")
+}
+autoplay = "Idle"
+speed_scale = 8.0
+
 [node name="Health_metre" type="ProgressBar" parent="."]
 offset_left = -52.0
-offset_top = 80.0
+offset_top = 40.0
 offset_right = 52.0
-offset_bottom = 88.0
+offset_bottom = 48.0
 theme_override_styles/background = SubResource("StyleBoxFlat_8syyl")
 theme_override_styles/fill = SubResource("StyleBoxFlat_8hku1")
 max_value = 12.0
 value = 6.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [connection signal="timeout" from="Shoot_Timer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="Stopwatch" to="." method="_on_stopwatch_timeout"]

@@ -25,6 +25,8 @@ func _on_body_entered(body):
 		Playerstats.gemsval = value
 		Playerstats.gems += value
 		$Animation_Player.play("Collected")
+		$Pickup.pitch_scale = randf_range(0.8,1.2)
+		$Pickup.play()
 
 func shadow():
 	for i in range(10):

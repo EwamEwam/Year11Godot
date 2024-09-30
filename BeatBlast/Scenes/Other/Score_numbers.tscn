@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://2uvva6h5xqj8"]
+[gd_scene load_steps=27 format=3 uid="uid://2uvva6h5xqj8"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Other/Score_numbers.gd" id="1_3cokx"]
 [ext_resource type="Texture2D" uid="uid://04l8frjmhx0u" path="res://Sprites/Hud/Numbers/10Score.png" id="2_gxay0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://5n24u2p5gq0n" path="res://Sprites/Hud/Numbers/2Score.png" id="3_4noa3"]
 [ext_resource type="Texture2D" uid="uid://uyn3rdnblygy" path="res://Sprites/Hud/Numbers/25Score.png" id="3_311w5"]
 [ext_resource type="Texture2D" uid="uid://b0v8ohnwjgplp" path="res://Sprites/Hud/Numbers/250Score.png" id="3_qglo1"]
+[ext_resource type="Texture2D" uid="uid://cyca2hig1sniv" path="res://Sprites/Hud/Numbers/100Score.png" id="4_ofdig"]
 [ext_resource type="Texture2D" uid="uid://bej0fe3aory33" path="res://Sprites/Hud/Numbers/35Score.png" id="7_rfxj7"]
 [ext_resource type="Texture2D" uid="uid://cen4gwsbqqg5t" path="res://Sprites/Hud/Numbers/40Score.png" id="8_0588w"]
 [ext_resource type="Texture2D" uid="uid://tcmxyw5ggi2c" path="res://Sprites/Hud/Numbers/5Score.png" id="8_unqks"]
@@ -32,6 +33,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"10",
+"speed": 0.76
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ofdig")
+}],
+"loop": false,
+"name": &"100",
 "speed": 0.76
 }, {
 "frames": [{
@@ -155,6 +164,71 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["10"]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0, 4.5),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-1, -0.25, 0, 0, -12.5, -108.5, -1.05, 6, 0.597263, 3),
+"times": PackedFloat32Array(0.000253458, 1.3)
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_41kxi"]
+resource_name = "100"
+length = 1.31579
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["100"]
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -725,6 +799,7 @@ tracks/4/keys = {
 _data = {
 "0": SubResource("Animation_jbeaa"),
 "10": SubResource("Animation_k8e31"),
+"100": SubResource("Animation_41kxi"),
 "2": SubResource("Animation_e4ykh"),
 "25": SubResource("Animation_22tcp"),
 "250": SubResource("Animation_5kskj"),
@@ -743,7 +818,7 @@ script = ExtResource("1_3cokx")
 position = Vector2(0, -1)
 scale = Vector2(4.5, 4.5)
 sprite_frames = SubResource("SpriteFrames_p3vex")
-animation = &"75"
+animation = &"100"
 autoplay = "0"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

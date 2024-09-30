@@ -1,4 +1,4 @@
-[gd_scene load_steps=470 format=3 uid="uid://b1lyax7mlenna"]
+[gd_scene load_steps=472 format=3 uid="uid://b1lyax7mlenna"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/PlayerMovement.gd" id="1_gyp3l"]
 [ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_shadow.png" id="2_s50a2"]
@@ -43,9 +43,11 @@
 [ext_resource type="AudioStream" uid="uid://cyojbtk8yobfc" path="res://Audio/Player_sounds/Step 2.mp3" id="37_a6hmu"]
 [ext_resource type="AudioStream" uid="uid://b55b7j3u34n5i" path="res://Audio/Player_sounds/Gun4.mp3" id="37_bywe1"]
 [ext_resource type="Texture2D" uid="uid://c8hkortvqhl3u" path="res://Sprites/Hud/Health_heal.png" id="40_d0mwp"]
+[ext_resource type="AudioStream" uid="uid://u4nd1hsn3byo" path="res://Audio/Player_sounds/Player_Punch.mp3" id="41_yy70g"]
 [ext_resource type="StyleBox" uid="uid://cu8qu84atenlt" path="res://Scenes/levels/Button_disabled.tres" id="44_37um2"]
 [ext_resource type="StyleBox" uid="uid://djfq2twueeree" path="res://Scenes/levels/Button_stor_hover.tres" id="45_6i6uo"]
 [ext_resource type="StyleBox" uid="uid://dkojb1c5j72uf" path="res://Scenes/levels/Button_stor_Press.tres" id="46_ux02c"]
+[ext_resource type="AudioStream" uid="uid://d38ai3uq4c5du" path="res://Audio/Player_sounds/Eat.mp3" id="48_st7or"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qsncw"]
 size = Vector2(6.61341, 15.5172)
@@ -6143,6 +6145,10 @@ text = "Leave Stage"
 stream = ExtResource("33_klkdj")
 volume_db = 5.0
 
+[node name="Punch" type="AudioStreamPlayer2D" parent="Audio_Players"]
+stream = ExtResource("41_yy70g")
+volume_db = -7.0
+
 [node name="Gun1" type="AudioStreamPlayer2D" parent="Audio_Players"]
 stream = ExtResource("34_j51qr")
 volume_db = -5.0
@@ -6170,6 +6176,10 @@ parameters/looping = false
 stream = ExtResource("37_a6hmu")
 volume_db = 2.1
 pitch_scale = 1.15
+
+[node name="Heal" type="AudioStreamPlayer2D" parent="Audio_Players"]
+stream = ExtResource("48_st7or")
+volume_db = 8.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false

@@ -5,6 +5,7 @@ func _on_body_entered(body):
 		Playerstats.max_health += 10
 		body.heal(10)
 		queue_free()
+		
 	match Playerstats.level:
 		1:
 			Playerstats.items_collected.Level1Heart = 1

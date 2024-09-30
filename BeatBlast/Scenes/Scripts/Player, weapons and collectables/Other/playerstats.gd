@@ -1,13 +1,13 @@
 extends Node
 
 #All variables that must be accessed in mutilple scenes are put here for ease of access.
-var health = 60
-var max_health = 60
+var health = 30
+var max_health = 30
 var weapon_selected = 1
-var weapons_unlocked = 4
+var weapons_unlocked = 2
 var healing_item_selected = 1
 var level = 1
-var levels_unlocked = 3
+var levels_unlocked = 1
 var gems = 0
 var player_x = 0
 var player_y = 0
@@ -30,9 +30,12 @@ var blueprints = 0
 var sign_text = ""
 var is_paused = false
 
-#Settings for the player. Changes the games visuals, audio and other aspects of gameplay:
+#(Unused) Settings for the player. Changes the games visuals, audio and other aspects of gameplay, only one of them work. Maybe next time.
 var settings = {
 "Allow_Shaking" = true,
+"Music" = true,
+"Sound" = true,
+"Hard_Mode" = false,
 }
 
 #Dictionary, used to track what collectables the player has collected in each level
@@ -84,14 +87,15 @@ var stats = {
 var time_left = 0
 var enemies_defeated = 0
 
+var camera_drag = Vector2.ZERO
 var can_do = false
 
 #Stores the store information like the level of each stat and the price of each item
-var health_cost = 400
+var health_cost = 200
 var health_lv = 0
-var defence_cost = 750
+var defence_cost = 300
 var defence_lv = 0
-var attack_cost = 1000
+var attack_cost = 400
 var attack_lv = 0
 
 #Ignore, unused/undeveloped feature

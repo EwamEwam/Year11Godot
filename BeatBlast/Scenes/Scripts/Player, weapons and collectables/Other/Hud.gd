@@ -51,13 +51,13 @@ func _ready():
 	player.dash_cooldown.connect(start_dash_cooldown)
 	player.red.connect(damaged)
 	player.send_text.connect(update_sign)
-	player.pause.connect(Paused)
 	Cooldown_sprite.modulate = Color(1.15,1.15,1.15,1)
 	Dash_cooldown.modulate = Color(1.15,1.15,1.15,1)
 	level_title()
 	
 	if key != null:
 		key.level_complete.connect(fade_level_complete)
+		key.game_complete.connect(fade_level_complete)
 		
 	hands.visible = true
 	pistol.visible = false
@@ -173,6 +173,16 @@ func _physics_process(delta):
 		new_number.global_position.y -= 20
 		add_child(new_number)
 		Playerstats.gemsval = 0
+		
+	if Input.is_action_just_pressed("Pause") and Playerstats.health > 0 and Playerstats.sign_text.length() == 0:
+		if not Playerstats.is_paused:
+			Paused()
+		else:
+			get_tree().paused = false
+			Playerstats.is_paused = false
+			$VBoxContainer.visible = false
+			$VBoxContainer/Resume.disabled = true
+			$VBoxContainer/Exit.disabled = true
 		
 	update_status()
 	update_healing_items(Playerstats.healing_item_selected)

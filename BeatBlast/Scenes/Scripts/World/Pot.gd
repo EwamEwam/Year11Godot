@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 @export var health = 1
-@onready var sprite = $Crate
+@onready var sprite = $Pot
 @export var gem1_drop = 1
 @export var gem5_drop = 1
 var destroyed = false

@@ -26,9 +26,10 @@ var animation_can_play = true
 var dead = false
 @export var max_health = 8
 
-#sets the slime's colour right for the level
+#sets the slime's colour right for the level and hides the health_bar
 func _ready():
 	Sprite.modulate = Color(0.7, 0.7, 0.7, 0.9)
+	update_health_bar()
 
 #Checks for any collision and if the player is inside it.
 func check_collision():
@@ -75,11 +76,12 @@ func _physics_process(delta):
 			animation.speed_scale = clampf(velocity.length()/50, 0.8, 10)
 		else:
 			animation.speed_scale = 1
+		
+	else:
+		set_process(false)
 	
 	if not dead:
 		check_for_death()
-		
-	
 	
 func change_state():
 	if animation_can_play:

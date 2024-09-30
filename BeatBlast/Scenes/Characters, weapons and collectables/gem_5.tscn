@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://c34d82p4n2ir"]
+[gd_scene load_steps=20 format=3 uid="uid://c34d82p4n2ir"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/Collectables/Gem5.gd" id="1_jptxb"]
 [ext_resource type="Texture2D" uid="uid://gl01ek2qa3sp" path="res://Sprites/Characters and items/Gem_5.png" id="2_611we"]
 [ext_resource type="Texture2D" uid="uid://c22r6vya4dc2m" path="res://Sprites/Characters and items/roach_shadow.png" id="2_pwhb8"]
+[ext_resource type="AudioStream" uid="uid://c825ny0xak3e7" path="res://Audio/Player_sounds/Gem_Pickup.mp3" id="4_wrwdw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dvjn0"]
 radius = 20.0998
@@ -226,5 +227,9 @@ libraries = {
 "": SubResource("AnimationLibrary_s48qf")
 }
 autoplay = "default"
+
+[node name="Pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_wrwdw")
+volume_db = 5.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 225.0
-const ACCELLERATION = 18.0
+const SPEED = 250.0
+const ACCELLERATION = 19.5
 const FRICTION = 4.0
 var score_value = 25
 @onready var Sprite = $Slime_sprite
@@ -10,11 +10,12 @@ var score_value = 25
 @onready var player = get_tree().get_first_node_in_group("Player")
 const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
 const score = preload("res://Scenes/Other/Score_numbers.tscn")
-const gem = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
+const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
+const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
 @export var health = 16
 @onready var timer = $hurttimer
 @onready var hitbox = $hitbox
-@export var damage = 6
+@export var damage = 7
 @onready var hurtbox = $hurtbox
 @onready var circle = $Movement_circle
 @onready var Raycast = $RayCast2D
@@ -28,6 +29,7 @@ var dead = false
 
 func _ready():
 	Sprite.modulate = Color(0.6, 0.6, 0.6, 0.9)
+	update_health_bar()
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -73,6 +75,9 @@ func _physics_process(delta):
 		move_and_slide()
 		update_health_bar()
 		
+	else:
+		set_process(false)
+		
 	if not dead:
 		check_for_death()
 	
@@ -111,10 +116,13 @@ func check_for_death():
 		add_sibling(new_score)
 		Playerstats.score += score_value
 		Playerstats.enemies_defeated += 1
-		for i in range(randi_range(6,8)):
-			var new_gem = gem.instantiate()
+		for i in range(randi_range(4,5)):
+			var new_gem = gem1.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
+		var new_gem = gem5.instantiate()
+		new_gem.global_position = global_position
+		add_sibling(new_gem)
 		
 func take_damage(dmg):
 	health -= dmg

@@ -30,6 +30,6 @@ func set_direction(val):
 func get_colour() -> Color:
 	var image: Image = get_viewport().get_texture().get_image()
 	var view_size: Vector2 = get_viewport().get_texture().get_size()
-	var pixel_target: Vector2 = Vector2(view_size.x/2, view_size.y/1.649)
-	var color: Color = image.get_pixelv(pixel_target - player.camera_offset)
+	var target_pixel: Vector2 = Vector2((view_size.x - Playerstats.camera_drag.x)/2, (view_size.y - Playerstats.camera_drag.y)/1.649)
+	var color: Color = image.get_pixelv(target_pixel - player.camera_offset)
 	return color

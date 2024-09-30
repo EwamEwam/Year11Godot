@@ -1,21 +1,75 @@
-[gd_scene load_steps=2 format=3 uid="uid://74tmbq13u31a"]
+[gd_scene load_steps=8 format=3 uid="uid://74tmbq13u31a"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/World/main_menu.gd" id="1_03pfw"]
+[ext_resource type="Texture2D" uid="uid://bwkr4dwrb1i6g" path="res://Sprites/World/Background_menu.png" id="2_48smg"]
+[ext_resource type="StyleBox" uid="uid://cu8qu84atenlt" path="res://Scenes/levels/Button_disabled.tres" id="3_c3n47"]
+[ext_resource type="StyleBox" uid="uid://bxgkcjtsbhh4l" path="res://Scenes/levels/Menu_button.tres" id="4_7w2sf"]
+[ext_resource type="StyleBox" uid="uid://b7snb6e6c4p7s" path="res://Scenes/levels/Menu_button_Press.tres" id="5_iotam"]
+[ext_resource type="Texture2D" uid="uid://dryuq67170ycm" path="res://Sprites/World/Title.png" id="7_boyga"]
+[ext_resource type="PackedScene" uid="uid://cppt3jx0ayy7d" path="res://Scenes/levels/fade.tscn" id="7_lw0hd"]
 
 [node name="Main_Menu" type="Node2D"]
 script = ExtResource("1_03pfw")
 
+[node name="Particle_Timer" type="Timer" parent="."]
+wait_time = 0.35
+autostart = true
+
+[node name="BackgroundMenu" type="Sprite2D" parent="."]
+modulate = Color(0.603922, 0.0352941, 0.32549, 1)
+position = Vector2(320, 320)
+scale = Vector2(2.6, 2.6)
+texture = ExtResource("2_48smg")
+
+[node name="Credits" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 423.0
+offset_right = 233.0
+offset_bottom = 450.0
+scale = Vector2(2, 2)
+text = "Game Music by Suno AI
+Spritework and Coding by Bourbon And Coke
+Game Idea by Olldav / Roobuc / Poopcheek3902"
+
 [node name="Play" type="Button" parent="."]
-offset_left = 20.0
-offset_top = 150.0
-offset_right = 47.0
-offset_bottom = 165.0
+offset_left = 55.0
+offset_top = 175.0
+offset_right = 82.0
+offset_bottom = 190.0
 scale = Vector2(5, 5)
+focus_mode = 0
+theme_override_styles/disabled = ExtResource("3_c3n47")
+theme_override_styles/hover = ExtResource("4_7w2sf")
+theme_override_styles/pressed = ExtResource("5_iotam")
+theme_override_styles/normal = ExtResource("4_7w2sf")
 text = "Play
 "
 
 [node name="Quit" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 56.0
+offset_top = 250.0
+offset_right = 82.0
+offset_bottom = 265.0
+scale = Vector2(5, 5)
+focus_mode = 0
+theme_override_styles/hover = ExtResource("4_7w2sf")
+theme_override_styles/pressed = ExtResource("5_iotam")
+theme_override_styles/normal = ExtResource("4_7w2sf")
+text = "Quit"
 
+[node name="Title2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(320, 87)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("7_boyga")
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(320, 80)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("7_boyga")
+
+[node name="Fade" parent="." instance=ExtResource("7_lw0hd")]
+
+[connection signal="timeout" from="Particle_Timer" to="." method="_on_particle_timer_timeout"]
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

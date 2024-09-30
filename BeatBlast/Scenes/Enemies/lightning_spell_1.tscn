@@ -110,7 +110,9 @@ animations = [{
 script = ExtResource("1_m1u1b")
 
 [node name="Hitbox" type="Area2D" parent="."]
+process_mode = 1
 collision_layer = 2
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-8.5, 0)

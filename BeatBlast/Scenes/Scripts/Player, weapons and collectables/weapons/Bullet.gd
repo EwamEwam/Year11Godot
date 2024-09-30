@@ -23,7 +23,7 @@ func _on_body_entered(body):
 		Playerstats.damval=damage+Playerstats.attack
 		add_sibling(new_number)
 		Playerstats.bullets_hit += 1
-	elif body.is_in_group("Button") and body.has_method("pressed"):
+	elif body.is_in_group("Button"):
 		body.pressed()
 	elif body.is_in_group("Prop") and body.has_method("damage"):
 		body.damage(damage+Playerstats.attack)

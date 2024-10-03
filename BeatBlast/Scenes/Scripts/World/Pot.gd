@@ -5,9 +5,6 @@ extends StaticBody2D
 @export var gem1_drop = 1
 @export var gem5_drop = 1
 var destroyed = false
-const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
-const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
-const particle = preload("res://Scenes/Other/Pot_Particle.tscn")
 
 func ready():
 	sprite.modulate = Color(0.9,0.9,0.9,1)
@@ -15,6 +12,9 @@ func ready():
 #Can't just queue_free() as soon as the pot is broken or else the sound won't play
 func damage(val):
 	health -= val
+	var gem1 = load("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
+	var gem5 = load("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
+	var particle = load("res://Scenes/Other/Pot_Particle.tscn")
 	if health < 1 and not destroyed:
 		$Smash.pitch_scale = randf_range(0.8,1.2)
 		$Smash.play()

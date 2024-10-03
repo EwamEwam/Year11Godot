@@ -8,10 +8,6 @@ var score_value = 25
 @onready var animation = $AnimationPlayer
 @onready var onscreen = $VisibleOnScreenNotifier2D
 @onready var player = get_tree().get_first_node_in_group("Player")
-const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
-const score = preload("res://Scenes/Other/Score_numbers.tscn")
-const gem = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
-const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
 @export var health = 20
 @onready var timer = $hurttimer
 @onready var movement_timer = $Movement_timer
@@ -31,6 +27,7 @@ var dead = false
 
 func _ready():
 	Sprite.modulate = Color(0.7, 0.7, 0.7, 0.9)
+	hitbox.disabled = false
 	update_health_bar()
 
 func check_collision():
@@ -39,7 +36,7 @@ func check_collision():
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped():
+			if timer.is_stopped():
 				collision.shake(25,0.025,25,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
@@ -67,9 +64,7 @@ func _physics_process(delta):
 		
 		if not setting and movement_timer.is_stopped():
 			set_direction()
-			
-	if not dead:
-		check_for_death()
+		
 	
 func change_state():
 	if animation_can_play:
@@ -86,12 +81,16 @@ func animation_play():
 			animation.play("Death")
 
 func check_for_death():
-	if health <= 0:
+	if health <= 0 and not dead:
 		dead = true
-		z_index = -1
 		hitbox.disabled = true
+		z_index = -1
 		animation_can_play = false
 		current_state = state.Death
+		var gem1 = load("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
+		var gem5 = load("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
+		var heart = load("res://Scenes/Characters, weapons and collectables/heart5.tscn")
+		var score = load("res://Scenes/Other/Score_numbers.tscn")
 		await get_tree().create_timer(0.5).timeout
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
@@ -102,7 +101,7 @@ func check_for_death():
 		add_sibling(new_score)
 		Playerstats.score += score_value
 		for i in range(randi_range(10,12)):
-			var new_gem = gem.instantiate()
+			var new_gem = gem1.instantiate()
 			new_gem.global_position = global_position
 			add_sibling(new_gem)
 		for i in range(randi_range(11,12)):
@@ -113,6 +112,7 @@ func check_for_death():
 		
 func take_damage(dmg):
 	health -= dmg
+	call_deferred("check_for_death")
 	if health > 0:
 		animation_can_play = false
 		current_state = state.Hurt

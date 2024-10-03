@@ -9,12 +9,7 @@ var score_value = 25
 @onready var onscreen = $VisibleOnScreenNotifier2D
 @onready var animation = $AnimationPlayer
 @onready var player = get_tree().get_first_node_in_group("Player")
-const heart = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
-const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const bullet = preload("res://Scenes/Enemies/enemy_bullet.tscn")
-const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
-const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
-const particle = preload("res://Scenes/Other/Shooter_1_Particle.tscn")
 const shoot_particle = preload("res://Scenes/Other/Enemy_Shooting_particle.tscn")
 @export var health = 12
 @export var max_health = 12
@@ -40,6 +35,7 @@ var dead = false
 func _ready() -> void:
 	$Sprite_node/Bullet_spawner/Light.energy = 0
 	Sprite.modulate = Color(0.7,0.7,0.7,1)
+	hitbox.disabled = false
 	update_health_bar()
 
 func check_collision():
@@ -48,7 +44,7 @@ func check_collision():
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped():
+			if timer.is_stopped():
 				collision.shake(7,0.025,7,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
@@ -71,10 +67,10 @@ func _physics_process(delta):
 						can_move = false
 			if in_circle:
 				for collision in in_circle:
-					if collision.is_in_group("Player") and not Raycast.is_colliding() and can_move:
+					if not Raycast.is_colliding() and can_move:
 						var direction_to_player = global_position.direction_to(player.global_position)
 						velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
-					elif not collision.is_in_group("Enemy") and not collision == self and not slowed_down:
+					elif not collision == self and not slowed_down:
 						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 			else:
@@ -88,7 +84,6 @@ func _physics_process(delta):
 			current_state = state.Idle
 		
 		play_animation()
-		check_for_death()
 		update_health_bar()
 		move_and_slide()
 		
@@ -102,11 +97,15 @@ func _physics_process(delta):
 func check_for_death():
 	if health <= 0 and not dead:
 		dead = true
-		animation.speed_scale = 2
-		current_state = state.Death
-		animation_can_play = false
 		hitbox.disabled = true
 		z_index = -1
+		animation_can_play = false
+		animation.speed_scale = 2
+		current_state = state.Death
+		var gem1 = load("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
+		var heart = load("res://Scenes/Characters, weapons and collectables/heart5.tscn")
+		var score = load("res://Scenes/Other/Score_numbers.tscn")
+		var particle = load("res://Scenes/Other/Shooter_1_Particle.tscn")
 		await get_tree().create_timer(0.5).timeout
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
@@ -128,12 +127,14 @@ func check_for_death():
 
 func take_damage(dmg):
 	health -= dmg
-	animation_can_play = false
-	Sprite.modulate = Color(0.9,0.9,0.9,1)
-	await get_tree().create_timer(0.15).timeout
-	Sprite.modulate = Color(0.7,0.7,0.7,1)
+	call_deferred("check_for_death")
 	if health > 0:
-		animation_can_play = true
+		animation_can_play = false
+		Sprite.modulate = Color(0.9,0.9,0.9,1)
+		await get_tree().create_timer(0.15).timeout
+		Sprite.modulate = Color(0.7,0.7,0.7,1)
+		if health > 0:
+			animation_can_play = true
 
 func _on_shoot_timer_timeout():
 	if health > 0 and is_instance_valid(self):

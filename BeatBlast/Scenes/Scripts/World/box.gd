@@ -4,12 +4,6 @@ extends StaticBody2D
 @onready var sprite = $Crate
 @export var drop = 0
 var destroyed = false
-const heart5 = preload("res://Scenes/Characters, weapons and collectables/heart5.tscn")
-const heart1 = preload("res://Scenes/Characters, weapons and collectables/heart1.tscn")
-const heart40 = preload("res://Scenes/Characters, weapons and collectables/heart40.tscn")
-const heart10 = preload("res://Scenes/Characters, weapons and collectables/heart10.tscn")
-
-const particle = preload("res://Scenes/Other/Crate_particle.tscn")
 
 func ready():
 	sprite.modulate = Color(0.9,0.9,0.9,1)
@@ -20,6 +14,11 @@ func damage(val):
 	$Hit.pitch_scale = randf_range(0.8,1.2)
 	$Hit.play()
 	if health < 1 and not destroyed:
+		var heart5 = load("res://Scenes/Characters, weapons and collectables/heart5.tscn")
+		var heart1 = load("res://Scenes/Characters, weapons and collectables/heart1.tscn")
+		var heart40 = load("res://Scenes/Characters, weapons and collectables/heart40.tscn")
+		var heart10 = load("res://Scenes/Characters, weapons and collectables/heart10.tscn")
+		var particle = load("res://Scenes/Other/Crate_particle.tscn")
 		visible = false
 		$Hitbox.queue_free()
 		destroyed = true

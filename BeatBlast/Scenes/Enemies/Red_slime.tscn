@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c50mwdumrautv"]
+[gd_scene load_steps=29 format=3 uid="uid://c50mwdumrautv"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/red_slime.gd" id="1_8irm5"]
 [ext_resource type="Texture2D" uid="uid://cpwdnmkwoc0mc" path="res://Sprites/Characters and items/green_slime_shadow.png" id="2_u23ut"]
@@ -176,6 +176,18 @@ tracks/2/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_dolhc"]
 length = 0.2
@@ -261,12 +273,28 @@ tracks/1/keys = {
 "values": ["Movement_Right"]
 }
 
+[sub_resource type="Animation" id="Animation_fxuku"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../hitbox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4fjbi"]
 _data = {
 "Death": SubResource("Animation_dbvv5"),
 "Hurt": SubResource("Animation_dolhc"),
 "Movement_Left": SubResource("Animation_ma0ol"),
-"Movement_Right": SubResource("Animation_cb3p7")
+"Movement_Right": SubResource("Animation_cb3p7"),
+"RESET": SubResource("Animation_fxuku")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2iqs"]
@@ -285,8 +313,8 @@ motion_mode = 1
 script = ExtResource("1_8irm5")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(3.5, 5)
-scale = Vector2(6.05, 4.6)
+position = Vector2(3.5, 4.5)
+scale = Vector2(6.65, 5.95)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(25, 25)
@@ -332,7 +360,6 @@ scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_drgqc")
 animation = &"Death"
 autoplay = "Movement_Right"
-frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Slime_sprite")

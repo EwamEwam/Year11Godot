@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://5yy6sv432dpm"]
+[gd_scene load_steps=41 format=3 uid="uid://5yy6sv432dpm"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/elite_slime.gd" id="1_77e7d"]
 [ext_resource type="Texture2D" uid="uid://c532x0awtrmqg" path="res://Sprites/Characters and items/Elite_slime_spritesheet.png" id="2_21bku"]
@@ -9,7 +9,7 @@ radius = 79.0
 height = 304.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3gl2h"]
-radius = 859.335
+radius = 1207.04
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5p6wr"]
 radius = 74.0
@@ -54,6 +54,18 @@ tracks/2/keys = {
 "args": [],
 "method": &"queue_free"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_mstfs"]
@@ -112,6 +124,21 @@ tracks/1/keys = {
 "values": ["Left"]
 }
 
+[sub_resource type="Animation" id="Animation_malxi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hitbox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_7amfh"]
 length = 1.6
 loop_mode = 1
@@ -145,6 +172,7 @@ _data = {
 "Death": SubResource("Animation_bqnjw"),
 "Hurt": SubResource("Animation_mstfs"),
 "Left": SubResource("Animation_03ewk"),
+"RESET": SubResource("Animation_malxi"),
 "Right": SubResource("Animation_7amfh")
 }
 
@@ -384,6 +412,7 @@ collision_layer = 0
 collision_mask = 32
 
 [node name="collision_shape" type="CollisionShape2D" parent="hurtbox"]
+visible = false
 position = Vector2(0, 59)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_kh8ja")
@@ -394,7 +423,6 @@ collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
-visible = false
 shape = SubResource("CircleShape2D_3gl2h")
 
 [node name="hitbox" type="CollisionShape2D" parent="."]
@@ -410,7 +438,7 @@ libraries = {
 [node name="Slime_sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_aajyd")
-animation = &"Right"
+animation = &"Death"
 autoplay = "Right"
 
 [node name="Health_metre" type="ProgressBar" parent="."]

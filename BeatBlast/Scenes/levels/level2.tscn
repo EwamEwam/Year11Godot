@@ -5545,7 +5545,6 @@ scale = Vector2(0.5, 0.5)
 process_mode = 3
 stream = ExtResource("25_suafj")
 volume_db = -15.0
-autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_exldc")

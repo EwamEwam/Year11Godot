@@ -1,10 +1,10 @@
 extends Node
 
 #All variables that must be accessed in mutilple scenes are put here for ease of access.
-var health = 30
-var max_health = 30
+var health = 120
+var max_health = 120
 var weapon_selected = 1
-var weapons_unlocked = 2
+var weapons_unlocked = 5
 var healing_item_selected = 1
 var level = 1
 var levels_unlocked = 1
@@ -17,8 +17,8 @@ var damval = 0
 var dampval = 0
 var scorenum = 0
 var healnum = 0
-var defence = 0
-var attack = 0
+var defence = 5
+var attack = 5
 var bullets_shot = 0
 var bullets_hit = 0
 var cooldown = 0

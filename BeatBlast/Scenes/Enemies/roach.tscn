@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://6pwnx50n7l7g"]
+[gd_scene load_steps=20 format=3 uid="uid://6pwnx50n7l7g"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/roach.gd" id="1_x8r7m"]
 [ext_resource type="Texture2D" uid="uid://dmyc8hcgkvtnm" path="res://Sprites/Characters and items/Roach.png" id="2_itt3u"]
@@ -53,6 +53,33 @@ tracks/2/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_teoe3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Hitbox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_wieeg"]
 length = 0.8
@@ -85,6 +112,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kg12a"]
 _data = {
 "Death": SubResource("Animation_baxtw"),
+"RESET": SubResource("Animation_teoe3"),
 "Running": SubResource("Animation_wieeg")
 }
 
@@ -166,6 +194,7 @@ motion_mode = 1
 script = ExtResource("1_x8r7m")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(2.7, 2.5)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 collision_mask = 128
@@ -207,6 +236,6 @@ texture = ExtResource("2_qtelq")
 [node name="Roach_sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_secwp")
-animation = &"Running"
+animation = &"Death"
 autoplay = "Running"
 flip_h = true

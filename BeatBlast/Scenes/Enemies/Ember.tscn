@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://wdoi22iiikmr"]
+[gd_scene load_steps=58 format=3 uid="uid://wdoi22iiikmr"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/ember.gd" id="1_p2py7"]
 [ext_resource type="Texture2D" uid="uid://5rve134wbr0l" path="res://Sprites/Characters and items/Ember.png" id="2_truh0"]
@@ -452,6 +452,18 @@ tracks/2/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_i7suh"]
 length = 0.2
@@ -509,6 +521,21 @@ tracks/1/keys = {
 "values": ["Left"]
 }
 
+[sub_resource type="Animation" id="Animation_usn7p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_j33ui"]
 length = 1.6
 loop_mode = 1
@@ -545,6 +572,7 @@ _data = {
 "Death": SubResource("Animation_3bf68"),
 "Hurt": SubResource("Animation_i7suh"),
 "Left": SubResource("Animation_1nnmw"),
+"RESET": SubResource("Animation_usn7p"),
 "Right": SubResource("Animation_j33ui")
 }
 
@@ -582,7 +610,7 @@ texture = ExtResource("4_n7rs5")
 position = Vector2(0, -53)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_3mwt3")
-animation = &"Dash_Right"
+animation = &"Death"
 autoplay = "Right"
 
 [node name="Ember_Light" type="PointLight2D" parent="Ember_Sprite"]
@@ -593,6 +621,8 @@ energy = 10.0
 texture = ExtResource("4_o7f3p")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -15.5)
+scale = Vector2(6, 13.25)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

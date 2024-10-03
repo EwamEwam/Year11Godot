@@ -9,9 +9,6 @@ var score_value = 5
 @onready var animation = $AnimationPlayer
 @onready var onscreen = $VisibleOnScreenNotifier2D
 @onready var player = get_tree().get_first_node_in_group("Player")
-const heart = preload("res://Scenes/Characters, weapons and collectables/heart1.tscn")
-const score = preload("res://Scenes/Other/Score_numbers.tscn")
-const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
 @export var health = 1
 @onready var timer = $hurttimer
 @export var damage = 1
@@ -25,6 +22,7 @@ var dead = false
 
 func _ready():
 	Sprite.rotate(deg_to_rad(randi_range(0,360)))
+	hitbox.disabled = false
 
 func check_collision():
 	if not timer.is_stopped() or health < 1:
@@ -32,7 +30,7 @@ func check_collision():
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped():
+			if timer.is_stopped():
 				collision.shake(4,0.025,4,1.35)
 				collision.damage_player(damage-Playerstats.defence)
 				collision.poisoned(2)
@@ -48,12 +46,12 @@ func _physics_process(delta):
 			var slowed_down = false
 			if in_circle:
 				for collision in in_circle:
-					if collision.is_in_group("Player") and Raycast.is_colliding()==false:
+					if Raycast.is_colliding()==false:
 						var direction_to_player = global_position.direction_to(player.global_position)
 						Sprite.look_at(Vector2(Playerstats.player_x, Playerstats.player_y))
 						velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
 						check_collision()
-					elif not collision.is_in_group("Enemy") and not collision == self and not slowed_down:
+					elif not collision == self and not slowed_down:
 						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 			else:
@@ -67,7 +65,6 @@ func _physics_process(delta):
 	if not dead:
 		current_state = state.Running
 		animation.speed_scale = velocity.length()/100
-		check_for_death()
 	else:
 		current_state = state.Death
 		animation.speed_scale = 1
@@ -80,9 +77,13 @@ func animation_play():
 			animation.play("Death")
 	
 func check_for_death():
-	if health <= 0:
+	if health <= 0 and not dead:
 		dead = true
 		hitbox.disabled = true
+		current_state = state.Death
+		var gem1 = load("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
+		var heart = load("res://Scenes/Characters, weapons and collectables/heart1.tscn")
+		var score = load("res://Scenes/Other/Score_numbers.tscn")
 		await get_tree().create_timer(0.7).timeout
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
@@ -101,3 +102,4 @@ func check_for_death():
 		
 func take_damage(dmg):
 	health -= dmg
+	call_deferred("check_for_death")

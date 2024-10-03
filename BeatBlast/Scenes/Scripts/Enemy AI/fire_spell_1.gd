@@ -10,7 +10,7 @@ func _process(delta: float) -> void:
 	translate(Vector2.RIGHT.rotated(rotation) * Speed * delta)
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") and body.has_method("damage_player"):
+	if body.is_in_group("Player"):
 		body.damage_player(Damage-Playerstats.defence)
 		body.shake(16,0.025,16,1.2)
 		body.burned(5)

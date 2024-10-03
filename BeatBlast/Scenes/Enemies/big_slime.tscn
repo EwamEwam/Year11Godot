@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b5b1h3fj0qdgr"]
+[gd_scene load_steps=30 format=3 uid="uid://b5b1h3fj0qdgr"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/Big_slime.gd" id="1_gurdi"]
 [ext_resource type="Texture2D" uid="uid://cpwdnmkwoc0mc" path="res://Sprites/Characters and items/green_slime_shadow.png" id="2_fc4ej"]
@@ -166,6 +166,18 @@ tracks/2/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("hitbox:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_rbp75"]
 length = 0.2
@@ -251,11 +263,27 @@ tracks/1/keys = {
 "values": ["Right"]
 }
 
+[sub_resource type="Animation" id="Animation_bxjad"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hitbox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8fkff"]
 _data = {
 "Death": SubResource("Animation_nv7hw"),
 "Hurt": SubResource("Animation_rbp75"),
 "Left": SubResource("Animation_oxuvk"),
+"RESET": SubResource("Animation_bxjad"),
 "Right": SubResource("Animation_d2gcb")
 }
 
@@ -284,6 +312,8 @@ motion_mode = 1
 script = ExtResource("1_gurdi")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 1.00001)
+scale = Vector2(11.8, 10.9)
 
 [node name="GreenSlimeShadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0.513726, 0.811765, 0.513726)
@@ -295,9 +325,8 @@ texture = ExtResource("2_fc4ej")
 [node name="Slime_sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(9, 9)
 sprite_frames = SubResource("SpriteFrames_mpetr")
-animation = &"Death"
+animation = &"Right"
 autoplay = "Right"
-frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["Collision", "Enemy"]]
 libraries = {
@@ -312,6 +341,7 @@ collision_mask = 128
 position = Vector2(0, 42)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_iwxh1")
+disabled = true
 
 [node name="hurttimer" type="Timer" parent="."]
 wait_time = 1.5

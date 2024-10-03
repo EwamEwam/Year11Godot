@@ -8,11 +8,7 @@ var score_value = 100
 @onready var animation = $AnimationPlayer
 @onready var onscreen = $VisibleOnScreenNotifier2D
 @onready var player = get_tree().get_first_node_in_group("Player")
-const heart = preload("res://Scenes/Characters, weapons and collectables/heart15.tscn")
-const score = preload("res://Scenes/Other/Score_numbers.tscn")
 const particle = preload("res://Scenes/Other/fire_particle.tscn")
-const gem1 = preload("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
-const gem5 = preload("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
 @export var health = 40
 @onready var timer = $hurttimer
 @onready var dashtimer = $Dashtimer
@@ -37,6 +33,7 @@ var particle_timer = 10
 func _ready():
 	time_in_level = 0
 	Sprite.modulate = Color(0.6, 0.6, 0.6, 0.9)
+	hitbox.disabled = false
 	update_health_bar()
 
 func check_collision():
@@ -61,10 +58,10 @@ func _physics_process(delta):
 			var slowed_down = false
 			if in_circle:
 				for collision in in_circle:
-					if collision.is_in_group("Player") and not Raycast.is_colliding() and dashtimer.is_stopped():
+					if not Raycast.is_colliding() and dashtimer.is_stopped():
 						dash()
 						dashtimer.start()
-					elif not collision.is_in_group("Enemy") and not slowed_down:
+					elif not slowed_down:
 						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 			else:
@@ -87,9 +84,6 @@ func _physics_process(delta):
 		change_state()
 		move_and_slide()
 		update_health_bar()
-	
-	if not dead:
-		check_for_death()
 		
 func dash():
 	dashing = true
@@ -136,13 +130,17 @@ func animation_play():
 		Sprite.flip_h = false
 	
 func check_for_death():
-	if health <= 0:
-		dashing = false
+	if health <= 0 and not dead:
 		dead = true
-		z_index = -1
+		dashing = false
 		hitbox.disabled = true
+		z_index = -1
 		animation_can_play = false
 		current_state = state.Death
+		var gem1 = load("res://Scenes/Characters, weapons and collectables/gem_1.tscn")
+		var gem5 = load("res://Scenes/Characters, weapons and collectables/gem_5.tscn")
+		var heart = load("res://Scenes/Characters, weapons and collectables/heart15.tscn")
+		var score = load("res://Scenes/Other/Score_numbers.tscn")
 		await get_tree().create_timer(1).timeout
 		var new_heart = heart.instantiate()
 		new_heart.global_position = global_position
@@ -164,6 +162,7 @@ func check_for_death():
 		
 func take_damage(dmg):
 	health -= dmg
+	call_deferred("check_for_death")
 	if health > 0:
 		if abs(velocity) == Vector2.ZERO:
 			animation_can_play = false

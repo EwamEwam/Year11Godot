@@ -1,5 +1,5 @@
 extends Node2D
-
+#Numbers represent the amount of health the player has healed by. Uses a variable in the playerstats scripts and runs the corresponding animation
 @onready var number = $number
 @onready var number_s = $AnimationPlayer
 

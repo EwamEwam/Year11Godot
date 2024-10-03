@@ -1,5 +1,5 @@
 extends Node2D
-
+#A particle that generates when a pot is broken, works the same as the box particle except with a different sprite.
 @onready var sprite = $Sprite
 var rotation_speed = 10
 var x_velocity = 0

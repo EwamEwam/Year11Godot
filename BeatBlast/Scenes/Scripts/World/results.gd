@@ -1,5 +1,6 @@
 extends Node2D
-
+#The results screen, it shows the player's achievment (or failure) in the level they just finished. Uses lots of manual
+#Code and copy and pasting but atleast it gets the job done.
 @onready var heading = $Headings/Heading
 @onready var score = $Score_val
 @onready var time = $Time_left_val

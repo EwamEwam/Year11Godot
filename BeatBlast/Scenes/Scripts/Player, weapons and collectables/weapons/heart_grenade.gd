@@ -1,5 +1,5 @@
 extends Node2D
-
+#Don't worry about this (Not like most would probably do in the first place), unfinished / unused grenade mechanic in the game
 @onready var sprite = $Sprite
 var SPEED = 1000
 

@@ -1,5 +1,5 @@
 extends Node2D
-
+#Menu, it has a long intro along with two buttons, one to start and one to quit (Ran out of time to make an options button).
 var button_pressed = false
 const particle = preload("res://Scenes/Other/Title_particles.tscn")
 
@@ -65,7 +65,7 @@ func reset_stats() -> void:
 
 	Playerstats.health_cost = 200
 	Playerstats.health_lv = 0
-	Playerstats.defence_cost = 350
+	Playerstats.defence_cost = 300
 	Playerstats.defence_lv = 0
-	Playerstats.attack_cost = 550
+	Playerstats.attack_cost = 400
 	Playerstats.attack_lv = 0

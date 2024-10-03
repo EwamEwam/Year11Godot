@@ -1,5 +1,5 @@
 extends Node2D
-
+#Script for the third level.
 var timer = 1000
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var screen = $Level_elements/Player/Fade
@@ -18,7 +18,6 @@ func _ready() -> void:
 	lighting.modulate.a = 1
 	timer = 1000
 	screen.fade_out(0.1,10,2.5)
-	get_tree().paused = false
 	player.died.connect(death)
 	key.level_complete.connect(lights_out)
 	if Playerstats.items_collected.Level3Heart == 1:
@@ -26,8 +25,9 @@ func _ready() -> void:
 	if Playerstats.items_collected.Level3Blueprint == 1:
 		blueprint.queue_free()
 	Playerstats.is_paused = true
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(2).timeout
 	Playerstats.is_paused = false
+	get_tree().paused = false
 	
 func _on_timer_timeout():
 	if timer > 0 and Playerstats.health > 0 and not get_tree().paused: 
@@ -53,3 +53,6 @@ func lights_out():
 		lighting.modulate.a -= 0.2
 	lighting.visible = false
 	
+func _on_background_music_finished() -> void:
+	await get_tree().create_timer(1).timeout
+	music.play()

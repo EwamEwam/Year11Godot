@@ -1,5 +1,5 @@
 extends Node2D
-
+#Number that comes from a recently killed enemy showing how much score you got. Uses a variable in the playerstats script.
 @onready var number = $number
 @onready var number_s = $AnimationPlayer
 

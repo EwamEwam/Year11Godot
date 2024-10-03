@@ -1,5 +1,6 @@
 extends Area2D
-
+#The player's "Punch box" generates when the player punches and rotates towards the mouse. Detected when there are enemies
+#or damagable props and deals damage to them. Then it gets deleted after a short amount of time.
 const number = preload("res://Scenes/Other/DamageE_numbers.tscn")
 var damage = 3
 

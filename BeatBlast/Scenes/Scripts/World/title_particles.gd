@@ -1,5 +1,5 @@
 extends Node2D
-
+#Particles in the main menu, barely noticable.
 @onready var sprite = $Particle_sprite
 var SPEED: float = 0.45
 var rotation_speed = 0.35

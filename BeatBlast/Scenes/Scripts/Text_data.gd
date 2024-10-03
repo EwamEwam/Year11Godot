@@ -1,9 +1,8 @@
 extends Node
-
 #Dictionaries containing most of the text data in the game. Something Something autoload so everything in the game can access it
 var weapon_descriptions :Dictionary = {
-"1" = "Crafts the Revovler. Costs 2 Hp to shoot, has a firerate of 2 seconds and deals 8 base damage. Can pierce up to 2 enemies.",
-"2" = "Crafts the Shotgun. Costs 4 Hp to shoot, has a firerate of 1.35 seconds and shoots a spread of 6 bullets that each deal 4 damage.",
+"1" = "Crafts the Revovler. Costs 2 Hp to shoot, has a firerate of 2 seconds and deals 9 base damage. Can pierce up to 2 enemies.",
+"2" = "Crafts the Shotgun. Costs 4 Hp to shoot, has a firerate of 1.35 seconds and shoots a spread of 6 bullets that each deal 3 damage.",
 "3" = "Crafts the SMG, Costs 1 Hp to shoot, has a fireate of 0.25 seconds and deals 3 base damage. Has a bit of inaccuracy."
 } 
 
@@ -48,7 +47,7 @@ var notes: Dictionary = {
 "1" = "Game made in Godot Engine",
 "2" = "NOTE!
 Press ESCAPE during gameplay to pause the game or in level select to go back to menu and reset all data.",
-"3" = "Disclaimer!
+"3" = "Disclaimer
 The guns in the game are nothing like their real life counterparts.",
 "4" = "After an almost lethal encounter with Jeremy, He has left you in a devastating state, Stealing your chest and liver and leaving your heart exposed.",
 "5" = "With only a handgun with no ammo to defend you, you must use pieces of your heart as bullets to kill enemies, find Jeremy and exact your revenge.",

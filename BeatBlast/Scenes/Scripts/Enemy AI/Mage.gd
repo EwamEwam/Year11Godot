@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+#The mage enemy. has a timer which when it goes off, plays a sick animation with a call method track. Along the animation it calls a function which makes a spell and then the timer resets.
 const SPEED = 215.0
 const ACCELLERATION = 25.5
 const FRICTION = 6.0
@@ -42,8 +42,8 @@ func check_collision():
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(9,0.025,9,1.2)
+			if collision.is_in_group("Player") and timer.is_stopped():
+				collision.shake(14,0.025,14,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
@@ -75,8 +75,7 @@ func _physics_process(delta):
 				velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 		else:
 			velocity = Vector2.ZERO
-			
-		check_collision()
+		
 		check_for_death()
 		update_health_bar()
 		move_and_slide()
@@ -91,8 +90,6 @@ func _physics_process(delta):
 	if animation_can_play and current_state == state.Walking:
 		animation.speed_scale = clampf(velocity.length()/200,0.1,1.25)
 	
-	else:
-		set_process(false)
 	
 func check_for_death():
 	if health <= 0:
@@ -135,10 +132,10 @@ func _on_shoot_timer_timeout():
 	var in_circle = circle.get_overlapping_bodies()
 	if in_circle:
 		for collision in in_circle:
-			if collision.is_in_group("Player") and not Raycast.is_colliding() and health > 0:
+			if collision.is_in_group("Player") and not Raycast.is_colliding() and health > 0 and is_instance_valid(self):
 				animation_can_play = false
 				current_state = state.Attacking
-	shoot_timer.start(2.1)
+	shoot_timer.start(4)
 
 func update_health_bar():
 	health_bar.max_value = max_health
@@ -184,7 +181,7 @@ func play_animation():
 		state.Death:
 			animation.play("Death")
 	if current_state == state.Attacking:
-		animation.speed_scale = 1.5
+		animation.speed_scale = 1.05
 	elif not current_state == state.Walking:
 		animation.speed_scale = 1
 		
@@ -192,9 +189,11 @@ func update_status():
 	if Playerstats.player_x > global_position.x and health > 0:
 		Sprite.flip_h = true
 		$Spell_Spawner.position.x = 76
+		$Shadow.position.x = -27
 	elif health > 0:
 		Sprite.flip_h = false
 		$Spell_Spawner.position.x = -76
+		$Shadow.position.x = 27
 		
 	if animation_can_play:
 		if abs(velocity) > Vector2.ZERO:

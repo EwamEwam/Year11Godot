@@ -1,5 +1,5 @@
 extends Node2D
-
+#The particle the player creates when they move. It takes the colour of the pixel below the player in order to make the particle have the same colour
 @onready var sprite :Node = $Particle_sprite
 @onready var player = get_tree().get_first_node_in_group("Player")
 var SPEED :float = 1.8
@@ -26,10 +26,10 @@ func set_direction(val):
 	rotation += deg_to_rad(180)
 	rotate(deg_to_rad(randf_range(-30,30)))
 
-#gets the colour of the pixel underneath the player and returns it.
+#gets the colour of the pixel underneath the player and returns it. Complete with a horrendously long line of code
 func get_colour() -> Color:
 	var image: Image = get_viewport().get_texture().get_image()
 	var view_size: Vector2 = get_viewport().get_texture().get_size()
-	var target_pixel: Vector2 = Vector2((view_size.x - Playerstats.camera_drag.x)/2, (view_size.y - Playerstats.camera_drag.y)/1.649)
+	var target_pixel: Vector2 = Vector2((view_size.x - Playerstats.camera_drag.x * (view_size.x/640))/2, (view_size.y - Playerstats.camera_drag.y * (view_size.y/640))/1.649)
 	var color: Color = image.get_pixelv(target_pixel - player.camera_offset)
 	return color

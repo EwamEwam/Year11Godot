@@ -1,4 +1,4 @@
-[gd_scene load_steps=472 format=3 uid="uid://b1lyax7mlenna"]
+[gd_scene load_steps=473 format=3 uid="uid://b1lyax7mlenna"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Player, weapons and collectables/PlayerMovement.gd" id="1_gyp3l"]
 [ext_resource type="Texture2D" uid="uid://br1wcmuv2tn76" path="res://Sprites/Characters and items/Player_shadow.png" id="2_s50a2"]
@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bedtieud14vi3" path="res://Sprites/Hud/pistol_cooldown.png" id="10_4jl61"]
 [ext_resource type="Texture2D" uid="uid://4hm40kkkp682" path="res://Sprites/Hud/shotgun.png" id="10_fr0ec"]
 [ext_resource type="Texture2D" uid="uid://dcafef4swca52" path="res://Sprites/Hud/hands_cooldown.png" id="11_7xprr"]
-[ext_resource type="Texture2D" uid="uid://c6xp6ed7jcxw1" path="res://Sprites/Hud/Black_Screen_Edge.PNG" id="11_jnkoc"]
+[ext_resource type="Texture2D" uid="uid://dsfpvt83dfn4d" path="res://Sprites/Hud/Black_Screen_Edge.png" id="11_l1ndv"]
 [ext_resource type="Texture2D" uid="uid://cxghmooq3vt4e" path="res://Sprites/Hud/Dash Cooldown.png" id="12_tqmhq"]
 [ext_resource type="Texture2D" uid="uid://7jtd703hkogy" path="res://Sprites/Hud/revolver_cooldown.png" id="13_fjfcp"]
 [ext_resource type="Texture2D" uid="uid://dvnu6xjxa5w41" path="res://Sprites/Hud/smg.png" id="13_uspk7"]
@@ -33,7 +33,6 @@
 [ext_resource type="Texture2D" uid="uid://dix10eog3gi3m" path="res://Sprites/Hud/Slimed.png" id="29_ijb7g"]
 [ext_resource type="Texture2D" uid="uid://5usog0bbxep1" path="res://Sprites/Hud/Burning.png" id="30_ecnlo"]
 [ext_resource type="Texture2D" uid="uid://c5walk12tn338" path="res://Sprites/Hud/Can_of_dried_hearts.png" id="33_cedqh"]
-[ext_resource type="AudioStream" uid="uid://cpi6exchdkdsf" path="res://Audio/Player_sounds/Hit_Hurt.wav" id="33_klkdj"]
 [ext_resource type="AudioStream" uid="uid://do80dp44lbhhp" path="res://Audio/Player_sounds/Gun1.mp3" id="34_j51qr"]
 [ext_resource type="Texture2D" uid="uid://bql2vwupj6b5i" path="res://Sprites/Hud/Jar_of_pickled_hearts.png" id="34_vyrku"]
 [ext_resource type="AudioStream" uid="uid://bmdv3rnp3n0ry" path="res://Audio/Player_sounds/Gun2.mp3" id="35_poemb"]
@@ -42,7 +41,9 @@
 [ext_resource type="AudioStream" uid="uid://csnbv3akgls3x" path="res://Audio/Player_sounds/Gun3.mp3" id="36_lyy6w"]
 [ext_resource type="AudioStream" uid="uid://cyojbtk8yobfc" path="res://Audio/Player_sounds/Step 2.mp3" id="37_a6hmu"]
 [ext_resource type="AudioStream" uid="uid://b55b7j3u34n5i" path="res://Audio/Player_sounds/Gun4.mp3" id="37_bywe1"]
+[ext_resource type="AudioStream" uid="uid://cl07kqqgqcwif" path="res://Audio/Other_Sounds/Text_Sound.mp3" id="37_lj4lc"]
 [ext_resource type="Texture2D" uid="uid://c8hkortvqhl3u" path="res://Sprites/Hud/Health_heal.png" id="40_d0mwp"]
+[ext_resource type="AudioStream" uid="uid://dhaevdbt0lsk6" path="res://Audio/Player_sounds/Hit_Hurt.mp3" id="40_mq82m"]
 [ext_resource type="AudioStream" uid="uid://u4nd1hsn3byo" path="res://Audio/Player_sounds/Player_Punch.mp3" id="41_yy70g"]
 [ext_resource type="StyleBox" uid="uid://cu8qu84atenlt" path="res://Scenes/levels/Button_disabled.tres" id="44_37um2"]
 [ext_resource type="StyleBox" uid="uid://djfq2twueeree" path="res://Scenes/levels/Button_stor_hover.tres" id="45_6i6uo"]
@@ -5696,6 +5697,8 @@ anti_aliasing = false
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 process_mode = 1
+visibility_layer = 3
+collision_layer = 33
 collision_mask = 2
 platform_on_leave = 2
 platform_floor_layers = 4294967040
@@ -5766,18 +5769,22 @@ process_mode = 3
 script = ExtResource("3_ex22d")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Hud"]
+light_mask = 3
+visibility_layer = 3
 
 [node name="RedScreenFade" type="Sprite2D" parent="Hud/CanvasModulate"]
 visible = false
 texture = ExtResource("17_y0f3u")
 centered = false
 
-[node name="Screen_Edge" type="Sprite2D" parent="Hud/CanvasModulate"]
-modulate = Color(0, 0, 0, 0.52549)
-texture = ExtResource("11_jnkoc")
-centered = false
+[node name="Border" type="PointLight2D" parent="Hud/CanvasModulate"]
+position = Vector2(320, 240)
+energy = 0.8
+blend_mode = 1
+texture = ExtResource("11_l1ndv")
 
 [node name="bar" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(262, 38.5)
 scale = Vector2(2.8, 2.8)
 sprite_frames = SubResource("SpriteFrames_3rvtn")
@@ -5785,6 +5792,7 @@ animation = &"Bar_sprites"
 speed_scale = 0.0
 
 [node name="heart" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(31.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
@@ -5792,6 +5800,8 @@ animation = &"Sprites"
 speed_scale = 0.0
 
 [node name="heart2" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
+visibility_layer = 2
 position = Vector2(73.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
@@ -5799,6 +5809,7 @@ animation = &"Sprites"
 speed_scale = 0.0
 
 [node name="heart3" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(115.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
@@ -5806,6 +5817,7 @@ animation = &"Sprites"
 speed_scale = 0.0
 
 [node name="heart4" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(157.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
@@ -5814,6 +5826,7 @@ autoplay = "Sprites"
 speed_scale = 0.0
 
 [node name="heart5" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(199.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
@@ -5821,6 +5834,7 @@ animation = &"Sprites"
 speed_scale = 0.0
 
 [node name="heart6" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(241.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
@@ -5828,6 +5842,7 @@ animation = &"Sprites"
 speed_scale = 0.0
 
 [node name="heart7" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(283.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
@@ -5835,6 +5850,7 @@ animation = &"Sprites"
 speed_scale = 0.0
 
 [node name="heart8" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(325.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
@@ -5842,6 +5858,7 @@ animation = &"Sprites"
 speed_scale = 0.0
 
 [node name="heart9" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(367.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
@@ -5849,6 +5866,7 @@ animation = &"Sprites"
 speed_scale = 0.0
 
 [node name="heart10" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(409.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
@@ -5856,6 +5874,7 @@ animation = &"Sprites"
 speed_scale = 0.0
 
 [node name="heart11" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(451.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
@@ -5863,6 +5882,7 @@ animation = &"Sprites"
 speed_scale = 0.0
 
 [node name="heart12" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(493.5, 24)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_tnc7b")
@@ -5870,26 +5890,31 @@ animation = &"Sprites"
 speed_scale = 0.0
 
 [node name="Hands" type="Sprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(28, 72)
 scale = Vector2(2, 2)
 texture = ExtResource("8_ignrp")
 
 [node name="Pistol" type="Sprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(68, 74)
 scale = Vector2(2, 2)
 texture = ExtResource("9_i5eox")
 
 [node name="Revovler" type="Sprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(108, 74)
 scale = Vector2(2, 2)
 texture = ExtResource("9_du020")
 
 [node name="Shotgun" type="Sprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(148, 74)
 scale = Vector2(2, 2)
 texture = ExtResource("10_fr0ec")
 
 [node name="SMG" type="Sprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(188, 73)
 scale = Vector2(2, 2)
 texture = ExtResource("13_uspk7")
@@ -5903,11 +5928,23 @@ position = Vector2(268, 74)
 scale = Vector2(2, 2)
 
 [node name="WeaponSelector" type="Sprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(28, 74)
 scale = Vector2(2, 2)
 texture = ExtResource("7_1yiri")
 
+[node name="Hud_light" type="PointLight2D" parent="Hud/CanvasModulate/WeaponSelector"]
+light_mask = 2
+visibility_layer = 2
+scale = Vector2(0.404692, 0.404692)
+color = Color(0.81, 0.644625, 0.6075, 1)
+energy = 2.0
+range_layer_max = 2
+range_item_cull_mask = 2
+texture = ExtResource("3_gwtbm")
+
 [node name="Dash_cooldown" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(21, 116)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_htct1")
@@ -5915,6 +5952,7 @@ animation = &"still"
 autoplay = "still"
 
 [node name="Cooldown" type="AnimatedSprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(46, 118)
 rotation = -1.5708
 scale = Vector2(2, 2)
@@ -5953,7 +5991,15 @@ position = Vector2(29, 300)
 scale = Vector2(3, 3)
 texture = ExtResource("30_ecnlo")
 
+[node name="Fire_Light" type="PointLight2D" parent="Hud/CanvasModulate/Burning"]
+light_mask = 3
+scale = Vector2(0.0645161, 0.0645161)
+color = Color(0.979063, 0.432211, 0.25229, 1)
+energy = 7.5
+texture = ExtResource("3_gwtbm")
+
 [node name="HealthHeal" type="Sprite2D" parent="Hud/CanvasModulate"]
+light_mask = 2
 position = Vector2(39, 160)
 scale = Vector2(2, 2)
 texture = ExtResource("40_d0mwp")
@@ -5965,6 +6011,7 @@ sprite_frames = SubResource("SpriteFrames_d2dxo")
 animation = &"1"
 
 [node name="Healing_amt" type="Label" parent="Hud/CanvasModulate"]
+light_mask = 2
 offset_left = -4.0
 offset_top = 170.0
 offset_right = 21.0
@@ -5974,6 +6021,7 @@ text = "X9"
 horizontal_alignment = 2
 
 [node name="Healing_cooldown" type="Label" parent="Hud/CanvasModulate"]
+light_mask = 2
 offset_left = 18.0
 offset_top = 152.0
 offset_right = 39.0
@@ -6079,6 +6127,8 @@ text = "Level 1"
 horizontal_alignment = 1
 
 [node name="Burning_timer" type="Label" parent="Hud/CanvasModulate"]
+light_mask = 2
+visibility_layer = 2
 anchors_preset = -1
 anchor_left = 0.055
 anchor_top = 0.965
@@ -6106,6 +6156,10 @@ scale = Vector2(3, 3)
 horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 2
+
+[node name="Text_Sound" type="AudioStreamPlayer" parent="Hud/CanvasModulate/Sign_texts"]
+stream = ExtResource("37_lj4lc")
+volume_db = -15.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Hud"]
 offset_left = 215.0
@@ -6141,49 +6195,48 @@ text = "Leave Stage"
 
 [node name="Audio_Players" type="Node2D" parent="."]
 
-[node name="Hurt" type="AudioStreamPlayer2D" parent="Audio_Players"]
-stream = ExtResource("33_klkdj")
+[node name="Hurt" type="AudioStreamPlayer" parent="Audio_Players"]
+stream = ExtResource("40_mq82m")
 volume_db = 5.0
 
-[node name="Punch" type="AudioStreamPlayer2D" parent="Audio_Players"]
+[node name="Punch" type="AudioStreamPlayer" parent="Audio_Players"]
 stream = ExtResource("41_yy70g")
 volume_db = -7.0
 
-[node name="Gun1" type="AudioStreamPlayer2D" parent="Audio_Players"]
+[node name="Gun1" type="AudioStreamPlayer" parent="Audio_Players"]
 stream = ExtResource("34_j51qr")
 volume_db = -5.0
 
-[node name="Gun2" type="AudioStreamPlayer2D" parent="Audio_Players"]
+[node name="Gun2" type="AudioStreamPlayer" parent="Audio_Players"]
 stream = ExtResource("35_poemb")
 volume_db = -10.0
-playback_type = 1
 
-[node name="Gun3" type="AudioStreamPlayer2D" parent="Audio_Players"]
+[node name="Gun3" type="AudioStreamPlayer" parent="Audio_Players"]
 stream = ExtResource("36_lyy6w")
 volume_db = -10.0
 
-[node name="Gun4" type="AudioStreamPlayer2D" parent="Audio_Players"]
+[node name="Gun4" type="AudioStreamPlayer" parent="Audio_Players"]
 stream = ExtResource("37_bywe1")
 volume_db = -2.0
 
-[node name="Step1" type="AudioStreamPlayer2D" parent="Audio_Players"]
+[node name="Step1" type="AudioStreamPlayer" parent="Audio_Players"]
 stream = ExtResource("36_ct5tl")
 volume_db = 2.2
 pitch_scale = 1.25
 parameters/looping = false
 
-[node name="Step2" type="AudioStreamPlayer2D" parent="Audio_Players"]
+[node name="Step2" type="AudioStreamPlayer" parent="Audio_Players"]
 stream = ExtResource("37_a6hmu")
 volume_db = 2.1
 pitch_scale = 1.15
 
-[node name="Heal" type="AudioStreamPlayer2D" parent="Audio_Players"]
+[node name="Heal" type="AudioStreamPlayer" parent="Audio_Players"]
 stream = ExtResource("48_st7or")
 volume_db = 8.0
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-scale = Vector2(0.475073, 0.475073)
+[node name="PLayer_Light" type="PointLight2D" parent="."]
+scale = Vector2(0.35, 0.35)
+energy = 0.45
 texture = ExtResource("3_gwtbm")
 
 [connection signal="timeout" from="Camera_Timer" to="." method="_on_camera_timer_timeout"]

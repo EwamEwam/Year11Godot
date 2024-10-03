@@ -21,6 +21,7 @@ const Bullet5 = preload("res://Scenes/Characters, weapons and collectables/bulle
 const Punch_box = preload("res://Scenes/Characters, weapons and collectables/punch_box.tscn")
 const grenade = preload("res://Scenes/Characters, weapons and collectables/heart_grenade.tscn")
 const gun_particle = preload("res://Scenes/Other/gun_particle.tscn")
+const dash_particle = preload("res://Scenes/Other/Dashing_Particle.tscn")
 const number = preload("res://Scenes/Other/DamageP_numbers.tscn")
 const heal_num = preload ("res://Scenes/Other/Heal_numbers.tscn")
 const running_particle = preload("res://Scenes/Other/running_particle.tscn")
@@ -39,12 +40,14 @@ var Pointing_to_mouse = null
 var last_facing_direction = Vector2(0,1)
 var animation_can_play = true
 var dead = false
+var dashing = false
 var shaking = false
 var flashing = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var particle_timer = 4
 var camera_offset = Vector2.ZERO
+var shake_offset = Vector2.ZERO
 var time_in_level = 0
 
 signal cooldown
@@ -64,9 +67,9 @@ func _physics_process(delta):
 	direction = Input.get_vector("left","right","up","down").normalized()
 	if direction:
 		if Playerstats.health > 0:
-			if Playerstats.current_status.Slimed > 0:
+			if Playerstats.current_status.Slimed > 0 and not dashing:
 				SPEED = 300.0 - (clampi(Playerstats.current_status.Burning,0,1)*80)
-			else:
+			elif not dashing:
 				SPEED = 500.0 - (clampi(Playerstats.current_status.Burning,0,1)*150)
 			velocity = velocity.move_toward(direction * SPEED, ACCELERATION)
 			particle_check()
@@ -75,8 +78,7 @@ func _physics_process(delta):
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
 	
-	if not shaking:
-		Camera.offset = camera_offset
+	set_camera_offset()
 	
 	Playerstats.player_x = global_position.x
 	Playerstats.player_y = global_position.y
@@ -186,9 +188,12 @@ func particle_check():
 	else:
 		particle_timer -= 1
 
-#Takes the sine / cosine of the time in the level for camera bob effect
+#Sets the camera's offset accroding to a bunch of variables. This leads to these monstrosity of lines. it also takes the sine / cosine of the time in the level for camera bob effect
 func set_camera_offset() -> void:
 	camera_offset = 15 * Vector2(sin(deg_to_rad(28 * time_in_level)), cos(deg_to_rad(30 * time_in_level)))
+	var mouse_position = get_local_mouse_position()
+	Camera.offset.x = move_toward(Camera.offset.x,clampf(mouse_position.x/3 + camera_offset.x + shake_offset.x, -50 - abs(camera_offset.x),50 + abs(camera_offset.x)),5)
+	Camera.offset.y = move_toward(Camera.offset.y,clampf(mouse_position.y/3 + camera_offset.y + shake_offset.y, -50 - abs(camera_offset.y),50 + abs(camera_offset.y)),5)
 	
 #emits a signal when the player health reaches 0
 func death():
@@ -439,21 +444,22 @@ func shoot_animation(time):
 			
 #Script for when the player takes damage, emits a signal along with a number to the HUD script for the red damage effect
 func damage_player(val):
-	if val < 1:
-		val = 1
-	animation_can_play = false
-	current_state = State.Hurt
-	Playerstats.health -= val
-	Playerstats.dampval = val
-	var new_number = number.instantiate()
-	new_number.global_position=global_position
-	add_sibling(new_number)
-	emit_signal("red", clampf(float(val)/5, 0.5 , 1.5))
-	$Audio_Players/Hurt.play()
-	flash()
-	await get_tree().create_timer(0.2).timeout
-	animation_can_play = true
-		
+	if not dashing:
+		if val < 1:
+			val = 1
+		animation_can_play = false
+		current_state = State.Hurt
+		Playerstats.health -= val
+		Playerstats.dampval = val
+		var new_number = number.instantiate()
+		new_number.global_position=global_position
+		add_sibling(new_number)
+		emit_signal("red", clampf(float(val)/5, 0.5 , 1.5))
+		$Audio_Players/Hurt.play()
+		flash()
+		await get_tree().create_timer(0.2).timeout
+		animation_can_play = true
+			
 #Script for healing 
 func heal(val):
 	Playerstats.health += val
@@ -484,23 +490,31 @@ func shake(amt,time,rep,damp):
 		for i in range(rep):
 			if Playerstats.settings.Allow_Shaking:
 				shaking = true
-				Camera.offset.x=(randf_range(-amt,amt))
-				Camera.offset.y=(randf_range(-amt,amt))
-				Camera.offset += camera_offset
+				shake_offset.x=(randf_range(-amt,amt))
+				shake_offset.y=(randf_range(-amt,amt))
 				amt = amt/damp
 				await get_tree().create_timer(time).timeout
 	shaking = false
+	shake_offset = Vector2.ZERO
 
 #Dash function, temperoailiy sets the player speed to 2100 for 0.3 seconds before setting it back down to 550.
 func dash():
 	if not dash_timer.is_stopped():
 		return
+	dashing = true
+	for i in range(20):
+		var new_particle = dash_particle.instantiate()
+		new_particle.global_position = global_position
+		new_particle.set_direction(direction)
+		add_sibling(new_particle)
 	dash_timer.start(1.75)
 	emit_signal("dash_cooldown")
-	SPEED= 2100.0
-	velocity = velocity.move_toward(direction * SPEED, ACCELERATION*75)
-	await get_tree().create_timer(0.3).timeout
+	SPEED= 2000.0
+	velocity = velocity.move_toward(direction * SPEED, ACCELERATION*50)
+	await get_tree().create_timer(0.1).timeout
 	SPEED= 550.0
+	await get_tree().create_timer(0.125).timeout
+	dashing = false
 	
 #Hotkeys with the numbers, the game manually checks each one
 func check_item_select():

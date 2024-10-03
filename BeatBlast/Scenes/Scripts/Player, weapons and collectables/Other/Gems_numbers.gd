@@ -1,5 +1,5 @@
 extends Node2D
-
+#Number on the HUD showing the value of what gem they have picked up.
 @onready var number = $number
 @onready var number_s = $AnimationPlayer
 

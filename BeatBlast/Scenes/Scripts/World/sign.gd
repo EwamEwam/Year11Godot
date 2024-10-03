@@ -1,5 +1,6 @@
 extends Node2D
-
+#The sign, If the player is inside it's radius and presses Z. it runs a couple checks before pausing the game. Getting the text 
+#From the textdata script that corresponds to it ID and sends to the player's script. 
 @export var id = 1
 @export var type = 1
 @onready var player_detection = $Area

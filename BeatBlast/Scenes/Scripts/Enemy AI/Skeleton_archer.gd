@@ -1,5 +1,7 @@
 extends CharacterBody2D
-
+#The archer enemy, I coded this too long ago that I forgot how this works. From a bit of skim reading though I can atleast make a 
+#guess. It hasa timer which when it goes off, it checks if the player is in it's inner radius, if it is, it goes into shoot mode where
+#it pulls back on it bow and increases it power value until it detects the player is no longer in it's radius or it reachs power level 4.
 const SPEED = 225.0
 const ACCELLERATION = 25.0
 const FRICTION = 5.5
@@ -47,7 +49,7 @@ func check_collision():
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
+			if collision.is_in_group("Player") and timer.is_stopped():
 				collision.shake(16,0.025,16,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
@@ -83,14 +85,11 @@ func _physics_process(delta):
 		
 		if not dead:
 			check_for_death()
-		check_collision()
+		
 		update_state()
 		play_animations()
 		update_health_bar()
 		move_and_slide()
-		
-	else:
-		set_process(false)
 		
 	if current_state == state.Walking:
 		animation.speed_scale = clampf(velocity.length()/200, 0.25, 3)
@@ -143,7 +142,7 @@ func _on_shoot_timer_timeout():
 	var player_detected = false
 	if too_close:
 		for collision in too_close:
-			if collision.is_in_group("Player") and not Raycast.is_colliding() and health > 0:
+			if collision.is_in_group("Player") and not Raycast.is_colliding() and health > 0 and is_instance_valid(self):
 				shooting = true
 				player_detected = true
 				animation_can_play = false

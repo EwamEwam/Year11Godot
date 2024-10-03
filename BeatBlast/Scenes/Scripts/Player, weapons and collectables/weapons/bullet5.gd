@@ -1,10 +1,10 @@
 extends Area2D
-
+#Has some differences to the "bullet" script. Main one being that it keeps track of how many things it has hit and changes it values based on it.
 const collide = preload("res://Scenes/Characters, weapons and collectables/bullet_1_collision.tscn")
 const number = preload("res://Scenes/Other/DamageE_numbers.tscn")
 const particle = preload("res://Scenes/Other/Shooting_Particle.tscn")
 @export var SPEED = 1500
-var damage = 8
+var damage = 9
 var times_hit = 0
 
 func _ready():

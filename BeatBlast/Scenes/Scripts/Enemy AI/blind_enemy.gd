@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+#Works of a timer, when the timer goes off. it picks a random direction and speed and moves in that direction for a random amount of time
 const SPEED = 350.0
 const ACCELLERATION = 25.0
 const FRICTION = 3.5
@@ -39,8 +39,8 @@ func check_collision():
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(12,0.025,12,1.2)
+			if collision.is_in_group("Player") and timer.is_stopped():
+				collision.shake(25,0.025,25,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
@@ -67,9 +67,6 @@ func _physics_process(delta):
 		
 		if not setting and movement_timer.is_stopped():
 			set_direction()
-		
-	else:
-		set_process(false)
 			
 	if not dead:
 		check_for_death()

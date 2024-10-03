@@ -1,5 +1,5 @@
 extends Area2D
-
+#Same as the "bullet" script. There's just a couple changes to the values
 const collide = preload("res://Scenes/Characters, weapons and collectables/bullet_2_collision.tscn")
 const number = preload("res://Scenes/Other/DamageE_numbers.tscn")
 const particle = preload("res://Scenes/Other/Shooting_Particle.tscn")

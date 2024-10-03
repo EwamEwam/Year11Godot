@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+#The yellow slime, same to the green slime with difference to the stats and gives the player the slimed status effect.
 const SPEED = 250.0
 const ACCELLERATION = 19.5
 const FRICTION = 4.0
@@ -37,8 +37,8 @@ func check_collision():
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(12,0.025,12,1.2)
+			if collision.is_in_group("Player") and timer.is_stopped():
+				collision.shake(16,0.025,16,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				collision.slimed(2)
 				timer.start()
@@ -56,6 +56,7 @@ func _physics_process(delta):
 					if collision.is_in_group("Player") and not Raycast.is_colliding():
 						var direction_to_player = global_position.direction_to(player.global_position)
 						velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
+						check_collision()
 					elif not collision.is_in_group("Enemy") and not collision == self and not slowed_down:
 						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -70,16 +71,12 @@ func _physics_process(delta):
 			animation.speed_scale = 1
 			
 		change_state()
-		check_collision()
 		animation_play()
 		move_and_slide()
 		update_health_bar()
-		
-	else:
-		set_process(false)
-		
-	if not dead:
-		check_for_death()
+	
+		if not dead:
+			check_for_death()
 	
 func change_state():
 	if animation_can_play:

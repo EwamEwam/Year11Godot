@@ -107,12 +107,13 @@ animations = [{
 }]
 
 [node name="Lightning_spell_1" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_m1u1b")
 
 [node name="Hitbox" type="Area2D" parent="."]
 process_mode = 1
-collision_layer = 2
-collision_mask = 7
+collision_layer = 0
+collision_mask = 39
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-8.5, 0)

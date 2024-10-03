@@ -176,12 +176,16 @@ shape = SubResource("RectangleShape2D_ptu2j")
 
 [node name="Movement_circle" type="Area2D" parent="."]
 visible = false
+collision_layer = 0
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
 shape = SubResource("CircleShape2D_8jkij")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 visible = false
+collision_layer = 0
+collision_mask = 32
 
 [node name="Collision_shape" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-1.5, -0.5)

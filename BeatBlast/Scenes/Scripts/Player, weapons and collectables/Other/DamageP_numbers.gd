@@ -1,5 +1,5 @@
 extends Node2D
-
+#Number showing how much damage was done to the player. sets it according to a value in the playerstats script
 @onready var number = $number
 @onready var number_s = $AnimationPlayer
 

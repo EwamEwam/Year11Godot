@@ -1,7 +1,7 @@
 extends Area2D
-
-@export var SPEED :float = 800
-var damage :int = 4
+#Same as the standard enemy bullet except with number changes
+@export var SPEED :float = 700.0
+var damage :int = 5
 const particle :PackedScene = preload("res://Scenes/Other/Shooting_Particle.tscn")
 
 func _ready() -> void:
@@ -16,7 +16,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_body_entered(body) -> void:
 	if body.is_in_group("Player") and body.has_method("damage_player"):
 		body.damage_player(damage - Playerstats.defence)
-		body.shake(8,0.025,8,1.2)
+		body.shake(11,0.025,11,1.2)
 	elif body.is_in_group("Prop") and body.has_method("damage"):
 		body.damage(damage)
 		queue_free()

@@ -286,7 +286,8 @@ motion_mode = 1
 script = ExtResource("1_w2g43")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-scale = Vector2(7, 6.4)
+position = Vector2(0, 8.99999)
+scale = Vector2(6.8, 6.2)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(25, 25)
@@ -305,6 +306,8 @@ autostart = true
 
 [node name="hurtbox" type="Area2D" parent="."]
 visible = false
+collision_layer = 0
+collision_mask = 32
 
 [node name="collision_shape" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2(0, 15)
@@ -313,6 +316,8 @@ shape = SubResource("CapsuleShape2D_rfs76")
 
 [node name="Movement_circle" type="Area2D" parent="."]
 visible = false
+collision_layer = 0
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
 shape = SubResource("CircleShape2D_3gl2h")
@@ -331,10 +336,8 @@ libraries = {
 [node name="Slime_sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_drgqc")
-animation = &"Death"
+animation = &"Movement_Left"
 autoplay = "Movement_Right"
-frame = 4
-frame_progress = 1.0
 
 [node name="Health_Metre" type="ProgressBar" parent="."]
 offset_left = -52.0

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+#This script is essentially the same as the green slime's except there are changes to the numbers/variables and now it creates two green slimes upon death
 const SPEED = 225.0
 const ACCELLERATION = 18.0
 const FRICTION = 3.5
@@ -38,7 +38,7 @@ func check_collision():
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
+			if collision.is_in_group("Player") and timer.is_stopped():
 				collision.shake(12,0.025,12,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
@@ -56,6 +56,7 @@ func _physics_process(delta):
 					if collision.is_in_group("Player") and Raycast.is_colliding()==false:
 						var direction_to_player = global_position.direction_to(player.global_position)
 						velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
+						check_collision()
 					elif not collision.is_in_group("Enemy") and not slowed_down and not collision == self:
 						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -71,12 +72,8 @@ func _physics_process(delta):
 		
 		change_state()
 		animation_play()
-		check_collision()
 		move_and_slide()
 		update_health_bar()
-	
-	else:
-		set_process(false)
 	
 	if not dead:
 		check_for_death()

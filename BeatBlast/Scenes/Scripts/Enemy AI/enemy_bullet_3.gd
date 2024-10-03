@@ -1,5 +1,5 @@
 extends Area2D
-
+#Same as the standard enemy bullet except with number changes
 @export var SPEED :float = 750.0
 var damage :int = 7
 const particle :PackedScene = preload("res://Scenes/Other/Shooting_Particle.tscn")

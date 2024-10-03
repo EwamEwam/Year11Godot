@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://dn8fhsgela1vs"]
+[gd_scene load_steps=29 format=3 uid="uid://dn8fhsgela1vs"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/Enemy AI/shooter_2.gd" id="1_2akxi"]
 [ext_resource type="Texture2D" uid="uid://cpwdnmkwoc0mc" path="res://Sprites/Characters and items/green_slime_shadow.png" id="2_1lcqm"]
 [ext_resource type="Texture2D" uid="uid://57yxcipmrwsc" path="res://Sprites/Characters and items/Shooter_2.png" id="3_q5v2n"]
+[ext_resource type="Texture2D" uid="uid://can7kmxf1e788" path="res://Sprites/World/light.png" id="4_hmkgo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nfhye"]
 radius = 37.0
@@ -278,7 +279,7 @@ motion_mode = 1
 script = ExtResource("1_2akxi")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.52549)
+modulate = Color(0, 0, 0, 0.52549)
 position = Vector2(0, 38)
 scale = Vector2(9, 9)
 texture = ExtResource("2_1lcqm")
@@ -311,6 +312,7 @@ autostart = true
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 0
+collision_mask = 32
 
 [node name="Hurtbox_collision" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, -58)
@@ -320,6 +322,7 @@ shape = SubResource("CapsuleShape2D_5xtno")
 [node name="Player_Detection_Range" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
+collision_mask = 32
 
 [node name="Collision_Shape" type="CollisionShape2D" parent="Player_Detection_Range"]
 visible = false
@@ -328,6 +331,7 @@ shape = SubResource("CircleShape2D_iiktk")
 [node name="PLayer_Too_Close_Range" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
+collision_mask = 32
 
 [node name="Collision_Shape_2" type="CollisionShape2D" parent="PLayer_Too_Close_Range"]
 shape = SubResource("CircleShape2D_13upx")
@@ -342,6 +346,12 @@ animation = &"Death"
 
 [node name="Bullet_spawner" type="Marker2D" parent="Sprite_node"]
 position = Vector2(-52, 20)
+
+[node name="Light" type="PointLight2D" parent="Sprite_node/Bullet_spawner"]
+scale = Vector2(0.25, 0.25)
+color = Color(0.865838, 0.465742, 3.85046e-07, 1)
+energy = 0.0
+texture = ExtResource("4_hmkgo")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

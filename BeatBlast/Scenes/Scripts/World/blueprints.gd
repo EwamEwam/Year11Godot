@@ -1,5 +1,5 @@
 extends Area2D
-
+#The Blueprint Collectable. When collected, sets a value in the items collected dictionary.
 @export var id = 0
 
 signal level_complete

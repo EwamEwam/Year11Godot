@@ -1,5 +1,5 @@
 extends Node2D
-
+#Particle that generates when a crate is broken, there's not much more for me to say.
 @onready var sprite = $Sprite
 var rotation_speed = 10
 var x_velocity = 0

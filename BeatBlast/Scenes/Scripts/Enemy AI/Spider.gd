@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+#Spider, Like roach but gives the player the poisoned status effect
 const SPEED = 400.0
 const ACCELLERATION = 20.0
 const FRICTION = 3.0
@@ -32,8 +32,8 @@ func check_collision():
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(3,0.025,3,1.4)
+			if collision.is_in_group("Player") and timer.is_stopped():
+				collision.shake(4,0.025,4,1.35)
 				collision.damage_player(damage-Playerstats.defence)
 				collision.poisoned(2)
 				timer.start()
@@ -52,6 +52,7 @@ func _physics_process(delta):
 						var direction_to_player = global_position.direction_to(player.global_position)
 						Sprite.look_at(Vector2(Playerstats.player_x, Playerstats.player_y))
 						velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
+						check_collision()
 					elif not collision.is_in_group("Enemy") and not collision == self and not slowed_down:
 						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -61,11 +62,7 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO
 		
 		animation_play()
-		check_collision()
 		move_and_slide()
-	
-	else:
-		set_process(false)
 	
 	if not dead:
 		current_state = state.Running

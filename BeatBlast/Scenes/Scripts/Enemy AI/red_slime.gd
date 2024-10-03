@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+#Same as the normal slime except with changes to stats and it gives the player the burned status effect
 const SPEED = 300.0
 const ACCELLERATION = 27.5
 const FRICTION = 6.0
@@ -37,8 +37,8 @@ func check_collision():
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(16,0.025,16,1.2)
+			if collision.is_in_group("Player") and timer.is_stopped():
+				collision.shake(18,0.025,18,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				collision.burned(2)
 				timer.start()
@@ -56,6 +56,7 @@ func _physics_process(delta):
 					if collision.is_in_group("Player") and not Raycast.is_colliding():
 						var direction_to_player = global_position.direction_to(player.global_position)
 						velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
+						check_collision()
 					elif not collision.is_in_group("Enemy") and not collision == self and not slowed_down:
 						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -70,13 +71,9 @@ func _physics_process(delta):
 			animation.speed_scale = 1
 			
 		change_state()
-		check_collision()
 		animation_play()
 		update_health_bar()
 		move_and_slide()
-	
-	else:
-		set_process(false)
 		
 	if not dead:
 		check_for_death()

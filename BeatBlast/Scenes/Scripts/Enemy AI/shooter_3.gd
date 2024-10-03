@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+#Same as the standard shooter enemy but has changes to stats and bullet spawning mechanics.
 const SPEED = 295.0
 const ACCELLERATION = 32.5
 const FRICTION = 7.5
@@ -46,8 +46,8 @@ func check_collision():
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(7,0.025,7,1.2)
+			if collision.is_in_group("Player") and timer.is_stopped():
+				collision.shake(19,0.025,19,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
@@ -87,7 +87,6 @@ func _physics_process(delta):
 		
 		play_animation()
 		check_for_death()
-		check_collision()
 		update_health_bar()
 		move_and_slide()
 		
@@ -97,9 +96,6 @@ func _physics_process(delta):
 		elif health > 0:
 			Sprite.flip_h = false
 			$Sprite_node/Bullet_spawner.position.x = -56
-		
-	else:
-		set_process(false)
 		
 func check_for_death():
 	if health <= 0 and not dead:
@@ -142,7 +138,7 @@ func take_damage(dmg):
 		animation_can_play = true
 
 func _on_shoot_timer_timeout():
-	if health > 0:
+	if health > 0 and is_instance_valid(self):
 		animation_can_play = false
 		current_state = state.Idle
 		var in_circle = circle.get_overlapping_bodies()
@@ -150,6 +146,7 @@ func _on_shoot_timer_timeout():
 			for collision in in_circle:
 				if collision.is_in_group("Player") and not Raycast.is_colliding():
 					current_state = state.Shoot
+					$Sprite_node/Bullet_spawner/Light.energy = 60
 					var new_bullet = bullet.instantiate()
 					new_bullet.global_position = $Sprite_node/Bullet_spawner.global_position
 					new_bullet.look_at(Vector2(Playerstats.player_x, Playerstats.player_y))
@@ -159,6 +156,9 @@ func _on_shoot_timer_timeout():
 						var new_particle = shoot_particle.instantiate()
 						new_particle.global_position = $Sprite_node/Bullet_spawner.global_position
 						world.add_child(new_particle)
+					for i in range(4):
+						await get_tree().create_timer(0.025).timeout
+						$Sprite_node/Bullet_spawner/Light.energy -= 15
 		shoot_timer.start(0.5)
 		await get_tree().create_timer(0.4).timeout
 		if health > 0:

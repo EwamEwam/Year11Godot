@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+#Same as the ember script which some changes to the numbers.
 const SPEED = 30000.0
 const ACCELLERATION = 20.0
 const FRICTION = 12.5
@@ -46,7 +46,7 @@ func check_collision():
 	if collisions:
 		for collision in collisions:
 			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(damage * 2.5,0.025,damage * 2.5,1.2)
+				collision.shake(damage * 2.5,0.025,round(damage * 2.5),1.2)
 				collision.burned(floor(damage/3))
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
@@ -95,9 +95,10 @@ func dash():
 	dashing = true
 	current_state = state.Charge
 	await get_tree().create_timer(0.75).timeout
-	damage = 14
-	var direction_to_player = global_position.direction_to(player.global_position)
-	velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION*80)
+	if not Raycast.is_colliding():
+		damage = 14
+		var direction_to_player = global_position.direction_to(player.global_position)
+		velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION*80)
 	dashing = false
 	
 func change_state():

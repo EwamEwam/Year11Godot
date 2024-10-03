@@ -1,5 +1,6 @@
 extends Node2D
-
+#The level select, it has buttons and numbers, lots of numbers. It uses the playerstats to hold the player's stats (Go figure!) then reads them
+#To set all the numbers here. Uses lots of if statements and a match statement to do this which probably would make the perfomance suffer.
 @onready var screen = $Fade
 @onready var text1 = $Text/High_score_value
 @onready var text2 = $Text/High_score_value2

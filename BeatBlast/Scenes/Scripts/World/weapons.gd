@@ -1,5 +1,6 @@
 extends Node2D
-
+#The weapon screen script. Checks if the player doesn't have all 5 weapons. If they don't then it displays the information 
+#for the next unlockable weapon alongside its costs. It takes this information from the textdata and the playerstats script.
 @onready var screen = $Fade
 var weapons_unlocked = Playerstats.weapons_unlocked 
 var cost 

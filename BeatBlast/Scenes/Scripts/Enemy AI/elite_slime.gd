@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+#Elite slime script, sames as standard slime except it speeds up as its health gets lower. Does this through convoluted maths
 const SPEED = 12500
 const ACCELLERATION = 20.0
 const FRICTION = 4.0
@@ -37,8 +37,8 @@ func check_collision() -> void:
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(32,0.025,32,1.2)
+			if collision.is_in_group("Player") and timer.is_stopped():
+				collision.shake(55,0.025,55,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
@@ -55,6 +55,7 @@ func _physics_process(delta):
 					if collision.is_in_group("Player") and not Raycast.is_colliding():
 						var direction_to_player = global_position.direction_to(player.global_position)
 						velocity = velocity.move_toward(direction_to_player * clampf(SPEED/clampf((health/0.9),1,100),210,380), ACCELLERATION)
+						check_collision()
 					elif not collision.is_in_group("Enemy") and not collision == self and not slowed_down:
 						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -74,13 +75,9 @@ func _physics_process(delta):
 		else:
 			animation.speed_scale = 1
 		
-		check_collision()
 		animation_play()
 		update_health_bar()
 		move_and_slide()
-		
-	else:
-		set_process(false)
 		
 	if not dead:
 		check_for_death()

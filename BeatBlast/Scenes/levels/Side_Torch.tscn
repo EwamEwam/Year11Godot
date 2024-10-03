@@ -1,80 +1,100 @@
-[gd_scene load_steps=10 format=3 uid="uid://xj5r58g4saqh"]
+[gd_scene load_steps=13 format=3 uid="uid://xj5r58g4saqh"]
 
 [ext_resource type="Texture2D" uid="uid://65f63h3remed" path="res://Sprites/World/Torch.png" id="1_4p2ga"]
+[ext_resource type="Shader" path="res://Scenes/levels/Light.gdshader" id="2_6nvgh"]
 [ext_resource type="Texture2D" uid="uid://can7kmxf1e788" path="res://Sprites/World/light.png" id="2_lqq44"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q3nqw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_it1k6"]
+size = Vector2(7.875, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c25hb"]
 atlas = ExtResource("1_4p2ga")
 region = Rect2(0, 23, 10, 23)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jch02"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsacl"]
 atlas = ExtResource("1_4p2ga")
 region = Rect2(10, 23, 10, 23)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u4dyh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ypm3"]
 atlas = ExtResource("1_4p2ga")
 region = Rect2(20, 23, 10, 23)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e5gwk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8syv"]
 atlas = ExtResource("1_4p2ga")
 region = Rect2(30, 23, 10, 23)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8u2vn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_27t7q"]
 atlas = ExtResource("1_4p2ga")
 region = Rect2(40, 23, 10, 23)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hdv0k"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_a2r27"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q3nqw")
+"texture": SubResource("AtlasTexture_c25hb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jch02")
+"texture": SubResource("AtlasTexture_jsacl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u4dyh")
+"texture": SubResource("AtlasTexture_2ypm3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e5gwk")
+"texture": SubResource("AtlasTexture_f8syv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8u2vn")
+"texture": SubResource("AtlasTexture_27t7q")
 }],
 "loop": true,
 "name": &"default",
 "speed": 7.5
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_01r4x"]
-size = Vector2(7.625, 7)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8tmnc"]
+shader = ExtResource("2_6nvgh")
+shader_parameter/light_color = Vector3(255, 125, 45)
+shader_parameter/brightness = 0.8
+shader_parameter/attenuation_strength = 0.8
+shader_parameter/intensity = 1.25
+shader_parameter/max_brightness = 1.0
+shader_parameter/exclude_color = Vector3(18, 14, 10)
+shader_parameter/tolerance = 0.072
+shader_parameter/light_texture = ExtResource("2_lqq44")
 
-[node name="Side_Torch" type="StaticBody2D" groups=["Collision"]]
-modulate = Color(0.661081, 0.661081, 0.661081, 1)
-y_sort_enabled = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1h160"]
+shader = ExtResource("2_6nvgh")
+shader_parameter/light_color = Vector3(255, 75, 10)
+shader_parameter/brightness = 1.0
+shader_parameter/attenuation_strength = 0.0
+shader_parameter/intensity = 1.274
+shader_parameter/max_brightness = 10.0
+shader_parameter/exclude_color = Vector3(18, 14, 10)
+shader_parameter/tolerance = 0.072
+shader_parameter/light_texture = ExtResource("2_lqq44")
+
+[node name="Side_Torch" type="StaticBody2D"]
+modulate = Color(0.662745, 0.662745, 0.662745, 1)
 scale = Vector2(8, 8)
 collision_layer = 131
 collision_mask = 131
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_hdv0k")
-autoplay = "default"
-frame_progress = 0.794845
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
-shape = SubResource("RectangleShape2D_01r4x")
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_it1k6")
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
-z_index = 25
-position = Vector2(-0.125, -2.375)
-scale = Vector2(0.065, 0.065)
-color = Color(0.961763, 0.328122, 0.0767179, 1)
-energy = 11.82
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_a2r27")
+autoplay = "default"
+
+[node name="Light" type="Sprite2D" parent="."]
+z_index = 3
+material = SubResource("ShaderMaterial_8tmnc")
+scale = Vector2(0.674487, 0.674487)
 texture = ExtResource("2_lqq44")
 
-[node name="PointLight2D" type="PointLight2D" parent="." groups=["Collision"]]
-scale = Vector2(0.61, 0.61)
-color = Color(0.960503, 0.597031, 0.459931, 1)
-energy = 4.81
+[node name="Light2" type="Sprite2D" parent="."]
+z_index = 3
+material = SubResource("ShaderMaterial_1h160")
+position = Vector2(-0.125, -3.5)
+scale = Vector2(0.065, 0.065)
 texture = ExtResource("2_lqq44")

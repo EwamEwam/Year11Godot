@@ -38,8 +38,8 @@ func check_collision():
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(7.5,0.025,7.5,1.2)
+			if collision.is_in_group("Player") and timer.is_stopped():
+				collision.shake(7,0.025,7,1.2)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
@@ -49,7 +49,7 @@ func _physics_process(delta):
 		#The raycast that points towards the player and detects if there are any walls in the way
 		Raycast.target_position.x = Playerstats.player_x - global_position.x
 		Raycast.target_position.y = Playerstats.player_y - global_position.y
-	
+		
 		if health > 0:
 			var in_circle = circle.get_overlapping_bodies()
 			var slowed_down = false
@@ -58,6 +58,7 @@ func _physics_process(delta):
 					if collision.is_in_group("Player") and not Raycast.is_colliding():
 						var direction_to_player = global_position.direction_to(player.global_position)
 						velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
+						check_collision()
 					elif not collision.is_in_group("Enemy") and not collision == self and not slowed_down:
 						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -66,22 +67,18 @@ func _physics_process(delta):
 		else:
 			velocity = Vector2.ZERO
 		
-		check_collision()
 		animation_play()
 		change_state()
 		update_health_bar()
 		move_and_slide()
 		
+		if not dead:
+			check_for_death()
+		
 		if animation_can_play:
 			animation.speed_scale = clampf(velocity.length()/50, 0.8, 10)
 		else:
 			animation.speed_scale = 1
-		
-	else:
-		set_process(false)
-	
-	if not dead:
-		check_for_death()
 	
 func change_state():
 	if animation_can_play:

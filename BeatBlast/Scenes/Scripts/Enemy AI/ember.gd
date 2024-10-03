@@ -1,5 +1,6 @@
 extends CharacterBody2D
-
+#Script for the ember enemy. It has timer that when it goes off, it checks if it's onscreen and it has a direct path to the player.
+#Then it does a charge animation before giving it a burst of velocity towards the direction of the player. Neat stuff.
 const SPEED = 12500.0
 const ACCELLERATION = 20.0
 const FRICTION = 9.0
@@ -45,8 +46,8 @@ func check_collision():
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(damage * 2.5,0.025,damage * 2.5,1.2)
+			if collision.is_in_group("Player") and timer.is_stopped():
+				collision.shake(damage * 2.5,0.025,round(damage * 2.5),1.2)
 				collision.burned(round(damage/3))
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
@@ -90,7 +91,6 @@ func _physics_process(delta):
 		
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
-		set_process(false)
 	
 	if not dead:
 		check_for_death()

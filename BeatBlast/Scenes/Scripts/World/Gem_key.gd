@@ -1,5 +1,5 @@
 extends Area2D
-
+#The main objective of each level. Gives off a signal when the player collects it
 @export var id = 0
 
 signal level_complete

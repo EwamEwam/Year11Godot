@@ -1,6 +1,6 @@
 extends Area2D
-
-@export var SPEED :float = 575
+#The enemy's bullet. It works the same as the player's expect the target is the player. Nothing else to really say.
+@export var SPEED :float = 590
 var damage :int = 3
 const particle :PackedScene = preload("res://Scenes/Other/Shooting_Particle.tscn")
 
@@ -16,7 +16,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_body_entered(body) -> void:
 	if body.is_in_group("Player") and body.has_method("damage_player"):
 		body.damage_player(damage - Playerstats.defence)
-		body.shake(6,0.025,6,1.2)
+		body.shake(7,0.025,7,1.2)
 	elif body.is_in_group("Prop") and body.has_method("damage"):
 		body.damage(damage)
 		queue_free()

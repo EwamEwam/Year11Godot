@@ -1,5 +1,5 @@
 extends Node2D
-
+#The particle that generates as a bullet is flying
 @onready var sprite = $Sprite
 var rotation_speed = 10
 var x_velocity = 0

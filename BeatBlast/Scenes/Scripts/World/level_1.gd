@@ -28,14 +28,17 @@ func _ready() -> void:
 	lighting.modulate.a = 1
 	timer = 300
 	screen.fade_out(0.1,10,2.5)
-	get_tree().paused = false
 	player.died.connect(death)
 	key.level_complete.connect(lights_out)
 	if Playerstats.items_collected.Level1Heart == 1:
 		capsule.queue_free()
 	if Playerstats.items_collected.Level1Blueprint == 1:
 		blueprint.queue_free()
-	await get_tree().create_timer(4).timeout
+	Playerstats.is_paused = true
+	await get_tree().create_timer(2).timeout
+	Playerstats.is_paused = false
+	get_tree().paused = false
+	await get_tree().create_timer(2).timeout
 	hint_val += 1
 	
 func _process(delta: float) -> void:
@@ -111,13 +114,18 @@ func _on_trigger_7_body_entered(body: Node2D) -> void:
 		hint_val += 1
 
 func create_particle():
-	var new_particle = snow_particle.instantiate()
-	new_particle.global_position.x = Playerstats.player_x - randi_range(-4000,4000)
-	new_particle.global_position.y = Playerstats.player_y - 1250
-	add_sibling(new_particle)
+	if not get_tree().paused:
+		var new_particle = snow_particle.instantiate()
+		new_particle.global_position.x = Playerstats.player_x - randi_range(-4000,4000)
+		new_particle.global_position.y = Playerstats.player_y - 1250
+		add_sibling(new_particle)
 
 func hide_text():
 	hints.visible = false
 	
 func show_text():
 	hints.visible = true
+
+func _on_background_music_finished() -> void:
+	await get_tree().create_timer(1).timeout
+	music.play()

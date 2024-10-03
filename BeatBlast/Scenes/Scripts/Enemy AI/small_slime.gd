@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+#Small slime enemy, Works like the standard slime but instead of dealing damage, it gives the player the Slimed status effect
 const SPEED = 225.0
 const ACCELLERATION = 18.0
 const FRICTION = 4.0
@@ -34,8 +34,8 @@ func check_collision():
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(2,0.025,2,1.4)
+			if collision.is_in_group("Player") and timer.is_stopped():
+				collision.shake(3,0.025,3,1.4)
 				collision.slimed(2)
 				timer.start()
 
@@ -52,6 +52,7 @@ func _physics_process(delta) -> void:
 					if collision.is_in_group("Player") and not Raycast.is_colliding():
 						var direction_to_player = global_position.direction_to(player.global_position)
 						velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
+						check_collision()
 					elif not collision.is_in_group("Enemy") and not collision == self and not slowed_down:
 						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -66,15 +67,12 @@ func _physics_process(delta) -> void:
 			animation.speed_scale = 1
 			
 		change_state()
-		check_collision()
 		animation_play()
 		move_and_slide()
+	
 		
-	else:
-		set_process(false)
-		
-	if not dead:
-		check_for_death()
+		if not dead:
+			check_for_death()
 
 func change_state():
 	if animation_can_play:

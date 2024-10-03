@@ -1,5 +1,5 @@
 extends Node2D
-
+#Bone particle for when the archer dies. Uses essentially the same script as most of the other particles
 @onready var sprite = $Sprite
 var rotation_speed = 10
 var x_velocity = 0

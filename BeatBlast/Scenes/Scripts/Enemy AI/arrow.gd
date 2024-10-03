@@ -1,5 +1,5 @@
 extends Area2D
-
+#The arrow the skeleton archer enemy generates. It has a power value which determines the speed and damage it does.
 @export var SPEED :float = 700.0
 var damage :int = 3
 const particle :PackedScene = preload("res://Scenes/Other/Shooting_Particle.tscn")

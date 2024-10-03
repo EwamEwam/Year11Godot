@@ -1,5 +1,5 @@
 extends Node2D
-
+#Door. Detects when a value in the playerstats script is equal to it's ID and opens. 
 @onready var press = get_tree().get_first_node_in_group("Button")
 @export var id = 1
 var closed = true

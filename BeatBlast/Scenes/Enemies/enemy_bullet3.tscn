@@ -10,7 +10,7 @@ size = Vector2(4, 4)
 process_mode = 1
 scale = Vector2(8, 8)
 collision_layer = 2
-collision_mask = 7
+collision_mask = 39
 script = ExtResource("1_0fiia")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

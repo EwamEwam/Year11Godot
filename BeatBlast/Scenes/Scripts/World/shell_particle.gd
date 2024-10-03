@@ -1,5 +1,5 @@
 extends Node2D
-
+#The particle tht generates when the playe shoots. Has a special animation for the shoot gun.
 @onready var sprite = $Sprite
 var rotation_speed = 10
 var x_velocity = 0

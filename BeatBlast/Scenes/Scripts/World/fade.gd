@@ -1,5 +1,5 @@
 extends Node2D
-
+#Script for the fade effect, has a fade in where it goes from one scene to another and a fade out where it fades out, what a shocker.
 @onready var screen = $BlackScreen
 @onready var key = get_tree().get_first_node_in_group("Key")
 
@@ -65,7 +65,8 @@ func fade_out(val, amt, time):
 	for i in range(amt):
 		await get_tree().create_timer(0.05).timeout
 		screen.modulate.a -= val
-	get_tree().paused = false
+	if not get_tree().current_scene.name == "level":
+		get_tree().paused = false
 
 func intro():
 	screen.modulate = Color(0.004, 0, 0.041,1)

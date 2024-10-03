@@ -1,5 +1,5 @@
 extends StaticBody2D
-
+#Relativly the same as the box prop but instead, only has one health and drops a predetermined amount of gems.
 @export var health = 1
 @onready var sprite = $Pot
 @export var gem1_drop = 1

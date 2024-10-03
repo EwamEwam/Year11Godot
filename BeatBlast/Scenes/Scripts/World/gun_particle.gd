@@ -1,5 +1,5 @@
 extends Node2D
-
+#A particle effect that players when the player shoots. It looks towards the mouse, rotates a random amount, then plays. 
 @onready var sprite = $Particle_sprite
 var SPEED = 3
 

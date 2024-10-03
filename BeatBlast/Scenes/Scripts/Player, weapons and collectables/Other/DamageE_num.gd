@@ -1,5 +1,5 @@
 extends Node2D
-
+#Number sprite that shows how much damages was down to an enemy. Sets it according to a value in the playerstats script
 @onready var number = $number
 @onready var number_s = $AnimationPlayer
 

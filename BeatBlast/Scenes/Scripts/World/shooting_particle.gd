@@ -1,5 +1,5 @@
 extends Node2D
-
+#The particle that generates when a shooter enemy, well, shoots.
 @onready var sprite = $Particle_sprite
 var SPEED: float = 3
 

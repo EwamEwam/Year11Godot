@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://qynimnrvr5fc"]
+[gd_scene load_steps=40 format=4 uid="uid://qynimnrvr5fc"]
 
 [ext_resource type="Script" path="res://Scenes/Scripts/World/level_3.gd" id="1_827s4"]
 [ext_resource type="Texture2D" uid="uid://b0nef7xi1gt45" path="res://Sprites/World/Desert_spritesheet.png" id="2_vsisl"]
@@ -522,6 +522,18 @@ terrain_set_0/terrain_2/color = Color(5.0056e-06, 0.571184, 0.750251, 1)
 terrain_set_0/terrain_3/name = "Bluk"
 terrain_set_0/terrain_3/color = Color(0.27, 0.1305, 0, 1)
 sources/0 = SubResource("TileSetAtlasSource_tv8gw")
+
+[sub_resource type="Environment" id="Environment_qdle0"]
+background_mode = 3
+background_energy_multiplier = 0.0
+ambient_light_source = 1
+tonemap_exposure = 1.05
+glow_levels/1 = 19.8
+glow_levels/2 = 10.8
+adjustment_enabled = true
+adjustment_brightness = 1.05
+adjustment_contrast = 1.02
+adjustment_saturation = 1.02
 
 [node name="level" type="Node2D" groups=["Level"]]
 process_mode = 3
@@ -3148,7 +3160,8 @@ y_sort_enabled = true
 [node name="PointLight2D2" type="PointLight2D" parent="Level_elements/Lighting"]
 position = Vector2(2435, 442)
 scale = Vector2(1366.18, 1366.18)
-energy = 2.75
+color = Color(0.96, 0.89616, 0.7584, 1)
+energy = 2.8
 texture = ExtResource("3_dulev")
 
 [node name="Gem_key" parent="Level_elements" instance=ExtResource("10_f0yvn")]
@@ -3180,6 +3193,9 @@ scale = Vector2(0.5, 0.5)
 stream = ExtResource("7_1jcvo")
 volume_db = -12.0
 autoplay = true
-parameters/looping = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qdle0")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="Background_Music" to="." method="_on_background_music_finished"]

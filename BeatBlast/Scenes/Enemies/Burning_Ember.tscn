@@ -645,16 +645,14 @@ texture = ExtResource("2_1saof")
 position = Vector2(0, -53)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_3mwt3")
-animation = &"Charge"
+animation = &"Right"
 autoplay = "Right"
-frame = 5
-frame_progress = 0.574498
 
-[node name="PointLight2D" type="PointLight2D" parent="Ember_Sprite"]
-position = Vector2(0, 4.375)
-scale = Vector2(0.0938416, 0.0938416)
-color = Color(0.99584, 0.489545, 0.396529, 1)
-energy = 10.0
+[node name="Ember_Light" type="PointLight2D" parent="Ember_Sprite"]
+position = Vector2(0, 4)
+scale = Vector2(0.0813783, 0.0813783)
+color = Color(1, 0.417333, 0.08, 1)
+energy = 12.0
 texture = ExtResource("4_xngq8")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
@@ -689,6 +687,8 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_7lpwe")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 18)
@@ -697,6 +697,8 @@ shape = SubResource("CapsuleShape2D_5srph")
 
 [node name="Movement_circle" type="Area2D" parent="."]
 visible = false
+collision_layer = 0
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Movement_circle"]
 shape = SubResource("CircleShape2D_hqm7n")

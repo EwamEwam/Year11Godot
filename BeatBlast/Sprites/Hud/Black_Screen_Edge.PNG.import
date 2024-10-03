@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6xp6ed7jcxw1"
-path="res://.godot/imported/Black_Screen_Edge.PNG-efc72e7d5c0e6f2bdd64a704a8a6dee0.ctex"
+uid="uid://dsfpvt83dfn4d"
+path="res://.godot/imported/Black_Screen_Edge.png-b1052a4ef0d7eacb3598fa0bb9cf89b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Hud/Black_Screen_Edge.PNG"
-dest_files=["res://.godot/imported/Black_Screen_Edge.PNG-efc72e7d5c0e6f2bdd64a704a8a6dee0.ctex"]
+source_file="res://Sprites/Hud/Black_Screen_Edge.png"
+dest_files=["res://.godot/imported/Black_Screen_Edge.png-b1052a4ef0d7eacb3598fa0bb9cf89b3.ctex"]
 
 [params]
 

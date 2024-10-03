@@ -1,5 +1,6 @@
 extends CharacterBody2D
-
+#The roach enemy, works like the slime but has difference to animation and has very low stats to health, damage, and score. 
+#It also doesn't have collision with anything else but other enemies. This means the player walks over them instead of pushes them.
 const SPEED = 400.0
 const ACCELLERATION = 15.0
 const FRICTION = 3.0
@@ -32,8 +33,8 @@ func check_collision():
 	var collisions = hurtbox.get_overlapping_bodies()
 	if collisions:
 		for collision in collisions:
-			if collision.is_in_group("Player") and timer.is_stopped() and collision.has_method("damage_player"):
-				collision.shake(2,0.025,2,1.5)
+			if collision.is_in_group("Player") and timer.is_stopped():
+				collision.shake(3,0.025,3,1.4)
 				collision.damage_player(damage-Playerstats.defence)
 				timer.start()
 				
@@ -51,6 +52,7 @@ func _physics_process(delta):
 						var direction_to_player = global_position.direction_to(player.global_position)
 						Sprite.look_at(Vector2(Playerstats.player_x, Playerstats.player_y))
 						velocity = velocity.move_toward(direction_to_player * SPEED, ACCELLERATION)
+						check_collision()
 					elif not collision.is_in_group("Enemy") and not collision == self and not slowed_down:
 						slowed_down = true
 						velocity = velocity.move_toward(Vector2.ZERO, FRICTION)
@@ -62,9 +64,6 @@ func _physics_process(delta):
 		check_collision()
 		animation_play()
 		move_and_slide()
-		
-	else:
-		set_process(false)
 		
 	if not dead:
 		current_state = state.Running

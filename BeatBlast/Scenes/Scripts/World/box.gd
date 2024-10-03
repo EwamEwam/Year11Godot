@@ -1,5 +1,5 @@
 extends StaticBody2D
-
+#Box prop. It has a health value and a drop value, when any projectile can damage the box and when it's destroyed, it drops the corresponding heart
 @export var health = 10
 @onready var sprite = $Crate
 @export var drop = 0

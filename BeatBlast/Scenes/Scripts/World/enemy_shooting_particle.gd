@@ -1,5 +1,5 @@
 extends Node2D
-
+#Particle for when the enemy shoots, I'm really grasping at straws trying to find explanations for these copy and paste scripts.
 @onready var sprite = $Particle_sprite
 var SPEED = 7.5
 

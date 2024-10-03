@@ -1,5 +1,5 @@
 extends Area2D
-
+#The player's bullet script. It look towards the mouse's direction and travels by translating towards it. It has a Area2D to detect for any collisions
 const collide = preload("res://Scenes/Characters, weapons and collectables/bullet_1_collision.tscn")
 const number = preload("res://Scenes/Other/DamageE_numbers.tscn")
 const particle = preload("res://Scenes/Other/Shooting_Particle.tscn")

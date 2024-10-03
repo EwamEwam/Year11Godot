@@ -213,6 +213,7 @@ func damaged(val):
 			val = val/1.2
 		red.visible = false
 
+#Sets the icons for the status effects in the game
 func update_status():
 	if Playerstats.current_status.Poison > 0:
 		poison.visible = true
@@ -243,17 +244,20 @@ func update_status():
 		burning.visible = false
 		burning_timer.visible = false
 
+#Fades the HUD elements out
 func fade():
 	await get_tree().create_timer(3).timeout
 	for i in range(20):
 		hud.modulate.a -= 0.05
 		await get_tree().create_timer(0.05).timeout
 
+#Fades the HUD elements in
 func fade_level_complete():
 	for i in range(5):
 		hud.modulate.a -= 0.2
 		await get_tree().create_timer(0.05).timeout
 
+#Shows the level number
 func level_title() -> void:
 	level_heading.text = "Level " + str(Playerstats.level)
 	level_heading.modulate.a = 0
@@ -267,6 +271,7 @@ func level_title() -> void:
 		await get_tree().create_timer(0.05).timeout
 	level_heading.visible = false
 
+#Updates the healing items in the HUD
 func update_healing_items(selected):
 	$CanvasModulate/Healing_icon.play(str(selected))
 	match selected:
@@ -289,8 +294,11 @@ func update_healing_items(selected):
 		$CanvasModulate/Healing_amt.modulate = Color(1,1,1,1)
 		$CanvasModulate/Healing_cooldown.visible = false
 
-#Self explanatory
+#The script that plays when the plyer reads a sign, Using a modulo, it will only play a sound for every 3 letters that pop up.
 func update_sign(text):
+	if text.length() % 3 == 0:
+		$CanvasModulate/Sign_texts/Text_Sound.pitch_scale = randf_range(0.8,1.2)
+		$CanvasModulate/Sign_texts/Text_Sound.play()
 	$CanvasModulate/Sign_texts/text.text = text
 
 #The functions that makes the pause menu pop up. Uses a VBoxContainer to set the buttons and label in order. Then enables the buttons

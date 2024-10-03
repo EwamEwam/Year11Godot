@@ -1,5 +1,6 @@
 extends Node2D
-
+#The store, Has many buttons which when pressed, checks if the player has sufficient gems and if it's not maxed. Then it takes the gem away
+#And if it's an upgrade, increases the price for the next level. It stores all of this information in the playerstats script
 @onready var screen = $Fade
 
 func _ready() -> void:
